@@ -31,11 +31,16 @@
   * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
   html, body {
+    height: 100%;
+    overflow: hidden;
+  }
+
+  body {
     background: var(--bg);
     color: var(--text);
     font-family: 'Inter', sans-serif;
-    min-height: 100vh;
-    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
   }
 
   /* HEADER */
@@ -439,12 +444,15 @@
     bottom: 0;
     left: 0;
     right: 0;
-    background: rgba(10,10,15,0.95);
-    backdrop-filter: blur(20px);
+    z-index: 100;
+    background: rgba(10,10,15,0.97);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
     border-top: 0.5px solid var(--border);
-    padding: 10px 20px 20px;
+    padding: 10px 20px env(safe-area-inset-bottom, 16px);
     display: flex;
     justify-content: space-around;
+    flex-shrink: 0;
   }
 
   .nav-item {
@@ -473,7 +481,14 @@
 
   .nav-item.active .nav-label { color: var(--accent1); }
 
-  .content-area { padding-bottom: 80px; }
+  /* Контент не уходит под панель */
+  .content-area {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 90px;
+  }
 
   /* GLOW ORBS */
   .orb {
@@ -494,7 +509,7 @@
     background: rgba(236,72,153,0.06);
   }
 
-  .content-area { position: relative; z-index: 1; }
+  .content-area { position: relative; z-index: 1; overflow-y: auto; -webkit-overflow-scrolling: touch; }
 </style>
 </head>
 <body>
