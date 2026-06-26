@@ -30,9 +30,9 @@
 
   * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
-  html, body {
-    height: 100%;
-    overflow: hidden;
+  html {
+    height: -webkit-fill-available;
+    height: 100dvh;
   }
 
   body {
@@ -41,6 +41,13 @@
     font-family: 'Inter', sans-serif;
     display: flex;
     flex-direction: column;
+    height: -webkit-fill-available;
+    height: 100dvh;
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
   }
 
   /* HEADER */
@@ -440,19 +447,16 @@
 
   /* BOTTOM NAV */
   .bottom-nav {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    flex-shrink: 0;
     z-index: 100;
     background: rgba(10,10,15,0.97);
     backdrop-filter: blur(24px);
     -webkit-backdrop-filter: blur(24px);
     border-top: 0.5px solid var(--border);
-    padding: 10px 20px env(safe-area-inset-bottom, 16px);
+    padding: 10px 20px;
+    padding-bottom: calc(10px + env(safe-area-inset-bottom, 0px));
     display: flex;
     justify-content: space-around;
-    flex-shrink: 0;
   }
 
   .nav-item {
@@ -487,7 +491,9 @@
     overflow-y: auto;
     overflow-x: hidden;
     -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
     padding-bottom: 90px;
+    min-height: 0;
   }
 
   /* GLOW ORBS */
