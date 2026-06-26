@@ -3,1114 +3,894 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Persona — Тёмная триада</title>
+<title>Persona — Тесты</title>
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;500;700&family=Inter:wght@300;400;500&display=swap');
-
-:root {
-  --bg: #0A0A0F;
-  --bg2: #111118;
-  --bg3: #18181F;
-  --bg4: #1E1E28;
-  --border: rgba(255,255,255,0.07);
-  --text: #F0EEF8;
-  --text2: #7A7890;
-  --text3: #4A4860;
-  --accent1: #8B5CF6;
-  --accent2: #EC4899;
-  --accent3: #06B6D4;
-  --glow1: rgba(139,92,246,0.15);
-  --glow2: rgba(236,72,153,0.12);
-  --radius: 18px;
-  --radius-sm: 12px;
-  --nav-h: 72px;
-}
-
-* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-
-html {
-  height: -webkit-fill-available;
-  height: 100dvh;
-}
-
-body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: 'Inter', sans-serif;
-  display: flex;
-  flex-direction: column;
-  height: -webkit-fill-available;
-  height: 100dvh;
-  overflow: hidden;
-  position: fixed;
-  width: 100%;
-  top: 0; left: 0;
-}
-
-/* ── SCREENS ── */
-.screen {
-  display: none;
-  flex-direction: column;
-  flex: 1;
-  overflow: hidden;
-}
-.screen.active { display: flex; }
-
-/* ══════════════════════════════
-   INTRO SCREEN
-══════════════════════════════ */
-.intro-scroll {
-  flex: 1;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-  overscroll-behavior: contain;
-  padding: 0 24px 32px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 0;
-}
-
-.intro-orb {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  background: radial-gradient(circle at 40% 35%,
-    rgba(139,92,246,0.5) 0%,
-    rgba(236,72,153,0.3) 50%,
-    transparent 70%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto 28px;
-  position: relative;
-}
-
-.intro-orb::after {
-  content: '';
-  position: absolute;
-  inset: -1px;
-  border-radius: 50%;
-  border: 1px solid rgba(139,92,246,0.3);
-}
-
-.intro-emoji { font-size: 48px; }
-
-.intro-label {
-  font-size: 10px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--accent1);
-  font-weight: 500;
-  text-align: center;
-  margin-bottom: 10px;
-}
-
-.intro-title {
-  font-family: 'Unbounded', sans-serif;
-  font-size: 26px;
-  font-weight: 400;
-  text-align: center;
-  line-height: 1.25;
-  margin-bottom: 16px;
-  background: linear-gradient(135deg, #E0D7FF 0%, #F9A8D4 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.intro-desc {
-  font-size: 14px;
-  color: var(--text2);
-  text-align: center;
-  line-height: 1.7;
-  margin-bottom: 32px;
-  max-width: 300px;
-}
-
-.intro-stats {
-  display: flex;
-  gap: 12px;
-  margin-bottom: 32px;
-  width: 100%;
-  max-width: 320px;
-}
-
-.intro-stat {
-  flex: 1;
-  background: var(--bg3);
-  border: 0.5px solid var(--border);
-  border-radius: var(--radius-sm);
-  padding: 12px;
-  text-align: center;
-}
-
-.intro-stat-val {
-  font-family: 'Unbounded', sans-serif;
-  font-size: 18px;
-  font-weight: 500;
-  color: var(--text);
-  display: block;
-  margin-bottom: 3px;
-}
-
-.intro-stat-label {
-  font-size: 10px;
-  color: var(--text3);
-  letter-spacing: 0.04em;
-}
-
-.intro-axes {
-  width: 100%;
-  max-width: 320px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  margin-bottom: 8px;
-}
-
-.axis-row {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  background: var(--bg3);
-  border: 0.5px solid var(--border);
-  border-radius: var(--radius-sm);
-  padding: 10px 14px;
-}
-
-.axis-icon { font-size: 18px; width: 24px; text-align: center; }
-
-.axis-info { flex: 1; }
-
-.axis-name {
-  font-size: 12px;
-  font-weight: 500;
-  color: var(--text);
-  margin-bottom: 1px;
-}
-
-.axis-sub { font-size: 11px; color: var(--text3); }
-
-.intro-footer {
-  flex-shrink: 0;
-  padding: 16px 24px calc(16px + env(safe-area-inset-bottom, 0px));
-  border-top: 0.5px solid var(--border);
-  background: var(--bg);
-}
-
-.btn-start {
-  width: 100%;
-  padding: 16px;
-  border-radius: var(--radius);
-  border: none;
-  background: linear-gradient(135deg, var(--accent1), var(--accent2));
-  color: #fff;
-  font-family: 'Unbounded', sans-serif;
-  font-size: 13px;
-  font-weight: 400;
-  letter-spacing: 0.04em;
-  cursor: pointer;
-  transition: all 0.18s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-}
-
-.btn-start:active { transform: scale(0.97); opacity: 0.9; }
-
-/* ══════════════════════════════
-   QUESTION SCREEN
-══════════════════════════════ */
-.q-header {
-  flex-shrink: 0;
-  padding: 16px 20px 12px;
-  border-bottom: 0.5px solid var(--border);
-}
-
-.q-progress-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 10px;
-}
-
-.q-label {
-  font-size: 11px;
-  color: var(--text3);
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
-
-.q-counter {
-  font-family: 'Unbounded', sans-serif;
-  font-size: 11px;
-  color: var(--text2);
-}
-
-.q-progress-bar {
-  height: 3px;
-  background: rgba(255,255,255,0.06);
-  border-radius: 2px;
-  overflow: hidden;
-}
-
-.q-progress-fill {
-  height: 100%;
-  background: linear-gradient(90deg, var(--accent1), var(--accent2));
-  border-radius: 2px;
-  transition: width 0.4s cubic-bezier(0.4,0,0.2,1);
-}
-
-.q-axis-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  font-size: 10px;
-  padding: 3px 9px;
-  border-radius: 100px;
-  font-weight: 500;
-  margin-top: 10px;
-  letter-spacing: 0.04em;
-}
-
-.badge-n { background: rgba(139,92,246,0.15); color: #A78BFA; }
-.badge-p { background: rgba(236,72,153,0.15); color: #F472B6; }
-.badge-m { background: rgba(6,182,212,0.15); color: #22D3EE; }
-
-.q-body {
-  flex: 1;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-  overscroll-behavior: contain;
-  padding: 20px 20px 16px;
-  display: flex;
-  flex-direction: column;
-  min-height: 0;
-}
-
-.q-text {
-  font-family: 'Unbounded', sans-serif;
-  font-size: 17px;
-  font-weight: 300;
-  line-height: 1.45;
-  color: var(--text);
-  margin-bottom: 28px;
-  flex-shrink: 0;
-}
-
-.answers {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  flex-shrink: 0;
-}
-
-.answer-btn {
-  width: 100%;
-  padding: 14px 16px;
-  border-radius: var(--radius-sm);
-  border: 0.5px solid var(--border);
-  background: var(--bg3);
-  color: var(--text);
-  font-family: 'Inter', sans-serif;
-  font-size: 13px;
-  font-weight: 400;
-  text-align: left;
-  cursor: pointer;
-  transition: all 0.15s;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  line-height: 1.4;
-}
-
-.answer-btn:active {
-  transform: scale(0.98);
-  background: var(--bg4);
-  border-color: rgba(139,92,246,0.3);
-}
-
-.answer-btn.selected {
-  background: rgba(139,92,246,0.12);
-  border-color: rgba(139,92,246,0.4);
-}
-
-.answer-btn.correct {
-  background: rgba(139,92,246,0.2);
-  border-color: var(--accent1);
-}
-
-.answer-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--text3);
-  flex-shrink: 0;
-  transition: background 0.15s;
-}
-
-.answer-btn.selected .answer-dot { background: var(--accent1); }
-
-.q-footer {
-  flex-shrink: 0;
-  padding: 12px 20px calc(12px + env(safe-area-inset-bottom, 0px));
-  border-top: 0.5px solid var(--border);
-  background: var(--bg);
-}
-
-.btn-next {
-  width: 100%;
-  padding: 14px;
-  border-radius: var(--radius);
-  border: none;
-  background: linear-gradient(135deg, var(--accent1), var(--accent2));
-  color: #fff;
-  font-family: 'Unbounded', sans-serif;
-  font-size: 12px;
-  font-weight: 400;
-  letter-spacing: 0.04em;
-  cursor: pointer;
-  transition: all 0.18s;
-  opacity: 0.3;
-  pointer-events: none;
-}
-
-.btn-next.enabled {
-  opacity: 1;
-  pointer-events: all;
-}
-
-.btn-next:active { transform: scale(0.97); }
-
-/* ══════════════════════════════
-   RESULT SCREEN
-══════════════════════════════ */
-.result-scroll {
-  flex: 1;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-  overscroll-behavior: contain;
-  min-height: 0;
-}
-
-.result-hero {
-  padding: 32px 24px 24px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-}
-
-.result-hero::before {
-  content: '';
-  position: absolute;
-  top: -40px; left: 50%;
-  transform: translateX(-50%);
-  width: 280px; height: 280px;
-  border-radius: 50%;
-  background: radial-gradient(circle,
-    rgba(139,92,246,0.2) 0%,
-    rgba(236,72,153,0.1) 50%,
-    transparent 70%);
-  pointer-events: none;
-}
-
-.result-badge {
-  font-size: 10px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--accent1);
-  font-weight: 500;
-  margin-bottom: 8px;
-}
-
-.result-type {
-  font-family: 'Unbounded', sans-serif;
-  font-size: 28px;
-  font-weight: 500;
-  line-height: 1.2;
-  margin-bottom: 12px;
-  background: linear-gradient(135deg, #E0D7FF, #F9A8D4);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.result-tagline {
-  font-size: 13px;
-  color: var(--text2);
-  line-height: 1.6;
-  margin-bottom: 24px;
-  max-width: 280px;
-}
-
-/* RADAR CHART */
-.radar-wrap {
-  width: 180px;
-  height: 180px;
-  margin: 0 auto 28px;
-  position: relative;
-}
-
-.radar-wrap canvas {
-  width: 100%;
-  height: 100%;
-}
-
-/* SCORE BARS */
-.score-bars {
-  width: 100%;
-  padding: 0 24px;
-  margin-bottom: 24px;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-
-.score-row { width: 100%; }
-
-.score-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  margin-bottom: 6px;
-}
-
-.score-name {
-  font-size: 12px;
-  font-weight: 500;
-  color: var(--text);
-}
-
-.score-val {
-  font-family: 'Unbounded', sans-serif;
-  font-size: 13px;
-  font-weight: 500;
-}
-
-.score-bar-track {
-  height: 6px;
-  background: rgba(255,255,255,0.06);
-  border-radius: 3px;
-  overflow: hidden;
-}
-
-.score-bar-fill {
-  height: 100%;
-  border-radius: 3px;
-  width: 0%;
-  transition: width 1.2s cubic-bezier(0.4,0,0.2,1);
-}
-
-.fill-n { background: linear-gradient(90deg, #7C3AED, #8B5CF6); }
-.fill-p { background: linear-gradient(90deg, #BE185D, #EC4899); }
-.fill-m { background: linear-gradient(90deg, #0891B2, #06B6D4); }
-
-/* RESULT DESCRIPTION — free preview */
-.result-desc-wrap {
-  margin: 0 24px 16px;
-  background: var(--bg3);
-  border: 0.5px solid var(--border);
-  border-radius: var(--radius);
-  padding: 18px;
-  position: relative;
-  overflow: hidden;
-}
-
-.result-desc-title {
-  font-size: 11px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--text3);
-  margin-bottom: 10px;
-}
-
-.result-desc-text {
-  font-size: 13px;
-  color: var(--text2);
-  line-height: 1.7;
-}
-
-/* LOCKED — premium block */
-.result-locked {
-  margin: 0 24px 24px;
-  background: linear-gradient(135deg,
-    rgba(139,92,246,0.1) 0%,
-    rgba(236,72,153,0.08) 100%);
-  border: 0.5px solid rgba(139,92,246,0.25);
-  border-radius: var(--radius);
-  padding: 20px;
-  text-align: center;
-}
-
-.locked-icon {
-  font-size: 28px;
-  margin-bottom: 10px;
-  display: block;
-}
-
-.locked-title {
-  font-family: 'Unbounded', sans-serif;
-  font-size: 14px;
-  font-weight: 400;
-  color: var(--text);
-  margin-bottom: 8px;
-  line-height: 1.3;
-}
-
-.locked-desc {
-  font-size: 12px;
-  color: var(--text2);
-  line-height: 1.6;
-  margin-bottom: 16px;
-}
-
-.locked-items {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  margin-bottom: 18px;
-  text-align: left;
-}
-
-.locked-item {
-  font-size: 12px;
-  color: var(--text2);
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.locked-item::before {
-  content: '✦';
-  color: var(--accent1);
-  font-size: 10px;
-  flex-shrink: 0;
-}
-
-.btn-unlock {
-  width: 100%;
-  padding: 14px;
-  border-radius: var(--radius-sm);
-  border: none;
-  background: linear-gradient(135deg, var(--accent1), var(--accent2));
-  color: #fff;
-  font-family: 'Unbounded', sans-serif;
-  font-size: 12px;
-  font-weight: 400;
-  letter-spacing: 0.04em;
-  cursor: pointer;
-  transition: all 0.18s;
-}
-
-.btn-unlock:active { transform: scale(0.97); opacity: 0.9; }
-
-.result-footer {
-  flex-shrink: 0;
-  padding: 12px 24px calc(12px + env(safe-area-inset-bottom, 0px));
-  border-top: 0.5px solid var(--border);
-  display: flex;
-  gap: 10px;
-}
-
-.btn-share {
-  flex: 1;
-  padding: 13px;
-  border-radius: var(--radius-sm);
-  border: 0.5px solid var(--border);
-  background: var(--bg3);
-  color: var(--text);
-  font-family: 'Inter', sans-serif;
-  font-size: 13px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.18s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-}
-
-.btn-share:active { transform: scale(0.97); }
-
-.btn-profile {
-  flex: 1;
-  padding: 13px;
-  border-radius: var(--radius-sm);
-  border: none;
-  background: rgba(139,92,246,0.2);
-  border: 0.5px solid rgba(139,92,246,0.3);
-  color: #C4B5FD;
-  font-family: 'Inter', sans-serif;
-  font-size: 13px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.18s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-}
-
-.btn-profile:active { transform: scale(0.97); }
-
-/* TRANSITION ANIM */
-@keyframes fadeSlideUp {
-  from { opacity: 0; transform: translateY(16px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-.anim-in { animation: fadeSlideUp 0.3s cubic-bezier(0.4,0,0.2,1) forwards; }
-
-@keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.5; }
-}
+  @import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;500;700&family=Inter:wght@300;400;500&display=swap');
+
+  :root {
+    --bg: #0A0A0F;
+    --bg2: #111118;
+    --bg3: #18181F;
+    --border: rgba(255,255,255,0.07);
+    --text: #F0EEF8;
+    --text2: #7A7890;
+    --text3: #4A4860;
+    --accent1: #8B5CF6;
+    --accent2: #EC4899;
+    --accent3: #06B6D4;
+    --accent4: #10B981;
+    --glow1: rgba(139,92,246,0.15);
+    --glow2: rgba(236,72,153,0.12);
+    --glow3: rgba(6,182,212,0.12);
+    --glow4: rgba(16,185,129,0.12);
+    --radius: 16px;
+    --radius-sm: 10px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+  html {
+    height: -webkit-fill-available;
+    height: 100dvh;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    flex-direction: column;
+    height: -webkit-fill-available;
+    height: 100dvh;
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+  }
+
+  /* HEADER */
+  .header {
+    padding: 20px 20px 0;
+    position: relative;
+  }
+
+  .header-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+  }
+
+  .logo-mark {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .logo-prism {
+    width: 32px;
+    height: 32px;
+  }
+
+  .logo-name {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    color: var(--text);
+  }
+
+  .profile-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--bg3);
+    border: 0.5px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .profile-btn:active { transform: scale(0.94); }
+  .profile-btn svg { width: 16px; height: 16px; opacity: 0.6; }
+
+  /* GREETING */
+  .greeting {
+    padding: 0 20px 28px;
+  }
+
+  .greeting-label {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text3);
+    font-weight: 500;
+    margin-bottom: 6px;
+  }
+
+  .greeting-title {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 22px;
+    font-weight: 300;
+    line-height: 1.3;
+    color: var(--text);
+  }
+
+  .greeting-title span {
+    background: linear-gradient(135deg, var(--accent1), var(--accent2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 500;
+  }
+
+  /* PROGRESS STRIP */
+  .progress-strip {
+    margin: 0 20px 28px;
+    background: var(--bg3);
+    border: 0.5px solid var(--border);
+    border-radius: var(--radius);
+    padding: 14px 16px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .progress-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    background: var(--glow1);
+    border: 0.5px solid rgba(139,92,246,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 18px;
+  }
+
+  .progress-info { flex: 1; }
+
+  .progress-label {
+    font-size: 11px;
+    color: var(--text2);
+    margin-bottom: 5px;
+  }
+
+  .progress-bar-wrap {
+    height: 4px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .progress-bar-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, var(--accent1), var(--accent2));
+    border-radius: 2px;
+    transition: width 1s cubic-bezier(0.4,0,0.2,1);
+  }
+
+  .progress-count {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text);
+  }
+
+  /* CATEGORY TABS */
+  .tabs-wrap {
+    padding: 0 20px;
+    margin-bottom: 16px;
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .tabs-wrap::-webkit-scrollbar { display: none; }
+
+  .tab {
+    flex-shrink: 0;
+    padding: 7px 16px;
+    border-radius: 100px;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    border: 0.5px solid var(--border);
+    background: transparent;
+    color: var(--text2);
+    transition: all 0.2s;
+    letter-spacing: 0.02em;
+  }
+
+  .tab.active {
+    background: var(--accent1);
+    border-color: var(--accent1);
+    color: #fff;
+  }
+
+  .tab:active { transform: scale(0.95); }
+
+  /* SECTION LABEL */
+  .section-label {
+    padding: 0 20px;
+    margin-bottom: 12px;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text3);
+    font-weight: 500;
+  }
+
+  /* TEST CARDS */
+  .cards-list {
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-bottom: 32px;
+  }
+
+  .test-card {
+    background: var(--bg3);
+    border: 0.5px solid var(--border);
+    border-radius: var(--radius);
+    padding: 18px;
+    cursor: pointer;
+    transition: all 0.18s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .test-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: var(--radius);
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+
+  .test-card:active { transform: scale(0.97); }
+  .test-card:active::before { opacity: 1; }
+
+  .card-dark::before { background: var(--glow1); }
+  .card-relations::before { background: var(--glow2); }
+  .card-emotions::before { background: var(--glow3); }
+
+  .card-dark { border-color: rgba(139,92,246,0.15); }
+  .card-relations { border-color: rgba(236,72,153,0.15); }
+  .card-emotions { border-color: rgba(6,182,212,0.15); }
+
+  .card-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+
+  .card-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+
+  .icon-dark { background: var(--glow1); }
+  .icon-relations { background: var(--glow2); }
+  .icon-emotions { background: var(--glow3); }
+  .icon-done { background: var(--glow4); }
+
+  .card-badges {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 5px;
+  }
+
+  .badge-time {
+    font-size: 10px;
+    color: var(--text3);
+    letter-spacing: 0.04em;
+  }
+
+  .badge-status {
+    font-size: 10px;
+    padding: 3px 8px;
+    border-radius: 100px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+  }
+
+  .status-new {
+    background: rgba(139,92,246,0.15);
+    color: #A78BFA;
+  }
+
+  .status-done {
+    background: rgba(16,185,129,0.15);
+    color: #34D399;
+  }
+
+  .status-soon {
+    background: rgba(255,255,255,0.05);
+    color: var(--text3);
+  }
+
+  .card-title {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--text);
+    margin-bottom: 5px;
+    line-height: 1.3;
+  }
+
+  .card-desc {
+    font-size: 12px;
+    color: var(--text2);
+    line-height: 1.5;
+    margin-bottom: 12px;
+  }
+
+  .card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .card-questions {
+    font-size: 11px;
+    color: var(--text3);
+  }
+
+  .card-arrow {
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255,255,255,0.05);
+    transition: all 0.2s;
+  }
+
+  .card-dark .card-arrow { background: rgba(139,92,246,0.15); }
+  .card-relations .card-arrow { background: rgba(236,72,153,0.12); }
+  .card-emotions .card-arrow { background: rgba(6,182,212,0.12); }
+
+  .card-arrow svg {
+    width: 12px;
+    height: 12px;
+    opacity: 0.7;
+  }
+
+  /* FEATURED CARD */
+  .featured-card {
+    margin: 0 20px 10px;
+    background: linear-gradient(135deg, rgba(139,92,246,0.2) 0%, rgba(236,72,153,0.15) 100%);
+    border: 0.5px solid rgba(139,92,246,0.3);
+    border-radius: var(--radius);
+    padding: 20px;
+    cursor: pointer;
+    transition: all 0.18s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .featured-card::after {
+    content: '';
+    position: absolute;
+    top: -30px;
+    right: -30px;
+    width: 100px;
+    height: 100px;
+    background: radial-gradient(circle, rgba(139,92,246,0.3), transparent 70%);
+    pointer-events: none;
+  }
+
+  .featured-card:active { transform: scale(0.97); }
+
+  .featured-label {
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #A78BFA;
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+
+  .featured-title {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.25;
+    margin-bottom: 8px;
+    background: linear-gradient(135deg, #E0D7FF, #F9A8D4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .featured-desc {
+    font-size: 12px;
+    color: rgba(240,238,248,0.6);
+    line-height: 1.5;
+    margin-bottom: 16px;
+  }
+
+  .featured-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(139,92,246,0.3);
+    border: 0.5px solid rgba(139,92,246,0.4);
+    border-radius: 100px;
+    padding: 8px 16px;
+    font-size: 12px;
+    font-weight: 500;
+    color: #E0D7FF;
+    letter-spacing: 0.02em;
+  }
+
+  /* HIDDEN SECTIONS */
+  .category-section { display: none; }
+  .category-section.active { display: block; }
+
+  /* BOTTOM NAV */
+  .bottom-nav {
+    flex-shrink: 0;
+    z-index: 100;
+    background: rgba(10,10,15,0.97);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border-top: 0.5px solid var(--border);
+    padding: 10px 20px;
+    padding-bottom: calc(10px + env(safe-area-inset-bottom, 0px));
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+    padding: 6px 12px;
+    border-radius: var(--radius-sm);
+    transition: all 0.2s;
+    opacity: 0.45;
+  }
+
+  .nav-item.active { opacity: 1; }
+  .nav-item:active { transform: scale(0.92); }
+
+  .nav-icon { font-size: 20px; }
+
+  .nav-label {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: var(--text2);
+  }
+
+  .nav-item.active .nav-label { color: var(--accent1); }
+
+  /* Контент не уходит под панель */
+  .content-area {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+    padding-bottom: 90px;
+    min-height: 0;
+  }
+
+  /* GLOW ORBS */
+  .orb {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(80px);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .orb1 {
+    width: 200px; height: 200px;
+    top: -60px; right: -60px;
+    background: rgba(139,92,246,0.08);
+  }
+  .orb2 {
+    width: 150px; height: 150px;
+    bottom: 100px; left: -40px;
+    background: rgba(236,72,153,0.06);
+  }
+
+  .content-area { position: relative; z-index: 1; overflow-y: auto; -webkit-overflow-scrolling: touch; }
 </style>
 </head>
 <body>
 
-<!-- ══════ INTRO ══════ -->
-<div class="screen active" id="screen-intro">
-  <div class="btn-back-wrap">
-    <button class="btn-back" onclick="goBack()">
-      <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-        <path d="M9 11L5 7l4-4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-      К тестам
-    </button>
-  </div>
-  <div class="intro-scroll">
-    <div class="intro-orb">
-      <span class="intro-emoji">😈</span>
-    </div>
-    <div class="intro-label">Тест · Тёмная психология</div>
-    <div class="intro-title">Тёмная<br>триада</div>
-    <div class="intro-desc">
-      У каждого человека есть тёмная сторона.<br>
-      Вопрос только в пропорциях.
-    </div>
-    <div class="intro-stats">
-      <div class="intro-stat">
-        <span class="intro-stat-val">20</span>
-        <span class="intro-stat-label">вопросов</span>
+<div class="orb orb1"></div>
+<div class="orb orb2"></div>
+
+<div class="content-area">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-top">
+      <div class="logo-mark">
+        <svg class="logo-prism" viewBox="0 0 32 32" fill="none">
+          <path d="M16 4L28 26H4L16 4Z" fill="url(#prism-grad)" opacity="0.9"/>
+          <path d="M16 4L28 26" stroke="url(#ray-grad)" stroke-width="1" opacity="0.6"/>
+          <defs>
+            <linearGradient id="prism-grad" x1="4" y1="26" x2="28" y2="4">
+              <stop offset="0%" stop-color="#1a1a2e"/>
+              <stop offset="100%" stop-color="#4a4870"/>
+            </linearGradient>
+            <linearGradient id="ray-grad" x1="16" y1="4" x2="28" y2="26">
+              <stop offset="0%" stop-color="#8B5CF6"/>
+              <stop offset="50%" stop-color="#EC4899"/>
+              <stop offset="100%" stop-color="#06B6D4"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <span class="logo-name">PERSONA</span>
       </div>
-      <div class="intro-stat">
-        <span class="intro-stat-val">~3</span>
-        <span class="intro-stat-label">минуты</span>
-      </div>
-      <div class="intro-stat">
-        <span class="intro-stat-val">3</span>
-        <span class="intro-stat-label">шкалы</span>
-      </div>
-    </div>
-    <div class="intro-axes">
-      <div class="axis-row">
-        <span class="axis-icon">👑</span>
-        <div class="axis-info">
-          <div class="axis-name">Нарциссизм</div>
-          <div class="axis-sub">Величие, власть, превосходство</div>
-        </div>
-      </div>
-      <div class="axis-row">
-        <span class="axis-icon">🧊</span>
-        <div class="axis-info">
-          <div class="axis-name">Психопатия</div>
-          <div class="axis-sub">Бесстрашие, импульсивность, холодность</div>
-        </div>
-      </div>
-      <div class="axis-row">
-        <span class="axis-icon">♟️</span>
-        <div class="axis-info">
-          <div class="axis-name">Макиавеллизм</div>
-          <div class="axis-sub">Расчёт, манипуляция, стратегия</div>
-        </div>
+      <div class="profile-btn" onclick="goProfile()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+        </svg>
       </div>
     </div>
   </div>
-  <div class="intro-footer">
-    <button class="btn-start" onclick="startTest()">
+
+  <!-- GREETING -->
+  <div class="greeting">
+    <div class="greeting-label">Добро пожаловать</div>
+    <div class="greeting-title">Познай свою<br><span>тёмную сторону</span></div>
+  </div>
+
+  <!-- PROGRESS -->
+  <div class="progress-strip">
+    <div class="progress-icon">🧬</div>
+    <div class="progress-info">
+      <div class="progress-label">Профиль заполнен на <strong id="pct-text" style="color:var(--text)">0%</strong></div>
+      <div class="progress-bar-wrap">
+        <div class="progress-bar-fill" id="prog-bar"></div>
+      </div>
+    </div>
+    <div class="progress-count" id="prog-count">0/9</div>
+  </div>
+
+  <!-- FEATURED -->
+  <div class="section-label">Рекомендуем начать</div>
+  <div class="featured-card" onclick="startTest('triada')">
+    <div class="featured-label">⚡ Горячий старт</div>
+    <div class="featured-title">Тёмная<br>триада</div>
+    <div class="featured-desc">Нарциссизм. Психопатия. Макиавеллизм.<br>Узнай свои пропорции за 3 минуты.</div>
+    <div class="featured-btn">
       Начать тест
-      <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-        <path d="M3 7h8M8 4l3 3-3 3" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+        <path d="M2.5 6h7M6.5 3l3 3-3 3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
-    </button>
+    </div>
   </div>
+
+  <!-- TABS -->
+  <div class="tabs-wrap">
+    <div class="tab active" onclick="switchTab('all', this)">Все</div>
+    <div class="tab" onclick="switchTab('dark', this)">🖤 Тёмная психология</div>
+    <div class="tab" onclick="switchTab('relations', this)">💔 Отношения</div>
+    <div class="tab" onclick="switchTab('emotions', this)">🧠 Эмоции</div>
+  </div>
+
+  <!-- ALL / DARK -->
+  <div class="category-section active" id="sec-all">
+    <div class="section-label">Тёмная психология</div>
+    <div class="cards-list">
+      <div class="test-card card-dark" onclick="startTest('triada')">
+        <div class="card-top">
+          <div class="card-icon icon-dark">😈</div>
+          <div class="card-badges">
+            <span class="badge-time">~3 мин</span>
+            <span class="badge-status status-new">Новый</span>
+          </div>
+        </div>
+        <div class="card-title">Тёмная триада</div>
+        <div class="card-desc">Нарциссизм, психопатия, макиавеллизм — у каждого своя пропорция</div>
+        <div class="card-footer">
+          <span class="card-questions">20 вопросов</span>
+          <div class="card-arrow">
+            <svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6h7M6.5 3l3 3-3 3" stroke="white" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="test-card card-dark" onclick="startTest('hunter')">
+        <div class="card-top">
+          <div class="card-icon icon-dark">🐺</div>
+          <div class="card-badges">
+            <span class="badge-time">~4 мин</span>
+            <span class="badge-status status-soon">Скоро</span>
+          </div>
+        </div>
+        <div class="card-title">Хищник или жертва</div>
+        <div class="card-desc">Кто ты в социальной иерархии — управляешь или тобой управляют?</div>
+        <div class="card-footer">
+          <span class="card-questions">18 вопросов</span>
+          <div class="card-arrow">
+            <svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6h7M6.5 3l3 3-3 3" stroke="white" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="test-card card-dark" onclick="startTest('mask')">
+        <div class="card-top">
+          <div class="card-icon icon-dark">🎭</div>
+          <div class="card-badges">
+            <span class="badge-time">~3 мин</span>
+            <span class="badge-status status-soon">Скоро</span>
+          </div>
+        </div>
+        <div class="card-title">Маска</div>
+        <div class="card-desc">Кем ты притворяешься — и кто прячется за этим образом?</div>
+        <div class="card-footer">
+          <span class="card-questions">16 вопросов</span>
+          <div class="card-arrow">
+            <svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6h7M6.5 3l3 3-3 3" stroke="white" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-label">Отношения и пары</div>
+    <div class="cards-list">
+      <div class="test-card card-relations" onclick="startTest('toxic')">
+        <div class="card-top">
+          <div class="card-icon icon-relations">☠️</div>
+          <div class="card-badges">
+            <span class="badge-time">~4 мин</span>
+            <span class="badge-status status-soon">Скоро</span>
+          </div>
+        </div>
+        <div class="card-title">Насколько ты токсичен?</div>
+        <div class="card-desc">Газлайтинг, созависимость, эмоциональный контроль — проверь себя</div>
+        <div class="card-footer">
+          <span class="card-questions">22 вопроса</span>
+          <div class="card-arrow">
+            <svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6h7M6.5 3l3 3-3 3" stroke="white" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="test-card card-relations" onclick="startTest('power')">
+        <div class="card-top">
+          <div class="card-icon icon-relations">👑</div>
+          <div class="card-badges">
+            <span class="badge-time">~3 мин</span>
+            <span class="badge-status status-soon">Скоро</span>
+          </div>
+        </div>
+        <div class="card-title">Кто главный в паре?</div>
+        <div class="card-desc">Баланс власти в отношениях — равенство или нет?</div>
+        <div class="card-footer">
+          <span class="card-questions">15 вопросов</span>
+          <div class="card-arrow">
+            <svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6h7M6.5 3l3 3-3 3" stroke="white" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="test-card card-relations" onclick="startTest('attach')">
+        <div class="card-top">
+          <div class="card-icon icon-relations">💋</div>
+          <div class="card-badges">
+            <span class="badge-time">~4 мин</span>
+            <span class="badge-status status-soon">Скоро</span>
+          </div>
+        </div>
+        <div class="card-title">Стиль привязанности</div>
+        <div class="card-desc">Почему ты снова выбрал не того человека?</div>
+        <div class="card-footer">
+          <span class="card-questions">20 вопросов</span>
+          <div class="card-arrow">
+            <svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6h7M6.5 3l3 3-3 3" stroke="white" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-label">Эмоции и психика</div>
+    <div class="cards-list">
+      <div class="test-card card-emotions" onclick="startTest('anxiety')">
+        <div class="card-top">
+          <div class="card-icon icon-emotions">😰</div>
+          <div class="card-badges">
+            <span class="badge-time">~3 мин</span>
+            <span class="badge-status status-soon">Скоро</span>
+          </div>
+        </div>
+        <div class="card-title">Уровень тревоги</div>
+        <div class="card-desc">Ты думаешь что просто стресс. А что если нет?</div>
+        <div class="card-footer">
+          <span class="card-questions">18 вопросов</span>
+          <div class="card-arrow">
+            <svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6h7M6.5 3l3 3-3 3" stroke="white" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="test-card card-emotions" onclick="startTest('resilience')">
+        <div class="card-top">
+          <div class="card-icon icon-emotions">🛡</div>
+          <div class="card-badges">
+            <span class="badge-time">~3 мин</span>
+            <span class="badge-status status-soon">Скоро</span>
+          </div>
+        </div>
+        <div class="card-title">Психоустойчивость</div>
+        <div class="card-desc">Насколько ты устойчив когда всё идёт не так?</div>
+        <div class="card-footer">
+          <span class="card-questions">16 вопросов</span>
+          <div class="card-arrow">
+            <svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6h7M6.5 3l3 3-3 3" stroke="white" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DARK ONLY -->
+  <div class="category-section" id="sec-dark">
+    <div class="cards-list" style="margin-top:8px">
+      <div class="test-card card-dark" onclick="startTest('triada')">
+        <div class="card-top"><div class="card-icon icon-dark">😈</div><div class="card-badges"><span class="badge-time">~3 мин</span><span class="badge-status status-new">Новый</span></div></div>
+        <div class="card-title">Тёмная триада</div>
+        <div class="card-desc">Нарциссизм, психопатия, макиавеллизм — у каждого своя пропорция</div>
+        <div class="card-footer"><span class="card-questions">20 вопросов</span><div class="card-arrow"><svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6h7M6.5 3l3 3-3 3" stroke="white" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+      </div>
+      <div class="test-card card-dark" onclick="startTest('hunter')">
+        <div class="card-top"><div class="card-icon icon-dark">🐺</div><div class="card-badges"><span class="badge-time">~4 мин</span><span class="badge-status status-soon">Скоро</span></div></div>
+        <div class="card-title">Хищник или жертва</div>
+        <div class="card-desc">Кто ты в социальной иерархии?</div>
+        <div class="card-footer"><span class="card-questions">18 вопросов</span><div class="card-arrow"><svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6h7M6.5 3l3 3-3 3" stroke="white" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+      </div>
+      <div class="test-card card-dark" onclick="startTest('mask')">
+        <div class="card-top"><div class="card-icon icon-dark">🎭</div><div class="card-badges"><span class="badge-time">~3 мин</span><span class="badge-status status-soon">Скоро</span></div></div>
+        <div class="card-title">Маска</div>
+        <div class="card-desc">Кем ты притворяешься — и кто прячется за этим образом?</div>
+        <div class="card-footer"><span class="card-questions">16 вопросов</span><div class="card-arrow"><svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6h7M6.5 3l3 3-3 3" stroke="white" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RELATIONS ONLY -->
+  <div class="category-section" id="sec-relations">
+    <div class="cards-list" style="margin-top:8px">
+      <div class="test-card card-relations" onclick="startTest('toxic')">
+        <div class="card-top"><div class="card-icon icon-relations">☠️</div><div class="card-badges"><span class="badge-time">~4 мин</span><span class="badge-status status-soon">Скоро</span></div></div>
+        <div class="card-title">Насколько ты токсичен?</div>
+        <div class="card-desc">Газлайтинг, созависимость, эмоциональный контроль</div>
+        <div class="card-footer"><span class="card-questions">22 вопроса</span><div class="card-arrow"><svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6h7M6.5 3l3 3-3 3" stroke="white" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+      </div>
+      <div class="test-card card-relations" onclick="startTest('power')">
+        <div class="card-top"><div class="card-icon icon-relations">👑</div><div class="card-badges"><span class="badge-time">~3 мин</span><span class="badge-status status-soon">Скоро</span></div></div>
+        <div class="card-title">Кто главный в паре?</div>
+        <div class="card-desc">Баланс власти в отношениях</div>
+        <div class="card-footer"><span class="card-questions">15 вопросов</span><div class="card-arrow"><svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6h7M6.5 3l3 3-3 3" stroke="white" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+      </div>
+      <div class="test-card card-relations" onclick="startTest('attach')">
+        <div class="card-top"><div class="card-icon icon-relations">💋</div><div class="card-badges"><span class="badge-time">~4 мин</span><span class="badge-status status-soon">Скоро</span></div></div>
+        <div class="card-title">Стиль привязанности</div>
+        <div class="card-desc">Почему ты снова выбрал не того человека?</div>
+        <div class="card-footer"><span class="card-questions">20 вопросов</span><div class="card-arrow"><svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6h7M6.5 3l3 3-3 3" stroke="white" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EMOTIONS ONLY -->
+  <div class="category-section" id="sec-emotions">
+    <div class="cards-list" style="margin-top:8px">
+      <div class="test-card card-emotions" onclick="startTest('anxiety')">
+        <div class="card-top"><div class="card-icon icon-emotions">😰</div><div class="card-badges"><span class="badge-time">~3 мин</span><span class="badge-status status-soon">Скоро</span></div></div>
+        <div class="card-title">Уровень тревоги</div>
+        <div class="card-desc">Ты думаешь что просто стресс. А что если нет?</div>
+        <div class="card-footer"><span class="card-questions">18 вопросов</span><div class="card-arrow"><svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6h7M6.5 3l3 3-3 3" stroke="white" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+      </div>
+      <div class="test-card card-emotions" onclick="startTest('resilience')">
+        <div class="card-top"><div class="card-icon icon-emotions">🛡</div><div class="card-badges"><span class="badge-time">~3 мин</span><span class="badge-status status-soon">Скоро</span></div></div>
+        <div class="card-title">Психоустойчивость</div>
+        <div class="card-desc">Насколько ты устойчив когда всё идёт не так?</div>
+        <div class="card-footer"><span class="card-questions">16 вопросов</span><div class="card-arrow"><svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6h7M6.5 3l3 3-3 3" stroke="white" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+      </div>
+    </div>
+  </div>
+
 </div>
 
-<!-- ══════ QUESTION ══════ -->
-<div class="screen" id="screen-question">
-  <div class="q-header">
-    <div class="q-progress-row">
-      <span class="q-label">Тёмная триада</span>
-      <span class="q-counter" id="q-counter">1 / 20</span>
-    </div>
-    <div class="q-progress-bar">
-      <div class="q-progress-fill" id="q-progress" style="width:5%"></div>
-    </div>
-    <div id="q-axis-badge"></div>
+<!-- BOTTOM NAV -->
+<div class="bottom-nav">
+  <div class="nav-item active">
+    <span class="nav-icon">🧬</span>
+    <span class="nav-label">Тесты</span>
   </div>
-  <div class="q-body">
-    <div class="q-text" id="q-text"></div>
-    <div class="answers" id="answers"></div>
+  <div class="nav-item" onclick="goProfile()">
+    <span class="nav-icon">👤</span>
+    <span class="nav-label">Профиль</span>
   </div>
-  <div class="q-footer">
-    <button class="btn-next" id="btn-next" onclick="nextQuestion()">Далее →</button>
+  <div class="nav-item">
+    <span class="nav-icon">⚔️</span>
+    <span class="nav-label">Дуэли</span>
   </div>
-</div>
-
-<!-- ══════ RESULT ══════ -->
-<div class="screen" id="screen-result">
-  <div class="result-scroll" id="result-scroll">
-    <div class="result-hero">
-      <div class="result-badge">Твой результат</div>
-      <div class="result-type" id="result-type">Стратег</div>
-      <div class="result-tagline" id="result-tagline"></div>
-    </div>
-
-    <div class="score-bars">
-      <div class="score-row">
-        <div class="score-top">
-          <span class="score-name">👑 Нарциссизм</span>
-          <span class="score-val" id="val-n" style="color:#A78BFA">0%</span>
-        </div>
-        <div class="score-bar-track">
-          <div class="score-bar-fill fill-n" id="bar-n"></div>
-        </div>
-      </div>
-      <div class="score-row">
-        <div class="score-top">
-          <span class="score-name">🧊 Психопатия</span>
-          <span class="score-val" id="val-p" style="color:#F472B6">0%</span>
-        </div>
-        <div class="score-bar-track">
-          <div class="score-bar-fill fill-p" id="bar-p"></div>
-        </div>
-      </div>
-      <div class="score-row">
-        <div class="score-top">
-          <span class="score-name">♟️ Макиавеллизм</span>
-          <span class="score-val" id="val-m" style="color:#22D3EE">0%</span>
-        </div>
-        <div class="score-bar-track">
-          <div class="score-bar-fill fill-m" id="bar-m"></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="result-desc-wrap">
-      <div class="result-desc-title">Краткий портрет</div>
-      <div class="result-desc-text" id="result-desc"></div>
-    </div>
-
-    <div class="result-locked">
-      <div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent1);font-weight:500;margin-bottom:10px;">Только для тех, кто готов знать правду</div>
-      <div class="locked-title">Ты видел только верхушку.<br>Настоящее — глубже.</div>
-      <div class="locked-desc">Краткий портрет — это тень. Полный разбор — это зеркало, в которое большинство боится смотреть.</div>
-      <div class="locked-items">
-        <div class="locked-item">Почему ты реагируешь именно так — и откуда это взялось</div>
-        <div class="locked-item">Как твой тип ведёт себя в отношениях — и кого ты притягиваешь</div>
-        <div class="locked-item">Где твоя тёмная сторона работает на тебя — а где разрушает</div>
-        <div class="locked-item">Твои слепые зоны — то, что видят все вокруг кроме тебя</div>
-        <div class="locked-item">Что с этим делать — конкретно, без воды</div>
-      </div>
-      <div style="font-size:11px;color:var(--text3);text-align:center;margin-bottom:14px;">
-        Прочитают единицы. Большинство закроют.<br>
-        <span style="color:var(--text2);">Ты уже здесь — значит ты не большинство.</span>
-      </div>
-      <button class="btn-unlock" onclick="unlockResult()">
-        Открыть полный разбор — 149 ₽
-      </button>
-    </div>
-  </div>
-  <div class="result-footer">
-    <button class="btn-back-subtle" onclick="goMainScreen()">
-      <svg width="13" height="13" viewBox="0 0 14 14" fill="none">
-        <path d="M9 11L5 7l4-4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-      На главную
-    </button>
-    <button class="btn-profile" onclick="goProfile()">
-      <span>👤</span> Мой профиль
-    </button>
+  <div class="nav-item">
+    <span class="nav-icon">⚙️</span>
+    <span class="nav-label">Настройки</span>
   </div>
 </div>
 
 <script>
-const tg = window.Telegram?.WebApp;
-if (tg) {
-  tg.ready();
-  tg.expand();
-  tg.setHeaderColor('#0A0A0F');
-  tg.setBackgroundColor('#0A0A0F');
-}
-
-// ── QUESTIONS ──
-const questions = [
-  // НАРЦИССИЗМ (N)
-  { text: 'Честно: ты иногда думаешь что окружающие просто не на твоём уровне.', axis: 'N', scores: [4,3,1,0] },
-  { text: 'Когда тебя игнорируют — внутри что-то сжимается. Ты не можешь просто отпустить.', axis: 'N', scores: [4,3,1,0] },
-  { text: 'Ты замечал что тебе нужно чуть больше восхищения, чем другим?', axis: 'N', scores: [4,3,1,0] },
-  { text: 'Ты знаешь что умнее большинства людей в комнате. Просто не всегда говоришь об этом.', axis: 'N', scores: [4,3,1,0] },
-  { text: 'Критика в твой адрес — это личная атака. Ты так не чувствуешь?', axis: 'N', scores: [4,3,1,0] },
-  { text: 'Ты ловил себя на том что специально делаешь что-то впечатляющее — лишь бы заметили?', axis: 'N', scores: [4,3,1,0] },
-  { text: 'Тебе сложно искренне радоваться успехам людей, которых ты считаешь слабее себя.', axis: 'N', scores: [4,3,1,0] },
-
-  // ПСИХОПАТИЯ (P)
-  { text: 'После того как ты кого-то обидел — ты быстро об этом забываешь. Без особого сожаления.', axis: 'P', scores: [4,3,1,0] },
-  { text: 'Страх — это слабость. Ты редко его чувствуешь в ситуациях где другие паникуют.', axis: 'P', scores: [4,3,1,0] },
-  { text: 'Ты можешь смотреть на чужую боль и оставаться совершенно спокойным.', axis: 'P', scores: [4,3,1,0] },
-  { text: 'Правила для тебя — это скорее рекомендации. Если мешают — ты их нарушишь.', axis: 'P', scores: [4,3,1,0] },
-  { text: 'Когда ты злишься — ты действуешь. Сначала. Думаешь потом.', axis: 'P', scores: [4,3,1,0] },
-  { text: 'Чужие проблемы тебя утомляют быстрее чем трогают.', axis: 'P', scores: [4,3,1,0] },
-
-  // МАКИАВЕЛЛИЗМ (M)
-  { text: 'Ты уже просчитал этого человека. Ещё до того как он закончил говорить.', axis: 'M', scores: [4,3,1,0] },
-  { text: 'Ложь — это инструмент. Иногда единственный рабочий. Ты так думаешь?', axis: 'M', scores: [4,3,1,0] },
-  { text: 'Ты знаешь как включить обаяние в нужный момент. Это не искренность — это стратегия.', axis: 'M', scores: [4,3,1,0] },
-  { text: 'Информация о людях — это власть. Ты её собираешь и используешь.', axis: 'M', scores: [4,3,1,0] },
-  { text: 'Большинство людей — предсказуемы. Ты давно это понял и пользуешься.', axis: 'M', scores: [4,3,1,0] },
-  { text: 'Цель важнее средств. Если нужно — ты переступишь. Ты честен с собой?', axis: 'M', scores: [4,3,1,0] },
-  { text: 'Ты иногда говоришь людям то, что они хотят услышать — а не то что думаешь на самом деле.', axis: 'M', scores: [4,3,1,0] },
-];
-
-const options = ['Полностью согласен', 'Скорее согласен', 'Скорее нет', 'Совсем нет'];
-
-const axisMax = { N: 7*4, P: 6*4, M: 7*4 };
-
-const results = [
-  {
-    id: 'strategist',
-    name: 'Стратег',
-    tagline: 'Ты видишь игру. Ты знаешь правила.\nИ ты играешь лучше большинства.',
-    cond: (n,p,m) => m >= 60 && n >= 50,
-    desc: 'Ты редкий тип — человек, который просчитывает людей ещё до того как они открыли рот. Твоя тёмная сторона работает на тебя. Но есть цена — ты редко позволяешь себе быть уязвимым.',
-    celeb: { name: 'Фрэнк Андервуд', emoji: '🃏', note: 'Холодный расчёт. Безупречная маска. Всегда на шаг впереди.' }
-  },
-  {
-    id: 'predator',
-    name: 'Хищник',
-    tagline: 'Ты действуешь. Быстро, точно, без сомнений.\nЭто сила — и одновременно твоя слепая зона.',
-    cond: (n,p,m) => p >= 65,
-    desc: 'Ты способен действовать там, где другие парализованы страхом. Боль — чужая и своя — тебя не останавливает. Ты редко сомневаешься. Окружающие это чувствуют.',
-    celeb: { name: 'Томас Шелби', emoji: '🔫', note: 'Бесстрашие как инструмент. Холодная голова в хаосе.' }
-  },
-  {
-    id: 'narcissist',
-    name: 'Нарцисс',
-    tagline: 'Ты знаешь себе цену.\nВопрос — не переплачивают ли другие?',
-    cond: (n,p,m) => n >= 70,
-    desc: 'Ты чувствуешь что отличаешься от большинства — и это не иллюзия. Твоя уязвимость — зависимость от признания. Без него что-то внутри начинает разрушаться.',
-    celeb: { name: 'Канье Уэст', emoji: '👑', note: 'Гений, убеждённый в своей гениальности. Мощь и хрупкость одновременно.' }
-  },
-  {
-    id: 'shadow',
-    name: 'Тень',
-    tagline: 'Тёмные черты есть в каждом.\nТвои — глубже среднего, но под контролем.',
-    cond: (n,p,m) => n >= 40 && p >= 40 && m >= 40,
-    desc: 'Все три шкалы выше среднего — но ни одна не доминирует. Ты адаптируешься: можешь быть обаятельным, расчётливым и бесстрашным в зависимости от ситуации. Это и есть тёмная гибкость.',
-    celeb: { name: 'Уолтер Уайт', emoji: '⚗️', note: 'Обычный снаружи. Внутри — нечто совершенно другое.' }
-  },
-  {
-    id: 'balance',
-    name: 'Баланс',
-    tagline: 'Твоя тёмная сторона — под контролем.\nЭто редкость.',
-    cond: () => true,
-    desc: 'Умеренные показатели по всем шкалам. Ты умеешь сдерживать тёмные импульсы — или просто ещё не оказывался в ситуации, которая их раскрывает.',
-    celeb: { name: 'Тони Старк', emoji: '🦾', note: 'Тёмные черты есть, но направлены в нужное русло.' }
+  // Telegram Web App init
+  const tg = window.Telegram?.WebApp;
+  if (tg) {
+    tg.ready();
+    tg.expand();
+    tg.setHeaderColor('#0A0A0F');
+    tg.setBackgroundColor('#0A0A0F');
   }
-];
 
-// STATE
-let current = 0;
-let selected = null;
-let scores = { N: 0, P: 0, M: 0 };
-let answers = new Array(questions.length).fill(null);
-
-const axisLabels = {
-  N: { label: 'Нарциссизм', cls: 'badge-n' },
-  P: { label: 'Психопатия', cls: 'badge-p' },
-  M: { label: 'Макиавеллизм', cls: 'badge-m' }
-};
-
-function showScreen(id) {
-  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-  document.getElementById('screen-' + id).classList.add('active');
-}
-
-function startTest() {
-  current = 0;
-  scores = { N: 0, P: 0, M: 0 };
-  answers = new Array(questions.length).fill(null);
-  renderQuestion();
-  showScreen('question');
-}
-
-function renderQuestion() {
-  const q = questions[current];
-  const pct = Math.round(((current + 1) / questions.length) * 100);
-
-  document.getElementById('q-counter').textContent = `${current + 1} / ${questions.length}`;
-  document.getElementById('q-progress').style.width = pct + '%';
-
-  const ax = axisLabels[q.axis];
-  document.getElementById('q-axis-badge').innerHTML =
-    `<span class="q-axis-badge ${ax.cls}">${ax.label}</span>`;
-
-  const qText = document.getElementById('q-text');
-  qText.classList.remove('anim-in');
-  void qText.offsetWidth;
-  qText.textContent = q.text;
-  qText.classList.add('anim-in');
-
-  const answersEl = document.getElementById('answers');
-  answersEl.classList.remove('anim-in');
-  void answersEl.offsetWidth;
-  answersEl.innerHTML = options.map((opt, i) => `
-    <button class="answer-btn${answers[current] === i ? ' selected' : ''}"
-      onclick="selectAnswer(${i})">
-      <span class="answer-dot"></span>
-      ${opt}
-    </button>
-  `).join('');
-  answersEl.classList.add('anim-in');
-
-  const btn = document.getElementById('btn-next');
-  if (answers[current] !== null) {
-    btn.classList.add('enabled');
-    btn.textContent = current === questions.length - 1 ? 'Узнать результат →' : 'Далее →';
-  } else {
-    btn.classList.remove('enabled');
-    btn.textContent = current === questions.length - 1 ? 'Узнать результат →' : 'Далее →';
-  }
-}
-
-function selectAnswer(i) {
-  answers[current] = i;
-  document.querySelectorAll('.answer-btn').forEach((btn, idx) => {
-    btn.classList.toggle('selected', idx === i);
-  });
-  document.getElementById('btn-next').classList.add('enabled');
-
-  // Haptic feedback
-  if (tg?.HapticFeedback) tg.HapticFeedback.selectionChanged();
-}
-
-function nextQuestion() {
-  if (answers[current] === null) return;
-
-  const q = questions[current];
-  scores[q.axis] += q.scores[answers[current]];
-
-  if (current < questions.length - 1) {
-    current++;
-    renderQuestion();
-    document.querySelector('.q-body').scrollTop = 0;
-  } else {
-    showResult();
-  }
-}
-
-function showResult() {
-  const pctN = Math.round(scores.N / axisMax.N * 100);
-  const pctP = Math.round(scores.P / axisMax.P * 100);
-  const pctM = Math.round(scores.M / axisMax.M * 100);
-
-  const res = results.find(r => r.cond(pctN, pctP, pctM));
-
-  document.getElementById('result-type').textContent = res.name;
-  document.getElementById('result-tagline').textContent = res.tagline;
-  document.getElementById('result-desc').innerHTML = res.desc +
-    '<div class="celeb-card">' +
-      '<div class="celeb-emoji">' + res.celeb.emoji + '</div>' +
-      '<div class="celeb-body">' +
-        '<div class="celeb-label">Твой двойник</div>' +
-        '<div class="celeb-name">' + res.celeb.name + '</div>' +
-        '<div class="celeb-note">' + res.celeb.note + '</div>' +
-      '</div>' +
-    '</div>';
-
-  showScreen('result');
-  document.getElementById('result-scroll').scrollTop = 0;
-
-  // Animate bars
+  // Progress (demo — в реальном боте берётся из переменных)
+  const done = 0;
+  const total = 9;
+  const pct = Math.round(done / total * 100);
+  document.getElementById('pct-text').textContent = pct + '%';
+  document.getElementById('prog-count').textContent = done + '/' + total;
   setTimeout(() => {
-    document.getElementById('bar-n').style.width = pctN + '%';
-    document.getElementById('bar-p').style.width = pctP + '%';
-    document.getElementById('bar-m').style.width = pctM + '%';
-    document.getElementById('val-n').textContent = pctN + '%';
-    document.getElementById('val-p').textContent = pctP + '%';
-    document.getElementById('val-m').textContent = pctM + '%';
-  }, 200);
+    document.getElementById('prog-bar').style.width = pct + '%';
+  }, 300);
 
-  // Haptic
-  if (tg?.HapticFeedback) tg.HapticFeedback.notificationOccurred('success');
-
-  // Send to bot
-  if (tg) {
-    tg.sendData(JSON.stringify({
-      action: 'test_result',
-      test: 'triada',
-      type: res.id,
-      scores: { n: pctN, p: pctP, m: pctM }
-    }));
+  // Tab switching
+  function switchTab(cat, el) {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    el.classList.add('active');
+    document.querySelectorAll('.category-section').forEach(s => s.classList.remove('active'));
+    const map = { all: 'sec-all', dark: 'sec-dark', relations: 'sec-relations', emotions: 'sec-emotions' };
+    document.getElementById(map[cat]).classList.add('active');
   }
-}
 
-function unlockResult() {
-  if (tg) {
-    tg.sendData(JSON.stringify({ action: 'buy_result', test: 'triada', price: 149 }));
-  }
-}
-
-function shareResult() {
-  const type = document.getElementById('result-type').textContent;
-  if (tg) {
-    tg.sendData(JSON.stringify({ action: 'share_result', test: 'triada', type }));
-  }
-}
-
-function goBack() {
-  // Возврат к каталогу тестов — открываем каталог или закрываем мини-приложение
-  if (tg) {
-    try {
-      // Если открыт через openLink — просто закрываем, каталог остаётся открытым
-      tg.close();
-    } catch(e) {
-      window.history.back();
+  // Start test — отправляет данные боту
+  function startTest(id) {
+    const available = ['triada'];
+    if (!available.includes(id)) {
+      if (tg) {
+        tg.showAlert('Этот тест скоро появится. Следи за обновлениями 👀');
+      } else {
+        alert('Этот тест скоро появится!');
+      }
+      return;
     }
-  } else {
-    showScreen('intro');
-  }
-}
-
-function goMainScreen() {
-  // На главную = закрываем тест, возвращаемся к каталогу
-  if (tg) {
-    try {
-      tg.close();
-    } catch(e) {
-      window.history.back();
+    if (tg) {
+      tg.sendData(JSON.stringify({ action: 'start_test', test: id }));
+    } else {
+      alert('Запуск теста: ' + id);
     }
-  } else {
-    showScreen('intro');
   }
-}
 
-function goProfile() {
-  if (tg) {
-    // Закрываем мини-приложение и просим бота открыть профиль
-    tg.sendData(JSON.stringify({ action: 'open_profile' }));
-  } else {
-    alert('Профиль открылся бы в боте');
+  // Profile
+  function goProfile() {
+    if (tg) {
+      tg.sendData(JSON.stringify({ action: 'open_profile' }));
+    }
   }
-}
 </script>
 </body>
 </html>
