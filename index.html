@@ -727,6 +727,345 @@ body {
 .orb2 { width:140px; height:140px; bottom:80px; left:-40px; background: rgba(236,72,153,0.05); }
 
 .z1 { position: relative; z-index: 1; }
+
+/* ══════════════════════════════
+   SCREEN: PROFILE
+══════════════════════════════ */
+.prof-header {
+  padding: 20px 20px 0;
+  flex-shrink: 0;
+}
+.prof-header-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+.prof-greeting-label {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text3);
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+.prof-greeting-title {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 21px;
+  font-weight: 300;
+  line-height: 1.3;
+}
+.prof-greeting-title span {
+  background: linear-gradient(135deg, var(--accent1), var(--accent2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 500;
+}
+
+.prof-type-card {
+  margin: 16px 20px 0;
+  background: linear-gradient(135deg, rgba(139,92,246,0.14) 0%, rgba(236,72,153,0.1) 100%);
+  border: 0.5px solid rgba(139,92,246,0.25);
+  border-radius: var(--radius);
+  padding: 18px 20px;
+  position: relative;
+  overflow: hidden;
+}
+.prof-type-card::after {
+  content: '';
+  position: absolute;
+  top: -20px; right: -20px;
+  width: 80px; height: 80px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(139,92,246,0.2), transparent 70%);
+  pointer-events: none;
+}
+.prof-type-label {
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #A78BFA;
+  font-weight: 500;
+  margin-bottom: 6px;
+}
+.prof-type-name {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 4px;
+  background: linear-gradient(135deg, #E0D7FF, #F9A8D4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.prof-type-sub {
+  font-size: 12px;
+  color: var(--text2);
+  line-height: 1.5;
+}
+
+.prof-radar-section {
+  margin: 20px 20px 0;
+  background: var(--bg3);
+  border: 0.5px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px 16px 14px;
+}
+.prof-radar-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+.prof-radar-title {
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text3);
+  font-weight: 500;
+}
+.prof-radar-test {
+  font-size: 11px;
+  color: var(--text2);
+  font-weight: 500;
+}
+.prof-radar-wrap {
+  display: flex;
+  justify-content: center;
+  padding: 4px 0 8px;
+}
+.prof-radar-wrap svg {
+  width: 100%;
+  max-width: 260px;
+  height: auto;
+  overflow: visible;
+}
+.radar-grid { fill: none; stroke: rgba(255,255,255,0.06); stroke-width: 0.5; }
+.radar-axis-line { stroke: rgba(255,255,255,0.08); stroke-width: 0.5; }
+.radar-data {
+  fill: rgba(139,92,246,0.22);
+  stroke: url(#radarStroke);
+  stroke-width: 1.5;
+  stroke-linejoin: round;
+  transition: d 0.8s cubic-bezier(0.4,0,0.2,1);
+}
+.radar-dot { fill: var(--accent1); }
+.radar-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 9px;
+  fill: var(--text2);
+  text-anchor: middle;
+}
+.radar-val {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 8px;
+  fill: var(--text);
+  text-anchor: middle;
+  font-weight: 500;
+}
+
+.prof-radar-tabs {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  margin-bottom: 12px;
+  padding-bottom: 2px;
+}
+.prof-radar-tabs::-webkit-scrollbar { display: none; }
+.prof-radar-tab {
+  flex-shrink: 0;
+  padding: 6px 12px;
+  border-radius: 100px;
+  font-size: 11px;
+  font-weight: 500;
+  cursor: pointer;
+  border: 0.5px solid var(--border);
+  background: transparent;
+  color: var(--text2);
+  transition: all 0.18s;
+  font-family: 'Inter', sans-serif;
+}
+.prof-radar-tab.active {
+  background: rgba(139,92,246,0.18);
+  border-color: rgba(139,92,246,0.35);
+  color: #C4B5FD;
+}
+.prof-radar-tab:active { transform: scale(0.95); }
+
+.prof-legend {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 4px;
+  padding-top: 12px;
+  border-top: 0.5px solid var(--border);
+}
+.prof-legend-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.prof-legend-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.prof-legend-name {
+  flex: 1;
+  font-size: 12px;
+  color: var(--text);
+  font-weight: 500;
+}
+.prof-legend-val {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.prof-flags-wrap {
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+.flag-card {
+  background: var(--bg3);
+  border: 0.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+.flag-card.high { border-color: rgba(236,72,153,0.25); background: rgba(236,72,153,0.06); }
+.flag-card.med  { border-color: rgba(139,92,246,0.2);  background: rgba(139,92,246,0.06); }
+.flag-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+.flag-text { font-size: 12px; color: var(--text2); line-height: 1.55; }
+.flag-source { font-size: 10px; color: var(--text3); margin-top: 4px; }
+
+.prof-stats-grid {
+  padding: 0 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+.prof-stat-box {
+  background: var(--bg3);
+  border: 0.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 14px;
+  text-align: center;
+}
+.prof-stat-val {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--text);
+  display: block;
+  margin-bottom: 3px;
+}
+.prof-stat-label {
+  font-size: 10px;
+  color: var(--text3);
+  line-height: 1.4;
+}
+
+.prof-history {
+  padding: 0 20px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.prof-history-card {
+  background: var(--bg3);
+  border: 0.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 14px 16px;
+  cursor: pointer;
+  transition: all 0.18s;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.prof-history-card:active { transform: scale(0.98); background: var(--bg4); }
+.prof-history-icon {
+  width: 40px; height: 40px;
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 19px;
+  flex-shrink: 0;
+  background: var(--glow1);
+}
+.prof-history-info { flex: 1; min-width: 0; }
+.prof-history-name {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--text);
+  margin-bottom: 3px;
+}
+.prof-history-meta {
+  font-size: 11px;
+  color: var(--text3);
+}
+.prof-history-type {
+  font-size: 11px;
+  font-weight: 500;
+  color: #A78BFA;
+  flex-shrink: 0;
+}
+
+.prof-empty {
+  padding: 24px 20px 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.prof-empty-orb {
+  width: 100px; height: 100px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 35%, rgba(139,92,246,0.2) 0%, transparent 70%);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 20px;
+  opacity: 0.6;
+}
+.prof-empty-emoji { font-size: 40px; }
+.prof-empty-title {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  margin-bottom: 10px;
+  color: var(--text);
+}
+.prof-empty-desc {
+  font-size: 13px;
+  color: var(--text2);
+  line-height: 1.65;
+  max-width: 280px;
+  margin-bottom: 24px;
+}
+.prof-empty-radar {
+  width: 100%;
+  max-width: 220px;
+  opacity: 0.25;
+  margin-bottom: 24px;
+}
+.prof-no-flags {
+  margin: 0 20px 8px;
+  padding: 16px;
+  background: var(--bg3);
+  border: 0.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  text-align: center;
+  font-size: 12px;
+  color: var(--text3);
+  line-height: 1.55;
+}
 </style>
 </head>
 <body>
@@ -896,10 +1235,10 @@ body {
   </div><!-- /scrollable -->
 
   <div class="bottom-nav">
-    <div class="nav-item active"><span class="nav-icon">🧬</span><span class="nav-label">Тесты</span></div>
+    <div class="nav-item active" onclick="goCatalog()"><span class="nav-icon">🧬</span><span class="nav-label">Тесты</span></div>
     <div class="nav-item" onclick="goProfile()"><span class="nav-icon">👤</span><span class="nav-label">Профиль</span></div>
-    <div class="nav-item"><span class="nav-icon">⚔️</span><span class="nav-label">Дуэли</span></div>
-    <div class="nav-item"><span class="nav-icon">⚙️</span><span class="nav-label">Настройки</span></div>
+    <div class="nav-item" onclick="showSoon()"><span class="nav-icon">⚔️</span><span class="nav-label">Дуэли</span></div>
+    <div class="nav-item" onclick="showSoon()"><span class="nav-icon">⚙️</span><span class="nav-label">Настройки</span></div>
   </div>
 
 </div>
@@ -909,7 +1248,7 @@ body {
 ══════════════════════════════════════ -->
 <div class="screen z1" id="screen-intro">
   <div class="back-wrap">
-    <button class="btn-back" onclick="showScreen('catalog')">
+    <button class="btn-back" onclick="goCatalog()">
       <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
         <path d="M9 11L5 7l4-4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
@@ -1007,7 +1346,7 @@ body {
     </div>
   </div>
   <div class="result-footer-row">
-    <button class="btn-back-subtle" onclick="showScreen('catalog')">
+    <button class="btn-back-subtle" onclick="goCatalog()">
       <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M9 11L5 7l4-4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
       На главную
     </button>
@@ -1017,28 +1356,213 @@ body {
   </div>
 </div>
 
+<!-- ══════════════════════════════════════
+     SCREEN 5: PROFILE
+══════════════════════════════════════ -->
+<div class="screen z1" id="screen-profile">
+
+  <div class="prof-header">
+    <div class="prof-header-top">
+      <div class="logo-mark">
+        <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
+          <path d="M16 4L28 26H4L16 4Z" fill="url(#pg2)"/>
+          <path d="M16 4L28 26" stroke="url(#rg2)" stroke-width="1.2" opacity="0.7"/>
+          <defs>
+            <linearGradient id="pg2" x1="4" y1="26" x2="28" y2="4">
+              <stop offset="0%" stop-color="#1a1a2e"/>
+              <stop offset="100%" stop-color="#4a4870"/>
+            </linearGradient>
+            <linearGradient id="rg2" x1="16" y1="4" x2="28" y2="26">
+              <stop offset="0%" stop-color="#8B5CF6"/>
+              <stop offset="50%" stop-color="#EC4899"/>
+              <stop offset="100%" stop-color="#06B6D4"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <span class="logo-name">PERSONA</span>
+      </div>
+    </div>
+    <div class="prof-greeting-label">Твой профиль</div>
+    <div class="prof-greeting-title">Привет, <span id="prof-user-name">Исследователь</span></div>
+  </div>
+
+  <div class="progress-strip">
+    <div class="progress-icon">🧬</div>
+    <div class="progress-info">
+      <div class="progress-label">Профиль заполнен на <strong id="prof-pct-text" style="color:var(--text)">0%</strong></div>
+      <div class="progress-bar-wrap">
+        <div class="progress-bar-fill" id="prof-prog-bar"></div>
+      </div>
+    </div>
+    <div class="progress-count" id="prof-prog-count">0/8</div>
+  </div>
+
+  <div class="scrollable">
+
+    <div id="prof-empty" class="prof-empty">
+      <div class="prof-empty-orb"><span class="prof-empty-emoji">🧬</span></div>
+      <div class="prof-empty-title">Профиль пуст</div>
+      <div class="prof-empty-desc">Пройди первый тест — и здесь появится твоя карта личности с радаром, статистикой и red flags.</div>
+      <svg class="prof-empty-radar" viewBox="0 0 200 200" fill="none">
+        <polygon points="100,30 170,150 30,150" stroke="rgba(139,92,246,0.3)" stroke-width="1" fill="rgba(139,92,246,0.05)"/>
+        <polygon points="100,55 145,140 55,140" stroke="rgba(255,255,255,0.06)" stroke-width="0.5" fill="none"/>
+        <polygon points="100,80 120,130 80,130" stroke="rgba(255,255,255,0.06)" stroke-width="0.5" fill="none"/>
+      </svg>
+      <button class="btn-primary" style="max-width:280px" onclick="openTest('triada')">
+        Начать с «Тёмной триады»
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+
+    <div id="prof-content" style="display:none">
+
+      <div class="prof-type-card">
+        <div class="prof-type-label">Доминирующий тип</div>
+        <div class="prof-type-name" id="prof-dominant-type">—</div>
+        <div class="prof-type-sub" id="prof-dominant-sub">На основе последнего теста</div>
+      </div>
+
+      <div class="prof-radar-section">
+        <div class="prof-radar-head">
+          <span class="prof-radar-title">Карта шкал</span>
+          <span class="prof-radar-test" id="prof-radar-label">—</span>
+        </div>
+        <div class="prof-radar-tabs" id="prof-radar-tabs"></div>
+        <div class="prof-radar-wrap">
+          <svg id="prof-radar" viewBox="0 0 240 240" role="img" aria-label="Рadar профиля"></svg>
+        </div>
+        <div class="prof-legend" id="prof-legend"></div>
+      </div>
+
+      <div class="section-label">Red flags</div>
+      <div class="prof-flags-wrap" id="prof-flags"></div>
+
+      <div class="section-label">Статистика</div>
+      <div class="prof-stats-grid" id="prof-stats"></div>
+
+      <div class="section-label">История тестов</div>
+      <div class="prof-history" id="prof-history"></div>
+
+    </div>
+
+  </div>
+
+  <div class="bottom-nav">
+    <div class="nav-item" onclick="goCatalog()"><span class="nav-icon">🧬</span><span class="nav-label">Тесты</span></div>
+    <div class="nav-item active" onclick="goProfile()"><span class="nav-icon">👤</span><span class="nav-label">Профиль</span></div>
+    <div class="nav-item" onclick="showSoon()"><span class="nav-icon">⚔️</span><span class="nav-label">Дуэли</span></div>
+    <div class="nav-item" onclick="showSoon()"><span class="nav-icon">⚙️</span><span class="nav-label">Настройки</span></div>
+  </div>
+
+</div>
+
 <script>
 const tg = window.Telegram?.WebApp;
 if (tg) { tg.ready(); tg.expand(); tg.setHeaderColor('#0A0A0F'); tg.setBackgroundColor('#0A0A0F'); }
 
+const PROFILE_KEY = 'persona_profile';
+const TOTAL_TESTS = 8;
+let activeRadarTest = null;
+
+const TEST_REGISTRY = {
+  triada: {
+    name: 'Тёмная триада',
+    icon: '😈',
+    iconBg: 'icon-dark',
+    axes: [
+      { key: 'n', label: 'Нарциссизм', icon: '👑', color: '#A78BFA' },
+      { key: 'p', label: 'Психопатия', icon: '🧊', color: '#F472B6' },
+      { key: 'm', label: 'Макиавеллизм', icon: '♟️', color: '#22D3EE' },
+    ],
+    redFlags: [
+      { key: 'n', min: 70, severity: 'high', text: 'Сильная потребность в признании — без восхищения внутри нарастает дискомфорт' },
+      { key: 'n', min: 55, max: 69, severity: 'med', text: 'Критика воспринимается как личная атака чаще, чем кажется' },
+      { key: 'p', min: 65, severity: 'high', text: 'Низкая эмпатия под стрессом — окружающие могут чувствовать холодность' },
+      { key: 'p', min: 50, max: 64, severity: 'med', text: 'Импульсивность в конфликтах — сначала действие, потом разбор' },
+      { key: 'm', min: 65, severity: 'high', text: 'Склонность к манипуляции и расчёту — инструмент, который легко перерастает в привычку' },
+      { key: 'm', min: 50, max: 64, severity: 'med', text: 'Социальное обаяние используется стратегически, не всегда искренне' },
+      { key: 'n', min: 40, max: 100, cross: { p: 40, m: 40 }, severity: 'med', text: 'Все три шкалы выше среднего — гибкая, но непредсказуемая тёмная сторона' },
+    ],
+  },
+};
+
+// ── STORAGE ──
+function loadProfile() {
+  try {
+    const raw = localStorage.getItem(PROFILE_KEY);
+    return raw ? JSON.parse(raw) : { results: {} };
+  } catch {
+    return { results: {} };
+  }
+}
+
+function saveProfile(profile) {
+  localStorage.setItem(PROFILE_KEY, JSON.stringify(profile));
+}
+
+function getCompletedCount(profile) {
+  return Object.keys(profile.results).length;
+}
+
+function updateProgressUI(profile) {
+  const done = getCompletedCount(profile);
+  const pct = Math.round(done / TOTAL_TESTS * 100);
+  ['pct-text', 'prof-pct-text'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.textContent = pct + '%';
+  });
+  ['prog-count', 'prof-prog-count'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.textContent = done + '/' + TOTAL_TESTS;
+  });
+  ['prog-bar', 'prof-prog-bar'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.style.width = pct + '%';
+  });
+}
+
+function saveTestResult(testId, data) {
+  const profile = loadProfile();
+  profile.results[testId] = {
+    ...data,
+    completedAt: new Date().toISOString(),
+  };
+  saveProfile(profile);
+  updateProgressUI(profile);
+  return profile;
+}
+
 // ── NAVIGATION ──
-function showScreen(id) {
+function setActiveNav(tab) {
+  const tabs = ['tests', 'profile', 'duels', 'settings'];
+  document.querySelectorAll('.bottom-nav').forEach(nav => {
+    nav.querySelectorAll('.nav-item').forEach((item, i) => {
+      item.classList.toggle('active', tabs[i] === tab);
+    });
+  });
+}
+
+function showScreen(id, navTab) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   const el = document.getElementById('screen-' + id);
   el.classList.add('active');
-  // Scroll to top
   const scrollable = el.querySelector('.scrollable');
   if (scrollable) scrollable.scrollTop = 0;
+  if (navTab) setActiveNav(navTab);
+}
+
+function goCatalog() {
+  showScreen('catalog', 'tests');
+}
+
+function goProfile() {
+  renderProfile();
+  showScreen('profile', 'profile');
+  if (tg) tg.sendData(JSON.stringify({ action: 'open_profile' }));
 }
 
 // ── CATALOG ──
-const doneCnt = 0, totalCnt = 8;
-setTimeout(() => {
-  const pct = Math.round(doneCnt / totalCnt * 100);
-  document.getElementById('pct-text').textContent = pct + '%';
-  document.getElementById('prog-count').textContent = doneCnt + '/' + totalCnt;
-  document.getElementById('prog-bar').style.width = pct + '%';
-}, 300);
+setTimeout(() => updateProgressUI(loadProfile()), 300);
 
 function switchTab(cat, el) {
   document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
@@ -1058,8 +1582,234 @@ function showSoon() {
   else alert('Скоро!');
 }
 
-function goProfile() {
-  if (tg) tg.sendData(JSON.stringify({ action: 'open_profile' }));
+// ── PROFILE ──
+function getUserName() {
+  return tg?.initDataUnsafe?.user?.first_name || 'Исследователь';
+}
+
+function formatDate(iso) {
+  const d = new Date(iso);
+  return d.toLocaleDateString('ru-RU', { day: 'numeric', month: 'short' });
+}
+
+function getAxisValues(testId, result) {
+  const reg = TEST_REGISTRY[testId];
+  if (!reg) return [];
+  return reg.axes.map(ax => result.scores[ax.key] ?? 0);
+}
+
+function checkRedFlag(flag, scores) {
+  const val = scores[flag.key] ?? 0;
+  if (val < flag.min) return false;
+  if (flag.max != null && val > flag.max) return false;
+  if (flag.cross) {
+    return Object.entries(flag.cross).every(([k, min]) => (scores[k] ?? 0) >= min);
+  }
+  return true;
+}
+
+function collectRedFlags(profile) {
+  const flags = [];
+  Object.entries(profile.results).forEach(([testId, result]) => {
+    const reg = TEST_REGISTRY[testId];
+    if (!reg?.redFlags) return;
+    reg.redFlags.forEach(flag => {
+      if (checkRedFlag(flag, result.scores)) {
+        flags.push({ ...flag, testId, testName: reg.name });
+      }
+    });
+  });
+  const order = { high: 0, med: 1 };
+  flags.sort((a, b) => order[a.severity] - order[b.severity]);
+  return flags;
+}
+
+function radarPoint(cx, cy, radius, angle, value) {
+  const r = radius * (value / 100);
+  const rad = (angle - 90) * Math.PI / 180;
+  return [cx + r * Math.cos(rad), cy + r * Math.sin(rad)];
+}
+
+function renderRadar(testId, result) {
+  const reg = TEST_REGISTRY[testId];
+  const svg = document.getElementById('prof-radar');
+  if (!reg || !svg) return;
+
+  const values = getAxisValues(testId, result);
+  const n = reg.axes.length;
+  const cx = 120, cy = 120, maxR = 78;
+  const angles = Array.from({ length: n }, (_, i) => 360 / n * i);
+
+  let html = '<defs><linearGradient id="radarStroke" x1="0%" y1="0%" x2="100%" y2="100%">'
+    + '<stop offset="0%" stop-color="#8B5CF6"/><stop offset="100%" stop-color="#EC4899"/>'
+    + '</linearGradient></defs>';
+
+  [0.25, 0.5, 0.75, 1].forEach(level => {
+    const pts = angles.map(a => radarPoint(cx, cy, maxR * level, a, 100).join(',')).join(' ');
+    html += `<polygon class="radar-grid" points="${pts}"/>`;
+  });
+
+  angles.forEach(a => {
+    const [x, y] = radarPoint(cx, cy, maxR, a, 100);
+    html += `<line class="radar-axis-line" x1="${cx}" y1="${cy}" x2="${x}" y2="${y}"/>`;
+  });
+
+  const dataPts = angles.map((a, i) => radarPoint(cx, cy, maxR, a, values[i]).join(',')).join(' ');
+  html += `<polygon class="radar-data" points="${dataPts}"/>`;
+
+  angles.forEach((a, i) => {
+    const [x, y] = radarPoint(cx, cy, maxR, a, values[i]);
+    html += `<circle class="radar-dot" cx="${x}" cy="${y}" r="3.5"/>`;
+    const [lx, ly] = radarPoint(cx, cy, maxR + 22, a, 100);
+    html += `<text class="radar-label" x="${lx}" y="${ly - 4}">${reg.axes[i].icon} ${reg.axes[i].label}</text>`;
+    html += `<text class="radar-val" x="${lx}" y="${ly + 9}">${values[i]}%</text>`;
+  });
+
+  svg.innerHTML = html;
+  document.getElementById('prof-radar-label').textContent = reg.name;
+
+  const legend = document.getElementById('prof-legend');
+  legend.innerHTML = reg.axes.map((ax, i) =>
+    `<div class="prof-legend-row">
+      <span class="prof-legend-dot" style="background:${ax.color}"></span>
+      <span class="prof-legend-name">${ax.icon} ${ax.label}</span>
+      <span class="prof-legend-val" style="color:${ax.color}">${values[i]}%</span>
+    </div>`
+  ).join('');
+}
+
+function selectRadarTest(testId) {
+  activeRadarTest = testId;
+  const profile = loadProfile();
+  const result = profile.results[testId];
+  if (!result) return;
+
+  document.querySelectorAll('.prof-radar-tab').forEach(tab => {
+    tab.classList.toggle('active', tab.dataset.test === testId);
+  });
+  renderRadar(testId, result);
+}
+
+function renderProfile() {
+  const profile = loadProfile();
+  const completed = Object.keys(profile.results);
+  const userEl = document.getElementById('prof-user-name');
+  if (userEl) userEl.textContent = getUserName();
+
+  updateProgressUI(profile);
+
+  const emptyEl = document.getElementById('prof-empty');
+  const contentEl = document.getElementById('prof-content');
+  const hasResults = completed.length > 0;
+
+  emptyEl.style.display = hasResults ? 'none' : 'flex';
+  contentEl.style.display = hasResults ? 'block' : 'none';
+  if (!hasResults) return;
+
+  const latestId = completed.sort((a, b) =>
+    new Date(profile.results[b].completedAt) - new Date(profile.results[a].completedAt)
+  )[0];
+  const latest = profile.results[latestId];
+
+  document.getElementById('prof-dominant-type').textContent = latest.typeName;
+  document.getElementById('prof-dominant-sub').textContent =
+    'На основе «' + (TEST_REGISTRY[latestId]?.name || latestId) + '» · ' + formatDate(latest.completedAt);
+
+  const tabsEl = document.getElementById('prof-radar-tabs');
+  if (completed.length > 1) {
+    tabsEl.style.display = 'flex';
+    tabsEl.innerHTML = completed.map(id =>
+      `<button class="prof-radar-tab${id === (activeRadarTest || latestId) ? ' active' : ''}"
+        data-test="${id}" onclick="selectRadarTest('${id}')">${TEST_REGISTRY[id]?.icon || '📊'} ${TEST_REGISTRY[id]?.name || id}</button>`
+    ).join('');
+  } else {
+    tabsEl.style.display = 'none';
+    tabsEl.innerHTML = '';
+  }
+
+  selectRadarTest(activeRadarTest && profile.results[activeRadarTest] ? activeRadarTest : latestId);
+
+  const flags = collectRedFlags(profile);
+  const flagsEl = document.getElementById('prof-flags');
+  if (flags.length) {
+    flagsEl.innerHTML = flags.map(f =>
+      `<div class="flag-card ${f.severity}">
+        <span class="flag-icon">${f.severity === 'high' ? '🚩' : '⚠️'}</span>
+        <div>
+          <div class="flag-text">${f.text}</div>
+          <div class="flag-source">${f.testName}</div>
+        </div>
+      </div>`
+    ).join('');
+  } else {
+    flagsEl.innerHTML = '<div class="prof-no-flags">Пока без red flags — или ты их ещё не раскрыл новыми тестами</div>';
+  }
+
+  const avgScore = completed.reduce((sum, id) => {
+    const vals = getAxisValues(id, profile.results[id]);
+    return sum + vals.reduce((a, b) => a + b, 0) / vals.length;
+  }, 0) / completed.length;
+
+  const highFlags = flags.filter(f => f.severity === 'high').length;
+
+  document.getElementById('prof-stats').innerHTML = `
+    <div class="prof-stat-box">
+      <span class="prof-stat-val">${completed.length}</span>
+      <span class="prof-stat-label">тестов пройдено</span>
+    </div>
+    <div class="prof-stat-box">
+      <span class="prof-stat-val">${Math.round(avgScore)}%</span>
+      <span class="prof-stat-label">средний балл</span>
+    </div>
+    <div class="prof-stat-box">
+      <span class="prof-stat-val">${flags.length}</span>
+      <span class="prof-stat-label">red flags</span>
+    </div>
+    <div class="prof-stat-box">
+      <span class="prof-stat-val">${highFlags}</span>
+      <span class="prof-stat-label">критичных</span>
+    </div>`;
+
+  document.getElementById('prof-history').innerHTML = completed
+    .sort((a, b) => new Date(profile.results[b].completedAt) - new Date(profile.results[a].completedAt))
+    .map(id => {
+      const r = profile.results[id];
+      const reg = TEST_REGISTRY[id];
+      return `<div class="prof-history-card" onclick="openHistoryResult('${id}')">
+        <div class="prof-history-icon ${reg?.iconBg || ''}">${reg?.icon || '📊'}</div>
+        <div class="prof-history-info">
+          <div class="prof-history-name">${reg?.name || id}</div>
+          <div class="prof-history-meta">${formatDate(r.completedAt)}</div>
+        </div>
+        <span class="prof-history-type">${r.typeName}</span>
+      </div>`;
+    }).join('');
+}
+
+function openHistoryResult(testId) {
+  const profile = loadProfile();
+  const result = profile.results[testId];
+  if (!result || testId !== 'triada') return;
+
+  document.getElementById('result-type').textContent = result.typeName;
+  document.getElementById('result-tagline').textContent = result.tagline;
+  document.getElementById('result-desc').innerHTML = result.desc +
+    '<div class="celeb-card">' +
+      '<div class="celeb-emoji">' + result.celeb.emoji + '</div>' +
+      '<div><div class="celeb-label">Твой двойник</div>' +
+      '<div class="celeb-name">' + result.celeb.name + '</div>' +
+      '<div class="celeb-note">' + result.celeb.note + '</div></div></div>';
+
+  showScreen('result');
+  const s = result.scores;
+  setTimeout(() => {
+    document.getElementById('bar-n').style.width = s.n + '%';
+    document.getElementById('bar-p').style.width = s.p + '%';
+    document.getElementById('bar-m').style.width = s.m + '%';
+    document.getElementById('val-n').textContent = s.n + '%';
+    document.getElementById('val-p').textContent = s.p + '%';
+    document.getElementById('val-m').textContent = s.m + '%';
+  }, 200);
 }
 
 // ── QUESTIONS ──
@@ -1194,6 +1944,16 @@ function showResult() {
     document.getElementById('val-m').textContent=pM+'%';
   },200);
   if (tg?.HapticFeedback) tg.HapticFeedback.notificationOccurred('success');
+
+  saveTestResult('triada', {
+    type: res.id,
+    typeName: res.name,
+    tagline: res.tagline,
+    desc: res.desc,
+    celeb: res.celeb,
+    scores: { n: pN, p: pP, m: pM },
+  });
+
   if (tg) tg.sendData(JSON.stringify({
     action:'test_result', test:'triada',
     type:res.id, scores:{n:pN,p:pP,m:pM}
