@@ -125,12 +125,14 @@ button { font: inherit; }
   background:
     radial-gradient(circle at 80% 0%, rgba(139,92,246,.15), transparent 34%),
     radial-gradient(circle at 12% 36%, rgba(6,182,212,.07), transparent 28%);
+  transition: padding .24s ease, transform .24s ease;
 }
 .cat-header-top {
   display:flex;
   align-items:center;
   justify-content:space-between;
   margin-bottom:22px;
+  transition: margin-bottom .24s ease;
 }
 .logo-mark { display:flex; align-items:center; gap:10px; }
 .logo-name {
@@ -154,6 +156,7 @@ button { font: inherit; }
   text-transform: uppercase;
   color: var(--text3);
   font-weight: 700;
+  animation: heroRise .42s ease both;
 }
 .greeting-title {
   margin-top: 9px;
@@ -161,16 +164,52 @@ button { font: inherit; }
   font-size: 27px;
   line-height: 1.18;
   font-weight: 400;
+  transform-origin:left top;
+  transition: transform .24s ease, opacity .22s ease, max-height .24s ease, margin .24s ease;
+  animation: heroRise .48s ease .04s both;
 }
 .greeting-title span {
   color: #C4B5FD;
 }
 .greeting-copy {
-  margin-top: 12px;
+  margin-top: 10px;
   max-width: 330px;
   color: var(--text2);
-  font-size: 14px;
-  line-height: 1.55;
+  font-size: 13px;
+  line-height: 1.45;
+  overflow:hidden;
+  max-height:42px;
+  transition: opacity .2s ease, max-height .24s ease, margin .24s ease, transform .24s ease;
+  animation: heroRise .5s ease .08s both;
+}
+@keyframes heroRise {
+  from { opacity:0; transform:translateY(10px); }
+  to { opacity:1; transform:translateY(0); }
+}
+
+#screen-catalog.hero-compact .cat-header {
+  padding-top: 12px;
+}
+#screen-catalog.hero-compact .cat-header-top {
+  margin-bottom: 8px;
+}
+#screen-catalog.hero-compact .greeting-label {
+  opacity:0;
+  max-height:0;
+  overflow:hidden;
+}
+#screen-catalog.hero-compact .greeting-title {
+  transform:translateY(-8px);
+  max-height:0;
+  margin-top:0;
+  opacity:0;
+  overflow:hidden;
+}
+#screen-catalog.hero-compact .greeting-copy {
+  opacity:0;
+  max-height:0;
+  margin-top:0;
+  transform:translateY(-6px);
 }
 
 .progress-strip {
@@ -183,6 +222,7 @@ button { font: inherit; }
   display: flex;
   align-items: center;
   gap: 12px;
+  transition: margin .24s ease, padding .24s ease, transform .24s ease;
 }
 .progress-icon {
   width: 42px;
@@ -213,6 +253,15 @@ button { font: inherit; }
   text-align: right;
   font-family: Unbounded, sans-serif;
   font-size: 14px;
+}
+#screen-catalog.hero-compact .progress-strip {
+  margin-top: 8px;
+  margin-bottom: 10px;
+  padding: 11px 13px;
+}
+#screen-catalog.hero-compact .progress-icon {
+  width:34px;
+  height:34px;
 }
 
 .tabs-wrap {
@@ -912,6 +961,60 @@ button { font: inherit; }
     radial-gradient(circle at 86% 0%, rgba(236,72,153,.18), transparent 34%),
     linear-gradient(135deg, rgba(139,92,246,.14), rgba(6,182,212,.05));
 }
+.persona-card-top {
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-bottom:13px;
+}
+.persona-avatar {
+  width:58px;
+  height:58px;
+  border-radius:20px;
+  flex-shrink:0;
+  overflow:hidden;
+  display:grid;
+  place-items:center;
+  background:
+    radial-gradient(circle at 35% 25%, rgba(255,255,255,.22), transparent 24%),
+    linear-gradient(135deg, rgba(139,92,246,.9), rgba(236,72,153,.72));
+  color:#fff;
+  font-family:Unbounded,sans-serif;
+  font-size:20px;
+  box-shadow:0 0 28px rgba(139,92,246,.20);
+}
+.persona-avatar img {
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+.persona-user { min-width:0; flex:1; }
+.persona-name {
+  font-family:Unbounded,sans-serif;
+  font-size:17px;
+  line-height:1.25;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+.persona-id {
+  margin-top:5px;
+  color:var(--text3);
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+.persona-status {
+  border:.5px solid rgba(52,211,153,.22);
+  border-radius:999px;
+  background:rgba(52,211,153,.10);
+  color:#86EFAC;
+  padding:6px 9px;
+  font-size:10px;
+  font-weight:900;
+  white-space:nowrap;
+}
 .profile-hero-top {
   display:flex;
   justify-content:space-between;
@@ -1019,13 +1122,11 @@ button { font: inherit; }
   font-size:12px;
   line-height:1.45;
 }
-.red-list,
-.unlock-list {
+.red-list {
   display:grid;
   gap:8px;
 }
-.red-item,
-.unlock-item {
+.red-item {
   border:.5px solid rgba(255,255,255,.08);
   border-radius:12px;
   padding:10px;
@@ -1034,8 +1135,7 @@ button { font: inherit; }
   font-size:12px;
   line-height:1.45;
 }
-.red-item b,
-.unlock-item b {
+.red-item b {
   display:block;
   color:var(--text);
   margin-bottom:3px;
@@ -1093,9 +1193,9 @@ button { font: inherit; }
       </div>
       <button class="profile-btn" onclick="showProfile()" aria-label="Открыть профиль">👤</button>
     </div>
-    <div class="greeting-label">Твоя психологическая карточка</div>
+    <div class="greeting-label">Психологическая карточка</div>
     <div class="greeting-title">Собери себя<br><span>по скрытым слоям</span></div>
-    <div class="greeting-copy">Тесты, паттерны, ред флаги и инсайты. Чем больше проходишь, тем точнее Persona считывает тебя.</div>
+    <div class="greeting-copy">Тесты, ред флаги, профиль. Persona считывает тебя по реакциям.</div>
   </div>
 
   <div class="progress-strip">
@@ -1114,7 +1214,7 @@ button { font: inherit; }
     <button class="tab" onclick="switchTab('emotions',this)">🧠 Эмоции</button>
   </div>
 
-  <div class="scrollable">
+  <div class="scrollable" id="catalog-scroll">
     <div class="catalog-body">
       <div id="featured-wrap"></div>
       <div class="cat-section active" id="sec-all"></div>
@@ -1243,10 +1343,6 @@ button { font: inherit; }
         <div class="red-list" id="profile-red-flags"></div>
       </div>
       <div class="profile-panel">
-        <div class="profile-panel-title">Что Persona ещё не видит</div>
-        <div class="unlock-list" id="profile-unlocks"></div>
-      </div>
-      <div class="profile-panel">
         <div class="profile-panel-title">Открытые грани</div>
         <div class="profile-grid" id="profile-grid"></div>
       </div>
@@ -1262,6 +1358,8 @@ if (tg) {
   tg.setHeaderColor('#0A0A0F');
   tg.setBackgroundColor('#0A0A0F');
 }
+
+const tgUser = tg?.initDataUnsafe?.user || null;
 
 const facets = [
   { id:'self', title:'Самооценка', text:'ценность, признание, уязвимость' },
@@ -1434,6 +1532,37 @@ function getTopAxis(scoresMap, test) {
   return { id: axisId, value, meta: test.axes[axisId] };
 }
 
+function escapeHtml(value) {
+  return String(value ?? '').replace(/[&<>"']/g, ch => ({
+    '&':'&amp;',
+    '<':'&lt;',
+    '>':'&gt;',
+    '"':'&quot;',
+    "'":'&#039;'
+  }[ch]));
+}
+
+function getGuestPersonaId() {
+  let id = localStorage.getItem('personaGuestId');
+  if (!id) {
+    id = 'PRS-' + Math.random().toString(36).slice(2, 7).toUpperCase();
+    localStorage.setItem('personaGuestId', id);
+  }
+  return id;
+}
+
+function getPersonaUser() {
+  const fullName = [tgUser?.first_name, tgUser?.last_name].filter(Boolean).join(' ').trim();
+  const name = fullName || tgUser?.username || 'Гость Persona';
+  const initials = name.split(/\s+/).map(part => part[0]).join('').slice(0, 2).toUpperCase() || 'P';
+  return {
+    name,
+    initials,
+    photo: tgUser?.photo_url || '',
+    id: tgUser?.id ? 'TG-' + tgUser.id : getGuestPersonaId()
+  };
+}
+
 function getFacetTitle(id) {
   return facets.find(facet => facet.id === id)?.title || id;
 }
@@ -1507,6 +1636,19 @@ function showScreen(id) {
   el.classList.add('active');
   const scrollable = el.querySelector('.scrollable');
   if (scrollable) scrollable.scrollTop = 0;
+  if (id === 'catalog') setCatalogHeroCompact(false);
+}
+
+function setCatalogHeroCompact(compact) {
+  document.getElementById('screen-catalog')?.classList.toggle('hero-compact', compact);
+}
+
+function setupCatalogScroll() {
+  const scroller = document.getElementById('catalog-scroll');
+  if (!scroller) return;
+  scroller.addEventListener('scroll', () => {
+    setCatalogHeroCompact(scroller.scrollTop > 18);
+  }, { passive: true });
 }
 
 function renderCatalog() {
@@ -1751,6 +1893,11 @@ function renderProfile() {
   const axisRows = getProfileAxisRows();
   const topAxis = axisRows[0];
   const done = opened.size;
+  const user = getPersonaUser();
+  const userName = escapeHtml(user.name);
+  const avatar = user.photo
+    ? `<img src="${escapeHtml(user.photo)}" alt="">`
+    : `<span>${escapeHtml(user.initials)}</span>`;
   const profileHeadline = completed.length
     ? `Главный сигнал: ${topAxis.axis.label.toLowerCase()}`
     : 'Пока Persona видит только силуэт';
@@ -1758,6 +1905,14 @@ function renderProfile() {
     ? `${topAxis.testTitle}: ${topAxis.value}%. Уже можно ловить первые связки, но карта ещё не полная.`
     : 'Пройди первый тест, чтобы открыть стартовую аналитику, ред флаги и живые шкалы.';
   document.getElementById('profile-hero-card').innerHTML = `
+    <div class="persona-card-top">
+      <div class="persona-avatar">${avatar}</div>
+      <div class="persona-user">
+        <div class="persona-name">${userName}</div>
+        <div class="persona-id">Persona ID · ${escapeHtml(user.id)}</div>
+      </div>
+      <div class="persona-status">${completed.length ? 'в системе' : 'новый профиль'}</div>
+    </div>
     <div class="profile-hero-top">
       <div>
         <div class="profile-rank">${completed.length ? 'Профиль оживает' : 'Пустая карточка'}</div>
@@ -1782,18 +1937,12 @@ function renderProfile() {
       <div class="mini-track"><div class="mini-fill" style="width:${row.value}%; background:${row.axis.color}"></div></div>
     </div>
   `).join('') : `
-    <div class="unlock-item"><b>Шкалы ещё закрыты</b>Первый тест сразу покажет главные проценты и стартовую карту.</div>
+    <div class="red-item"><b>Шкалы ещё закрыты</b>Первый тест сразу покажет главные проценты и стартовую карту.</div>
   `;
   document.getElementById('profile-red-flags').innerHTML = completed.length ? completed.map(({ data, test }) => `
     <div class="red-item"><b>${test.title}: ${data.title}</b>${data.red || 'Persona уже видит паттерн, но для точной связки нужен следующий тест.'}</div>
   `).join('') : `
     <div class="red-item"><b>Пока чистый лист</b>Ред флаги появятся после первого результата. Без воды, только то, что цепляет поведение.</div>
-  `;
-  const closedFacets = facets.filter(facet => !opened.has(facet.id));
-  document.getElementById('profile-unlocks').innerHTML = closedFacets.slice(0, 4).map(facet => `
-    <div class="unlock-item"><b>${facet.title}</b>${facet.text}. Закрыто до следующего подходящего теста.</div>
-  `).join('') || `
-    <div class="unlock-item"><b>База собрана</b>Дальше Persona сможет показывать связки между тестами, а не отдельные результаты.</div>
   `;
   document.getElementById('profile-grid').innerHTML = facets.map(facet => `
     <div class="facet-card ${opened.has(facet.id) ? 'open' : ''}">
@@ -1823,6 +1972,7 @@ function unlockResult() {
 renderCatalog();
 renderProfile();
 updateProgress();
+setupCatalogScroll();
 </script>
 </body>
 </html>
