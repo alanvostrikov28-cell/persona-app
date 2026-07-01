@@ -23,6 +23,7 @@
   --green: #34D399;
   --radius: 18px;
   --radius-sm: 12px;
+  --ease-soft: cubic-bezier(.22,.8,.24,1);
 }
 
 * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
@@ -125,14 +126,14 @@ button { font: inherit; }
   background:
     radial-gradient(circle at 80% 0%, rgba(139,92,246,.15), transparent 34%),
     radial-gradient(circle at 12% 36%, rgba(6,182,212,.07), transparent 28%);
-  transition: padding .24s ease, transform .24s ease;
+  transition: padding .42s var(--ease-soft), transform .42s var(--ease-soft);
 }
 .cat-header-top {
   display:flex;
   align-items:center;
   justify-content:space-between;
   margin-bottom:22px;
-  transition: margin-bottom .24s ease;
+  transition: margin-bottom .42s var(--ease-soft);
 }
 .logo-mark { display:flex; align-items:center; gap:10px; }
 .logo-name {
@@ -165,7 +166,7 @@ button { font: inherit; }
   line-height: 1.18;
   font-weight: 400;
   transform-origin:left top;
-  transition: transform .24s ease, opacity .22s ease, max-height .24s ease, margin .24s ease;
+  transition: transform .42s var(--ease-soft), opacity .34s ease, max-height .42s var(--ease-soft), margin .42s var(--ease-soft);
   animation: heroRise .48s ease .04s both;
 }
 .greeting-title span {
@@ -179,7 +180,7 @@ button { font: inherit; }
   line-height: 1.45;
   overflow:hidden;
   max-height:42px;
-  transition: opacity .2s ease, max-height .24s ease, margin .24s ease, transform .24s ease;
+  transition: opacity .34s ease, max-height .42s var(--ease-soft), margin .42s var(--ease-soft), transform .42s var(--ease-soft);
   animation: heroRise .5s ease .08s both;
 }
 @keyframes heroRise {
@@ -222,7 +223,7 @@ button { font: inherit; }
   display: flex;
   align-items: center;
   gap: 12px;
-  transition: margin .24s ease, padding .24s ease, transform .24s ease;
+  transition: margin .42s var(--ease-soft), padding .42s var(--ease-soft), transform .42s var(--ease-soft);
 }
 .progress-icon {
   width: 42px;
@@ -1647,7 +1648,7 @@ function setupCatalogScroll() {
   const scroller = document.getElementById('catalog-scroll');
   if (!scroller) return;
   scroller.addEventListener('scroll', () => {
-    setCatalogHeroCompact(scroller.scrollTop > 18);
+    setCatalogHeroCompact(scroller.scrollTop > 42);
   }, { passive: true });
 }
 
