@@ -944,6 +944,31 @@ button { font: inherit; }
 
 .profile-header {
   padding:20px 17px 12px;
+  transition: padding .42s var(--ease-soft);
+}
+#screen-profile.profile-compact .profile-header {
+  padding-top:12px;
+  padding-bottom:4px;
+}
+#screen-profile.profile-compact .cat-header-top {
+  margin-bottom:8px;
+}
+#screen-profile.profile-compact .profile-header .greeting-label,
+#screen-profile.profile-compact .profile-header .greeting-title {
+  opacity:0;
+  max-height:0;
+  margin-top:0;
+  transform:translateY(-8px);
+  overflow:hidden;
+}
+#screen-profile.profile-compact .progress-strip {
+  margin-top:8px;
+  margin-bottom:10px;
+  padding:11px 13px;
+}
+#screen-profile.profile-compact .progress-icon {
+  width:34px;
+  height:34px;
 }
 .profile-dashboard {
   padding: 0 17px 14px;
@@ -1328,7 +1353,7 @@ button { font: inherit; }
     </div>
     <div class="progress-count" id="profile-prog-count">0/8</div>
   </div>
-  <div class="scrollable">
+  <div class="scrollable" id="profile-scroll">
     <div class="profile-dashboard">
       <div class="profile-hero-card" id="profile-hero-card"></div>
       <div class="profile-panel">
@@ -1638,6 +1663,7 @@ function showScreen(id) {
   const scrollable = el.querySelector('.scrollable');
   if (scrollable) scrollable.scrollTop = 0;
   if (id === 'catalog') setCatalogHeroCompact(false);
+  if (id === 'profile') setProfileHeroCompact(false);
 }
 
 function setCatalogHeroCompact(compact) {
@@ -1649,6 +1675,18 @@ function setupCatalogScroll() {
   if (!scroller) return;
   scroller.addEventListener('scroll', () => {
     setCatalogHeroCompact(scroller.scrollTop > 42);
+  }, { passive: true });
+}
+
+function setProfileHeroCompact(compact) {
+  document.getElementById('screen-profile')?.classList.toggle('profile-compact', compact);
+}
+
+function setupProfileScroll() {
+  const scroller = document.getElementById('profile-scroll');
+  if (!scroller) return;
+  scroller.addEventListener('scroll', () => {
+    setProfileHeroCompact(scroller.scrollTop > 42);
   }, { passive: true });
 }
 
@@ -1974,6 +2012,7 @@ renderCatalog();
 renderProfile();
 updateProgress();
 setupCatalogScroll();
+setupProfileScroll();
 </script>
 </body>
 </html>
