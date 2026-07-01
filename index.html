@@ -29,9 +29,17 @@
 
 * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
 
+button, .nav-item, .test-card, .featured-card, .profile-btn, .tab,
+.answer-btn, .prof-history-card, .prof-radar-tab, [data-action] {
+  touch-action: manipulation;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
 html {
+  height: 100%;
   height: -webkit-fill-available;
-  height: 100dvh;
+  height: var(--app-h, 100dvh);
 }
 
 body {
@@ -40,12 +48,15 @@ body {
   font-family: 'Inter', sans-serif;
   display: flex;
   flex-direction: column;
+  height: 100%;
   height: -webkit-fill-available;
-  height: 100dvh;
+  height: var(--app-h, 100dvh);
   overflow: hidden;
   position: fixed;
   width: 100%;
   top: 0; left: 0;
+  touch-action: manipulation;
+  -webkit-text-size-adjust: 100%;
 }
 
 /* ══════════════════════════════
@@ -54,15 +65,25 @@ body {
 .screen {
   display: none;
   flex-direction: column;
-  flex: 1;
+  flex: 1 1 auto;
+  width: 100%;
+  min-height: 0;
   overflow: hidden;
-  animation: fadeIn 0.22s ease forwards;
+  opacity: 1;
+  transform: none;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
 }
-.screen.active { display: flex; }
+.screen.active {
+  display: flex;
+}
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(8px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from { opacity: 0.01; }
+  to   { opacity: 1; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .screen.active { animation: fadeIn 0.18s ease forwards; }
 }
 
 /* ══════════════════════════════
@@ -431,6 +452,7 @@ body {
   cursor: pointer; padding: 6px 12px;
   border-radius: var(--radius-sm);
   transition: all 0.2s; opacity: 0.4;
+  -webkit-tap-highlight-color: transparent;
 }
 .nav-item.active { opacity: 1; }
 .nav-item:active { transform: scale(0.92); }
@@ -1098,7 +1120,7 @@ body {
         </svg>
         <span class="logo-name">PERSONA</span>
       </div>
-      <div class="profile-btn" onclick="goProfile()">
+      <div class="profile-btn" data-action="profile" role="button" tabindex="0">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.6">
           <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
         </svg>
@@ -1235,10 +1257,10 @@ body {
   </div><!-- /scrollable -->
 
   <div class="bottom-nav">
-    <div class="nav-item active" onclick="goCatalog()"><span class="nav-icon">🧬</span><span class="nav-label">Тесты</span></div>
-    <div class="nav-item" onclick="goProfile()"><span class="nav-icon">👤</span><span class="nav-label">Профиль</span></div>
-    <div class="nav-item" onclick="showSoon()"><span class="nav-icon">⚔️</span><span class="nav-label">Дуэли</span></div>
-    <div class="nav-item" onclick="showSoon()"><span class="nav-icon">⚙️</span><span class="nav-label">Настройки</span></div>
+    <div class="nav-item active" data-action="catalog" role="button" tabindex="0"><span class="nav-icon">🧬</span><span class="nav-label">Тесты</span></div>
+    <div class="nav-item" data-action="profile" role="button" tabindex="0"><span class="nav-icon">👤</span><span class="nav-label">Профиль</span></div>
+    <div class="nav-item" data-action="soon" role="button" tabindex="0"><span class="nav-icon">⚔️</span><span class="nav-label">Дуэли</span></div>
+    <div class="nav-item" data-action="soon" role="button" tabindex="0"><span class="nav-icon">⚙️</span><span class="nav-label">Настройки</span></div>
   </div>
 
 </div>
@@ -1248,7 +1270,7 @@ body {
 ══════════════════════════════════════ -->
 <div class="screen z1" id="screen-intro">
   <div class="back-wrap">
-    <button class="btn-back" onclick="goCatalog()">
+    <button class="btn-back" data-action="catalog" type="button">
       <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
         <path d="M9 11L5 7l4-4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
@@ -1274,7 +1296,7 @@ body {
     </div>
   </div>
   <div class="footer-bar">
-    <button class="btn-primary" onclick="startTest()">
+    <button class="btn-primary" data-action="start-test" type="button">
       Начать тест
       <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </button>
@@ -1298,7 +1320,7 @@ body {
     <div class="answers" id="answers"></div>
   </div>
   <div class="q-footer-row">
-    <button class="btn-next" id="btn-next" onclick="nextQuestion()">Далее →</button>
+    <button class="btn-next" id="btn-next" data-action="next" type="button">Далее →</button>
   </div>
 </div>
 
@@ -1346,11 +1368,11 @@ body {
     </div>
   </div>
   <div class="result-footer-row">
-    <button class="btn-back-subtle" onclick="goCatalog()">
+    <button class="btn-back-subtle" data-action="catalog" type="button">
       <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M9 11L5 7l4-4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
       На главную
     </button>
-    <button class="btn-accent" onclick="goProfile()">
+    <button class="btn-accent" data-action="profile" type="button">
       <span>👤</span> Мой профиль
     </button>
   </div>
@@ -1408,7 +1430,7 @@ body {
         <polygon points="100,55 145,140 55,140" stroke="rgba(255,255,255,0.06)" stroke-width="0.5" fill="none"/>
         <polygon points="100,80 120,130 80,130" stroke="rgba(255,255,255,0.06)" stroke-width="0.5" fill="none"/>
       </svg>
-      <button class="btn-primary" style="max-width:280px" onclick="openTest('triada')">
+      <button class="btn-primary" style="max-width:280px" data-action="open-test" data-test="triada" type="button">
         Начать с «Тёмной триады»
         <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
@@ -1448,17 +1470,44 @@ body {
   </div>
 
   <div class="bottom-nav">
-    <div class="nav-item" onclick="goCatalog()"><span class="nav-icon">🧬</span><span class="nav-label">Тесты</span></div>
-    <div class="nav-item active" onclick="goProfile()"><span class="nav-icon">👤</span><span class="nav-label">Профиль</span></div>
-    <div class="nav-item" onclick="showSoon()"><span class="nav-icon">⚔️</span><span class="nav-label">Дуэли</span></div>
-    <div class="nav-item" onclick="showSoon()"><span class="nav-icon">⚙️</span><span class="nav-label">Настройки</span></div>
+    <div class="nav-item" data-action="catalog" role="button" tabindex="0"><span class="nav-icon">🧬</span><span class="nav-label">Тесты</span></div>
+    <div class="nav-item active" data-action="profile" role="button" tabindex="0"><span class="nav-icon">👤</span><span class="nav-label">Профиль</span></div>
+    <div class="nav-item" data-action="soon" role="button" tabindex="0"><span class="nav-icon">⚔️</span><span class="nav-label">Дуэли</span></div>
+    <div class="nav-item" data-action="soon" role="button" tabindex="0"><span class="nav-icon">⚙️</span><span class="nav-label">Настройки</span></div>
   </div>
 
 </div>
 
 <script>
-const tg = window.Telegram?.WebApp;
-if (tg) { tg.ready(); tg.expand(); tg.setHeaderColor('#0A0A0F'); tg.setBackgroundColor('#0A0A0F'); }
+const tg = window.Telegram && window.Telegram.WebApp;
+let memoryProfile = null;
+
+function initTelegram() {
+  if (!tg) return;
+  try {
+    tg.ready();
+    tg.expand();
+    tg.setHeaderColor('#0A0A0F');
+    tg.setBackgroundColor('#0A0A0F');
+    tg.onEvent('viewportChanged', fixViewport);
+  } catch (e) { /* ignore */ }
+}
+
+function fixViewport() {
+  var h = (tg && tg.viewportStableHeight) ? tg.viewportStableHeight : window.innerHeight;
+  if (!h || h < 100) h = window.innerHeight;
+  document.documentElement.style.setProperty('--app-h', h + 'px');
+  document.body.style.height = h + 'px';
+}
+
+function safeHaptic(type) {
+  try {
+    if (tg && tg.HapticFeedback) {
+      if (type === 'success') tg.HapticFeedback.notificationOccurred('success');
+      else tg.HapticFeedback.selectionChanged();
+    }
+  } catch (e) { /* ignore */ }
+}
 
 const PROFILE_KEY = 'persona_profile';
 const TOTAL_TESTS = 8;
@@ -1489,15 +1538,17 @@ const TEST_REGISTRY = {
 // ── STORAGE ──
 function loadProfile() {
   try {
-    const raw = localStorage.getItem(PROFILE_KEY);
-    return raw ? JSON.parse(raw) : { results: {} };
-  } catch {
-    return { results: {} };
-  }
+    var raw = localStorage.getItem(PROFILE_KEY);
+    if (raw) return JSON.parse(raw);
+  } catch (e) { /* ignore */ }
+  return memoryProfile || { results: {} };
 }
 
 function saveProfile(profile) {
-  localStorage.setItem(PROFILE_KEY, JSON.stringify(profile));
+  memoryProfile = profile;
+  try {
+    localStorage.setItem(PROFILE_KEY, JSON.stringify(profile));
+  } catch (e) { /* Android WebView / private mode */ }
 }
 
 function getCompletedCount(profile) {
@@ -1522,11 +1573,10 @@ function updateProgressUI(profile) {
 }
 
 function saveTestResult(testId, data) {
-  const profile = loadProfile();
-  profile.results[testId] = {
-    ...data,
+  var profile = loadProfile();
+  profile.results[testId] = Object.assign({}, data, {
     completedAt: new Date().toISOString(),
-  };
+  });
   saveProfile(profile);
   updateProgressUI(profile);
   return profile;
@@ -1534,20 +1584,34 @@ function saveTestResult(testId, data) {
 
 // ── NAVIGATION ──
 function setActiveNav(tab) {
-  const tabs = ['tests', 'profile', 'duels', 'settings'];
-  document.querySelectorAll('.bottom-nav').forEach(nav => {
-    nav.querySelectorAll('.nav-item').forEach((item, i) => {
+  var tabs = ['tests', 'profile', 'duels', 'settings'];
+  document.querySelectorAll('.bottom-nav').forEach(function(nav) {
+    nav.querySelectorAll('.nav-item').forEach(function(item, i) {
       item.classList.toggle('active', tabs[i] === tab);
     });
   });
 }
 
 function showScreen(id, navTab) {
-  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-  const el = document.getElementById('screen-' + id);
+  document.querySelectorAll('.screen').forEach(function(s) {
+    s.classList.remove('active');
+    s.style.display = 'none';
+  });
+  var el = document.getElementById('screen-' + id);
+  if (!el) return;
+
+  el.style.display = 'flex';
   el.classList.add('active');
-  const scrollable = el.querySelector('.scrollable');
-  if (scrollable) scrollable.scrollTop = 0;
+
+  requestAnimationFrame(function() {
+    requestAnimationFrame(function() {
+      void el.offsetHeight;
+      fixViewport();
+      var scrollable = el.querySelector('.scrollable');
+      if (scrollable) scrollable.scrollTop = 0;
+    });
+  });
+
   if (navTab) setActiveNav(navTab);
 }
 
@@ -1556,13 +1620,13 @@ function goCatalog() {
 }
 
 function goProfile() {
-  renderProfile();
   showScreen('profile', 'profile');
-  if (tg) tg.sendData(JSON.stringify({ action: 'open_profile' }));
+  requestAnimationFrame(function() {
+    try { renderProfile(); } catch (e) { console.error(e); }
+  });
 }
 
 // ── CATALOG ──
-setTimeout(() => updateProgressUI(loadProfile()), 300);
 
 function switchTab(cat, el) {
   document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
@@ -1584,43 +1648,62 @@ function showSoon() {
 
 // ── PROFILE ──
 function getUserName() {
-  return tg?.initDataUnsafe?.user?.first_name || 'Исследователь';
+  try {
+    if (tg && tg.initDataUnsafe && tg.initDataUnsafe.user && tg.initDataUnsafe.user.first_name) {
+      return tg.initDataUnsafe.user.first_name;
+    }
+  } catch (e) { /* ignore */ }
+  return 'Исследователь';
 }
 
 function formatDate(iso) {
-  const d = new Date(iso);
-  return d.toLocaleDateString('ru-RU', { day: 'numeric', month: 'short' });
+  try {
+    var d = new Date(iso);
+    if (isNaN(d.getTime())) return '';
+    return d.toLocaleDateString('ru-RU', { day: 'numeric', month: 'short' });
+  } catch (e) {
+    return '';
+  }
 }
 
 function getAxisValues(testId, result) {
-  const reg = TEST_REGISTRY[testId];
-  if (!reg) return [];
-  return reg.axes.map(ax => result.scores[ax.key] ?? 0);
+  var reg = TEST_REGISTRY[testId];
+  if (!reg || !result || !result.scores) return [];
+  return reg.axes.map(function(ax) {
+    var v = result.scores[ax.key];
+    return v == null ? 0 : v;
+  });
 }
 
 function checkRedFlag(flag, scores) {
-  const val = scores[flag.key] ?? 0;
+  var val = scores[flag.key] == null ? 0 : scores[flag.key];
   if (val < flag.min) return false;
   if (flag.max != null && val > flag.max) return false;
   if (flag.cross) {
-    return Object.entries(flag.cross).every(([k, min]) => (scores[k] ?? 0) >= min);
+    var keys = Object.keys(flag.cross);
+    for (var i = 0; i < keys.length; i++) {
+      var k = keys[i];
+      if ((scores[k] == null ? 0 : scores[k]) < flag.cross[k]) return false;
+    }
   }
   return true;
 }
 
 function collectRedFlags(profile) {
-  const flags = [];
-  Object.entries(profile.results).forEach(([testId, result]) => {
-    const reg = TEST_REGISTRY[testId];
-    if (!reg?.redFlags) return;
-    reg.redFlags.forEach(flag => {
+  var flags = [];
+  Object.keys(profile.results).forEach(function(testId) {
+    var result = profile.results[testId];
+    var reg = TEST_REGISTRY[testId];
+    if (!reg || !reg.redFlags) return;
+    reg.redFlags.forEach(function(flag) {
       if (checkRedFlag(flag, result.scores)) {
-        flags.push({ ...flag, testId, testName: reg.name });
+        flags.push({ testId: testId, testName: reg.name, key: flag.key, min: flag.min, max: flag.max, severity: flag.severity, text: flag.text });
       }
     });
   });
-  const order = { high: 0, med: 1 };
-  flags.sort((a, b) => order[a.severity] - order[b.severity]);
+  flags.sort(function(a, b) {
+    return (a.severity === 'high' ? 0 : 1) - (b.severity === 'high' ? 0 : 1);
+  });
   return flags;
 }
 
@@ -1691,37 +1774,42 @@ function selectRadarTest(testId) {
 }
 
 function renderProfile() {
-  const profile = loadProfile();
-  const completed = Object.keys(profile.results);
-  const userEl = document.getElementById('prof-user-name');
+  var profile = loadProfile();
+  var completed = Object.keys(profile.results);
+  var userEl = document.getElementById('prof-user-name');
   if (userEl) userEl.textContent = getUserName();
 
   updateProgressUI(profile);
 
-  const emptyEl = document.getElementById('prof-empty');
-  const contentEl = document.getElementById('prof-content');
-  const hasResults = completed.length > 0;
+  var emptyEl = document.getElementById('prof-empty');
+  var contentEl = document.getElementById('prof-content');
+  if (!emptyEl || !contentEl) return;
+
+  var hasResults = completed.length > 0;
 
   emptyEl.style.display = hasResults ? 'none' : 'flex';
   contentEl.style.display = hasResults ? 'block' : 'none';
   if (!hasResults) return;
 
-  const latestId = completed.sort((a, b) =>
-    new Date(profile.results[b].completedAt) - new Date(profile.results[a].completedAt)
-  )[0];
-  const latest = profile.results[latestId];
+  var latestId = completed.slice().sort(function(a, b) {
+    return new Date(profile.results[b].completedAt) - new Date(profile.results[a].completedAt);
+  })[0];
+  var latest = profile.results[latestId];
+  var latestReg = TEST_REGISTRY[latestId];
 
-  document.getElementById('prof-dominant-type').textContent = latest.typeName;
+  document.getElementById('prof-dominant-type').textContent = latest.typeName || '—';
   document.getElementById('prof-dominant-sub').textContent =
-    'На основе «' + (TEST_REGISTRY[latestId]?.name || latestId) + '» · ' + formatDate(latest.completedAt);
+    'На основе «' + (latestReg ? latestReg.name : latestId) + '» · ' + formatDate(latest.completedAt);
 
   const tabsEl = document.getElementById('prof-radar-tabs');
   if (completed.length > 1) {
     tabsEl.style.display = 'flex';
-    tabsEl.innerHTML = completed.map(id =>
-      `<button class="prof-radar-tab${id === (activeRadarTest || latestId) ? ' active' : ''}"
-        data-test="${id}" onclick="selectRadarTest('${id}')">${TEST_REGISTRY[id]?.icon || '📊'} ${TEST_REGISTRY[id]?.name || id}</button>`
-    ).join('');
+    tabsEl.innerHTML = completed.map(function(id) {
+      var reg = TEST_REGISTRY[id];
+      var isActive = id === (activeRadarTest || latestId);
+      return '<button type="button" class="prof-radar-tab' + (isActive ? ' active' : '') + '" data-action="radar-test" data-test="' + id + '">'
+        + (reg ? reg.icon : '📊') + ' ' + (reg ? reg.name : id) + '</button>';
+    }).join('');
   } else {
     tabsEl.style.display = 'none';
     tabsEl.innerHTML = '';
@@ -1771,45 +1859,50 @@ function renderProfile() {
     </div>`;
 
   document.getElementById('prof-history').innerHTML = completed
-    .sort((a, b) => new Date(profile.results[b].completedAt) - new Date(profile.results[a].completedAt))
-    .map(id => {
-      const r = profile.results[id];
-      const reg = TEST_REGISTRY[id];
-      return `<div class="prof-history-card" onclick="openHistoryResult('${id}')">
-        <div class="prof-history-icon ${reg?.iconBg || ''}">${reg?.icon || '📊'}</div>
-        <div class="prof-history-info">
-          <div class="prof-history-name">${reg?.name || id}</div>
-          <div class="prof-history-meta">${formatDate(r.completedAt)}</div>
-        </div>
-        <span class="prof-history-type">${r.typeName}</span>
-      </div>`;
+    .sort(function(a, b) {
+      return new Date(profile.results[b].completedAt) - new Date(profile.results[a].completedAt);
+    })
+    .map(function(id) {
+      var r = profile.results[id];
+      var reg = TEST_REGISTRY[id];
+      return '<div class="prof-history-card" data-action="history" data-test="' + id + '">'
+        + '<div class="prof-history-icon ' + (reg ? reg.iconBg : '') + '">' + (reg ? reg.icon : '📊') + '</div>'
+        + '<div class="prof-history-info">'
+        + '<div class="prof-history-name">' + (reg ? reg.name : id) + '</div>'
+        + '<div class="prof-history-meta">' + formatDate(r.completedAt) + '</div>'
+        + '</div>'
+        + '<span class="prof-history-type">' + r.typeName + '</span>'
+        + '</div>';
     }).join('');
 }
 
 function openHistoryResult(testId) {
-  const profile = loadProfile();
-  const result = profile.results[testId];
+  var profile = loadProfile();
+  var result = profile.results[testId];
   if (!result || testId !== 'triada') return;
 
-  document.getElementById('result-type').textContent = result.typeName;
-  document.getElementById('result-tagline').textContent = result.tagline;
-  document.getElementById('result-desc').innerHTML = result.desc +
+  document.getElementById('result-type').textContent = result.typeName || '';
+  document.getElementById('result-tagline').textContent = result.tagline || '';
+  var celeb = result.celeb || { emoji: '', name: '', note: '' };
+  document.getElementById('result-desc').innerHTML = (result.desc || '') +
     '<div class="celeb-card">' +
-      '<div class="celeb-emoji">' + result.celeb.emoji + '</div>' +
+      '<div class="celeb-emoji">' + celeb.emoji + '</div>' +
       '<div><div class="celeb-label">Твой двойник</div>' +
-      '<div class="celeb-name">' + result.celeb.name + '</div>' +
-      '<div class="celeb-note">' + result.celeb.note + '</div></div></div>';
+      '<div class="celeb-name">' + celeb.name + '</div>' +
+      '<div class="celeb-note">' + celeb.note + '</div></div></div>';
 
   showScreen('result');
-  const s = result.scores;
-  setTimeout(() => {
-    document.getElementById('bar-n').style.width = s.n + '%';
-    document.getElementById('bar-p').style.width = s.p + '%';
-    document.getElementById('bar-m').style.width = s.m + '%';
-    document.getElementById('val-n').textContent = s.n + '%';
-    document.getElementById('val-p').textContent = s.p + '%';
-    document.getElementById('val-m').textContent = s.m + '%';
-  }, 200);
+  var s = result.scores || {};
+  requestAnimationFrame(function() {
+    setTimeout(function() {
+      document.getElementById('bar-n').style.width = (s.n || 0) + '%';
+      document.getElementById('bar-p').style.width = (s.p || 0) + '%';
+      document.getElementById('bar-m').style.width = (s.m || 0) + '%';
+      document.getElementById('val-n').textContent = (s.n || 0) + '%';
+      document.getElementById('val-p').textContent = (s.p || 0) + '%';
+      document.getElementById('val-m').textContent = (s.m || 0) + '%';
+    }, 80);
+  });
 }
 
 // ── QUESTIONS ──
@@ -1895,10 +1988,10 @@ function renderQ() {
   document.getElementById('q-axis-badge').innerHTML =
     '<span class="badge '+ax.cls+'">'+ax.label+'</span>';
   document.getElementById('q-text').textContent = q.text;
-  document.getElementById('answers').innerHTML = options.map((o,i)=>
-    '<button class="answer-btn'+(answers[cur]===i?' selected':'')+'" onclick="pick('+i+')">'
-    +'<span class="answer-dot"></span>'+o+'</button>'
-  ).join('');
+  document.getElementById('answers').innerHTML = options.map(function(o, i) {
+    return '<button type="button" class="answer-btn' + (answers[cur] === i ? ' selected' : '') + '" data-action="pick" data-pick="' + i + '">'
+      + '<span class="answer-dot"></span>' + o + '</button>';
+  }).join('');
   const btn = document.getElementById('btn-next');
   btn.classList.toggle('on', answers[cur]!==null);
   btn.textContent = cur===questions.length-1 ? 'Узнать результат →' : 'Далее →';
@@ -1906,9 +1999,11 @@ function renderQ() {
 
 function pick(i) {
   answers[cur] = i;
-  document.querySelectorAll('.answer-btn').forEach((b,j)=>b.classList.toggle('selected',j===i));
+  document.querySelectorAll('.answer-btn').forEach(function(b, j) {
+    b.classList.toggle('selected', j === i);
+  });
   document.getElementById('btn-next').classList.add('on');
-  if (tg?.HapticFeedback) tg.HapticFeedback.selectionChanged();
+  safeHaptic('select');
 }
 
 function nextQuestion() {
@@ -1919,45 +2014,134 @@ function nextQuestion() {
 }
 
 function showResult() {
-  const pN = Math.round(scores.N/axisMax.N*100);
-  const pP = Math.round(scores.P/axisMax.P*100);
-  const pM = Math.round(scores.M/axisMax.M*100);
-  const res = results.find(r=>r.cond(pN,pP,pM));
+  var pN = Math.round(scores.N / axisMax.N * 100);
+  var pP = Math.round(scores.P / axisMax.P * 100);
+  var pM = Math.round(scores.M / axisMax.M * 100);
+  var res = results.find(function(r) { return r.cond(pN, pP, pM); });
+  if (!res) return;
+
   document.getElementById('result-type').textContent = res.name;
   document.getElementById('result-tagline').textContent = res.tagline;
   document.getElementById('result-desc').innerHTML = res.desc +
     '<div class="celeb-card">' +
-      '<div class="celeb-emoji">'+res.celeb.emoji+'</div>' +
+      '<div class="celeb-emoji">' + res.celeb.emoji + '</div>' +
       '<div>' +
         '<div class="celeb-label">Твой двойник</div>' +
-        '<div class="celeb-name">'+res.celeb.name+'</div>' +
-        '<div class="celeb-note">'+res.celeb.note+'</div>' +
+        '<div class="celeb-name">' + res.celeb.name + '</div>' +
+        '<div class="celeb-note">' + res.celeb.note + '</div>' +
       '</div>' +
     '</div>';
-  showScreen('result');
-  setTimeout(()=>{
-    document.getElementById('bar-n').style.width=pN+'%';
-    document.getElementById('bar-p').style.width=pP+'%';
-    document.getElementById('bar-m').style.width=pM+'%';
-    document.getElementById('val-n').textContent=pN+'%';
-    document.getElementById('val-p').textContent=pP+'%';
-    document.getElementById('val-m').textContent=pM+'%';
-  },200);
-  if (tg?.HapticFeedback) tg.HapticFeedback.notificationOccurred('success');
 
-  saveTestResult('triada', {
-    type: res.id,
-    typeName: res.name,
-    tagline: res.tagline,
-    desc: res.desc,
-    celeb: res.celeb,
-    scores: { n: pN, p: pP, m: pM },
+  showScreen('result');
+
+  requestAnimationFrame(function() {
+    setTimeout(function() {
+      document.getElementById('bar-n').style.width = pN + '%';
+      document.getElementById('bar-p').style.width = pP + '%';
+      document.getElementById('bar-m').style.width = pM + '%';
+      document.getElementById('val-n').textContent = pN + '%';
+      document.getElementById('val-p').textContent = pP + '%';
+      document.getElementById('val-m').textContent = pM + '%';
+    }, 80);
   });
 
-  if (tg) tg.sendData(JSON.stringify({
-    action:'test_result', test:'triada',
-    type:res.id, scores:{n:pN,p:pP,m:pM}
-  }));
+  safeHaptic('success');
+
+  try {
+    saveTestResult('triada', {
+      type: res.id,
+      typeName: res.name,
+      tagline: res.tagline,
+      desc: res.desc,
+      celeb: res.celeb,
+      scores: { n: pN, p: pP, m: pM },
+    });
+  } catch (e) { console.error(e); }
+}
+
+function handleAction(e) {
+  var el = e.target.closest('[data-action]');
+  if (!el) return;
+
+  var action = el.getAttribute('data-action');
+  if (!action) return;
+
+  if (action === 'pick') {
+    var idx = parseInt(el.getAttribute('data-pick'), 10);
+    if (!isNaN(idx)) pick(idx);
+    return;
+  }
+
+  if (action === 'next') {
+    if (!el.classList.contains('on')) return;
+    nextQuestion();
+    return;
+  }
+
+  if (action === 'profile') { goProfile(); return; }
+  if (action === 'catalog') { goCatalog(); return; }
+  if (action === 'soon') { showSoon(); return; }
+
+  if (action === 'start-test') { startTest(); return; }
+
+  if (action === 'open-test') {
+    openTest(el.getAttribute('data-test'));
+    return;
+  }
+
+  if (action === 'radar-test') {
+    selectRadarTest(el.getAttribute('data-test'));
+    return;
+  }
+
+  if (action === 'history') {
+    openHistoryResult(el.getAttribute('data-test'));
+    return;
+  }
+}
+
+function initApp() {
+  initTelegram();
+  fixViewport();
+  window.addEventListener('resize', fixViewport);
+  window.addEventListener('orientationchange', function() {
+    setTimeout(fixViewport, 100);
+  });
+
+  document.addEventListener('click', handleAction, false);
+  document.addEventListener('keydown', function(e) {
+    if (e.key !== 'Enter' && e.key !== ' ') return;
+    var el = e.target.closest('[data-action][role="button"]');
+    if (!el) return;
+    e.preventDefault();
+    handleAction(e);
+  });
+
+  document.querySelectorAll('.screen').forEach(function(s) {
+    if (!s.classList.contains('active')) s.style.display = 'none';
+    else s.style.display = 'flex';
+  });
+
+  updateProgressUI(loadProfile());
+
+  window.goProfile = goProfile;
+  window.goCatalog = goCatalog;
+  window.showScreen = showScreen;
+  window.openTest = openTest;
+  window.showSoon = showSoon;
+  window.startTest = startTest;
+  window.nextQuestion = nextQuestion;
+  window.pick = pick;
+  window.switchTab = switchTab;
+  window.selectRadarTest = selectRadarTest;
+  window.openHistoryResult = openHistoryResult;
+  window.unlockResult = unlockResult;
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initApp);
+} else {
+  initApp();
 }
 
 function unlockResult() {
