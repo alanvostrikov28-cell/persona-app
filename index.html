@@ -1589,6 +1589,22 @@ function getPersonaUser() {
   };
 }
 
+function safeHaptic(type = 'success') {
+  try {
+    if (tg?.HapticFeedback) tg.HapticFeedback.notificationOccurred(type);
+  } catch (error) {
+    console.warn('Telegram haptic failed', error);
+  }
+}
+
+function safeSelectionHaptic() {
+  try {
+    if (tg?.HapticFeedback) tg.HapticFeedback.selectionChanged();
+  } catch (error) {
+    console.warn('Telegram selection haptic failed', error);
+  }
+}
+
 function getFacetTitle(id) {
   return facets.find(facet => facet.id === id)?.title || id;
 }
@@ -1811,7 +1827,7 @@ function renderQ() {
 
 function pick(i) {
   answers[cur] = i;
-  if (tg?.HapticFeedback) tg.HapticFeedback.selectionChanged();
+  safeSelectionHaptic();
   renderQ();
 }
 
@@ -1911,8 +1927,7 @@ function showResult() {
   renderProfile();
   showScreen('result');
 
-  if (tg?.HapticFeedback) tg.HapticFeedback.notificationOccurred('success');
-  if (tg) tg.sendData(JSON.stringify({ action:'test_result', test:activeTest.id, type:result.id, scores:percent }));
+  safeHaptic('success');
 }
 
 function updateProgress() {
@@ -2003,9 +2018,7 @@ function showSoon(message) {
 }
 
 function unlockResult() {
-  const payload = { action:'open_deep_profile', test:activeTest.id };
-  if (tg) tg.sendData(JSON.stringify(payload));
-  else showProfile();
+  showProfile();
 }
 
 renderCatalog();
