@@ -315,6 +315,11 @@ button { font: inherit; }
   position: relative;
   overflow: hidden;
 }
+.featured-card.done {
+  border-color:rgba(139,92,246,.35);
+  background:
+    linear-gradient(135deg, rgba(139,92,246,.15), rgba(52,211,153,.06));
+}
 .featured-card::after {
   content:"";
   position:absolute;
@@ -361,8 +366,16 @@ button { font: inherit; }
   width:100%;
   padding:15px;
   background: var(--bg3);
+  position:relative;
+  overflow:hidden;
 }
 .test-card.ready { border-color: rgba(139,92,246,.35); }
+.test-card.done {
+  border-color: rgba(139,92,246,.35);
+  background:
+    linear-gradient(135deg, rgba(139,92,246,.09), rgba(52,211,153,.045)),
+    var(--bg3);
+}
 .card-top {
   display:flex;
   align-items:center;
@@ -388,6 +401,19 @@ button { font: inherit; }
   color:var(--text2);
   font-size:13px;
   line-height:1.45;
+}
+.completion-chip {
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  margin-top:10px;
+  border:.5px solid rgba(52,211,153,.25);
+  border-radius:999px;
+  background:rgba(52,211,153,.09);
+  color:#BBF7D0;
+  padding:7px 10px;
+  font-size:11px;
+  font-weight:900;
 }
 .card-footer {
   margin-top:14px;
@@ -640,13 +666,53 @@ button { font: inherit; }
   border: .5px solid rgba(139,92,246,.28);
   border-radius: 24px;
   background: linear-gradient(135deg, rgba(139,92,246,.19), rgba(236,72,153,.11));
+  position:relative;
+  overflow:hidden;
 }
+.result-hero::after {
+  content:"";
+  position:absolute;
+  right:-32px;
+  top:-42px;
+  width:120px;
+  height:120px;
+  border-radius:50%;
+  background:radial-gradient(circle, rgba(52,211,153,.22), transparent 68%);
+  pointer-events:none;
+}
+.featured-card.done::after { background: radial-gradient(circle, rgba(139,92,246,.22), transparent 68%); }
+.result-hero > * { position:relative; z-index:1; }
 .result-badge {
   color:#C4B5FD;
   font-size:11px;
   letter-spacing:.15em;
   text-transform:uppercase;
   font-weight:800;
+}
+.result-complete {
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  margin-bottom:14px;
+  border:.5px solid rgba(52,211,153,.28);
+  border-radius:999px;
+  background:rgba(52,211,153,.105);
+  color:#BBF7D0;
+  padding:8px 11px 8px 8px;
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+.result-complete-mark {
+  width:24px;
+  height:24px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  background:linear-gradient(135deg, #34D399, #8B5CF6);
+  color:#fff;
+  box-shadow:0 0 24px rgba(52,211,153,.25);
 }
 .result-type {
   margin-top:10px;
@@ -712,12 +778,15 @@ button { font: inherit; }
 .snapshot-card::after {
   content:attr(data-icon);
   position:absolute;
-  right:8px;
-  top:6px;
-  font-size:22px;
-  opacity:.18;
+  right:-3px;
+  bottom:-5px;
+  font-size:30px;
+  opacity:.10;
+  pointer-events:none;
 }
 .snapshot-label {
+  position:relative;
+  z-index:1;
   color:var(--text3);
   font-size:10px;
   font-weight:800;
@@ -725,11 +794,15 @@ button { font: inherit; }
   letter-spacing:.08em;
 }
 .snapshot-value {
+  position:relative;
+  z-index:1;
   margin-top:7px;
   font-family:Unbounded,sans-serif;
   font-size:18px;
 }
 .snapshot-caption {
+  position:relative;
+  z-index:1;
   margin-top:5px;
   color:var(--text2);
   font-size:11px;
@@ -1112,6 +1185,313 @@ button { font: inherit; }
   font-weight:900;
   margin-bottom:10px;
 }
+.profile-tabs {
+  display:grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap:7px;
+  position:sticky;
+  top:0;
+  z-index:3;
+  padding:4px 0;
+  background:linear-gradient(180deg, rgba(10,10,15,.98), rgba(10,10,15,.86));
+  backdrop-filter: blur(14px);
+}
+.profile-tab {
+  min-height:38px;
+  border:.5px solid rgba(255,255,255,.08);
+  border-radius:14px;
+  background:rgba(255,255,255,.035);
+  color:var(--text3);
+  font-size:11px;
+  font-weight:900;
+  cursor:pointer;
+}
+.profile-tab.active {
+  border-color:rgba(139,92,246,.26);
+  color:#fff;
+  background:linear-gradient(135deg, rgba(139,92,246,.72), rgba(236,72,153,.58));
+}
+.profile-view { display:none; gap:12px; }
+.profile-view.active {
+  display:grid;
+}
+.level-card {
+  margin-top:14px;
+  border:.5px solid rgba(255,255,255,.10);
+  border-radius:18px;
+  background:rgba(255,255,255,.045);
+  padding:13px;
+}
+.level-top,
+.level-meta {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+}
+.level-title {
+  color:#C4B5FD;
+  font-size:11px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  font-weight:900;
+}
+.level-name {
+  margin-top:5px;
+  font-family:Unbounded,sans-serif;
+  font-size:16px;
+  line-height:1.25;
+}
+.level-badge {
+  min-width:58px;
+  height:58px;
+  border-radius:20px;
+  display:grid;
+  place-items:center;
+  background:linear-gradient(135deg, rgba(139,92,246,.85), rgba(236,72,153,.68));
+  font-family:Unbounded,sans-serif;
+  font-size:20px;
+  box-shadow:0 0 28px rgba(139,92,246,.18);
+}
+.level-track {
+  height:7px;
+  margin:12px 0 8px;
+  border-radius:999px;
+  overflow:hidden;
+  background:rgba(255,255,255,.08);
+}
+.level-fill {
+  height:100%;
+  border-radius:inherit;
+  background:linear-gradient(90deg, #8B5CF6, #EC4899, #34D399);
+}
+.level-meta {
+  color:var(--text3);
+  font-size:11px;
+  font-weight:800;
+}
+.tree-grid {
+  position:relative;
+  min-height:340px;
+  aspect-ratio:1;
+  max-width:370px;
+  width:100%;
+  margin:2px auto 4px;
+  border:.5px solid rgba(255,255,255,.08);
+  border-radius:26px;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(139,92,246,.24), transparent 19%),
+    radial-gradient(circle at 50% 50%, rgba(236,72,153,.10), transparent 45%),
+    rgba(255,255,255,.025);
+}
+.tree-grid::before,
+.tree-grid::after {
+  content:"";
+  position:absolute;
+  inset:18%;
+  border:.5px solid rgba(255,255,255,.055);
+  border-radius:50%;
+  pointer-events:none;
+}
+.tree-grid::after {
+  inset:31%;
+  border-color:rgba(139,92,246,.09);
+}
+.tree-lines {
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  pointer-events:none;
+}
+.tree-line {
+  stroke:rgba(139,92,246,.30);
+  stroke-width:.7;
+}
+.tree-line.locked {
+  stroke:rgba(255,255,255,.09);
+}
+.tree-hub {
+  position:absolute;
+  left:50%;
+  top:50%;
+  width:96px;
+  min-height:96px;
+  transform:translate(-50%, -50%);
+  border:.5px solid rgba(255,255,255,.16);
+  border-radius:30px;
+  display:grid;
+  place-items:center;
+  text-align:center;
+  background:
+    radial-gradient(circle at 34% 22%, rgba(255,255,255,.20), transparent 26%),
+    linear-gradient(145deg, rgba(139,92,246,.86), rgba(236,72,153,.58));
+  box-shadow:0 0 34px rgba(139,92,246,.22);
+  z-index:2;
+}
+.tree-hub-icon {
+  font-size:26px;
+  line-height:1;
+}
+.tree-hub-title {
+  margin-top:6px;
+  font-family:Unbounded,sans-serif;
+  font-size:11px;
+  line-height:1.2;
+}
+.tree-branch {
+  position:absolute;
+  left:var(--x);
+  top:var(--y);
+  width:108px;
+  min-height:76px;
+  transform:translate(-50%, -50%);
+  border:.5px solid rgba(255,255,255,.08);
+  border-radius:18px;
+  background:rgba(15,15,24,.78);
+  backdrop-filter: blur(12px);
+  padding:10px;
+  text-align:center;
+  overflow:hidden;
+  z-index:2;
+}
+.tree-branch.open {
+  border-color:rgba(139,92,246,.30);
+  background:
+    radial-gradient(circle at 50% 0%, rgba(139,92,246,.20), transparent 44%),
+    rgba(255,255,255,.055);
+  box-shadow:0 0 20px rgba(139,92,246,.12);
+}
+.tree-branch.locked {
+  opacity:.58;
+}
+.tree-name {
+  margin-top:4px;
+  font-weight:900;
+  font-size:11px;
+  line-height:1.25;
+}
+.tree-icon {
+  width:30px;
+  height:30px;
+  margin:0 auto;
+  border-radius:11px;
+  display:grid;
+  place-items:center;
+  background:rgba(139,92,246,.13);
+}
+.tree-state {
+  display:inline-flex;
+  margin-top:7px;
+  border:.5px solid rgba(255,255,255,.10);
+  border-radius:999px;
+  padding:4px 7px;
+  color:var(--text3);
+  font-size:9px;
+  font-weight:900;
+  white-space:nowrap;
+}
+.tree-branch.open .tree-state {
+  border-color:rgba(52,211,153,.20);
+  color:#BBF7D0;
+  background:rgba(52,211,153,.08);
+}
+.tree-text {
+  max-width:370px;
+  margin:10px auto 0;
+  border:.5px solid rgba(255,255,255,.08);
+  border-radius:16px;
+  background:rgba(255,255,255,.035);
+  padding:11px 12px;
+  color:var(--text2);
+  font-size:12px;
+  line-height:1.45;
+}
+@media (max-width:380px) {
+  .tree-grid { min-height:318px; }
+  .tree-branch {
+    width:96px;
+    min-height:72px;
+    padding:9px 7px;
+  }
+  .tree-name { font-size:10px; }
+  .tree-hub {
+    width:84px;
+    min-height:84px;
+    border-radius:26px;
+  }
+}
+.chart-grid {
+  display:grid;
+  gap:10px;
+}
+.chart-card {
+  border:.5px solid rgba(255,255,255,.08);
+  border-radius:17px;
+  background:rgba(255,255,255,.035);
+  padding:12px;
+}
+.chart-card.locked {
+  border-color:rgba(236,72,153,.22);
+  background:
+    radial-gradient(circle at 100% 0%, rgba(236,72,153,.13), transparent 34%),
+    rgba(255,255,255,.035);
+}
+.chart-title {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom:10px;
+  font-weight:900;
+  line-height:1.3;
+}
+.chart-lock {
+  color:#F9A8D4;
+  font-size:10px;
+  font-weight:900;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+}
+.chart-note {
+  color:var(--text2);
+  font-size:12px;
+  line-height:1.45;
+}
+.compat-card {
+  min-height:210px;
+  display:grid;
+  align-content:center;
+  text-align:center;
+  border:.5px solid rgba(236,72,153,.22);
+  border-radius:22px;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(236,72,153,.18), transparent 42%),
+    linear-gradient(145deg, rgba(139,92,246,.10), rgba(255,255,255,.035));
+  padding:22px 16px;
+}
+.compat-icon {
+  width:70px;
+  height:70px;
+  margin:0 auto 14px;
+  border-radius:24px;
+  display:grid;
+  place-items:center;
+  background:rgba(236,72,153,.12);
+  font-size:30px;
+}
+.compat-title {
+  font-family:Unbounded,sans-serif;
+  font-size:20px;
+  line-height:1.25;
+}
+.compat-text {
+  margin-top:10px;
+  color:var(--text2);
+  font-size:13px;
+  line-height:1.5;
+}
 .visible-list {
   display:grid;
   gap:9px;
@@ -1297,6 +1677,10 @@ button { font: inherit; }
 <div class="screen" id="screen-result">
   <div class="scrollable">
     <div class="result-hero">
+      <div class="result-complete">
+        <span class="result-complete-mark">✓</span>
+        <span>Тест пройден</span>
+      </div>
       <div class="result-badge">Твой результат</div>
       <div class="result-type" id="result-type"></div>
       <div class="result-tagline" id="result-tagline"></div>
@@ -1318,12 +1702,12 @@ button { font: inherit; }
       <div class="profile-add-card" id="profile-add-card"></div>
       <div class="result-locked">
         <div class="locked-eyebrow">Закрытая аналитика</div>
-        <div class="locked-title">Ты увидел верхний слой.<br>Самое интересное — в связках.</div>
+        <div class="locked-title">Ты увидел верхний слой.<br>Самое интересное — в пересечениях.</div>
         <div class="locked-desc">Persona уже начала собирать твою карточку. Дальше она покажет, где твой паттерн всплывает в отношениях, конфликтах и выборе людей.</div>
         <ul>
           <li>твой главный ред флаг в близости;</li>
           <li>что люди считывают в тебе быстрее, чем ты думаешь;</li>
-          <li>какой тест откроет следующую связку профиля;</li>
+          <li>какой тест откроет следующий слой профиля;</li>
           <li>где ты себя защищаешь, но выглядишь холоднее.</li>
         </ul>
         <button class="locked-action" onclick="showProfile()">Посмотреть карточку Persona →</button>
@@ -1356,21 +1740,45 @@ button { font: inherit; }
   <div class="scrollable" id="profile-scroll">
     <div class="profile-dashboard">
       <div class="profile-hero-card" id="profile-hero-card"></div>
-      <div class="profile-panel">
-        <div class="profile-panel-title">Что уже видно</div>
-        <div class="visible-list" id="profile-visible"></div>
+      <div class="profile-tabs">
+        <button class="profile-tab active" onclick="switchProfileTab('overview', this)">Обзор</button>
+        <button class="profile-tab" onclick="switchProfileTab('map', this)">Карта</button>
+        <button class="profile-tab" onclick="switchProfileTab('charts', this)">Графики</button>
+        <button class="profile-tab" onclick="switchProfileTab('compat', this)">❤️ Пары</button>
       </div>
-      <div class="profile-panel">
-        <div class="profile-panel-title">Живые шкалы</div>
-        <div class="mini-bars" id="profile-bars"></div>
+      <div class="profile-view active" id="profile-view-overview">
+        <div class="profile-panel">
+          <div class="profile-panel-title">Что уже видно</div>
+          <div class="visible-list" id="profile-visible"></div>
+        </div>
+        <div class="profile-panel">
+          <div class="profile-panel-title">🚩 Ред флаги</div>
+          <div class="red-list" id="profile-red-flags"></div>
+        </div>
       </div>
-      <div class="profile-panel">
-        <div class="profile-panel-title">Ред флаги</div>
-        <div class="red-list" id="profile-red-flags"></div>
+      <div class="profile-view" id="profile-view-map">
+        <div class="profile-panel">
+          <div class="profile-panel-title">🌳 Карта личности</div>
+          <div class="tree-grid" id="personality-tree"></div>
+          <div class="tree-text" id="personality-tree-caption"></div>
+        </div>
+        <div class="profile-panel">
+          <div class="profile-panel-title">Открытые грани</div>
+          <div class="profile-grid" id="profile-grid"></div>
+        </div>
       </div>
-      <div class="profile-panel">
-        <div class="profile-panel-title">Открытые грани</div>
-        <div class="profile-grid" id="profile-grid"></div>
+      <div class="profile-view" id="profile-view-charts">
+        <div class="profile-panel">
+          <div class="profile-panel-title">Живые шкалы</div>
+          <div class="mini-bars" id="profile-bars"></div>
+        </div>
+        <div class="profile-panel">
+          <div class="profile-panel-title">Глубокая аналитика</div>
+          <div class="chart-grid" id="profile-charts"></div>
+        </div>
+      </div>
+      <div class="profile-view" id="profile-view-compat">
+        <div class="compat-card" id="profile-compatibility"></div>
       </div>
     </div>
   </div>
@@ -1417,24 +1825,24 @@ const tests = {
       M: { icon:'♟️', label:'Стратегия', cls:'badge-cyan', color:'#22D3EE', sub:'расчёт, влияние, чтение мотивов' }
     },
     questions: [
-      { text:'Когда тебя не замечают, внутри быстро появляется напряжение или раздражение.', axis:'N', scores:[4,3,1,0] },
-      { text:'Тебе важно чувствовать, что ты в чём-то заметно сильнее большинства людей вокруг.', axis:'N', scores:[4,3,1,0] },
-      { text:'Критика часто задевает тебя глубже, чем ты показываешь.', axis:'N', scores:[4,3,1,0] },
-      { text:'Ты можешь делать что-то эффектное не только ради дела, но и чтобы тебя увидели.', axis:'N', scores:[4,3,1,0] },
-      { text:'Чужой успех бывает сложно принять спокойно, если ты считаешь человека слабее себя.', axis:'N', scores:[4,3,1,0] },
-      { text:'Иногда тебе кажется, что люди недооценивают твой уровень.', axis:'N', scores:[4,3,1,0] },
-      { text:'Если ситуация требует жёсткости, ты можешь быстро отключить мягкость.', axis:'P', scores:[4,3,1,0] },
-      { text:'Страх редко останавливает тебя там, где другие начинают сомневаться.', axis:'P', scores:[4,3,1,0] },
-      { text:'После резких слов или поступков ты не всегда долго переживаешь о чувствах другого человека.', axis:'P', scores:[4,3,1,0] },
-      { text:'Когда ты злишься, действие может идти раньше размышлений.', axis:'P', scores:[4,3,1,0] },
-      { text:'Чужие проблемы могут утомлять тебя быстрее, чем трогать.', axis:'P', scores:[4,3,1,0] },
-      { text:'Правила для тебя скорее ориентир, если они мешают важной цели.', axis:'P', scores:[4,3,1,0] },
-      { text:'Ты часто считываешь намерения человека ещё до того, как он всё сказал.', axis:'M', scores:[4,3,1,0] },
-      { text:'Информация о людях для тебя может быть способом лучше управлять ситуацией.', axis:'M', scores:[4,3,1,0] },
-      { text:'Ты умеешь включать обаяние, когда это помогает добиться нужного результата.', axis:'M', scores:[4,3,1,0] },
-      { text:'Иногда сказать человеку то, что он хочет услышать, кажется разумнее полной прямоты.', axis:'M', scores:[4,3,1,0] },
-      { text:'Ты замечаешь слабые места людей, даже если не собираешься ими пользоваться.', axis:'M', scores:[4,3,1,0] },
-      { text:'В сложных ситуациях ты скорее ищешь ход, чем просто выражаешь эмоции.', axis:'M', scores:[4,3,1,0] }
+      { text:'Когда тебя не замечают, внутри быстро появляется напряжение или раздражение.', axis:'N', scores:[4,3,2,1,0] },
+      { text:'Тебе важно чувствовать, что ты в чём-то заметно сильнее большинства людей вокруг.', axis:'N', scores:[4,3,2,1,0] },
+      { text:'Критика часто задевает тебя глубже, чем ты показываешь.', axis:'N', scores:[4,3,2,1,0] },
+      { text:'Ты можешь делать что-то эффектное не только ради дела, но и чтобы тебя увидели.', axis:'N', scores:[4,3,2,1,0] },
+      { text:'Чужой успех бывает сложно принять спокойно, если ты считаешь человека слабее себя.', axis:'N', scores:[4,3,2,1,0] },
+      { text:'Иногда тебе кажется, что люди недооценивают твой уровень.', axis:'N', scores:[4,3,2,1,0] },
+      { text:'Если ситуация требует жёсткости, ты можешь быстро отключить мягкость.', axis:'P', scores:[4,3,2,1,0] },
+      { text:'Страх редко останавливает тебя там, где другие начинают сомневаться.', axis:'P', scores:[4,3,2,1,0] },
+      { text:'После резких слов или поступков ты не всегда долго переживаешь о чувствах другого человека.', axis:'P', scores:[4,3,2,1,0] },
+      { text:'Когда ты злишься, действие может идти раньше размышлений.', axis:'P', scores:[4,3,2,1,0] },
+      { text:'Чужие проблемы могут утомлять тебя быстрее, чем трогать.', axis:'P', scores:[4,3,2,1,0] },
+      { text:'Правила для тебя скорее ориентир, если они мешают важной цели.', axis:'P', scores:[4,3,2,1,0] },
+      { text:'Ты часто считываешь намерения человека ещё до того, как он всё сказал.', axis:'M', scores:[4,3,2,1,0] },
+      { text:'Информация о людях для тебя может быть способом лучше управлять ситуацией.', axis:'M', scores:[4,3,2,1,0] },
+      { text:'Ты умеешь включать обаяние, когда это помогает добиться нужного результата.', axis:'M', scores:[4,3,2,1,0] },
+      { text:'Иногда сказать человеку то, что он хочет услышать, кажется разумнее полной прямоты.', axis:'M', scores:[4,3,2,1,0] },
+      { text:'Ты замечаешь слабые места людей, даже если не собираешься ими пользоваться.', axis:'M', scores:[4,3,2,1,0] },
+      { text:'В сложных ситуациях ты скорее ищешь ход, чем просто выражаешь эмоции.', axis:'M', scores:[4,3,2,1,0] }
     ],
     results: [
       { id:'strategist', name:'Стратег', cond:s=>s.M>=64&&s.N>=46, tagline:'Ты видишь скрытые ходы.\nИногда раньше, чем человек понял их сам.', desc:'Твой мозг быстро собирает карту людей: мотивы, слабые места, рычаги. Это сила. Ред флаг — близость может превратиться в партию, где нельзя проиграть.', hook:'Ты просчитываешь быстрее, чем доверяешь.', red:'Можешь тестировать людей вместо того, чтобы говорить прямо.', mirror:'Со стороны ты выглядишь собранным, но не всегда доступным.' },
@@ -1443,7 +1851,7 @@ const tests = {
       { id:'mixed', name:'Гибкий контроль', cond:s=>s.N>=40&&s.P>=40&&s.M>=40, tagline:'Ты меняешь режим под ситуацию.\nВ этом и сила, и риск.', desc:'Ты можешь быть обаятельным, жёстким или расчётливым — смотря где оказался. Это даёт адаптивность, но иногда сложно понять, где ты настоящий, а где просто включил нужный режим.', hook:'Ты быстро подбираешь роль под человека.', red:'Можно так привыкнуть адаптироваться, что свои желания становятся фоном.', mirror:'Люди видят разного тебя — и не всегда понимают, какой настоящий.' },
       { id:'balance', name:'Спокойный контроль', cond:()=>true, tagline:'Контроль есть.\nНо он не забирает руль каждый раз.', desc:'У тебя есть защитные импульсы, желание признания и потребность влиять. Но чаще ты успеваешь заметить их до того, как они начнут вести тебя за собой.', hook:'Ты не без тёмных импульсов. Просто они не главные.', red:'В спокойствии можно недооценить, что включится под настоящим давлением.', mirror:'Со стороны ты можешь казаться ровнее, чем чувствуешь себя внутри.' }
     ],
-    next: { title:'Открой связку: Стиль привязанности', desc:'Проверим, что происходит с твоим контролем, когда человек становится тебе важен.' }
+    next: { title:'Открой слой: Стиль привязанности', desc:'Проверим, что происходит с твоим контролем, когда человек становится тебе важен.' }
   },
   attachment: {
     id:'attachment',
@@ -1464,25 +1872,25 @@ const tests = {
       D: { icon:'⚡', label:'Качели', cls:'badge-pink', color:'#F472B6', sub:'тяга к близости и резкое отталкивание' }
     },
     questions: [
-      { text:'Когда человек становится тебе важен, ты начинаешь сильнее замечать любые изменения в его тоне.', axis:'A', scores:[4,3,1,0] },
-      { text:'Если тебе долго не отвечают, внутри быстро появляются тревога и желание что-то уточнить.', axis:'A', scores:[4,3,1,0] },
-      { text:'Тебе важно регулярно получать подтверждение, что между вами всё нормально.', axis:'A', scores:[4,3,1,0] },
-      { text:'В близости ты можешь начать подстраиваться, лишь бы не потерять контакт.', axis:'A', scores:[4,3,1,0] },
+      { text:'Когда человек становится тебе важен, ты начинаешь сильнее замечать любые изменения в его тоне.', axis:'A', scores:[4,3,2,1,0] },
+      { text:'Если тебе долго не отвечают, внутри быстро появляются тревога и желание что-то уточнить.', axis:'A', scores:[4,3,2,1,0] },
+      { text:'Тебе важно регулярно получать подтверждение, что между вами всё нормально.', axis:'A', scores:[4,3,2,1,0] },
+      { text:'В близости ты можешь начать подстраиваться, лишь бы не потерять контакт.', axis:'A', scores:[4,3,2,1,0] },
 
-      { text:'Когда отношения становятся слишком близкими, тебе хочется вернуть себе больше пространства.', axis:'V', scores:[4,3,1,0] },
-      { text:'Ты не любишь зависеть от человека эмоционально, даже если он тебе дорог.', axis:'V', scores:[4,3,1,0] },
-      { text:'О серьёзных чувствах тебе проще думать самому, чем обсуждать их напрямую.', axis:'V', scores:[4,3,1,0] },
-      { text:'Если на тебя давят близостью, ты скорее закрываешься, чем объясняешь, что происходит.', axis:'V', scores:[4,3,1,0] },
+      { text:'Когда отношения становятся слишком близкими, тебе хочется вернуть себе больше пространства.', axis:'V', scores:[4,3,2,1,0] },
+      { text:'Ты не любишь зависеть от человека эмоционально, даже если он тебе дорог.', axis:'V', scores:[4,3,2,1,0] },
+      { text:'О серьёзных чувствах тебе проще думать самому, чем обсуждать их напрямую.', axis:'V', scores:[4,3,2,1,0] },
+      { text:'Если на тебя давят близостью, ты скорее закрываешься, чем объясняешь, что происходит.', axis:'V', scores:[4,3,2,1,0] },
 
-      { text:'Ты можешь очень тянуться к человеку, а потом резко раздражаться от его присутствия.', axis:'D', scores:[4,3,1,0] },
-      { text:'В отношениях у тебя бывают качели: то хочется полного слияния, то хочется исчезнуть.', axis:'D', scores:[4,3,1,0] },
-      { text:'Когда становится страшно, ты можешь проверять человека, даже если понимаешь, что это не лучший способ.', axis:'D', scores:[4,3,1,0] },
-      { text:'Иногда ты сам не до конца понимаешь, хочешь ли близости или защиты от неё.', axis:'D', scores:[4,3,1,0] },
+      { text:'Ты можешь очень тянуться к человеку, а потом резко раздражаться от его присутствия.', axis:'D', scores:[4,3,2,1,0] },
+      { text:'В отношениях у тебя бывают качели: то хочется полного слияния, то хочется исчезнуть.', axis:'D', scores:[4,3,2,1,0] },
+      { text:'Когда становится страшно, ты можешь проверять человека, даже если понимаешь, что это не лучший способ.', axis:'D', scores:[4,3,2,1,0] },
+      { text:'Иногда ты сам не до конца понимаешь, хочешь ли близости или защиты от неё.', axis:'D', scores:[4,3,2,1,0] },
 
-      { text:'Ты можешь говорить о своих потребностях без ощущения, что этим разрушишь отношения.', axis:'S', scores:[4,3,1,0] },
-      { text:'Если между вами напряжение, ты скорее ищешь разговор, чем додумываешь в одиночку.', axis:'S', scores:[4,3,1,0] },
-      { text:'Тебе важно быть рядом, но при этом сохранять свою жизнь и границы.', axis:'S', scores:[4,3,1,0] },
-      { text:'Ты способен выдерживать паузы в контакте, не превращая их сразу в угрозу.', axis:'S', scores:[4,3,1,0] }
+      { text:'Ты можешь говорить о своих потребностях без ощущения, что этим разрушишь отношения.', axis:'S', scores:[4,3,2,1,0] },
+      { text:'Если между вами напряжение, ты скорее ищешь разговор, чем додумываешь в одиночку.', axis:'S', scores:[4,3,2,1,0] },
+      { text:'Тебе важно быть рядом, но при этом сохранять свою жизнь и границы.', axis:'S', scores:[4,3,2,1,0] },
+      { text:'Ты способен выдерживать паузы в контакте, не превращая их сразу в угрозу.', axis:'S', scores:[4,3,2,1,0] }
     ],
     results: [
       { id:'secure', name:'Спокойная близость', cond:s=>s.S>=64&&s.A<55&&s.V<55&&s.D<55, tagline:'Ты умеешь быть рядом.\nИ не растворяться.', desc:'Твой стиль ближе к надёжному: тебе важен контакт, но ты не превращаешь каждую паузу в угрозу. Это редкая база — близость без постоянной проверки.', hook:'Ты можешь любить без ощущения, что теряешь себя.', red:'Риск — недооценить чужую тревогу, если у тебя самого внутри спокойно.', mirror:'Рядом с тобой легче дышать, если человек готов к прямому контакту.' },
@@ -1491,23 +1899,199 @@ const tests = {
       { id:'mixed', name:'Качели близости', cond:s=>s.D>=58, tagline:'Тебя тянет ближе.\nА потом хочется резко назад.', desc:'Внутри спорят две силы: одна хочет контакта, другая защищается от боли. Поэтому отношения могут быть яркими, нервными и неровными.', hook:'Ты можешь хотеть человека и злиться на сам факт этой зависимости.', red:'Проверки и резкие отходы могут разрушать то, что ты пытаешься удержать.', mirror:'Со стороны это выглядит как непредсказуемость: сегодня тепло, завтра стена.' },
       { id:'balanced', name:'Смешанный стиль', cond:()=>true, tagline:'У тебя нет одного сценария.\nЧеловек рядом многое решает.', desc:'В разных отношениях включаются разные режимы: где-то доверие, где-то тревога, где-то дистанция. Главный ключ — замечать, какой сценарий включился сейчас.', hook:'Ты не “такой всегда”. Тебя сильно меняет контекст.', red:'Можно списывать всё на партнёра и не замечать свой повторяющийся сценарий.', mirror:'Люди могут видеть гибкость, но иногда — непостоянство.' }
     ],
-    next: { title:'Открой связку: Личные границы', desc:'Проверим, где ты сохраняешь себя, а где начинаешь торговаться собой ради контакта.' }
+    next: { title:'Открой слой: Личные границы', desc:'Проверим, где ты сохраняешь себя, а где начинаешь торговаться собой ради контакта.' }
   },
   boundaries: {
-    id:'boundaries', status:'soon', category:'relations', group:'Отношения и близость', icon:'🛡️',
-    title:'Личные границы', time:'~3', short:'Насколько легко тебе говорить нет, защищать себя и не растворяться в других.'
+    id:'boundaries',
+    status:'ready',
+    category:'relations',
+    group:'Отношения и близость',
+    icon:'🛡️',
+    title:'Личные границы',
+    label:'Тест · Границы и личная территория',
+    time:'~4',
+    facets:['boundaries','self','conflict'],
+    short:'Где ты держишь себя, где уступаешь, а где строишь стену.',
+    intro:'Этот тест смотрит шире отношений: партнёр, друзья, семья, работа и твоя внутренняя территория. Он покажет, как ты защищаешь себя — мягко, жёстко или почти никак.',
+    axes: {
+      C: { icon:'🛡️', label:'Опора', cls:'badge-green', color:'#34D399', sub:'спокойное нет, ясность, уважение к себе' },
+      R: { icon:'🫠', label:'Растворение', cls:'badge-purple', color:'#A78BFA', sub:'уступки, вина, страх испортить контакт' },
+      W: { icon:'🧱', label:'Стена', cls:'badge-cyan', color:'#22D3EE', sub:'резкая защита, холод, дистанция' },
+      G: { icon:'🎭', label:'Торг собой', cls:'badge-pink', color:'#F472B6', sub:'согласие наружу, злость внутри' }
+    },
+    questions: [
+      { text:'Тебе проще согласиться, чем объяснять, почему ты не хочешь.', axis:'R', scores:[4,3,2,1,0] },
+      { text:'После отказа ты можешь долго чувствовать себя виноватым.', axis:'R', scores:[4,3,2,1,0] },
+      { text:'Ты часто подстраиваешь планы, чтобы другим было удобнее.', axis:'R', scores:[4,3,2,1,0] },
+      { text:'Если близкий человек расстроен, ты быстро начинаешь чувствовать ответственность за его состояние.', axis:'R', scores:[4,3,2,1,0] },
+
+      { text:'Когда на тебя давят, ты можешь резко закрыться или стать холодным.', axis:'W', scores:[4,3,2,1,0] },
+      { text:'Тебе проще отдалиться, чем спокойно объяснить, что тебе не подходит.', axis:'W', scores:[4,3,2,1,0] },
+      { text:'Если человек нарушил твою границу, второй шанс даётся тяжело.', axis:'W', scores:[4,3,2,1,0] },
+      { text:'Иногда ты защищаешься так жёстко, что потом сам понимаешь: можно было мягче.', axis:'W', scores:[4,3,2,1,0] },
+
+      { text:'Ты можешь сказать “нет” без длинных оправданий.', axis:'C', scores:[4,3,2,1,0] },
+      { text:'Тебе обычно понятно, где заканчивается твоя ответственность и начинается чужая.', axis:'C', scores:[4,3,2,1,0] },
+      { text:'Ты умеешь сохранять контакт с человеком, даже если не соглашаешься с ним.', axis:'C', scores:[4,3,2,1,0] },
+      { text:'Твои желания не исчезают только потому, что рядом кому-то неудобно.', axis:'C', scores:[4,3,2,1,0] },
+
+      { text:'Ты можешь сказать “да”, а внутри уже злиться, что снова уступил.', axis:'G', scores:[4,3,2,1,0] },
+      { text:'Иногда ты ждёшь, что люди сами догадаются, где твоя граница.', axis:'G', scores:[4,3,2,1,0] },
+      { text:'Ты можешь соглашаться внешне, но потом отыгрываться холодом, сарказмом или молчанием.', axis:'G', scores:[4,3,2,1,0] },
+      { text:'Тебе сложно прямо попросить о своём, зато легко накопить раздражение.', axis:'G', scores:[4,3,2,1,0] }
+    ],
+    results: [
+      { id:'clear', name:'Чёткий контур', cond:s=>s.C>=64&&s.R<55&&s.W<60&&s.G<55, tagline:'Ты умеешь быть рядом.\nИ не сдавать свою территорию.', desc:'У тебя неплохой контакт со своими границами: ты можешь отказывать, просить, уточнять и не превращать каждый конфликт в войну. Это сильная база для отношений, дружбы и работы.', hook:'Ты держишь себя без лишней драмы.', red:'Риск — ждать такой же ясности от людей, которые пока только учатся говорить прямо.', mirror:'Снаружи ты можешь выглядеть спокойнее и взрослее, чем чувствуешь себя внутри.' },
+      { id:'dissolved', name:'Слишком удобный', cond:s=>s.R>=62&&s.R>=s.W&&s.R>=s.G, tagline:'Ты часто выбираешь мир.\nДаже если платишь собой.', desc:'Твой главный сценарий — сохранить контакт и не расстроить другого. Это делает тебя удобным, тёплым, внимательным. Но если часто предавать свои “нет”, внутри копится усталость и тихая злость.', hook:'Ты можешь исчезать из собственной жизни, чтобы всем было нормально.', red:'Твои границы часто становятся видны только тогда, когда ты уже на пределе.', mirror:'Люди могут привыкать к твоей уступчивости и не замечать, сколько она стоит.' },
+      { id:'wall', name:'Высокая стена', cond:s=>s.W>=62&&s.W>=s.R&&s.W>=s.G, tagline:'Твоё нет слышно сразу.\nИногда слишком громко.', desc:'Ты умеешь защищаться, но часто делаешь это через дистанцию, холод или резкость. Так безопаснее: никто не подойдёт слишком близко. Но вместе с угрозой за стеной остаются и те, кто мог бы быть рядом нормально.', hook:'Ты не просишь пространство — ты иногда исчезаешь в нём.', red:'Можешь наказывать дистанцией там, где хватило бы честной фразы.', mirror:'Снаружи это может считываться как сила, но иногда как недоступность.' },
+      { id:'silent_trade', name:'Тихий торг', cond:s=>s.G>=58, tagline:'Снаружи “ладно”.\nВнутри уже нет.', desc:'Ты можешь соглашаться, улыбаться, держать контакт — а потом ловить раздражение, холод или желание отстраниться. Граница вроде есть, но она часто появляется не словами, а последствиями.', hook:'Ты часто надеешься, что твою границу прочитают без инструкции.', red:'Молчаливое согласие может превращаться в скрытый долг: “я уступил, теперь ты должен”.', mirror:'Люди могут не понимать, почему ты вдруг отдаляешься, если до этого “всё было нормально”.' },
+      { id:'mixed', name:'Плавающий контур', cond:()=>true, tagline:'Твои границы меняются.\nС людьми, настроением и страхом потери.', desc:'У тебя нет одного жёсткого сценария: где-то ты защищаешься спокойно, где-то уступаешь, где-то резко закрываешься. Это не хаос, но карта ещё требует уточнения.', hook:'Ты можешь быть очень разным в зависимости от того, кто перед тобой.', red:'Главный риск — путать гибкость с потерей себя.', mirror:'Люди могут видеть то мягкость, то стену, не понимая, где настоящий ты.' }
+    ],
+    next: { title:'Следующий слой: Конфликтный стиль', desc:'Проверим, что ты делаешь, когда границу уже нарушили: говоришь, нападаешь, уходишь или молчишь.' }
   },
   anxiety: {
-    id:'anxiety', status:'soon', category:'emotions', group:'Эмоции и состояние', icon:'🌫️',
-    title:'Уровень тревоги', time:'~3', short:'Как твоя психика реагирует на неопределённость и давление.'
+    id:'anxiety',
+    status:'ready',
+    category:'emotions',
+    group:'Эмоции и состояние',
+    icon:'🌫️',
+    title:'Уровень тревоги',
+    label:'Тест · Тревога и неопределённость',
+    time:'~4',
+    facets:['anxiety','emotion','control'],
+    short:'Что происходит внутри, когда нет ясности, ответа и ощущения безопасности.',
+    intro:'Этот тест смотрит не на “нервный ты или нет”, а на то, как психика реагирует на неопределённость: ищет контроль, сканирует угрозы, замирает или умеет возвращать себе опору.',
+    axes: {
+      C: { icon:'🔎', label:'Сканер угроз', cls:'badge-purple', color:'#A78BFA', sub:'настороженность, поиск сигналов, ожидание подвоха' },
+      K: { icon:'🧷', label:'Контроль', cls:'badge-pink', color:'#F472B6', sub:'потребность всё прояснить, удержать и предусмотреть' },
+      F: { icon:'🫥', label:'Замирание', cls:'badge-cyan', color:'#22D3EE', sub:'ступор, откладывание, уход в себя' },
+      R: { icon:'🌿', label:'Регуляция', cls:'badge-green', color:'#34D399', sub:'возврат к реальности, дыхание, действие по шагам' }
+    },
+    questions: [
+      { text:'Если нет ясного ответа, мозг быстро начинает достраивать неприятные сценарии.', axis:'C', scores:[4,3,2,1,0] },
+      { text:'Ты легко замечаешь изменение тона, паузу или странную мелочь и начинаешь искать смысл.', axis:'C', scores:[4,3,2,1,0] },
+      { text:'Когда всё слишком спокойно, тебе иногда кажется, что подвох просто ещё не проявился.', axis:'C', scores:[4,3,2,1,0] },
+      { text:'В новой ситуации ты сначала сканируешь риски, а уже потом расслабляешься.', axis:'C', scores:[4,3,2,1,0] },
+
+      { text:'Тебе становится легче, когда есть план, сроки и понятные правила.', axis:'K', scores:[4,3,2,1,0] },
+      { text:'Когда человек не объясняет свои действия, тебе хочется срочно всё уточнить.', axis:'K', scores:[4,3,2,1,0] },
+      { text:'Ты можешь перепроверять детали, даже если внешне всё уже нормально.', axis:'K', scores:[4,3,2,1,0] },
+      { text:'Неопределённость раздражает тебя сильнее, чем плохая, но понятная новость.', axis:'K', scores:[4,3,2,1,0] },
+
+      { text:'Когда тревоги много, тебе сложнее начать действовать, даже если понятно, что делать.', axis:'F', scores:[4,3,2,1,0] },
+      { text:'В перегрузе ты можешь зависнуть: ни решить, ни отпустить.', axis:'F', scores:[4,3,2,1,0] },
+      { text:'Иногда ты откладываешь важное не из лени, а потому что внутри слишком шумно.', axis:'F', scores:[4,3,2,1,0] },
+      { text:'Когда всё наваливается, тебе хочется спрятаться от сообщений, решений и людей.', axis:'F', scores:[4,3,2,1,0] },
+
+      { text:'Даже если тревожно, ты можешь вернуться к простому вопросу: “что я могу сделать сейчас?”.', axis:'R', scores:[4,3,2,1,0] },
+      { text:'Ты умеешь отделять реальный факт от догадки, когда замечаешь тревожный сценарий.', axis:'R', scores:[4,3,2,1,0] },
+      { text:'Тебе помогают маленькие действия, а не попытка решить всю жизнь сразу.', axis:'R', scores:[4,3,2,1,0] },
+      { text:'После эмоционального всплеска ты обычно способен постепенно вернуть себе ясность.', axis:'R', scores:[4,3,2,1,0] }
+    ],
+    results: [
+      { id:'radar', name:'Внутренний радар', cond:s=>s.C>=62&&s.C>=s.K&&s.C>=s.F, tagline:'Ты замечаешь сигналы раньше,\nчем они становятся очевидными.', desc:'Твоя тревога часто работает как радар: сканирует интонации, паузы, риски и возможный подвох. Это помогает не быть наивным, но может превращать нейтральные мелочи в доказательства опасности.', hook:'Ты читаешь угрозу там, где другие ещё просто живут.', red:'Можно принять догадку за факт и начать защищаться от того, чего ещё не было.', mirror:'Снаружи ты можешь выглядеть внимательным, но внутри жить в режиме постоянного наблюдения.' },
+      { id:'controller', name:'Тревожный контроль', cond:s=>s.K>=62&&s.K>=s.C&&s.K>=s.F, tagline:'Тебе нужна ясность.\nБез неё внутри начинается шум.', desc:'Главный способ снизить тревогу — прояснить, закрепить, узнать, перепроверить. Это делает тебя собранным, но иногда контроль начинает требовать больше, чем ситуация реально просит.', hook:'Ты успокаиваешься не от обещаний, а от структуры.', red:'Можешь давить уточнениями там, где другому человеку нужна пауза.', mirror:'Люди могут видеть требовательность, не понимая, что за ней стоит попытка вернуть безопасность.' },
+      { id:'freeze', name:'Тихий стопор', cond:s=>s.F>=62&&s.F>=s.C&&s.F>=s.K, tagline:'Когда тревоги слишком много,\nсистема нажимает паузу.', desc:'Твой перегруз может выглядеть как откладывание, молчание или исчезновение из задач. Внутри это не пустота, а слишком много шума сразу. Психика выбирает не двигаться, чтобы не развалиться.', hook:'Ты можешь замирать не потому, что тебе всё равно, а потому что слишком важно.', red:'Чем дольше пауза, тем больше тревога обрастает долгом и стыдом.', mirror:'Снаружи это могут принять за безответственность, хотя внутри идёт борьба.' },
+      { id:'regulated', name:'Спокойный регулятор', cond:s=>s.R>=64&&s.C<58&&s.K<58&&s.F<58, tagline:'Тревога приходит.\nНо не всегда забирает управление.', desc:'У тебя есть рабочие способы возвращать себя в реальность: отделять факты от догадок, двигаться маленькими шагами, не раздувать один сигнал до катастрофы. Это сильная база для устойчивости.', hook:'Ты умеешь не спорить с тревогой, а возвращать ей размер.', red:'Риск — обесценить тревогу других, если тебе самому удаётся собраться быстрее.', mirror:'Рядом с тобой может быть спокойно, если ты не превращаешь ясность в холодность.' },
+      { id:'mixed', name:'Неровный фон', cond:()=>true, tagline:'Тревога у тебя не одна.\nОна меняет форму под ситуацию.', desc:'Иногда ты сканируешь угрозы, иногда пытаешься всё контролировать, иногда зависаешь, а иногда довольно быстро возвращаешься в норму. Важен не один балл, а то, что именно запускает каждый режим.', hook:'Твоя тревога умная, но не всегда честная с фактами.', red:'Можно бороться не с проблемой, а с образом проблемы в голове.', mirror:'Люди могут видеть то собранность, то резкую настороженность, то внезапное исчезновение.' }
+    ],
+    next: { title:'Следующий слой: Внутренняя опора', desc:'Проверим, что удерживает тебя, когда тревога, конфликт или неопределённость уже включились.' }
   },
   conflict: {
-    id:'conflict', status:'soon', category:'relations', group:'Отношения и близость', icon:'⚡',
-    title:'Конфликтный стиль', time:'~3', short:'Ты нападаешь, объясняешь, замолкаешь или уходишь?'
+    id:'conflict',
+    status:'ready',
+    category:'relations',
+    group:'Отношения и близость',
+    icon:'⚡',
+    title:'Конфликтный стиль',
+    label:'Тест · Ссоры и напряжение',
+    time:'~4',
+    facets:['conflict','emotion','boundaries'],
+    short:'Что ты делаешь, когда разговор становится опасным: давишь, молчишь, уходишь или чинить пытаешься.',
+    intro:'Этот тест про момент, когда контакт трещит. Не про “хороший/плохой”, а про твой автоматический режим: атаковать, закрыться, исчезнуть или всё-таки развернуть разговор в честность.',
+    axes: {
+      R: { icon:'🧩', label:'Ремонт', cls:'badge-green', color:'#34D399', sub:'прояснение, ответственность, попытка сохранить контакт' },
+      A: { icon:'🔥', label:'Атака', cls:'badge-pink', color:'#F472B6', sub:'давление, резкость, желание победить в моменте' },
+      S: { icon:'🌑', label:'Молчание', cls:'badge-purple', color:'#A78BFA', sub:'закрытость, обида внутри, холодная пауза' },
+      E: { icon:'💨', label:'Побег', cls:'badge-cyan', color:'#22D3EE', sub:'уход от разговора, исчезновение, перенос на потом' }
+    },
+    questions: [
+      { text:'Когда разговор становится неприятным, тебе хочется быстро доказать, что ты прав.', axis:'A', scores:[4,3,2,1,0] },
+      { text:'В споре ты можешь сказать резче, чем планировал, если чувствуешь давление.', axis:'A', scores:[4,3,2,1,0] },
+      { text:'Если человек задел тебя, внутри быстро включается желание ударить словами в ответ.', axis:'A', scores:[4,3,2,1,0] },
+      { text:'Тебе сложно остановиться, пока другая сторона не признает твою позицию.', axis:'A', scores:[4,3,2,1,0] },
+
+      { text:'Когда тебя обидели, ты можешь замолчать так, что человек сам должен догадаться.', axis:'S', scores:[4,3,2,1,0] },
+      { text:'В конфликте ты часто выглядишь спокойным, но внутри уже копится холод.', axis:'S', scores:[4,3,2,1,0] },
+      { text:'Тебе проще наказать дистанцией, чем сразу объяснить, что именно задело.', axis:'S', scores:[4,3,2,1,0] },
+      { text:'После ссоры ты можешь долго прокручивать диалог, но не возвращаться к разговору.', axis:'S', scores:[4,3,2,1,0] },
+
+      { text:'Если конфликт становится слишком эмоциональным, ты хочешь просто выйти из него.', axis:'E', scores:[4,3,2,1,0] },
+      { text:'Ты можешь откладывать сложный разговор, надеясь, что всё само рассосётся.', axis:'E', scores:[4,3,2,1,0] },
+      { text:'Когда человек требует ответа прямо сейчас, тебе хочется исчезнуть или сменить тему.', axis:'E', scores:[4,3,2,1,0] },
+      { text:'Иногда ты выбираешь “не трогать”, даже если проблема никуда не делась.', axis:'E', scores:[4,3,2,1,0] },
+
+      { text:'Даже в напряжении ты стараешься понять, что именно пошло не так.', axis:'R', scores:[4,3,2,1,0] },
+      { text:'Ты можешь признать свою часть, если видишь, что правда задел человека.', axis:'R', scores:[4,3,2,1,0] },
+      { text:'В ссоре тебе важно не победить, а вернуть ясность между вами.', axis:'R', scores:[4,3,2,1,0] },
+      { text:'После конфликта ты способен вернуться и спокойно разобрать, что произошло.', axis:'R', scores:[4,3,2,1,0] }
+    ],
+    results: [
+      { id:'repairer', name:'Ремонт контакта', cond:s=>s.R>=64&&s.A<58&&s.S<58&&s.E<58, tagline:'Ты не любишь трещины.\nТы пытаешься понять, где они появились.', desc:'Твой сильный режим — прояснять, возвращаться к разговору и чинить контакт. Ты не всегда мягкий, но чаще ищешь смысл, а не победу. Это редкий навык для близости.', hook:'Ты умеешь не превращать ссору в приговор.', red:'Риск — брать на себя ремонт даже там, где второй человек просто не хочет участвовать.', mirror:'Снаружи ты можешь выглядеть зрелым, но иногда слишком ответственным за весь контакт.' },
+      { id:'fighter', name:'Острый ответ', cond:s=>s.A>=62&&s.A>=s.S&&s.A>=s.E, tagline:'Когда тебя задевают,\nты не отступаешь — ты давишь назад.', desc:'В конфликте у тебя быстро включается энергия атаки: доказать, защититься, вернуть контроль. Это помогает не быть удобным, но может превращать разговор в бой, где близость проигрывает спору.', hook:'Ты можешь защищать боль так, будто защищаешь трон.', red:'Резкость может закрывать то, что на самом деле хотелось попросить.', mirror:'Люди могут видеть силу и уверенность, не замечая за ними уязвимость.' },
+      { id:'silent', name:'Холодная пауза', cond:s=>s.S>=62&&s.S>=s.A&&s.S>=s.E, tagline:'Ты не кричишь.\nТы исчезаешь прямо в комнате.', desc:'Твой конфликт часто уходит в молчание, внутренний суд и дистанцию. Снаружи это выглядит спокойно, но внутри может идти тяжёлый диалог, до которого другой человек не допущен.', hook:'Твоё молчание может звучать громче любой ссоры.', red:'Если не назвать боль словами, человек видит только холод.', mirror:'Партнёр может чувствовать, что его не ругают, а медленно выключают из доступа.' },
+      { id:'runner', name:'Выход из огня', cond:s=>s.E>=62&&s.E>=s.A&&s.E>=s.S, tagline:'Ты не всегда избегаешь человека.\nИногда ты избегаешь перегруза.', desc:'Когда напряжения становится много, твоя система ищет выход: пауза, перенос, смена темы, исчезновение. Это защищает от взрыва, но проблема может остаться лежать между вами.', hook:'Ты умеешь уходить из пожара, но не всегда возвращаешься тушить.', red:'Отложенный разговор может стать тихим разрывом контакта.', mirror:'Другой человек может видеть не саморегуляцию, а равнодушие.' },
+      { id:'mixed', name:'Переменный режим', cond:()=>true, tagline:'Ты споришь не одним способом.\nТебя меняет человек, тема и градус боли.', desc:'В конфликте у тебя нет одного сценария: где-то ты объясняешь, где-то давишь, где-то молчишь или уходишь. Главный вопрос — какой режим включается именно с важными людьми.', hook:'Твой стиль конфликта зависит от того, насколько тебе не всё равно.', red:'Можно путать гибкость с непредсказуемостью: сегодня разговор, завтра стена.', mirror:'Люди могут видеть то взрослость, то резкость, то исчезновение — и не понимать правила доступа к тебе.' }
+    ],
+    next: { title:'Следующий слой: Уровень тревоги', desc:'Посмотрим, что происходит внутри, когда нет ясности, ответа и ощущения безопасности.' }
   },
   stability: {
-    id:'stability', status:'soon', category:'emotions', group:'Эмоции и состояние', icon:'🧱',
-    title:'Внутренняя опора', time:'~3', short:'Что помогает тебе не разваливаться, когда вокруг нестабильно.'
+    id:'stability',
+    status:'ready',
+    category:'emotions',
+    group:'Эмоции и состояние',
+    icon:'🧱',
+    title:'Внутренняя опора',
+    label:'Тест · Устойчивость и ресурс',
+    time:'~4',
+    facets:['emotion','control','self'],
+    short:'На чём ты держишься, когда вокруг нестабильно: на себе, людях, смысле или жёстком контроле.',
+    intro:'Этот тест про твою психологическую опору. Что помогает тебе не рассыпаться: внутренняя ясность, близкие люди, смысл, дисциплина — или привычка держаться любой ценой.',
+    axes: {
+      I: { icon:'🧘', label:'Самоопора', cls:'badge-green', color:'#34D399', sub:'внутренняя ясность, доверие себе, спокойный центр' },
+      P: { icon:'🤝', label:'Люди', cls:'badge-purple', color:'#A78BFA', sub:'поддержка, контакт, способность просить' },
+      M: { icon:'🕯️', label:'Смысл', cls:'badge-cyan', color:'#22D3EE', sub:'ценности, направление, зачем это выдерживать' },
+      H: { icon:'🧱', label:'Жёсткость', cls:'badge-pink', color:'#F472B6', sub:'собраться, стиснуть зубы, не показать слабость' }
+    },
+    questions: [
+      { text:'Даже в сложные периоды ты обычно понимаешь, на что внутри можешь опереться.', axis:'I', scores:[4,3,2,1,0] },
+      { text:'Тебе не нужно постоянно получать внешнее подтверждение, чтобы не потерять себя.', axis:'I', scores:[4,3,2,1,0] },
+      { text:'Когда становится тяжело, ты можешь говорить с собой без жестокости.', axis:'I', scores:[4,3,2,1,0] },
+      { text:'Ты способен признать слабость, не превращая её в ощущение “со мной что-то не так”.', axis:'I', scores:[4,3,2,1,0] },
+
+      { text:'В трудный момент ты можешь попросить поддержки, а не тащить всё в одиночку.', axis:'P', scores:[4,3,2,1,0] },
+      { text:'Тебе легче восстановиться, когда рядом есть человек, с которым можно быть настоящим.', axis:'P', scores:[4,3,2,1,0] },
+      { text:'Ты умеешь принимать помощь без ощущения, что становишься слабее.', axis:'P', scores:[4,3,2,1,0] },
+      { text:'Если тебе плохо, ты скорее ищешь живой контакт, чем полностью закрываешься.', axis:'P', scores:[4,3,2,1,0] },
+
+      { text:'Тебя удерживает ощущение, что происходящее имеет смысл или ведёт к чему-то важному.', axis:'M', scores:[4,3,2,1,0] },
+      { text:'Когда сложно, тебе помогает вспомнить, ради чего ты вообще это делаешь.', axis:'M', scores:[4,3,2,1,0] },
+      { text:'Твои ценности часто сильнее краткого желания всё бросить.', axis:'M', scores:[4,3,2,1,0] },
+      { text:'Тебе важно не просто выжить период, а понять, чему он тебя учит.', axis:'M', scores:[4,3,2,1,0] },
+
+      { text:'Когда всё плохо, ты можешь просто собрать лицо и функционировать дальше.', axis:'H', scores:[4,3,2,1,0] },
+      { text:'Тебе проще выдержать молча, чем показывать, что тебя правда задело.', axis:'H', scores:[4,3,2,1,0] },
+      { text:'Ты часто держишься на дисциплине, даже когда внутри уже почти пусто.', axis:'H', scores:[4,3,2,1,0] },
+      { text:'Слабость для тебя всё ещё может ощущаться как опасное место.', axis:'H', scores:[4,3,2,1,0] }
+    ],
+    results: [
+      { id:'inner', name:'Тихий центр', cond:s=>s.I>=64&&s.H<62, tagline:'Ты можешь шататься.\nНо не всегда теряешь себя.', desc:'Твоя опора во многом внутри: ясность, самоуважение, способность выдерживать сложное без полной потери контакта с собой. Это не значит “всегда спокойно”, но центр у тебя есть.', hook:'Ты умеешь возвращаться к себе, даже когда внешний мир шумит.', red:'Риск — слишком полагаться на себя и поздно замечать, что помощь уже нужна.', mirror:'Люди могут видеть устойчивость, не замечая, сколько внутренней работы за ней стоит.' },
+      { id:'relational', name:'Опора через людей', cond:s=>s.P>=62&&s.P>=s.I&&s.P>=s.M, tagline:'Тебя собирает не одиночество.\nТебя собирает живой контакт.', desc:'Поддержка, честный разговор и ощущение “я не один” сильно возвращают тебе устойчивость. Это здоровая опора, если она не превращается в зависимость от чужой доступности.', hook:'Правильный человек рядом может вернуть тебе землю под ногами.', red:'Если поддержки нет, состояние может проседать сильнее, чем ты ожидал.', mirror:'Ты можешь выглядеть открытым, но внутри очень зависеть от качества контакта.' },
+      { id:'meaning', name:'Опора на смысл', cond:s=>s.M>=62&&s.M>=s.I&&s.M>=s.P, tagline:'Тебя держит не комфорт.\nТебя держит “зачем”.', desc:'Ты способен выдерживать трудное, если понимаешь смысл, направление или ценность происходящего. Это даёт глубину и выносливость, но иногда заставляет терпеть то, что уже пора менять.', hook:'Когда есть смысл, ты можешь пройти через многое.', red:'Можно романтизировать сложность и не замечать, что ресурс заканчивается.', mirror:'Люди могут видеть вдохновение, не замечая усталости под ним.' },
+      { id:'armored', name:'Броня вместо опоры', cond:s=>s.H>=64, tagline:'Ты держишься крепко.\nИногда слишком крепко.', desc:'Твой способ выживать — собраться, выдержать, не показать слабость. Это работает в кризисе, но если жить так постоянно, броня начинает давить изнутри.', hook:'Ты можешь выглядеть сильным именно тогда, когда тебе тяжелее всего.', red:'Есть риск путать устойчивость с запретом чувствовать.', mirror:'Снаружи ты можешь казаться несгибаемым, но близким сложно понять, где тебе больно.' },
+      { id:'mixed', name:'Составная опора', cond:()=>true, tagline:'Ты держишься не на одном.\nИ это может быть твоей силой.', desc:'Твоя устойчивость собирается из нескольких источников: где-то помогает смысл, где-то люди, где-то внутренняя ясность, где-то дисциплина. Главное — не давать одному способу вытеснить остальные.', hook:'Ты выживаешь через комбинацию, а не через один секрет.', red:'Если один источник опоры исчезает, важно быстро подключать другой, а не делать вид, что всё нормально.', mirror:'Люди могут видеть разную тебя устойчивость: мягкую, жёсткую, вдохновлённую или закрытую.' }
+    ],
+    next: { title:'Базовая карта собрана', desc:'Теперь Persona может показывать профиль шире: ветви, графики, ред флаги и будущую совместимость.' }
   }
 };
 
@@ -1648,14 +2232,14 @@ function buildVisibleInsights() {
     const second = completed[1].data.title;
     insights.push({
       icon:'🧩',
-      title:`Связка найдена: ${first} + ${second}`,
-      text:'Persona начинает читать не отдельные ответы, а то, как разные паттерны сцепляются между собой.'
+      title:`Пересечение найдено: ${first} + ${second}`,
+      text:'Persona начинает читать не отдельные ответы, а то, как разные паттерны проявляются рядом.'
     });
   } else {
     const next = getNextTestSuggestion(opened);
     insights.push({
       icon:'🔒',
-      title:'Связки пока закрыты',
+      title:'Пересечения пока закрыты',
       text: next ? `Пройди “${next.title}”, чтобы Persona увидела, как первый паттерн ведёт себя в другой зоне.` : 'Нужен ещё один тест, чтобы увидеть первые пересечения.'
     });
   }
@@ -1672,6 +2256,36 @@ function buildVisibleInsights() {
   return insights.slice(0, 4);
 }
 
+function getPersonaLevel(openedCount, completedCount) {
+  const xp = openedCount * 35 + completedCount * 55;
+  const level = Math.max(1, Math.floor(xp / 120) + 1);
+  const current = xp % 120;
+  const pct = Math.min(100, Math.round(current / 120 * 100));
+  const names = ['Наблюдатель себя', 'Собиратель паттернов', 'Читатель сигналов', 'Архитектор профиля', 'Тонкий аналитик', 'Глубокий профиль'];
+  return {
+    level,
+    xp,
+    pct,
+    current,
+    next: 120 - current,
+    name: names[Math.min(names.length - 1, level - 1)]
+  };
+}
+
+function getPersonalityBranches(opened) {
+  return [
+    { icon:'🧬', title:'Ядро личности', facets:['self','control'], text:'как ты держишь ценность, контроль и внутренний образ' },
+    { icon:'❤️', title:'Отношения', facets:['attachment','closeness'], text:'как ты сближаешься, проверяешь, доверяешь или уходишь' },
+    { icon:'🛡️', title:'Границы', facets:['boundaries'], text:'где ты сохраняешь себя, уступаешь или строишь стену' },
+    { icon:'⚡', title:'Конфликт', facets:['conflict'], text:'что включается, когда контакт становится напряжённым' },
+    { icon:'🌫️', title:'Эмоции', facets:['emotion','anxiety'], text:'тревога, перегруз, вина, злость и реакция на неопределённость' },
+    { icon:'❤️‍🔥', title:'Совместимость', facets:['compatibility'], text:'будущие дуэли, лучшая пара и сложные совпадения' }
+  ].map(branch => {
+    const openedCount = branch.facets.filter(id => opened.has(id)).length;
+    return { ...branch, openedCount, total: branch.facets.length, open: openedCount > 0 };
+  });
+}
+
 function showScreen(id) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   const el = document.getElementById('screen-' + id);
@@ -1680,6 +2294,13 @@ function showScreen(id) {
   if (scrollable) scrollable.scrollTop = 0;
   if (id === 'catalog') setCatalogHeroCompact(false);
   if (id === 'profile') setProfileHeroCompact(false);
+}
+
+function switchProfileTab(tab, el) {
+  document.querySelectorAll('.profile-tab').forEach(item => item.classList.remove('active'));
+  document.querySelectorAll('.profile-view').forEach(view => view.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('profile-view-' + tab)?.classList.add('active');
 }
 
 function setCatalogHeroCompact(compact) {
@@ -1708,12 +2329,14 @@ function setupProfileScroll() {
 
 function renderCatalog() {
   const featured = tests.control;
+  const featuredDone = Boolean((getState().completed || {})[featured.id]);
   document.getElementById('featured-wrap').innerHTML = `
-    <button class="featured-card" onclick="openTest('${featured.id}')">
-      <div class="featured-label">Первый слой карты</div>
+    <button class="featured-card ${featuredDone ? 'done' : ''}" onclick="openTest('${featured.id}')">
+      <div class="featured-label">${featuredDone ? 'Слой уже в профиле' : 'Первый слой карты'}</div>
       <div class="featured-title">${featured.title}</div>
       <div class="featured-desc">${featured.short}<br>Откроет первые ред флаги и 2 грани профиля.</div>
-      <div class="featured-btn">Вскрыть слой →</div>
+      ${featuredDone ? '<div class="completion-chip">✓ тест пройден</div>' : ''}
+      <div class="featured-btn">${featuredDone ? 'Перепройти тест →' : 'Вскрыть слой →'}</div>
     </button>
   `;
   renderSection('all', Object.values(tests));
@@ -1737,18 +2360,23 @@ function renderSection(id, items) {
 }
 
 function cardTemplate(test) {
+  const done = Boolean((getState().completed || {})[test.id]);
+  const statusText = done ? 'Пройден' : (test.status === 'ready' ? 'Доступен' : 'Скоро');
+  const statusClass = done ? 'badge-green' : (test.status === 'ready' ? 'badge-purple' : 'badge-gray');
+  const footerAction = done ? 'перепройти →' : (test.status === 'ready' ? 'пройти →' : 'скоро');
   return `
-    <button class="test-card ${test.status === 'ready' ? 'ready' : ''}" onclick="openTest('${test.id}')">
+    <button class="test-card ${test.status === 'ready' ? 'ready' : ''} ${done ? 'done' : ''}" onclick="openTest('${test.id}')">
       <div class="card-top">
         <div class="card-icon">${test.icon}</div>
         <div class="card-badges">
           <span class="badge">${test.time} мин</span>
-          <span class="badge ${test.status === 'ready' ? 'badge-purple' : 'badge-gray'}">${test.status === 'ready' ? 'Доступен' : 'Скоро'}</span>
+          <span class="badge ${statusClass}">${statusText}</span>
         </div>
       </div>
       <div class="card-title">${test.title}</div>
       <div class="card-desc">${test.short}</div>
-      <div class="card-footer"><span>${test.questions ? test.questions.length : 'закрытый слой'} вопросов</span><span>${test.status === 'ready' ? 'пройти →' : 'скоро'}</span></div>
+      ${done ? '<div class="completion-chip">✓ уже в Persona-карте</div>' : ''}
+      <div class="card-footer"><span>${test.questions ? test.questions.length : 'закрытый слой'} вопросов</span><span>${footerAction}</span></div>
     </button>
   `;
 }
@@ -1834,7 +2462,8 @@ function pick(i) {
 function nextQuestion() {
   if (answers[cur] === null) return;
   const q = activeTest.questions[cur];
-  scores[q.axis] += q.scores[pulseOptions[answers[cur]].scoreIndex];
+  const scoreIndex = pulseOptions[answers[cur]].scoreIndex;
+  scores[q.axis] += q.scores[scoreIndex] ?? Math.max(0, 4 - answers[cur]);
   if (cur < activeTest.questions.length - 1) {
     cur += 1;
     renderQ();
@@ -1908,7 +2537,7 @@ function showResult() {
     <div class="profile-add-chips">
       ${activeTest.facets.map(id => `<span class="profile-add-chip">✓ ${getFacetTitle(id)}</span>`).join('')}
     </div>
-    <div class="profile-add-signal"><strong>${result.hook}</strong><br>Этот сигнал теперь будет влиять на профиль и будущие связки.</div>
+    <div class="profile-add-signal"><strong>${result.hook}</strong><br>Этот сигнал теперь будет влиять на профиль и будущие наблюдения.</div>
   `;
 
   const state = getState();
@@ -1924,6 +2553,7 @@ function showResult() {
   };
   saveState(state);
   updateProgress();
+  renderCatalog();
   renderProfile();
   showScreen('result');
 
@@ -1947,6 +2577,8 @@ function renderProfile() {
   const axisRows = getProfileAxisRows();
   const topAxis = axisRows[0];
   const done = opened.size;
+  const level = getPersonaLevel(done, completed.length);
+  const branches = getPersonalityBranches(opened);
   const user = getPersonaUser();
   const userName = escapeHtml(user.name);
   const avatar = user.photo
@@ -1956,7 +2588,7 @@ function renderProfile() {
     ? `Главный сигнал: ${topAxis.axis.label.toLowerCase()}`
     : 'Пока Persona видит только силуэт';
   const profileText = completed.length
-    ? `${topAxis.testTitle}: ${topAxis.value}%. Уже можно ловить первые связки, но карта ещё не полная.`
+    ? `${topAxis.testTitle}: ${topAxis.value}%. Уже можно ловить первые пересечения, но карта ещё не полная.`
     : 'Пройди первый тест, чтобы открыть стартовую аналитику, ред флаги и живые шкалы.';
   document.getElementById('profile-hero-card').innerHTML = `
     <div class="persona-card-top">
@@ -1974,6 +2606,17 @@ function renderProfile() {
         <div class="profile-mini">${profileText}</div>
       </div>
       <div class="profile-stat-pill"><b>${done}</b><span>из 8 граней</span></div>
+    </div>
+    <div class="level-card">
+      <div class="level-top">
+        <div>
+          <div class="level-title">🎖 Уровень личности</div>
+          <div class="level-name">${level.name}</div>
+        </div>
+        <div class="level-badge">${level.level}</div>
+      </div>
+      <div class="level-track"><div class="level-fill" style="width:${level.pct}%"></div></div>
+      <div class="level-meta"><span>${level.xp} XP собрано</span><span>${level.next} XP до роста</span></div>
     </div>
   `;
   document.getElementById('profile-visible').innerHTML = buildVisibleInsights().map(item => `
@@ -1993,10 +2636,64 @@ function renderProfile() {
   `).join('') : `
     <div class="red-item"><b>Шкалы ещё закрыты</b>Первый тест сразу покажет главные проценты и стартовую карту.</div>
   `;
+  const radialPositions = [
+    { x:50, y:13 },
+    { x:84, y:32 },
+    { x:82, y:72 },
+    { x:50, y:87 },
+    { x:18, y:72 },
+    { x:16, y:32 }
+  ];
+  const treeLines = branches.map((branch, index) => {
+    const pos = radialPositions[index];
+    return `<line class="tree-line ${branch.open ? 'open' : 'locked'}" x1="50%" y1="50%" x2="${pos.x}%" y2="${pos.y}%"></line>`;
+  }).join('');
+  const treeNodes = branches.map((branch, index) => {
+    const pos = radialPositions[index];
+    return `
+      <div class="tree-branch ${branch.open ? 'open' : 'locked'}" style="--x:${pos.x}%; --y:${pos.y}%">
+        <div class="tree-icon">${branch.icon}</div>
+        <div class="tree-name">${branch.title}</div>
+        <div class="tree-state">${branch.open ? `${branch.openedCount}/${branch.total}` : 'закрыто'}</div>
+      </div>
+    `;
+  }).join('');
+  const openBranches = branches.filter(branch => branch.open).length;
+  document.getElementById('personality-tree').innerHTML = `
+    <svg class="tree-lines" viewBox="0 0 100 100" preserveAspectRatio="none">${treeLines}</svg>
+    <div class="tree-hub">
+      <div>
+        <div class="tree-hub-icon">🧬</div>
+        <div class="tree-hub-title">Persona<br>карта</div>
+      </div>
+    </div>
+    ${treeNodes}
+  `;
+  document.getElementById('personality-tree-caption').textContent = openBranches
+    ? `Открыто ${openBranches} из ${branches.length} ветвей. Чем больше тестов и дуэлей, тем точнее Persona собирает твою карту.`
+    : 'Карта пока спит. Первый тест зажжёт центральную ветвь и откроет стартовую аналитику.';
+  document.getElementById('profile-charts').innerHTML = `
+    <div class="chart-card">
+      <div class="chart-title"><span>📊 Топ напряжения</span><span>${axisRows.length ? axisRows[0].value + '%' : '0%'}</span></div>
+      <div class="chart-note">${axisRows.length ? `${axisRows[0].axis.label} сейчас самый яркий сигнал профиля.` : 'Первый график появится после прохождения теста.'}</div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title"><span>🧭 Открытые зоны</span><span>${done}/8</span></div>
+      <div class="chart-note">Бесплатный слой показывает базовые проценты, ред флаги и ветви карты личности.</div>
+    </div>
+    <div class="chart-card locked">
+      <div class="chart-title"><span>🔐 Скрытые противоречия</span><span class="chart-lock">глубокий слой</span></div>
+      <div class="chart-note">Здесь позже появятся пересечения: где ты хочешь близости, но защищаешься; где контроль маскирует тревогу; где сильная сторона становится риском.</div>
+    </div>
+    <div class="chart-card locked">
+      <div class="chart-title"><span>🔐 Динамика личности</span><span class="chart-lock">глубокий слой</span></div>
+      <div class="chart-note">История изменений профиля после новых тестов, дуэлей и повторного прохождения.</div>
+    </div>
+  `;
   document.getElementById('profile-red-flags').innerHTML = completed.length ? completed.map(({ data, test }) => `
-    <div class="red-item"><b>${test.title}: ${data.title}</b>${data.red || 'Persona уже видит паттерн, но для точной связки нужен следующий тест.'}</div>
+    <div class="red-item"><b>🚩 ${test.title}: ${data.title}</b>${data.red || 'Persona уже видит паттерн, но для точности нужен следующий тест.'}</div>
   `).join('') : `
-    <div class="red-item"><b>Пока чистый лист</b>Ред флаги появятся после первого результата. Без воды, только то, что цепляет поведение.</div>
+    <div class="red-item"><b>🚩 Пока чистый лист</b>Ред флаги появятся после первого результата. Без воды, только то, что цепляет поведение.</div>
   `;
   document.getElementById('profile-grid').innerHTML = facets.map(facet => `
     <div class="facet-card ${opened.has(facet.id) ? 'open' : ''}">
@@ -2004,12 +2701,19 @@ function renderProfile() {
       <div class="facet-text">${opened.has(facet.id) ? 'Открыто. Теперь эта грань участвует в аналитике профиля.' : facet.text}</div>
     </div>
   `).join('');
+  document.getElementById('profile-compatibility').innerHTML = `
+    <div class="compat-icon">❤️</div>
+    <div class="compat-title">Совместимость откроется после дуэлей</div>
+    <div class="compat-text">Позже Persona сможет сравнивать две карточки: лучшая пара, зоны притяжения, конфликтные точки и то, где вы усиливаете друг друга.</div>
+  `;
 }
 
 function showProfile() {
   updateProgress();
   renderProfile();
   showScreen('profile');
+  const firstTab = document.querySelector('.profile-tab');
+  if (firstTab) switchProfileTab('overview', firstTab);
 }
 
 function showSoon(message) {
