@@ -37,6 +37,58 @@ body {
   position: fixed;
   inset: 0;
 }
+.app-intro {
+  position:fixed;
+  inset:0;
+  z-index:50;
+  display:grid;
+  place-items:center;
+  padding:28px;
+  background:
+    radial-gradient(circle at 50% 38%, rgba(139,92,246,.28), transparent 28%),
+    radial-gradient(circle at 58% 46%, rgba(236,72,153,.13), transparent 34%),
+    #0A0A0F;
+  transition:opacity .42s ease, visibility .42s ease;
+}
+.app-intro.hide {
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+}
+.app-intro-content {
+  max-width:330px;
+  text-align:center;
+  animation:introFloat .68s var(--ease-soft) both;
+}
+.app-intro-logo {
+  width:82px;
+  height:82px;
+  margin:0 auto 18px;
+  border:.5px solid rgba(255,255,255,.14);
+  border-radius:28px;
+  display:grid;
+  place-items:center;
+  background:
+    radial-gradient(circle at 34% 22%, rgba(255,255,255,.20), transparent 26%),
+    linear-gradient(145deg, rgba(139,92,246,.86), rgba(236,72,153,.58));
+  box-shadow:0 0 42px rgba(139,92,246,.24);
+}
+.app-intro-title {
+  font-family:Unbounded,sans-serif;
+  font-size:30px;
+  line-height:1.1;
+}
+.app-intro-text {
+  margin-top:12px;
+  color:var(--text2);
+  font-size:14px;
+  line-height:1.55;
+}
+.app-intro-text b { color:#fff; }
+@keyframes introFloat {
+  from { opacity:0; transform:translateY(16px) scale(.98); }
+  to { opacity:1; transform:translateY(0) scale(1); }
+}
 button { font: inherit; }
 
 .screen {
@@ -134,6 +186,9 @@ button { font: inherit; }
   justify-content:space-between;
   margin-bottom:22px;
   transition: margin-bottom .42s var(--ease-soft);
+}
+#screen-catalog .cat-header-top {
+  margin-bottom:0;
 }
 .logo-mark { display:flex; align-items:center; gap:10px; }
 .logo-name {
@@ -1459,6 +1514,91 @@ button { font: inherit; }
   font-size:12px;
   line-height:1.45;
 }
+.fingerprint-card {
+  border:.5px solid rgba(139,92,246,.24);
+  border-radius:18px;
+  background:
+    radial-gradient(circle at 100% 0%, rgba(139,92,246,.18), transparent 34%),
+    rgba(255,255,255,.04);
+  padding:13px;
+}
+.fingerprint-head {
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:12px;
+  margin-bottom:12px;
+}
+.fingerprint-title {
+  font-weight:900;
+  line-height:1.35;
+}
+.fingerprint-sub {
+  margin-top:4px;
+  color:var(--text2);
+  font-size:12px;
+  line-height:1.45;
+}
+.fingerprint-mark {
+  width:42px;
+  height:42px;
+  flex-shrink:0;
+  border-radius:15px;
+  display:grid;
+  place-items:center;
+  background:linear-gradient(135deg, rgba(139,92,246,.75), rgba(236,72,153,.52));
+}
+.fingerprint-lines {
+  display:grid;
+  gap:10px;
+}
+.fingerprint-row {
+  display:grid;
+  grid-template-columns:86px 1fr 38px;
+  align-items:center;
+  gap:9px;
+}
+.fingerprint-name {
+  color:var(--text);
+  font-size:12px;
+  font-weight:900;
+  line-height:1.25;
+}
+.fingerprint-track {
+  height:7px;
+  border-radius:999px;
+  overflow:hidden;
+  background:rgba(255,255,255,.08);
+}
+.fingerprint-fill {
+  height:100%;
+  width:0;
+  border-radius:inherit;
+  background:linear-gradient(90deg, #8B5CF6, #EC4899);
+}
+.fingerprint-value {
+  color:var(--text2);
+  font-size:11px;
+  font-weight:900;
+  text-align:right;
+}
+.fingerprint-row.locked {
+  opacity:.55;
+}
+.fingerprint-row.locked .fingerprint-fill {
+  width:22%;
+  background:rgba(255,255,255,.16);
+}
+.fingerprint-hook {
+  margin-top:12px;
+  border:.5px solid rgba(236,72,153,.22);
+  border-radius:14px;
+  background:rgba(236,72,153,.07);
+  color:var(--text2);
+  padding:10px;
+  font-size:12px;
+  line-height:1.45;
+}
 .compat-card {
   min-height:210px;
   display:grid;
@@ -1528,6 +1668,157 @@ button { font: inherit; }
   font-size:12px;
   line-height:1.45;
 }
+.story-list {
+  display:grid;
+  gap:10px;
+}
+.story-card {
+  border:.5px solid rgba(255,255,255,.08);
+  border-radius:17px;
+  background:
+    radial-gradient(circle at 96% 0%, rgba(139,92,246,.11), transparent 30%),
+    rgba(255,255,255,.035);
+  padding:13px;
+}
+.story-card.accent {
+  border-color:rgba(139,92,246,.24);
+  background:
+    radial-gradient(circle at 100% 0%, rgba(139,92,246,.18), transparent 34%),
+    rgba(255,255,255,.045);
+}
+.story-card.paid {
+  border-color:rgba(236,72,153,.24);
+  background:
+    radial-gradient(circle at 100% 0%, rgba(236,72,153,.16), transparent 34%),
+    rgba(255,255,255,.04);
+}
+.story-kicker {
+  color:#C4B5FD;
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  margin-bottom:7px;
+}
+.story-title {
+  color:var(--text);
+  font-weight:900;
+  font-size:15px;
+  line-height:1.35;
+}
+.story-text {
+  margin-top:7px;
+  color:var(--text2);
+  font-size:13px;
+  line-height:1.55;
+}
+.story-points {
+  display:grid;
+  gap:8px;
+  margin-top:10px;
+}
+.story-point {
+  display:grid;
+  grid-template-columns:24px 1fr;
+  gap:8px;
+  color:var(--text2);
+  font-size:12px;
+  line-height:1.45;
+}
+.story-lock {
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  margin-top:11px;
+  border:.5px solid rgba(236,72,153,.24);
+  border-radius:999px;
+  background:rgba(236,72,153,.09);
+  color:#F9A8D4;
+  padding:7px 10px;
+  font-size:11px;
+  font-weight:900;
+}
+.paid-action {
+  width:100%;
+  margin-top:12px;
+  border:0;
+  border-radius:16px;
+  background:linear-gradient(135deg, var(--accent1), var(--accent2));
+  color:#fff;
+  padding:12px 13px;
+  font-weight:900;
+  cursor:pointer;
+}
+.full-profile-hero {
+  border:.5px solid rgba(236,72,153,.30);
+  border-radius:22px;
+  background:
+    radial-gradient(circle at 100% 0%, rgba(236,72,153,.20), transparent 36%),
+    radial-gradient(circle at 0% 100%, rgba(139,92,246,.16), transparent 34%),
+    rgba(255,255,255,.045);
+  padding:16px;
+  overflow:hidden;
+}
+.full-profile-eyebrow {
+  color:#F9A8D4;
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+}
+.full-profile-title {
+  margin-top:9px;
+  font-family:Unbounded,sans-serif;
+  font-size:22px;
+  line-height:1.22;
+}
+.full-profile-text {
+  margin-top:10px;
+  color:var(--text2);
+  font-size:13px;
+  line-height:1.55;
+}
+.full-price-row {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  margin-top:14px;
+}
+.full-price {
+  font-family:Unbounded,sans-serif;
+  font-size:24px;
+}
+.full-price-note {
+  color:var(--text3);
+  font-size:11px;
+  font-weight:800;
+}
+.full-profile-list {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+  margin-top:13px;
+}
+.full-profile-item {
+  border:.5px solid rgba(255,255,255,.08);
+  border-radius:14px;
+  background:rgba(255,255,255,.035);
+  padding:10px;
+  min-height:70px;
+}
+.full-profile-item b {
+  display:block;
+  font-size:12px;
+  line-height:1.3;
+}
+.full-profile-item span {
+  display:block;
+  margin-top:5px;
+  color:var(--text3);
+  font-size:11px;
+  line-height:1.35;
+}
 .red-list {
   display:grid;
   gap:8px;
@@ -1583,6 +1874,19 @@ button { font: inherit; }
 </head>
 <body>
 
+<div class="app-intro" id="app-intro">
+  <div class="app-intro-content">
+    <div class="app-intro-logo">
+      <svg width="38" height="38" viewBox="0 0 32 32" fill="none">
+        <path d="M16 4L28 26H4L16 4Z" fill="rgba(255,255,255,.92)"/>
+        <path d="M16 4L28 26" stroke="#C4B5FD" stroke-width="1.25"/>
+      </svg>
+    </div>
+    <div class="app-intro-title">Persona</div>
+    <div class="app-intro-text"><b>Твоя психологическая карточка.</b><br>Тесты вскрывают паттерны, которые обычно замечают другие.</div>
+  </div>
+</div>
+
 <div class="screen active" id="screen-catalog">
   <div class="cat-header">
     <div class="cat-header-top">
@@ -1599,9 +1903,6 @@ button { font: inherit; }
       </div>
       <button class="profile-btn" onclick="showProfile()" aria-label="Открыть профиль">👤</button>
     </div>
-    <div class="greeting-label">Психологическая карточка</div>
-    <div class="greeting-title">Собери себя<br><span>по скрытым слоям</span></div>
-    <div class="greeting-copy">Тесты, ред флаги, профиль. Persona считывает тебя по реакциям.</div>
   </div>
 
   <div class="progress-strip">
@@ -1741,19 +2042,25 @@ button { font: inherit; }
     <div class="profile-dashboard">
       <div class="profile-hero-card" id="profile-hero-card"></div>
       <div class="profile-tabs">
-        <button class="profile-tab active" onclick="switchProfileTab('overview', this)">Обзор</button>
+        <button class="profile-tab active" onclick="switchProfileTab('overview', this)">Портрет</button>
+        <button class="profile-tab" onclick="switchProfileTab('spheres', this)">Сферы</button>
         <button class="profile-tab" onclick="switchProfileTab('map', this)">Карта</button>
-        <button class="profile-tab" onclick="switchProfileTab('charts', this)">Графики</button>
-        <button class="profile-tab" onclick="switchProfileTab('compat', this)">❤️ Пары</button>
+        <button class="profile-tab" onclick="switchProfileTab('deep', this)">Глубже</button>
       </div>
       <div class="profile-view active" id="profile-view-overview">
         <div class="profile-panel">
-          <div class="profile-panel-title">Что уже видно</div>
-          <div class="visible-list" id="profile-visible"></div>
+          <div class="profile-panel-title">Психологический портрет</div>
+          <div class="story-list" id="profile-portrait"></div>
         </div>
         <div class="profile-panel">
-          <div class="profile-panel-title">🚩 Ред флаги</div>
-          <div class="red-list" id="profile-red-flags"></div>
+          <div class="profile-panel-title">Сильные стороны и риски</div>
+          <div class="story-list" id="profile-strengths"></div>
+        </div>
+      </div>
+      <div class="profile-view" id="profile-view-spheres">
+        <div class="profile-panel">
+          <div class="profile-panel-title">Сферы жизни</div>
+          <div class="story-list" id="profile-spheres"></div>
         </div>
       </div>
       <div class="profile-view" id="profile-view-map">
@@ -1767,18 +2074,15 @@ button { font: inherit; }
           <div class="profile-grid" id="profile-grid"></div>
         </div>
       </div>
-      <div class="profile-view" id="profile-view-charts">
+      <div class="profile-view" id="profile-view-deep">
         <div class="profile-panel">
-          <div class="profile-panel-title">Живые шкалы</div>
+          <div class="profile-panel-title">Базовые шкалы</div>
           <div class="mini-bars" id="profile-bars"></div>
         </div>
         <div class="profile-panel">
-          <div class="profile-panel-title">Глубокая аналитика</div>
+          <div class="profile-panel-title">Полный доступ</div>
           <div class="chart-grid" id="profile-charts"></div>
         </div>
-      </div>
-      <div class="profile-view" id="profile-view-compat">
-        <div class="compat-card" id="profile-compatibility"></div>
       </div>
     </div>
   </div>
@@ -2571,6 +2875,213 @@ function updateProgress() {
   document.getElementById('profile-prog-bar').style.width = pct + '%';
 }
 
+function getCompletedEntry(completed, id) {
+  return completed.find(item => item.id === id);
+}
+
+function storyCard({ kicker, title, text, icon = '✦', accent = false, paid = false, points = [], action = '' }) {
+  return `
+    <div class="story-card ${accent ? 'accent' : ''} ${paid ? 'paid' : ''}">
+      <div class="story-kicker">${kicker}</div>
+      <div class="story-title">${icon} ${title}</div>
+      <div class="story-text">${text}</div>
+      ${points.length ? `<div class="story-points">${points.map(point => `<div class="story-point"><span>${point.icon}</span><span>${point.text}</span></div>`).join('')}</div>` : ''}
+      ${paid ? '<div class="story-lock">🔐 полный доступ</div>' : ''}
+      ${action ? `<button class="paid-action" onclick="openFullProfilePaywall()">${action}</button>` : ''}
+    </div>
+  `;
+}
+
+function getAverageScore(entry) {
+  if (!entry?.data?.scores) return null;
+  const values = Object.values(entry.data.scores);
+  if (!values.length) return null;
+  return Math.round(values.reduce((sum, value) => sum + value, 0) / values.length);
+}
+
+function fingerprintCard(completed) {
+  const items = [
+    { id:'attachment', name:'Близость', icon:'❤️', entry:getCompletedEntry(completed, 'attachment') },
+    { id:'control', name:'Контроль', icon:'🧭', entry:getCompletedEntry(completed, 'control') },
+    { id:'anxiety', name:'Тревога', icon:'🌫️', entry:getCompletedEntry(completed, 'anxiety') },
+    { id:'conflict', name:'Конфликт', icon:'⚡', entry:getCompletedEntry(completed, 'conflict') },
+    { id:'stability', name:'Опора', icon:'🧱', entry:getCompletedEntry(completed, 'stability') }
+  ].map(item => ({ ...item, value:getAverageScore(item.entry) }));
+
+  return `
+    <div class="fingerprint-card">
+      <div class="fingerprint-head">
+        <div>
+          <div class="fingerprint-title">Психологический отпечаток</div>
+          <div class="fingerprint-sub">Не тип личности. То, как ты любишь, споришь, тревожишься и держишься.</div>
+        </div>
+        <div class="fingerprint-mark">🫆</div>
+      </div>
+      <div class="fingerprint-lines">
+        ${items.map(item => `
+          <div class="fingerprint-row ${item.value === null ? 'locked' : ''}">
+            <div class="fingerprint-name">${item.icon} ${item.name}</div>
+            <div class="fingerprint-track"><div class="fingerprint-fill" style="width:${item.value ?? 22}%"></div></div>
+            <div class="fingerprint-value">${item.value === null ? 'закр.' : item.value + '%'}</div>
+          </div>
+        `).join('')}
+      </div>
+      <div class="fingerprint-hook">🔐 Полный доступ покажет, какие оси конфликтуют между собой: где ты хочешь близости, но защищаешься контролем.</div>
+    </div>
+  `;
+}
+
+function fullProfileOffer(completed, topAxis) {
+  const readyText = completed.length
+    ? `Persona уже видит ${completed.length} слоёв твоего профиля. Полный доступ соберёт их в один разбор: отношения, триггеры, противоречия и инструкцию к тебе.`
+    : 'Пройди хотя бы один тест, и полный профиль начнёт собираться вокруг твоих реальных ответов.';
+  return `
+    <div class="full-profile-hero">
+      <div class="full-profile-eyebrow">ранний доступ · beta</div>
+      <div class="full-profile-title">Полный профиль Persona</div>
+      <div class="full-profile-text">${readyText}</div>
+      <div class="full-profile-list">
+        <div class="full-profile-item"><b>❤️ Отношения</b><span>кого выбираешь и как проверяешь близость</span></div>
+        <div class="full-profile-item"><b>🚩 Триггеры</b><span>что включает тревогу, холод или защиту</span></div>
+        <div class="full-profile-item"><b>🧩 Противоречия</b><span>где желания спорят с защитами</span></div>
+        <div class="full-profile-item"><b>🧭 Инструкция</b><span>как с тобой говорить, мириться и поддерживать</span></div>
+      </div>
+      <div class="full-price-row">
+        <div>
+          <div class="full-price">149 ₽</div>
+          <div class="full-price-note">позже 299 ₽</div>
+        </div>
+        <button class="paid-action" onclick="openFullProfilePaywall()">Открыть профиль</button>
+      </div>
+    </div>
+  `;
+}
+
+function buildProfileStory(completed, axisRows) {
+  const control = getCompletedEntry(completed, 'control');
+  const attachment = getCompletedEntry(completed, 'attachment');
+  const boundaries = getCompletedEntry(completed, 'boundaries');
+  const conflict = getCompletedEntry(completed, 'conflict');
+  const anxiety = getCompletedEntry(completed, 'anxiety');
+  const stability = getCompletedEntry(completed, 'stability');
+  const latest = completed[completed.length - 1];
+  const topAxis = axisRows[0];
+
+  const portrait = completed.length ? [
+    fingerprintCard(completed),
+    storyCard({
+      kicker:'Главный портрет',
+      icon:'🧬',
+      accent:true,
+      title:`Persona видит: ${latest.data.title}`,
+      text:`${latest.data.hook} Это не финальный ярлык, а самый свежий слой твоей карточки. Чем больше тестов ты проходишь, тем точнее становится общий портрет.`
+    }),
+    storyCard({
+      kicker:'Как ты считываешься',
+      icon:'👁️',
+      title: topAxis ? `${topAxis.axis.label}: ${topAxis.value}%` : 'Первые сигналы собираются',
+      text: topAxis ? `Самый яркий сигнал сейчас пришёл из теста “${topAxis.testTitle}”. Persona будет проверять, повторяется ли он в отношениях, конфликте, тревоге и опоре.` : 'Пройди первый тест, чтобы Persona начала собирать не ответы, а поведенческий портрет.'
+    })
+  ] : [
+    fingerprintCard(completed),
+    storyCard({
+      kicker:'Пустая карточка',
+      icon:'🧬',
+      accent:true,
+      title:'Persona пока не знает твой сценарий',
+      text:'Первый тест откроет стартовый портрет: как ты реагируешь, где защищаешься и какой паттерн люди могут замечать быстрее тебя.'
+    })
+  ];
+
+  const strengths = completed.length ? [
+    storyCard({
+      kicker:'Сильные стороны',
+      icon:'💎',
+      title:'То, что уже работает на тебя',
+      text:'Persona собирает сильные стороны не как комплименты, а как рабочие механики поведения.',
+      points: completed.slice(-3).reverse().map(({ data, test }) => ({ icon:'✓', text:`${test.title}: ${data.hook}` }))
+    }),
+    storyCard({
+      kicker:'🚩 Слабое место',
+      icon:'🚩',
+      title:'Где паттерн может ударить обратно',
+      text: latest.data.red || 'Ред флаг появится после первого результата.'
+    })
+  ] : [
+    storyCard({
+      kicker:'Сильные стороны',
+      icon:'💎',
+      title:'Появятся после первого результата',
+      text:'Здесь будут не абстрактные качества, а конкретные вещи: как ты держишь давление, выбираешь людей, споришь и восстанавливаешься.'
+    })
+  ];
+
+  const spheres = [
+    storyCard({
+      kicker:'В отношениях',
+      icon:'❤️',
+      title: attachment ? attachment.data.title : 'Близость ещё не вскрыта',
+      text: attachment ? `${attachment.data.hook} ${boundaries ? 'Границы уже добавляют второй слой: ' + boundaries.data.title + '.' : 'Следующий слой — границы: там станет видно, где ты сохраняешь себя.'}` : 'Пройди “Стиль привязанности”, чтобы увидеть, как ты любишь, проверяешь, сближаешься или уходишь.'
+    }),
+    storyCard({
+      kicker:'В конфликте',
+      icon:'⚡',
+      title: conflict ? conflict.data.title : 'Конфликтный режим закрыт',
+      text: conflict ? `${conflict.data.hook} Этот блок показывает, что происходит, когда контакт становится напряжённым.` : 'После теста конфликта Persona покажет, давишь ли ты, молчишь, уходишь или пытаешься чинить контакт.'
+    }),
+    storyCard({
+      kicker:'Внутри себя',
+      icon:'🌫️',
+      title: anxiety ? anxiety.data.title : 'Тревожный фон ещё не измерен',
+      text: anxiety ? `${anxiety.data.hook} ${stability ? 'Опора показывает, на чём ты держишься: ' + stability.data.title + '.' : 'После теста опоры станет видно, что помогает тебе не разваливаться.'}` : 'Здесь появится твоя реакция на неопределённость, контроль, перегруз и способы возвращать себе ясность.'
+    }),
+    storyCard({
+      kicker:'Работа, дружба, выбор людей',
+      icon:'🔐',
+      paid:true,
+      title:'Сферы жизни откроются в полном профиле',
+      text:'Persona покажет, как твой паттерн проявляется в дружбе, амбициях, работе, деньгах и выборе людей. Это уже не проценты, а сценарии, которые повторяются в жизни.',
+      action:'Открыть полный профиль'
+    })
+  ];
+
+  const deep = [
+    fullProfileOffer(completed, topAxis),
+    storyCard({
+      kicker:'Бесплатный слой',
+      icon:'📊',
+      title: topAxis ? `Главный сигнал: ${topAxis.axis.label}` : 'Главный сигнал ещё не найден',
+      text: topAxis ? `Сейчас этот показатель самый заметный: ${topAxis.value}%. Это база, на которой строится дальнейший разбор.` : 'Пройди первый тест, чтобы увидеть стартовые шкалы.'
+    }),
+    storyCard({
+      kicker:'Полный доступ',
+      icon:'🔐',
+      paid:true,
+      title:'Скрытые противоречия',
+      text:'Где ты хочешь близости, но защищаешься. Где контроль маскирует тревогу. Где сильная сторона становится причиной повторяющихся проблем.',
+      action:'Посмотреть глубокий разбор'
+    }),
+    storyCard({
+      kicker:'Полный доступ',
+      icon:'❤️‍🔥',
+      paid:true,
+      title:'Совместимость и дуэли',
+      text:'После дуэлей Persona сможет показать, кто тебя усиливает, кто триггерит, где вы совпадаете и почему вас может тянуть друг к другу.',
+      action:'Открыть совместимость'
+    }),
+    storyCard({
+      kicker:'Полный доступ',
+      icon:'🧭',
+      paid:true,
+      title:'Как с тобой обращаться',
+      text:'Инструкция к тебе: что говорить прямо, где не давить, какие фразы тебя закрывают и как возвращать контакт без лишней войны.',
+      action:'Открыть инструкцию'
+    })
+  ];
+
+  return { portrait, strengths, spheres, deep };
+}
+
 function renderProfile() {
   const opened = openedFacets();
   const completed = getCompletedTests();
@@ -2579,6 +3090,7 @@ function renderProfile() {
   const done = opened.size;
   const level = getPersonaLevel(done, completed.length);
   const branches = getPersonalityBranches(opened);
+  const profileStory = buildProfileStory(completed, axisRows);
   const user = getPersonaUser();
   const userName = escapeHtml(user.name);
   const avatar = user.photo
@@ -2619,15 +3131,9 @@ function renderProfile() {
       <div class="level-meta"><span>${level.xp} XP собрано</span><span>${level.next} XP до роста</span></div>
     </div>
   `;
-  document.getElementById('profile-visible').innerHTML = buildVisibleInsights().map(item => `
-    <div class="visible-item">
-      <div class="visible-icon">${item.icon}</div>
-      <div>
-        <div class="visible-title">${item.title}</div>
-        <div class="visible-text">${item.text}</div>
-      </div>
-    </div>
-  `).join('');
+  document.getElementById('profile-portrait').innerHTML = profileStory.portrait.join('');
+  document.getElementById('profile-strengths').innerHTML = profileStory.strengths.join('');
+  document.getElementById('profile-spheres').innerHTML = profileStory.spheres.join('');
   document.getElementById('profile-bars').innerHTML = axisRows.length ? axisRows.slice(0, 6).map(row => `
     <div>
       <div class="mini-bar-top"><span>${row.axis.icon} ${row.axis.label}</span><span>${row.value}%</span></div>
@@ -2672,40 +3178,13 @@ function renderProfile() {
   document.getElementById('personality-tree-caption').textContent = openBranches
     ? `Открыто ${openBranches} из ${branches.length} ветвей. Чем больше тестов и дуэлей, тем точнее Persona собирает твою карту.`
     : 'Карта пока спит. Первый тест зажжёт центральную ветвь и откроет стартовую аналитику.';
-  document.getElementById('profile-charts').innerHTML = `
-    <div class="chart-card">
-      <div class="chart-title"><span>📊 Топ напряжения</span><span>${axisRows.length ? axisRows[0].value + '%' : '0%'}</span></div>
-      <div class="chart-note">${axisRows.length ? `${axisRows[0].axis.label} сейчас самый яркий сигнал профиля.` : 'Первый график появится после прохождения теста.'}</div>
-    </div>
-    <div class="chart-card">
-      <div class="chart-title"><span>🧭 Открытые зоны</span><span>${done}/8</span></div>
-      <div class="chart-note">Бесплатный слой показывает базовые проценты, ред флаги и ветви карты личности.</div>
-    </div>
-    <div class="chart-card locked">
-      <div class="chart-title"><span>🔐 Скрытые противоречия</span><span class="chart-lock">глубокий слой</span></div>
-      <div class="chart-note">Здесь позже появятся пересечения: где ты хочешь близости, но защищаешься; где контроль маскирует тревогу; где сильная сторона становится риском.</div>
-    </div>
-    <div class="chart-card locked">
-      <div class="chart-title"><span>🔐 Динамика личности</span><span class="chart-lock">глубокий слой</span></div>
-      <div class="chart-note">История изменений профиля после новых тестов, дуэлей и повторного прохождения.</div>
-    </div>
-  `;
-  document.getElementById('profile-red-flags').innerHTML = completed.length ? completed.map(({ data, test }) => `
-    <div class="red-item"><b>🚩 ${test.title}: ${data.title}</b>${data.red || 'Persona уже видит паттерн, но для точности нужен следующий тест.'}</div>
-  `).join('') : `
-    <div class="red-item"><b>🚩 Пока чистый лист</b>Ред флаги появятся после первого результата. Без воды, только то, что цепляет поведение.</div>
-  `;
+  document.getElementById('profile-charts').innerHTML = profileStory.deep.join('');
   document.getElementById('profile-grid').innerHTML = facets.map(facet => `
     <div class="facet-card ${opened.has(facet.id) ? 'open' : ''}">
       <div class="facet-title">${opened.has(facet.id) ? '✓ ' : ''}${facet.title}</div>
       <div class="facet-text">${opened.has(facet.id) ? 'Открыто. Теперь эта грань участвует в аналитике профиля.' : facet.text}</div>
     </div>
   `).join('');
-  document.getElementById('profile-compatibility').innerHTML = `
-    <div class="compat-icon">❤️</div>
-    <div class="compat-title">Совместимость откроется после дуэлей</div>
-    <div class="compat-text">Позже Persona сможет сравнивать две карточки: лучшая пара, зоны притяжения, конфликтные точки и то, где вы усиливаете друг друга.</div>
-  `;
 }
 
 function showProfile() {
@@ -2721,8 +3200,21 @@ function showSoon(message) {
   else alert(message || 'Скоро!');
 }
 
+function openFullProfilePaywall() {
+  showSoon('Полный профиль Persona — 149 ₽ ранний доступ. Внутри: отношения, триггеры, скрытые противоречия, инструкция к тебе и рекомендации. Оплату подключим следующим шагом.');
+}
+
 function unlockResult() {
   showProfile();
+}
+
+function setupAppIntro() {
+  const intro = document.getElementById('app-intro');
+  if (!intro) return;
+  window.setTimeout(() => {
+    intro.classList.add('hide');
+    window.setTimeout(() => intro.remove(), 520);
+  }, 2450);
 }
 
 renderCatalog();
@@ -2730,6 +3222,7 @@ renderProfile();
 updateProgress();
 setupCatalogScroll();
 setupProfileScroll();
+setupAppIntro();
 </script>
 </body>
 </html>
