@@ -206,6 +206,38 @@ button { font: inherit; }
   display:grid;
   place-items:center;
 }
+.header-actions {
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+.premium-top-btn {
+  min-height:38px;
+  border:0;
+  border-radius:999px;
+  background:linear-gradient(135deg, rgba(139,92,246,.92), rgba(236,72,153,.82));
+  color:#fff;
+  padding:0 13px;
+  display:flex;
+  align-items:center;
+  gap:7px;
+  font-size:11px;
+  font-weight:900;
+  cursor:pointer;
+  box-shadow:0 0 24px rgba(236,72,153,.18);
+}
+.premium-top-btn span {
+  color:rgba(255,255,255,.78);
+  font-size:10px;
+}
+.premium-top-btn:active { transform:scale(.98); }
+@media (max-width:380px) {
+  .premium-top-btn {
+    padding:0 10px;
+    font-size:10px;
+  }
+  .premium-top-btn span { display:none; }
+}
 .greeting-label {
   font-size: 11px;
   letter-spacing: .14em;
@@ -1276,6 +1308,284 @@ button { font: inherit; }
 .profile-view.active {
   display:grid;
 }
+.daily-card {
+  border:.5px solid rgba(236,72,153,.26);
+  border-radius:22px;
+  background:
+    radial-gradient(circle at 92% 6%, rgba(236,72,153,.20), transparent 34%),
+    radial-gradient(circle at 8% 18%, rgba(139,92,246,.16), transparent 32%),
+    rgba(255,255,255,.04);
+  padding:15px;
+  overflow:hidden;
+}
+.daily-top {
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:12px;
+  margin-bottom:14px;
+}
+.daily-kicker {
+  color:#C4B5FD;
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+}
+.daily-title {
+  margin-top:6px;
+  font-family:Unbounded,sans-serif;
+  font-size:21px;
+  line-height:1.15;
+}
+.daily-text {
+  margin-top:8px;
+  color:var(--text2);
+  font-size:13px;
+  line-height:1.5;
+}
+.daily-orb {
+  width:58px;
+  height:58px;
+  border-radius:22px;
+  display:grid;
+  place-items:center;
+  flex-shrink:0;
+  background:linear-gradient(135deg, rgba(139,92,246,.72), rgba(236,72,153,.55));
+  box-shadow:0 0 30px rgba(236,72,153,.20);
+  font-size:25px;
+}
+.daily-question {
+  border:.5px solid rgba(255,255,255,.10);
+  border-radius:18px;
+  background:rgba(10,10,15,.42);
+  padding:13px;
+}
+.daily-question-top {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom:10px;
+}
+.daily-question-count {
+  color:var(--text3);
+  font-size:11px;
+  font-weight:900;
+}
+.daily-question-text {
+  color:var(--text);
+  font-weight:900;
+  line-height:1.4;
+}
+.daily-scale {
+  display:grid;
+  grid-template-columns:repeat(5, minmax(0, 1fr));
+  gap:8px;
+  margin-top:12px;
+}
+.daily-dot {
+  min-height:46px;
+  border:.5px solid rgba(255,255,255,.09);
+  border-radius:15px;
+  background:rgba(255,255,255,.045);
+  color:var(--text3);
+  font-size:10px;
+  font-weight:900;
+  cursor:pointer;
+  transition:transform .16s ease, border-color .16s ease, background .16s ease;
+}
+.daily-dot:active { transform:scale(.96); }
+.daily-dot.active {
+  color:#fff;
+  border-color:rgba(236,72,153,.55);
+  background:linear-gradient(135deg, rgba(139,92,246,.28), rgba(236,72,153,.22));
+}
+.daily-progress {
+  height:7px;
+  border-radius:999px;
+  overflow:hidden;
+  background:rgba(255,255,255,.08);
+  margin:13px 0 0;
+}
+.daily-progress span {
+  display:block;
+  height:100%;
+  border-radius:inherit;
+  background:linear-gradient(90deg, #8B5CF6, #EC4899);
+}
+.daily-result {
+  display:grid;
+  gap:11px;
+}
+.daily-mood {
+  border:.5px solid rgba(255,255,255,.10);
+  border-radius:20px;
+  background:rgba(10,10,15,.42);
+  padding:14px;
+}
+.daily-mood-name {
+  font-family:Unbounded,sans-serif;
+  font-size:23px;
+  line-height:1.15;
+}
+.daily-mood-desc {
+  margin-top:8px;
+  color:var(--text2);
+  font-size:13px;
+  line-height:1.5;
+}
+.daily-guides {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+.daily-guide {
+  border:.5px solid rgba(255,255,255,.09);
+  border-radius:17px;
+  background:rgba(255,255,255,.04);
+  padding:12px;
+}
+.daily-guide b {
+  display:block;
+  margin-bottom:6px;
+  font-size:12px;
+}
+.daily-guide span {
+  color:var(--text2);
+  font-size:12px;
+  line-height:1.45;
+}
+.daily-timer {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  border:.5px solid rgba(139,92,246,.22);
+  border-radius:17px;
+  background:rgba(139,92,246,.08);
+  padding:12px;
+}
+.daily-timer-label {
+  color:var(--text3);
+  font-size:11px;
+  font-weight:900;
+}
+.daily-timer-value {
+  color:#F0ABFC;
+  font-weight:900;
+  font-size:16px;
+  white-space:nowrap;
+}
+.daily-history {
+  display:grid;
+  gap:8px;
+}
+.daily-history-item {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  border:.5px solid rgba(255,255,255,.08);
+  border-radius:15px;
+  background:rgba(255,255,255,.035);
+  padding:10px 11px;
+  color:var(--text2);
+  font-size:12px;
+}
+.daily-history-item b { color:var(--text); }
+.insight-premium {
+  border:.5px solid rgba(236,72,153,.30);
+  border-radius:22px;
+  background:
+    radial-gradient(circle at 100% 0%, rgba(236,72,153,.20), transparent 36%),
+    radial-gradient(circle at 0% 100%, rgba(139,92,246,.16), transparent 34%),
+    rgba(255,255,255,.045);
+  padding:15px;
+  overflow:hidden;
+}
+.insight-premium-head {
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  align-items:flex-start;
+  margin-bottom:12px;
+}
+.insight-premium-title {
+  margin-top:6px;
+  font-family:Unbounded,sans-serif;
+  font-size:20px;
+  line-height:1.2;
+}
+.insight-premium-price {
+  border:.5px solid rgba(236,72,153,.28);
+  border-radius:999px;
+  background:rgba(236,72,153,.10);
+  color:#F9A8D4;
+  padding:7px 10px;
+  font-size:12px;
+  font-weight:900;
+  white-space:nowrap;
+}
+.insight-premium-grid {
+  display:grid;
+  gap:9px;
+}
+.premium-insight-card {
+  border:.5px solid rgba(255,255,255,.09);
+  border-radius:17px;
+  background:rgba(10,10,15,.42);
+  padding:12px;
+  position:relative;
+}
+.premium-insight-card.locked {
+  border-color:rgba(236,72,153,.22);
+}
+.premium-insight-card b {
+  display:block;
+  color:var(--text);
+  font-size:13px;
+  line-height:1.35;
+}
+.premium-insight-card span {
+  display:block;
+  margin-top:6px;
+  color:var(--text2);
+  font-size:12px;
+  line-height:1.45;
+}
+.premium-insight-tag {
+  display:inline-flex;
+  align-items:center;
+  gap:5px;
+  margin-bottom:8px;
+  border:.5px solid rgba(139,92,246,.22);
+  border-radius:999px;
+  background:rgba(139,92,246,.10);
+  color:#C4B5FD;
+  padding:5px 8px;
+  font-size:10px;
+  font-weight:900;
+}
+.premium-preview-bars {
+  display:grid;
+  grid-template-columns:repeat(7, 1fr);
+  align-items:end;
+  gap:6px;
+  height:54px;
+  margin-top:10px;
+}
+.premium-preview-bars i {
+  display:block;
+  border-radius:999px 999px 4px 4px;
+  background:linear-gradient(180deg, rgba(236,72,153,.82), rgba(139,92,246,.44));
+  min-height:14px;
+}
+@media (max-width:420px) {
+  .profile-tabs { gap:5px; }
+  .profile-tab { font-size:10px; border-radius:12px; }
+  .daily-guides { grid-template-columns:1fr; }
+}
 .level-card {
   margin-top:14px;
   border:.5px solid rgba(255,255,255,.10);
@@ -1605,6 +1915,149 @@ button { font: inherit; }
   font-size:12px;
   line-height:1.45;
 }
+.persona-matches {
+  border:.5px solid rgba(236,72,153,.24);
+  border-radius:18px;
+  background:
+    radial-gradient(circle at 92% 8%, rgba(236,72,153,.18), transparent 34%),
+    linear-gradient(145deg, rgba(139,92,246,.10), rgba(255,255,255,.035));
+  padding:13px;
+  overflow:hidden;
+}
+.matches-head {
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:12px;
+  margin-bottom:12px;
+}
+.matches-title {
+  font-weight:900;
+  line-height:1.35;
+}
+.matches-sub {
+  margin-top:4px;
+  color:var(--text2);
+  font-size:12px;
+  line-height:1.45;
+}
+.matches-lock {
+  border:.5px solid rgba(255,255,255,.12);
+  border-radius:999px;
+  padding:6px 10px;
+  color:var(--text2);
+  font-size:11px;
+  font-weight:900;
+  white-space:nowrap;
+  background:rgba(255,255,255,.05);
+}
+.matches-list {
+  display:grid;
+  grid-template-columns:1fr;
+  gap:9px;
+}
+.match-person {
+  display:grid;
+  grid-template-columns:44px 1fr auto;
+  align-items:center;
+  gap:10px;
+  border:.5px solid rgba(255,255,255,.10);
+  border-radius:15px;
+  background:rgba(10,10,15,.42);
+  padding:10px;
+}
+.match-avatar {
+  width:44px;
+  height:44px;
+  border-radius:16px;
+  position:relative;
+  overflow:hidden;
+  display:grid;
+  place-items:center;
+  background:
+    radial-gradient(circle at 70% 25%, rgba(255,255,255,.16), transparent 24%),
+    linear-gradient(145deg, rgba(139,92,246,.42), rgba(236,72,153,.20));
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.08);
+}
+.match-avatar::before {
+  content:"";
+  position:absolute;
+  left:13px;
+  top:10px;
+  width:18px;
+  height:18px;
+  border-radius:50% 50% 45% 45%;
+  background:linear-gradient(145deg, #F3D7C8, #C89584);
+  box-shadow:0 -5px 0 var(--hair, #2B183F);
+}
+.match-avatar::after {
+  content:"";
+  position:absolute;
+  left:9px;
+  bottom:6px;
+  width:26px;
+  height:16px;
+  border-radius:16px 16px 9px 9px;
+  background:linear-gradient(135deg, var(--coat, #8B5CF6), rgba(236,72,153,.42));
+}
+.match-avatar.jobs { --hair:#17111F; --coat:#334155; }
+.match-avatar.jobs::before { border-radius:48% 52% 46% 44%; box-shadow:-3px -5px 0 var(--hair), 3px -4px 0 var(--hair); }
+.match-avatar.thatcher { --hair:#D8B062; --coat:#6D28D9; }
+.match-avatar.thatcher::before { box-shadow:0 -6px 0 var(--hair), -5px -2px 0 var(--hair), 5px -2px 0 var(--hair); }
+.match-avatar.bowie { --hair:#F59E0B; --coat:#7C2D12; }
+.match-avatar.bowie::before { box-shadow:0 -7px 0 var(--hair), 5px -2px 0 #EF4444; }
+.match-avatar.bowie .match-bolt,
+.match-avatar.bowie span {
+  position:absolute;
+  width:3px;
+  height:18px;
+  background:#60A5FA;
+  transform:rotate(24deg);
+  top:11px;
+  left:23px;
+  border-radius:999px;
+  z-index:2;
+}
+.match-avatar.davinci { --hair:#D6D3D1; --coat:#57534E; }
+.match-avatar.davinci::before { box-shadow:0 -7px 0 var(--hair), -6px 2px 0 var(--hair), 6px 2px 0 var(--hair), 0 8px 0 rgba(214,211,209,.78); }
+.match-avatar.kahlo { --hair:#1C1917; --coat:#BE185D; }
+.match-avatar.kahlo::before { box-shadow:0 -6px 0 var(--hair), -4px -5px 0 #DC2626, 4px -5px 0 #F59E0B; }
+.match-avatar.jung { --hair:#A8A29E; --coat:#374151; }
+.match-avatar.jung::before { box-shadow:0 -5px 0 var(--hair), 0 7px 0 rgba(168,162,158,.70); }
+.match-avatar.curie { --hair:#8B735D; --coat:#155E75; }
+.match-avatar.curie::before { box-shadow:0 -6px 0 var(--hair), -4px -1px 0 var(--hair), 4px -1px 0 var(--hair); }
+.match-avatar.chanel { --hair:#18181B; --coat:#111827; }
+.match-avatar.chanel::before { box-shadow:0 -5px 0 var(--hair), -6px 0 0 var(--hair), 6px 0 0 var(--hair); }
+.match-avatar.unknown::before {
+  background:rgba(255,255,255,.20);
+  box-shadow:0 -5px 0 rgba(255,255,255,.14);
+}
+.match-avatar.unknown::after {
+  background:rgba(255,255,255,.12);
+}
+.match-name {
+  font-weight:900;
+  line-height:1.25;
+}
+.match-reason {
+  margin-top:3px;
+  color:var(--text2);
+  font-size:11px;
+  line-height:1.35;
+}
+.match-score {
+  min-width:46px;
+  text-align:right;
+  color:#F0ABFC;
+  font-weight:900;
+  font-size:13px;
+}
+.matches-note {
+  margin-top:10px;
+  color:var(--text2);
+  font-size:11px;
+  line-height:1.4;
+}
 .compat-card {
   min-height:210px;
   display:grid;
@@ -1825,6 +2278,66 @@ button { font: inherit; }
   font-size:11px;
   line-height:1.35;
 }
+.full-section-list {
+  display:grid;
+  gap:10px;
+  margin-top:10px;
+}
+.full-section {
+  border:.5px solid rgba(255,255,255,.08);
+  border-radius:18px;
+  background:
+    radial-gradient(circle at 98% 0%, rgba(139,92,246,.12), transparent 32%),
+    rgba(255,255,255,.035);
+  padding:13px;
+  position:relative;
+  overflow:hidden;
+}
+.full-section.locked {
+  border-color:rgba(236,72,153,.22);
+  background:
+    radial-gradient(circle at 100% 0%, rgba(236,72,153,.14), transparent 34%),
+    rgba(255,255,255,.035);
+}
+.full-section-top {
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:10px;
+}
+.full-section-name {
+  font-weight:900;
+  font-size:14px;
+  line-height:1.35;
+}
+.full-section-tag {
+  border:.5px solid rgba(236,72,153,.22);
+  border-radius:999px;
+  background:rgba(236,72,153,.08);
+  color:#F9A8D4;
+  padding:5px 8px;
+  font-size:9px;
+  font-weight:900;
+  white-space:nowrap;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+}
+.full-section-open {
+  margin-top:8px;
+  color:var(--text);
+  font-size:13px;
+  line-height:1.5;
+}
+.full-section-locked {
+  margin-top:10px;
+  border:.5px solid rgba(255,255,255,.08);
+  border-radius:14px;
+  background:rgba(0,0,0,.16);
+  color:var(--text3);
+  padding:10px;
+  font-size:12px;
+  line-height:1.45;
+}
 .red-list {
   display:grid;
   gap:8px;
@@ -1907,7 +2420,10 @@ button { font: inherit; }
         </svg>
         <span class="logo-name">PERSONA</span>
       </div>
-      <button class="profile-btn" onclick="showProfile()" aria-label="Открыть профиль">👤</button>
+      <div class="header-actions">
+        <button class="premium-top-btn" onclick="openFullProfilePaywall()">🔐 Полный доступ <span>149 ₽</span></button>
+        <button class="profile-btn" onclick="showProfile()" aria-label="Открыть профиль">👤</button>
+      </div>
     </div>
   </div>
 
@@ -1940,7 +2456,43 @@ button { font: inherit; }
   <div class="bottom-nav">
     <button class="nav-item active"><span class="nav-icon">🧬</span><span>Тесты</span></button>
     <button class="nav-item" onclick="showProfile()"><span class="nav-icon">👤</span><span>Профиль</span></button>
-    <button class="nav-item" onclick="showSoon('Персональные инсайты появятся после первых результатов.')"><span class="nav-icon">✨</span><span>Инсайты</span></button>
+    <button class="nav-item" onclick="showInsights()"><span class="nav-icon">✨</span><span>Инсайты</span></button>
+  </div>
+</div>
+
+<div class="screen" id="screen-insights">
+  <div class="cat-header">
+    <div class="cat-header-top">
+      <div class="logo-mark">
+        <span class="nav-icon">✨</span>
+        <span class="logo-name">ИНСАЙТЫ</span>
+      </div>
+      <button class="profile-btn" onclick="showProfile()" aria-label="Открыть профиль">👤</button>
+    </div>
+    <div class="greeting-label">Ежедневный срез</div>
+    <div class="greeting-title">Что с тобой<br><span>сегодня?</span></div>
+    <div class="greeting-copy">Короткий ритуал Persona: настроение дня, напутствие и маленькое действие без лишней морали.</div>
+  </div>
+  <div class="scrollable">
+    <div class="profile-dashboard">
+      <div class="profile-panel">
+        <div class="profile-panel-title">Инсайт дня</div>
+        <div id="daily-insight"></div>
+      </div>
+      <div class="profile-panel">
+        <div class="profile-panel-title">Полный доступ</div>
+        <div id="daily-premium"></div>
+      </div>
+      <div class="profile-panel">
+        <div class="profile-panel-title">Недавние состояния</div>
+        <div class="daily-history" id="daily-history"></div>
+      </div>
+    </div>
+  </div>
+  <div class="bottom-nav">
+    <button class="nav-item" onclick="showScreen('catalog')"><span class="nav-icon">🧬</span><span>Тесты</span></button>
+    <button class="nav-item" onclick="showProfile()"><span class="nav-icon">👤</span><span>Профиль</span></button>
+    <button class="nav-item active"><span class="nav-icon">✨</span><span>Инсайты</span></button>
   </div>
 </div>
 
@@ -2360,10 +2912,66 @@ const pulseOptions = [
   { label:'часто', hint:'Похоже на устойчивую реакцию. Этот слой уже влияет на профиль.', scoreIndex:1 },
   { label:'в точку', hint:'Сильное совпадение. Persona отмечает это как яркий паттерн.', scoreIndex:0 }
 ];
+const dailyQuestions = [
+  { text:'Сегодня внутри больше напряжения, чем спокойствия.', key:'tension' },
+  { text:'Хочется закрыться от людей или отвечать короче обычного.', key:'distance' },
+  { text:'Мысли цепляются за одно и то же, будто не дают выдохнуть.', key:'noise' },
+  { text:'Есть энергия делать, решать и двигаться дальше.', key:'energy', reverse:true },
+  { text:'Сегодня особенно хочется тепла, контакта или подтверждения.', key:'contact' }
+];
+const dailyMoods = [
+  {
+    id:'overheat',
+    icon:'⚡',
+    title:'Перегрев',
+    match:s=>s.tension >= 7 || s.noise >= 7,
+    desc:'Сегодня психика держит слишком много открытых вкладок. Не всё требует немедленной реакции.',
+    guidance:'Не доказывай, что ты в порядке. Сначала снизь шум.',
+    action:'Отложи одно решение на 30 минут и вернись к нему после паузы.'
+  },
+  {
+    id:'armor',
+    icon:'🧊',
+    title:'Защитная броня',
+    match:s=>s.distance >= 7,
+    desc:'Ты можешь выглядеть спокойнее, чем чувствуешь. Дистанция сегодня защищает, но может отрезать от поддержки.',
+    guidance:'Не исчезай молча, если тебе важен контакт.',
+    action:'Скажи одну короткую честную фразу вместо холодного ответа.'
+  },
+  {
+    id:'contact',
+    icon:'❤️',
+    title:'Жажда контакта',
+    match:s=>s.contact >= 7 && s.distance < 6,
+    desc:'Сегодня особенно важно чувствовать, что тебя видят. Это не слабость, а потребность в подтверждении связи.',
+    guidance:'Проси тепла прямо, не через проверку.',
+    action:'Напиши человеку не намёк, а конкретную просьбу о внимании.'
+  },
+  {
+    id:'drive',
+    icon:'🔥',
+    title:'Собранный импульс',
+    match:s=>s.energy >= 7 && s.tension < 7,
+    desc:'Внутри есть ход и сила. Хороший день для действий, но не для лишнего давления на себя.',
+    guidance:'Используй энергию точечно, не расплескай её на всё сразу.',
+    action:'Выбери одну главную задачу и доведи её до видимого результата.'
+  },
+  {
+    id:'quiet',
+    icon:'🌙',
+    title:'Тихий режим',
+    match:()=>true,
+    desc:'Состояние ровное, но не пустое. Сегодня полезнее не разгоняться, а слышать слабые сигналы внутри.',
+    guidance:'Не ищи драму там, где организм просит обычной ясности.',
+    action:'Запиши одно чувство и одну потребность без объяснений и оправданий.'
+  }
+];
 let activeTest = tests.control;
 let cur = 0;
 let scores = {};
 let answers = [];
+let dailyAnswers = [];
+let dailyTimerId = null;
 
 function getState() {
   try { return JSON.parse(localStorage.getItem('personaState') || '{"completed":{}}'); }
@@ -2372,6 +2980,45 @@ function getState() {
 
 function saveState(state) {
   localStorage.setItem('personaState', JSON.stringify(state));
+}
+
+function getTodayKey(date = new Date()) {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
+  return `${year}-${month}-${day}`;
+}
+
+function getNextDailyTime() {
+  const next = new Date();
+  next.setHours(24, 0, 0, 0);
+  return next.getTime();
+}
+
+function getDailyState() {
+  try {
+    return JSON.parse(localStorage.getItem('personaDailyState') || '{"history":[]}');
+  } catch {
+    return { history:[] };
+  }
+}
+
+function saveDailyState(state) {
+  localStorage.setItem('personaDailyState', JSON.stringify(state));
+}
+
+function getTodayDailyResult() {
+  const state = getDailyState();
+  const today = getTodayKey();
+  return (state.history || []).find(item => item.date === today) || null;
+}
+
+function formatCountdown(ms) {
+  const safe = Math.max(0, ms);
+  const hours = Math.floor(safe / 3600000);
+  const minutes = Math.floor((safe % 3600000) / 60000);
+  const seconds = Math.floor((safe % 60000) / 1000);
+  return [hours, minutes, seconds].map(part => String(part).padStart(2, '0')).join(':');
 }
 
 function openedFacets() {
@@ -2885,6 +3532,272 @@ function fingerprintCard(completed) {
   `;
 }
 
+function knownPeopleWidget(completed, axisRows) {
+  const topAxis = axisRows[0];
+  const catalog = [
+    { key:'control', avatar:'jobs', name:'Стив Джобс', reason:'видение, давление на форму, желание довести идею до точности' },
+    { key:'control', avatar:'thatcher', name:'Маргарет Тэтчер', reason:'жёсткий контур, собранность и привычка держать линию' },
+    { key:'strategy', avatar:'davinci', name:'Леонардо да Винчи', reason:'быстрое связывание деталей, любопытство и сложная внутренняя карта' },
+    { key:'emotion', avatar:'kahlo', name:'Фрида Кало', reason:'эмоциональная глубина, интенсивность и честность к своей боли' },
+    { key:'closeness', avatar:'jung', name:'Карл Юнг', reason:'интерес к скрытым мотивам, символам и внутренним сценариям' },
+    { key:'stability', avatar:'curie', name:'Мария Кюри', reason:'выдержка, концентрация и способность идти через долгое напряжение' },
+    { key:'adapt', avatar:'bowie', name:'Дэвид Боуи', reason:'умение менять образ, не теряя внутреннего ядра' },
+    { key:'boundaries', avatar:'chanel', name:'Коко Шанель', reason:'личный стиль, дистанция и право задавать свои правила' }
+  ];
+
+  if (!completed.length || !topAxis) {
+    return `
+      <div class="persona-matches">
+        <div class="matches-head">
+          <div>
+            <div class="matches-title">Похожие известные личности</div>
+            <div class="matches-sub">Persona покажет, с какими публичными архетипами у тебя совпадает поведенческий вайб.</div>
+          </div>
+          <div class="matches-lock">после теста</div>
+        </div>
+        <div class="matches-list">
+          <div class="match-person">
+            <div class="match-avatar unknown"></div>
+            <div>
+              <div class="match-name">Сначала нужен твой первый след</div>
+              <div class="match-reason">Пройди тест, и здесь появятся 3 самых близких совпадения.</div>
+            </div>
+            <div class="match-score">--</div>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  const label = `${topAxis.axis.label} ${topAxis.axis.sub || ''}`.toLowerCase();
+  const keys = [];
+  if (/контроль|стратег|влия|расч|мотив/.test(label)) keys.push('control', 'strategy', 'adapt');
+  if (/близ|привязан|отнош|контакт/.test(label)) keys.push('closeness', 'emotion', 'boundaries');
+  if (/тревог|страх|безопас|фон/.test(label)) keys.push('closeness', 'stability', 'emotion');
+  if (/границ|нет|дистанц|себя/.test(label)) keys.push('boundaries', 'control', 'adapt');
+  if (/конфликт|злость|давлен|спор/.test(label)) keys.push('control', 'boundaries', 'emotion');
+  if (/опор|устойчив|держ/.test(label)) keys.push('stability', 'strategy', 'boundaries');
+  if (!keys.length) keys.push('strategy', 'adapt', 'closeness');
+
+  const picked = catalog
+    .filter(item => keys.includes(item.key))
+    .concat(catalog.filter(item => !keys.includes(item.key)))
+    .slice(0, 3)
+    .map((item, index) => ({
+      ...item,
+      score: Math.max(58, Math.min(94, topAxis.value - index * 7 + completed.length * 2))
+    }));
+
+  return `
+    <div class="persona-matches">
+      <div class="matches-head">
+        <div>
+          <div class="matches-title">Похожие известные личности</div>
+          <div class="matches-sub">Не “ты такой же”. Это публичные архетипы, где Persona видит похожий поведенческий рисунок.</div>
+        </div>
+        <div class="matches-lock">${picked[0].score}%</div>
+      </div>
+      <div class="matches-list">
+        ${picked.map(person => `
+          <div class="match-person">
+            <div class="match-avatar ${person.avatar}">${person.avatar === 'bowie' ? '<span></span>' : ''}</div>
+            <div>
+              <div class="match-name">${person.name}</div>
+              <div class="match-reason">${person.reason}</div>
+            </div>
+            <div class="match-score">${person.score}%</div>
+          </div>
+        `).join('')}
+      </div>
+      <div class="matches-note">Совпадения уточняются после каждого нового теста. Полный профиль сможет объяснить не только “на кого похоже”, но и почему.</div>
+    </div>
+  `;
+}
+
+function getDailyMood(scoresMap) {
+  return dailyMoods.find(mood => mood.match(scoresMap)) || dailyMoods[dailyMoods.length - 1];
+}
+
+function startDailyInsight() {
+  dailyAnswers = [];
+  renderDailyInsight();
+}
+
+function answerDailyInsight(value) {
+  dailyAnswers.push(value);
+  safeSelectionHaptic();
+  if (dailyAnswers.length >= dailyQuestions.length) {
+    completeDailyInsight();
+    return;
+  }
+  renderDailyInsight();
+}
+
+function completeDailyInsight() {
+  const scoresMap = {};
+  dailyQuestions.forEach((question, index) => {
+    scoresMap[question.key] = (dailyAnswers[index] || 3) * 2;
+  });
+  const mood = getDailyMood(scoresMap);
+  const state = getDailyState();
+  const today = getTodayKey();
+  const result = {
+    date: today,
+    createdAt: Date.now(),
+    nextAt: getNextDailyTime(),
+    moodId: mood.id,
+    moodTitle: mood.title,
+    moodIcon: mood.icon,
+    desc: mood.desc,
+    guidance: mood.guidance,
+    action: mood.action,
+    scores: scoresMap
+  };
+  state.history = [result, ...(state.history || []).filter(item => item.date !== today)].slice(0, 7);
+  saveDailyState(state);
+  dailyAnswers = [];
+  safeHaptic('success');
+  renderDailyInsight();
+  renderDailyPremium();
+  renderDailyHistory();
+}
+
+function renderDailyInsight() {
+  const root = document.getElementById('daily-insight');
+  if (!root) return;
+  const result = getTodayDailyResult();
+  if (result) {
+    const nextAt = result.nextAt || getNextDailyTime();
+    root.innerHTML = `
+      <div class="daily-card">
+        <div class="daily-top">
+          <div>
+            <div class="daily-kicker">сегодняшний срез</div>
+            <div class="daily-title">${escapeHtml(result.moodTitle)}</div>
+            <div class="daily-text">${escapeHtml(result.desc)}</div>
+          </div>
+          <div class="daily-orb">${escapeHtml(result.moodIcon)}</div>
+        </div>
+        <div class="daily-result">
+          <div class="daily-timer">
+            <div>
+              <div class="daily-timer-label">следующий инсайт можно пройти через</div>
+              <div class="daily-text">Persona не торопит. Один честный срез в день ценнее десяти случайных.</div>
+            </div>
+            <div class="daily-timer-value" data-daily-countdown="${nextAt}">${formatCountdown(nextAt - Date.now())}</div>
+          </div>
+        </div>
+      </div>
+    `;
+    setupDailyTimer();
+    return;
+  }
+
+  const index = dailyAnswers.length;
+  const question = dailyQuestions[index];
+  const progress = Math.round((index / dailyQuestions.length) * 100);
+  root.innerHTML = `
+    <div class="daily-card">
+      <div class="daily-top">
+        <div>
+          <div class="daily-kicker">инсайт дня</div>
+          <div class="daily-title">Что с тобой сегодня?</div>
+          <div class="daily-text">5 быстрых отметок. Persona покажет настроение дня и даст короткое напутствие без нотаций.</div>
+        </div>
+        <div class="daily-orb">🫀</div>
+      </div>
+      <div class="daily-question">
+        <div class="daily-question-top">
+          <div class="daily-question-text">${escapeHtml(question.text)}</div>
+          <div class="daily-question-count">${index + 1}/${dailyQuestions.length}</div>
+        </div>
+        <div class="daily-scale">
+          ${['мимо','слегка','есть','сильно','в точку'].map((label, optionIndex) => `
+            <button class="daily-dot" onclick="answerDailyInsight(${optionIndex + 1})">${label}</button>
+          `).join('')}
+        </div>
+        <div class="daily-progress"><span style="width:${progress}%"></span></div>
+      </div>
+    </div>
+  `;
+}
+
+function renderDailyHistory() {
+  const root = document.getElementById('daily-history');
+  if (!root) return;
+  const history = (getDailyState().history || []).slice(0, 5);
+  root.innerHTML = history.length ? history.map(item => `
+    <div class="daily-history-item">
+      <span><b>${escapeHtml(item.moodIcon)} ${escapeHtml(item.moodTitle)}</b><br>${escapeHtml(item.date)}</span>
+      <span>${escapeHtml(item.guidance)}</span>
+    </div>
+  `).join('') : `
+    <div class="daily-card">
+      <div class="daily-kicker">история пока пустая</div>
+      <div class="daily-text">После первого ежедневного среза здесь начнёт собираться динамика твоих состояний.</div>
+    </div>
+  `;
+}
+
+function renderDailyPremium() {
+  const root = document.getElementById('daily-premium');
+  if (!root) return;
+  const result = getTodayDailyResult();
+  const mood = result?.moodTitle || 'твоё состояние';
+  const reason = result
+    ? `Persona покажет, почему сегодня включается именно “${escapeHtml(mood)}”: контроль, тревога, усталость, близость или старый способ защиты.`
+    : 'Пройди срез дня, и Persona покажет, какие причины могут стоять за твоим состоянием.';
+  root.innerHTML = `
+    <div class="insight-premium">
+      <div class="insight-premium-head">
+        <div>
+          <div class="daily-kicker">что откроет полный доступ</div>
+          <div class="insight-premium-title">Не просто настроение. Причины и повторения.</div>
+          <div class="daily-text">Полный доступ усилит ежедневные инсайты: Persona будет видеть динамику недели и давать действия под твою карту, а не общие советы.</div>
+        </div>
+        <div class="insight-premium-price">149 ₽</div>
+      </div>
+      <div class="insight-premium-grid">
+        <div class="premium-insight-card locked">
+          <div class="premium-insight-tag">🔐 недельная динамика</div>
+          <b>Какие состояния повторяются</b>
+          <span>Перегрев, закрытость, тревожный фон или жажда контакта — Persona покажет, что возвращается чаще всего.</span>
+          <div class="premium-preview-bars">
+            <i style="height:36%"></i><i style="height:68%"></i><i style="height:44%"></i><i style="height:82%"></i><i style="height:58%"></i><i style="height:74%"></i><i style="height:49%"></i>
+          </div>
+        </div>
+        <div class="premium-insight-card locked">
+          <div class="premium-insight-tag">🔐 персональная реализация</div>
+          <b>Почему это включается именно у тебя</b>
+          <span>${reason}</span>
+        </div>
+        <div class="premium-insight-card locked">
+          <div class="premium-insight-tag">🔐 точное действие</div>
+          <b>Что делать, чтобы не уйти в старый сценарий</b>
+          <span>Не “будь спокойнее”, а конкретный ход на сегодня: что сказать, где взять паузу и как не кормить паттерн.</span>
+        </div>
+      </div>
+      <button class="paid-action" onclick="openFullProfilePaywall()">Разблокировать полный доступ — 149 ₽</button>
+    </div>
+  `;
+}
+
+function setupDailyTimer() {
+  if (dailyTimerId) window.clearInterval(dailyTimerId);
+  dailyTimerId = window.setInterval(() => {
+    document.querySelectorAll('[data-daily-countdown]').forEach(node => {
+      const nextAt = Number(node.dataset.dailyCountdown || 0);
+      const left = nextAt - Date.now();
+      node.textContent = formatCountdown(left);
+      if (left <= 0) {
+        window.clearInterval(dailyTimerId);
+        dailyTimerId = null;
+        renderDailyInsight();
+      }
+    });
+  }, 1000);
+}
+
 function fullProfileOffer(completed, topAxis) {
   const readyText = completed.length
     ? `Persona уже видит ${completed.length} слоёв твоего профиля. Полный доступ соберёт их в один разбор: отношения, триггеры, противоречия и инструкцию к тебе.`
@@ -2905,10 +3818,60 @@ function fullProfileOffer(completed, topAxis) {
           <div class="full-price">149 ₽</div>
           <div class="full-price-note">позже 299 ₽</div>
         </div>
-        <button class="paid-action" onclick="openFullProfilePaywall()">Открыть профиль</button>
       </div>
     </div>
   `;
+}
+
+function fullSection({ icon, title, open, locked }) {
+  return `
+    <div class="full-section locked">
+      <div class="full-section-top">
+        <div class="full-section-name">${icon} ${title}</div>
+        <div class="full-section-tag">закрыто</div>
+      </div>
+      <div class="full-section-open">${open}</div>
+      <div class="full-section-locked">🔐 ${locked}</div>
+    </div>
+  `;
+}
+
+function buildFullProfileSections({ latest, attachment, topAxis }) {
+  const mainSignal = latest?.data?.title || 'первые сигналы ещё не собраны';
+  const relationSignal = attachment?.data?.hook || 'после теста привязанности Persona покажет, как ты входишь в близость';
+
+  return [
+    fullSection({
+      icon:'🧬',
+      title:'Глубокий портрет',
+      open:`Главный текущий слой: ${mainSignal}. Это уже не отдельный результат, а материал для общей психологической карты.`,
+      locked:'Полный разбор свяжет твои реакции, защиту, тревогу и опору в один портрет без ощущения “разрозненных тестов”.'
+    }),
+    fullSection({
+      icon:'❤️',
+      title:'Романтические отношения',
+      open: relationSignal,
+      locked:'Persona покажет, кого тебя тянет выбирать, как ты проверяешь близость и где можешь сам ломать контакт.'
+    }),
+    fullSection({
+      icon:'🤝',
+      title:'Дружба и окружение',
+      open:'Persona уже готовит слой про то, рядом с кем ты раскрываешься, а рядом с кем начинаешь защищаться.',
+      locked:'Полный профиль покажет, какой ты друг, кто тебя истощает, почему ты отдаляешься и что делает тебя лояльным.'
+    }),
+    fullSection({
+      icon:'💼',
+      title:'Работа, амбиции, деньги',
+      open: topAxis ? `Самый яркий сигнал сейчас: ${topAxis.axis.label} ${topAxis.value}%. Он будет влиять на стиль решений и давления.` : 'Этот раздел откроется точнее после первых тестов.',
+      locked:'Разбор покажет, как ты работаешь под давлением, где выгораешь, как реагируешь на конкуренцию и неопределённость.'
+    }),
+    fullSection({
+      icon:'🛠️',
+      title:'Персональные рекомендации',
+      open:'Не “будь увереннее”, а конкретные действия под твой профиль.',
+      locked:'Что перестать делать, что отслеживать, как вести себя в близости, конфликте и тревоге, чтобы паттерн не работал против тебя.'
+    })
+  ].join('');
 }
 
 function buildProfileStory(completed, axisRows) {
@@ -2920,9 +3883,11 @@ function buildProfileStory(completed, axisRows) {
   const stability = getCompletedEntry(completed, 'stability');
   const latest = completed[completed.length - 1];
   const topAxis = axisRows[0];
+  const fullSections = buildFullProfileSections({ latest, attachment, topAxis });
 
   const portrait = completed.length ? [
     fingerprintCard(completed),
+    knownPeopleWidget(completed, axisRows),
     storyCard({
       kicker:'Главный портрет',
       icon:'🧬',
@@ -2938,6 +3903,7 @@ function buildProfileStory(completed, axisRows) {
     })
   ] : [
     fingerprintCard(completed),
+    knownPeopleWidget(completed, axisRows),
     storyCard({
       kicker:'Пустая карточка',
       icon:'🧬',
@@ -2994,43 +3960,21 @@ function buildProfileStory(completed, axisRows) {
       icon:'🔐',
       paid:true,
       title:'Сферы жизни откроются в полном профиле',
-      text:'Persona покажет, как твой паттерн проявляется в дружбе, амбициях, работе, деньгах и выборе людей. Это уже не проценты, а сценарии, которые повторяются в жизни.',
-      action:'Открыть полный профиль'
+      text:'Persona покажет, как твой паттерн проявляется в дружбе, амбициях, работе, деньгах и выборе людей. Это уже не проценты, а сценарии, которые повторяются в жизни.'
     })
   ];
 
   const deep = [
     fullProfileOffer(completed, topAxis),
-    storyCard({
-      kicker:'Бесплатный слой',
-      icon:'📊',
-      title: topAxis ? `Главный сигнал: ${topAxis.axis.label}` : 'Главный сигнал ещё не найден',
-      text: topAxis ? `Сейчас этот показатель самый заметный: ${topAxis.value}%. Это база, на которой строится дальнейший разбор.` : 'Пройди первый тест, чтобы увидеть стартовые шкалы.'
-    }),
-    storyCard({
-      kicker:'Полный доступ',
-      icon:'🔐',
-      paid:true,
-      title:'Скрытые противоречия',
-      text:'Где ты хочешь близости, но защищаешься. Где контроль маскирует тревогу. Где сильная сторона становится причиной повторяющихся проблем.',
-      action:'Посмотреть глубокий разбор'
-    }),
-    storyCard({
-      kicker:'Полный доступ',
-      icon:'❤️‍🔥',
-      paid:true,
-      title:'Совместимость и дуэли',
-      text:'После дуэлей Persona сможет показать, кто тебя усиливает, кто триггерит, где вы совпадаете и почему вас может тянуть друг к другу.',
-      action:'Открыть совместимость'
-    }),
-    storyCard({
-      kicker:'Полный доступ',
-      icon:'🧭',
-      paid:true,
-      title:'Как с тобой обращаться',
-      text:'Инструкция к тебе: что говорить прямо, где не давить, какие фразы тебя закрывают и как возвращать контакт без лишней войны.',
-      action:'Открыть инструкцию'
-    })
+    `
+      <div class="story-card accent">
+        <div class="story-kicker">Содержание полного профиля</div>
+        <div class="story-title">🔐 Что именно откроется после покупки</div>
+        <div class="story-text">Ниже — не заглушки, а структура будущего платного разбора. Открытый фрагмент уже персонализируется по твоим результатам.</div>
+        <div class="full-section-list">${fullSections}</div>
+        <button class="paid-action" onclick="openFullProfilePaywall()">Купить полный профиль — 149 ₽</button>
+      </div>
+    `
   ];
 
   return { portrait, strengths, spheres, deep };
@@ -3088,6 +4032,8 @@ function renderProfile() {
   document.getElementById('profile-portrait').innerHTML = profileStory.portrait.join('');
   document.getElementById('profile-strengths').innerHTML = profileStory.strengths.join('');
   document.getElementById('profile-spheres').innerHTML = profileStory.spheres.join('');
+  renderDailyInsight();
+  renderDailyHistory();
   document.getElementById('profile-bars').innerHTML = axisRows.length ? axisRows.slice(0, 6).map(row => `
     <div>
       <div class="mini-bar-top"><span>${row.axis.icon} ${row.axis.label}</span><span>${row.value}%</span></div>
@@ -3147,6 +4093,13 @@ function showProfile() {
   showScreen('profile');
   const firstTab = document.querySelector('.profile-tab');
   if (firstTab) switchProfileTab('overview', firstTab);
+}
+
+function showInsights() {
+  renderDailyInsight();
+  renderDailyPremium();
+  renderDailyHistory();
+  showScreen('insights');
 }
 
 function showSoon(message) {
