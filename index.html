@@ -516,7 +516,7 @@ button { font: inherit; }
 .bottom-nav {
   flex-shrink:0;
   display:grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap:6px;
   padding: 8px 12px calc(8px + env(safe-area-inset-bottom, 0px));
   border-top:.5px solid var(--border);
@@ -535,6 +535,69 @@ button { font: inherit; }
 }
 .nav-item.active { color:#C4B5FD; }
 .nav-icon { font-size:18px; }
+.duels-hero {
+  border:.5px solid rgba(236,72,153,.28);
+  border-radius:24px;
+  background:
+    radial-gradient(circle at 88% 0%, rgba(236,72,153,.22), transparent 34%),
+    radial-gradient(circle at 0% 100%, rgba(139,92,246,.17), transparent 34%),
+    rgba(255,255,255,.045);
+  padding:18px;
+}
+.duels-status {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  border:.5px solid rgba(236,72,153,.36);
+  border-radius:999px;
+  background:linear-gradient(135deg, rgba(139,92,246,.28), rgba(236,72,153,.22));
+  color:#F9A8D4;
+  padding:10px 14px;
+  font-size:12px;
+  font-weight:900;
+  letter-spacing:.10em;
+  text-transform:uppercase;
+  box-shadow:0 12px 28px rgba(236,72,153,.14);
+}
+.duels-status.top {
+  margin:4px 0 13px;
+}
+.duels-title {
+  margin-top:13px;
+  font-family:Unbounded,sans-serif;
+  font-size:24px;
+  line-height:1.18;
+}
+.duels-text {
+  margin-top:10px;
+  color:var(--text2);
+  font-size:13px;
+  line-height:1.55;
+}
+.duels-grid {
+  display:grid;
+  gap:10px;
+  margin-top:14px;
+}
+.duels-card {
+  border:.5px solid rgba(255,255,255,.09);
+  border-radius:18px;
+  background:rgba(10,10,15,.36);
+  padding:13px;
+}
+.duels-card b {
+  display:block;
+  font-size:14px;
+  line-height:1.35;
+}
+.duels-card span {
+  display:block;
+  margin-top:6px;
+  color:var(--text2);
+  font-size:12px;
+  line-height:1.45;
+}
 
 .back-wrap { flex-shrink:0; padding: 20px 0 0 22px; }
 .intro-content {
@@ -847,54 +910,6 @@ button { font: inherit; }
 .fill-n { background:#A78BFA; }
 .fill-p { background:#F472B6; }
 .fill-m { background:#22D3EE; }
-.result-snapshot {
-  display:grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap:9px;
-  margin-bottom:12px;
-}
-.snapshot-card {
-  min-height:82px;
-  border:.5px solid var(--border);
-  border-radius:var(--radius-sm);
-  background:linear-gradient(145deg, rgba(255,255,255,.06), rgba(139,92,246,.055));
-  padding:11px 9px;
-  position:relative;
-  overflow:hidden;
-}
-.snapshot-card::after {
-  content:attr(data-icon);
-  position:absolute;
-  right:-3px;
-  bottom:-5px;
-  font-size:30px;
-  opacity:.10;
-  pointer-events:none;
-}
-.snapshot-label {
-  position:relative;
-  z-index:1;
-  color:var(--text3);
-  font-size:10px;
-  font-weight:800;
-  text-transform:uppercase;
-  letter-spacing:.08em;
-}
-.snapshot-value {
-  position:relative;
-  z-index:1;
-  margin-top:7px;
-  font-family:Unbounded,sans-serif;
-  font-size:18px;
-}
-.snapshot-caption {
-  position:relative;
-  z-index:1;
-  margin-top:5px;
-  color:var(--text2);
-  font-size:11px;
-  line-height:1.25;
-}
 .result-desc-wrap {
   margin-top:12px;
   border:.5px solid var(--border);
@@ -1135,6 +1150,22 @@ button { font: inherit; }
 #screen-profile.profile-compact .progress-icon {
   width:34px;
   height:34px;
+}
+#screen-insights.insights-compact .cat-header {
+  padding-top:12px;
+  padding-bottom:4px;
+}
+#screen-insights.insights-compact .cat-header-top {
+  margin-bottom:8px;
+}
+#screen-insights.insights-compact .greeting-label,
+#screen-insights.insights-compact .greeting-title,
+#screen-insights.insights-compact .greeting-copy {
+  opacity:0;
+  max-height:0;
+  margin-top:0;
+  transform:translateY(-8px);
+  overflow:hidden;
 }
 .profile-dashboard {
   padding: 0 17px 14px;
@@ -2338,6 +2369,360 @@ button { font: inherit; }
   font-size:12px;
   line-height:1.45;
 }
+.full-preview-hero {
+  margin:0 17px 12px;
+  border:.5px solid rgba(236,72,153,.30);
+  border-radius:26px;
+  background:
+    radial-gradient(circle at 92% 0%, rgba(236,72,153,.24), transparent 35%),
+    radial-gradient(circle at 8% 95%, rgba(139,92,246,.20), transparent 34%),
+    rgba(255,255,255,.045);
+  padding:18px;
+  overflow:hidden;
+}
+.full-preview-top {
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:14px;
+}
+.full-preview-kicker {
+  color:#F0ABFC;
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+}
+.full-preview-title {
+  margin-top:8px;
+  font-family:Unbounded,sans-serif;
+  font-size:28px;
+  line-height:1.12;
+}
+.full-preview-text {
+  margin-top:12px;
+  color:var(--text2);
+  font-size:13px;
+  line-height:1.55;
+}
+.full-preview-price {
+  min-width:74px;
+  border:.5px solid rgba(236,72,153,.28);
+  border-radius:18px;
+  background:rgba(236,72,153,.10);
+  padding:10px;
+  text-align:center;
+}
+.full-preview-price b {
+  display:block;
+  font-family:Unbounded,sans-serif;
+  font-size:18px;
+}
+.full-preview-price span {
+  display:block;
+  margin-top:4px;
+  color:var(--text3);
+  font-size:10px;
+  font-weight:900;
+}
+.full-preview-signal {
+  margin-top:14px;
+  border:.5px solid rgba(255,255,255,.10);
+  border-radius:18px;
+  background:rgba(10,10,15,.42);
+  padding:13px;
+}
+.full-preview-signal b {
+  display:block;
+  font-size:13px;
+}
+.full-preview-signal span {
+  display:block;
+  margin-top:6px;
+  color:var(--text2);
+  font-size:12px;
+  line-height:1.45;
+}
+.full-preview-grid {
+  display:grid;
+  gap:10px;
+}
+.full-preview-card {
+  border:.5px solid rgba(255,255,255,.09);
+  border-radius:18px;
+  background:
+    radial-gradient(circle at 100% 0%, rgba(139,92,246,.12), transparent 32%),
+    rgba(255,255,255,.04);
+  padding:13px;
+}
+.full-preview-card.locked {
+  border-color:rgba(236,72,153,.22);
+  background:
+    radial-gradient(circle at 100% 0%, rgba(236,72,153,.14), transparent 34%),
+    rgba(255,255,255,.035);
+}
+.full-preview-card b {
+  display:block;
+  font-size:14px;
+  line-height:1.35;
+}
+.full-preview-card span {
+  display:block;
+  margin-top:7px;
+  color:var(--text2);
+  font-size:12px;
+  line-height:1.45;
+}
+.full-preview-lock {
+  display:inline-flex;
+  align-items:center;
+  gap:5px;
+  margin-bottom:8px;
+  border:.5px solid rgba(236,72,153,.24);
+  border-radius:999px;
+  background:rgba(236,72,153,.08);
+  color:#F9A8D4;
+  padding:5px 8px;
+  font-size:10px;
+  font-weight:900;
+}
+.full-preview-footer {
+  flex-shrink:0;
+  padding:12px 16px calc(12px + env(safe-area-inset-bottom, 0px));
+  border-top:.5px solid var(--border);
+  background:rgba(10,10,15,.96);
+}
+.full-unlocked-hero {
+  margin:0 17px 12px;
+  border:.5px solid rgba(52,211,153,.24);
+  border-radius:26px;
+  background:
+    radial-gradient(circle at 92% 0%, rgba(52,211,153,.16), transparent 34%),
+    radial-gradient(circle at 10% 95%, rgba(139,92,246,.18), transparent 34%),
+    rgba(255,255,255,.045);
+  padding:18px;
+}
+.full-unlocked-status {
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  border:.5px solid rgba(52,211,153,.24);
+  border-radius:999px;
+  background:rgba(52,211,153,.09);
+  color:#BBF7D0;
+  padding:7px 10px;
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+.full-unlocked-title {
+  margin-top:12px;
+  font-family:Unbounded,sans-serif;
+  font-size:27px;
+  line-height:1.14;
+}
+.full-unlocked-text {
+  margin-top:10px;
+  color:var(--text2);
+  font-size:13px;
+  line-height:1.55;
+}
+.full-unlocked-stats {
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:9px;
+  margin-top:14px;
+}
+.full-unlocked-stat {
+  border:.5px solid rgba(255,255,255,.09);
+  border-radius:16px;
+  background:rgba(10,10,15,.36);
+  padding:11px 9px;
+}
+.full-unlocked-stat b {
+  display:block;
+  font-family:Unbounded,sans-serif;
+  font-size:17px;
+}
+.full-unlocked-stat span {
+  display:block;
+  margin-top:4px;
+  color:var(--text3);
+  font-size:10px;
+  font-weight:800;
+}
+.full-profile-section {
+  border:.5px solid rgba(255,255,255,.09);
+  border-radius:20px;
+  background:
+    radial-gradient(circle at 100% 0%, rgba(139,92,246,.12), transparent 32%),
+    rgba(255,255,255,.04);
+  padding:14px;
+}
+.full-profile-section.accent {
+  border-color:rgba(236,72,153,.24);
+  background:
+    radial-gradient(circle at 100% 0%, rgba(236,72,153,.16), transparent 34%),
+    rgba(255,255,255,.045);
+}
+.full-section-kicker {
+  color:#C4B5FD;
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:.13em;
+  text-transform:uppercase;
+}
+.full-section-title {
+  margin-top:7px;
+  font-weight:900;
+  font-size:16px;
+  line-height:1.35;
+}
+.full-section-text {
+  margin-top:8px;
+  color:var(--text2);
+  font-size:13px;
+  line-height:1.55;
+}
+.full-section-points {
+  display:grid;
+  gap:8px;
+  margin-top:12px;
+}
+.full-section-point {
+  display:grid;
+  grid-template-columns:28px 1fr;
+  gap:9px;
+  align-items:start;
+  border:.5px solid rgba(255,255,255,.08);
+  border-radius:14px;
+  background:rgba(10,10,15,.30);
+  padding:10px;
+  color:var(--text2);
+  font-size:12px;
+  line-height:1.45;
+}
+.full-section-point b {
+  display:block;
+  color:var(--text);
+  margin-bottom:2px;
+}
+.full-profile-tabs {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin:0 17px 12px;
+}
+.full-profile-tab {
+  min-height:76px;
+  border:.5px solid rgba(255,255,255,.10);
+  border-radius:20px;
+  background:
+    radial-gradient(circle at 100% 0%, rgba(139,92,246,.12), transparent 34%),
+    rgba(255,255,255,.04);
+  color:var(--text);
+  padding:13px;
+  text-align:left;
+  font:inherit;
+  display:grid;
+  align-content:space-between;
+  gap:9px;
+}
+.full-profile-tab.active {
+  border-color:rgba(236,72,153,.38);
+  background:
+    radial-gradient(circle at 100% 0%, rgba(236,72,153,.22), transparent 38%),
+    linear-gradient(135deg, rgba(139,92,246,.32), rgba(236,72,153,.20));
+  box-shadow:0 14px 38px rgba(236,72,153,.12);
+}
+.full-profile-tab-icon {
+  width:34px;
+  height:34px;
+  border-radius:13px;
+  background:rgba(139,92,246,.18);
+  display:grid;
+  place-items:center;
+  font-size:17px;
+}
+.full-profile-tab-title {
+  display:block;
+  font-weight:900;
+  font-size:13px;
+  line-height:1.25;
+}
+.full-profile-tab-sub {
+  display:block;
+  margin-top:4px;
+  color:var(--text3);
+  font-size:10px;
+  font-weight:800;
+}
+.full-profile-content {
+  margin:0 17px 18px;
+}
+.full-profile-content .full-profile-section {
+  min-height:320px;
+}
+.ideal-partner-card {
+  margin-top:13px;
+  border:.5px solid rgba(236,72,153,.28);
+  border-radius:18px;
+  background:
+    radial-gradient(circle at 92% 0%, rgba(236,72,153,.18), transparent 34%),
+    linear-gradient(135deg, rgba(139,92,246,.16), rgba(255,255,255,.035));
+  padding:14px;
+}
+.ideal-partner-top {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+}
+.ideal-partner-mark {
+  width:44px;
+  height:44px;
+  border-radius:16px;
+  background:linear-gradient(135deg, rgba(139,92,246,.78), rgba(236,72,153,.72));
+  display:grid;
+  place-items:center;
+  font-size:21px;
+  box-shadow:0 14px 30px rgba(236,72,153,.16);
+  flex:0 0 auto;
+}
+.ideal-partner-label {
+  color:#C4B5FD;
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:.13em;
+  text-transform:uppercase;
+}
+.ideal-partner-name {
+  margin-top:5px;
+  font-family:Unbounded,sans-serif;
+  font-size:17px;
+  line-height:1.25;
+}
+.ideal-partner-text {
+  margin-top:11px;
+  color:var(--text2);
+  font-size:13px;
+  line-height:1.58;
+}
+.full-dynamics-bars {
+  display:grid;
+  grid-template-columns:repeat(7, 1fr);
+  align-items:end;
+  gap:7px;
+  height:72px;
+  margin-top:12px;
+}
+.full-dynamics-bars i {
+  display:block;
+  min-height:16px;
+  border-radius:999px 999px 5px 5px;
+  background:linear-gradient(180deg, rgba(236,72,153,.86), rgba(139,92,246,.48));
+}
 .red-list {
   display:grid;
   gap:8px;
@@ -2456,6 +2841,7 @@ button { font: inherit; }
   <div class="bottom-nav">
     <button class="nav-item active"><span class="nav-icon">🧬</span><span>Тесты</span></button>
     <button class="nav-item" onclick="showProfile()"><span class="nav-icon">👤</span><span>Профиль</span></button>
+    <button class="nav-item" onclick="showDuels()"><span class="nav-icon">⚔️</span><span>Дуэли</span></button>
     <button class="nav-item" onclick="showInsights()"><span class="nav-icon">✨</span><span>Инсайты</span></button>
   </div>
 </div>
@@ -2473,7 +2859,7 @@ button { font: inherit; }
     <div class="greeting-title">Что с тобой<br><span>сегодня?</span></div>
     <div class="greeting-copy">Короткий ритуал Persona: настроение дня, напутствие и маленькое действие без лишней морали.</div>
   </div>
-  <div class="scrollable">
+  <div class="scrollable" id="insights-scroll">
     <div class="profile-dashboard">
       <div class="profile-panel">
         <div class="profile-panel-title">Инсайт дня</div>
@@ -2492,7 +2878,43 @@ button { font: inherit; }
   <div class="bottom-nav">
     <button class="nav-item" onclick="showScreen('catalog')"><span class="nav-icon">🧬</span><span>Тесты</span></button>
     <button class="nav-item" onclick="showProfile()"><span class="nav-icon">👤</span><span>Профиль</span></button>
+    <button class="nav-item" onclick="showDuels()"><span class="nav-icon">⚔️</span><span>Дуэли</span></button>
     <button class="nav-item active"><span class="nav-icon">✨</span><span>Инсайты</span></button>
+  </div>
+</div>
+
+<div class="screen" id="screen-duels">
+  <div class="cat-header">
+    <div class="cat-header-top">
+      <div class="logo-mark">
+        <span class="nav-icon">⚔️</span>
+        <span class="logo-name">ДУЭЛИ</span>
+      </div>
+      <button class="profile-btn" onclick="showProfile()" aria-label="Открыть профиль">👤</button>
+    </div>
+    <div class="duels-status top">в разработке</div>
+    <div class="greeting-label">Парная диагностика</div>
+    <div class="greeting-title">Сравни ваши<br><span>паттерны</span></div>
+    <div class="greeting-copy">Будущий режим Persona: совместимость, точки напряжения и честная карта того, почему вас тянет друг к другу.</div>
+  </div>
+  <div class="scrollable">
+    <div class="profile-dashboard">
+      <div class="duels-hero">
+        <div class="duels-title">Дуэли скоро откроют второй слой Persona</div>
+        <div class="duels-text">Ты сможешь пройти парный тест с человеком и увидеть, где вы усиливаете друг друга, где триггерите и почему один и тот же разговор вы воспринимаете по-разному.</div>
+        <div class="duels-grid">
+          <div class="duels-card"><b>❤️ Совместимость</b><span>Не “подходите / не подходите”, а где совпадает темп близости, контроль и эмоциональная реакция.</span></div>
+          <div class="duels-card"><b>⚡ Точки напряжения</b><span>Persona покажет, какие паттерны могут сталкиваться: тревога против дистанции, контроль против свободы, молчание против давления.</span></div>
+          <div class="duels-card"><b>🧭 Инструкция к паре</b><span>Как говорить друг с другом так, чтобы не кормить старые сценарии и не превращать близость в проверку.</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="bottom-nav">
+    <button class="nav-item" onclick="showScreen('catalog')"><span class="nav-icon">🧬</span><span>Тесты</span></button>
+    <button class="nav-item" onclick="showProfile()"><span class="nav-icon">👤</span><span>Профиль</span></button>
+    <button class="nav-item active"><span class="nav-icon">⚔️</span><span>Дуэли</span></button>
+    <button class="nav-item" onclick="showInsights()"><span class="nav-icon">✨</span><span>Инсайты</span></button>
   </div>
 </div>
 
@@ -2545,7 +2967,6 @@ button { font: inherit; }
       <div class="result-tagline" id="result-tagline"></div>
     </div>
     <div class="result-body">
-      <div class="result-snapshot" id="result-snapshot"></div>
       <div class="score-bars compact" id="score-bars"></div>
       <div class="result-desc-wrap">
         <div class="module-head">
@@ -2577,6 +2998,58 @@ button { font: inherit; }
   <div class="result-footer-row">
     <button class="btn-secondary" onclick="showScreen('catalog')">К тестам</button>
     <button class="btn-primary" onclick="showProfile()">В профиль →</button>
+  </div>
+</div>
+
+<div class="screen" id="screen-full-preview">
+  <div class="profile-header">
+    <div class="cat-header-top">
+      <button class="btn-back" onclick="showScreen('catalog')">← Назад</button>
+      <div class="logo-name">PERSONA</div>
+    </div>
+    <div class="greeting-label">Ранний доступ</div>
+    <div class="greeting-title">Полный профиль<br><span>Persona</span></div>
+  </div>
+  <div class="scrollable">
+    <div class="full-preview-hero">
+      <div class="full-preview-top">
+        <div>
+          <div class="full-preview-kicker">разблокировка карты</div>
+          <div class="full-preview-title">Узнай о себе больше, чем покажет один тест</div>
+        </div>
+        <div class="full-preview-price"><b>149 ₽</b><span>ранний доступ</span></div>
+      </div>
+      <div class="full-preview-text">Persona соберёт твои тесты, ежедневные инсайты и повторяющиеся состояния в одну психологическую карту: отношения, окружение, работа, сильные стороны и конкретные рекомендации.</div>
+      <div class="full-preview-signal" id="full-preview-signal"></div>
+    </div>
+    <div class="profile-dashboard">
+      <div class="profile-panel">
+        <div class="profile-panel-title">Что откроется</div>
+        <div class="full-preview-grid" id="full-preview-grid"></div>
+      </div>
+      <div class="profile-panel">
+        <div class="profile-panel-title">Первый платный слой</div>
+        <div class="full-preview-card locked" id="full-preview-personal"></div>
+      </div>
+    </div>
+  </div>
+  <div class="full-preview-footer">
+    <button class="btn-primary" onclick="startFullProfileCheckout()">Разблокировать полный профиль — 149 ₽</button>
+  </div>
+</div>
+
+<div class="screen" id="screen-full-profile">
+  <div class="profile-header">
+    <div class="cat-header-top">
+      <button class="btn-back" onclick="showFullProfilePreview()">← Назад</button>
+      <div class="logo-name">PERSONA</div>
+    </div>
+    <div class="greeting-label">Полный доступ</div>
+    <div class="greeting-title">Выбери раздел<br><span>полного профиля</span></div>
+  </div>
+  <div class="scrollable">
+    <div class="full-profile-tabs" id="full-profile-tabs"></div>
+    <div class="full-profile-content" id="full-profile-content"></div>
   </div>
 </div>
 
@@ -2680,7 +3153,7 @@ const tests = {
     label:'Тест · Самооценка и контроль',
     time:'~2',
     facets:['self','control'],
-    short:'Кто рулит внутри: признание, холодная голова или просчёт людей.',
+    short:'Признание, холод или расчёт.',
     intro:'Быстрый срез того, как ты берёшь контроль: давишь образом, выключаешь чувства или считываешь людей на шаг раньше.',
     axes: {
       N: { icon:'🪞', label:'Признание', cls:'badge-purple', color:'#A78BFA', sub:'ценность, особенность, реакция на оценку' },
@@ -2718,7 +3191,7 @@ const tests = {
     label:'Тест · Отношения и близость',
     time:'~2',
     facets:['attachment','closeness','boundaries'],
-    short:'Тянешься, проверяешь, исчезаешь или умеешь быть рядом без паники.',
+    short:'Тревога, дистанция или спокойная близость.',
     intro:'Быстрый тест про то, что с тобой происходит, когда человек становится слишком важным: тревога, дистанция, качели или спокойная близость.',
     axes: {
       S: { icon:'🌿', label:'Надёжность', cls:'badge-green', color:'#34D399', sub:'спокойный контакт, доверие, устойчивость' },
@@ -2757,7 +3230,7 @@ const tests = {
     label:'Тест · Границы и личная территория',
     time:'~2',
     facets:['boundaries','self','conflict'],
-    short:'Где ты держишь себя, где уступаешь, а где строишь стену.',
+    short:'Где держишь себя, а где уступаешь.',
     intro:'Этот тест смотрит шире отношений: партнёр, друзья, семья, работа и твоя внутренняя территория. Он покажет, как ты защищаешь себя — мягко, жёстко или почти никак.',
     axes: {
       C: { icon:'🛡️', label:'Опора', cls:'badge-green', color:'#34D399', sub:'спокойное нет, ясность, уважение к себе' },
@@ -2796,7 +3269,7 @@ const tests = {
     label:'Тест · Тревога и неопределённость',
     time:'~2',
     facets:['anxiety','emotion','control'],
-    short:'Что происходит внутри, когда нет ясности, ответа и ощущения безопасности.',
+    short:'Что включается без ясности и ответа.',
     intro:'Этот тест смотрит не на “нервный ты или нет”, а на то, как психика реагирует на неопределённость: ищет контроль, сканирует угрозы, замирает или умеет возвращать себе опору.',
     axes: {
       C: { icon:'🔎', label:'Сканер угроз', cls:'badge-purple', color:'#A78BFA', sub:'настороженность, поиск сигналов, ожидание подвоха' },
@@ -2835,7 +3308,7 @@ const tests = {
     label:'Тест · Ссоры и напряжение',
     time:'~2',
     facets:['conflict','emotion','boundaries'],
-    short:'Что ты делаешь, когда разговор становится опасным: давишь, молчишь, уходишь или чинить пытаешься.',
+    short:'Давишь, молчишь, уходишь или чинишь.',
     intro:'Этот тест про момент, когда контакт трещит. Не про “хороший/плохой”, а про твой автоматический режим: атаковать, закрыться, исчезнуть или всё-таки развернуть разговор в честность.',
     axes: {
       R: { icon:'🧩', label:'Ремонт', cls:'badge-green', color:'#34D399', sub:'прояснение, ответственность, попытка сохранить контакт' },
@@ -2874,7 +3347,7 @@ const tests = {
     label:'Тест · Устойчивость и ресурс',
     time:'~2',
     facets:['emotion','control','self'],
-    short:'На чём ты держишься, когда вокруг нестабильно: на себе, людях, смысле или жёстком контроле.',
+    short:'На чём держишься в нестабильности.',
     intro:'Этот тест про твою психологическую опору. Что помогает тебе не рассыпаться: внутренняя ясность, близкие люди, смысл, дисциплина — или привычка держаться любой ценой.',
     axes: {
       I: { icon:'🧘', label:'Самоопора', cls:'badge-green', color:'#34D399', sub:'внутренняя ясность, доверие себе, спокойный центр' },
@@ -3199,6 +3672,7 @@ function showScreen(id) {
   if (scrollable) scrollable.scrollTop = 0;
   if (id === 'catalog') setCatalogHeroCompact(false);
   if (id === 'profile') setProfileHeroCompact(false);
+  if (id === 'insights') setInsightsHeroCompact(false);
 }
 
 function switchProfileTab(tab, el) {
@@ -3232,6 +3706,18 @@ function setupProfileScroll() {
   }, { passive: true });
 }
 
+function setInsightsHeroCompact(compact) {
+  document.getElementById('screen-insights')?.classList.toggle('insights-compact', compact);
+}
+
+function setupInsightsScroll() {
+  const scroller = document.getElementById('insights-scroll');
+  if (!scroller) return;
+  scroller.addEventListener('scroll', () => {
+    setInsightsHeroCompact(scroller.scrollTop > 42);
+  }, { passive: true });
+}
+
 function renderCatalog() {
   const featured = tests.control;
   const featuredDone = Boolean((getState().completed || {})[featured.id]);
@@ -3239,7 +3725,7 @@ function renderCatalog() {
     <button class="featured-card ${featuredDone ? 'done' : ''}" onclick="openTest('${featured.id}')">
       <div class="featured-label">${featuredDone ? 'Слой уже в профиле' : 'Первый слой карты'}</div>
       <div class="featured-title">${featured.title}</div>
-      <div class="featured-desc">${featured.short}<br>Откроет первые ред флаги и 2 грани профиля.</div>
+      <div class="featured-desc">${featured.short}<br>+2 грани профиля</div>
       ${featuredDone ? '<div class="completion-chip">✓ тест пройден</div>' : ''}
       <div class="featured-btn">${featuredDone ? 'Перепройти тест →' : 'Вскрыть слой →'}</div>
     </button>
@@ -3390,32 +3876,7 @@ function showResult() {
   document.getElementById('result-desc').textContent = result.desc;
   const topAxis = getTopAxis(percent, activeTest);
   const averageScore = Math.round(Object.values(percent).reduce((sum, value) => sum + value, 0) / Object.values(percent).length);
-  document.getElementById('result-snapshot').innerHTML = `
-    <div class="snapshot-card" data-icon="🔥">
-      <div class="snapshot-label">Драйвер</div>
-      <div class="snapshot-value" style="color:${topAxis.meta.color}">${topAxis.value}%</div>
-      <div class="snapshot-caption">${topAxis.meta.label}</div>
-    </div>
-    <div class="snapshot-card" data-icon="⚡">
-      <div class="snapshot-label">Напряжение</div>
-      <div class="snapshot-value">${averageScore}%</div>
-      <div class="snapshot-caption">общий фон</div>
-    </div>
-    <div class="snapshot-card" data-icon="🧬">
-      <div class="snapshot-label">Профиль</div>
-      <div class="snapshot-value">+${activeTest.facets.length}</div>
-      <div class="snapshot-caption">грани открыты</div>
-    </div>
-  `;
   document.getElementById('insight-grid').innerHTML = `
-    <div class="insight-card">
-      <div class="insight-icon">🎯</div>
-      <div>
-        <div class="insight-kicker">Твой крючок</div>
-        <div class="insight-title">${result.hook}</div>
-        <div class="insight-text">Это первое, что Persona забирает в твою психологическую карточку.</div>
-      </div>
-    </div>
     <div class="insight-card danger">
       <div class="insight-icon">🚩</div>
       <div>
@@ -4102,13 +4563,439 @@ function showInsights() {
   showScreen('insights');
 }
 
+function showDuels() {
+  showScreen('duels');
+}
+
+function renderFullProfilePreview() {
+  const completed = getCompletedTests();
+  const axisRows = getProfileAxisRows();
+  const topAxis = axisRows[0];
+  const latest = completed[completed.length - 1];
+  const signalTitle = topAxis ? `${topAxis.axis.icon} ${topAxis.axis.label}: ${topAxis.value}%` : '🧬 Карта ещё собирается';
+  const signalText = topAxis
+    ? `Persona уже видит главный сигнал из теста “${topAxis.testTitle}”. Полный профиль покажет, где он помогает тебе, а где начинает мешать отношениям, решениям и спокойствию.`
+    : 'Пройди первый тест, и здесь появится персональный фрагмент полного профиля вместо общего описания.';
+
+  document.getElementById('full-preview-signal').innerHTML = `
+    <b>${signalTitle}</b>
+    <span>${signalText}</span>
+  `;
+
+  const modules = [
+    { icon:'🧬', title:'Глубокий портрет', text:'Не разрозненные результаты, а цельная карта: как ты защищаешься, сближаешься, тревожишься и держишь контроль.' },
+    { icon:'❤️', title:'Отношения', text:'Кого тебя тянет выбирать, как ты проверяешь близость и где сам можешь ломать контакт.' },
+    { icon:'🤝', title:'Дружба и окружение', text:'С кем ты раскрываешься, кто тебя истощает и почему рядом с одними ты мягче, а рядом с другими закрываешься.' },
+    { icon:'💼', title:'Работа, амбиции, деньги', text:'Как ты действуешь под давлением, где выгораешь и как твой главный паттерн влияет на решения.' },
+    { icon:'✨', title:'Недельная динамика инсайтов', text:'Persona покажет, какие состояния повторяются: перегрев, закрытость, тревожный фон или жажда контакта.' },
+    { icon:'🛠️', title:'Персональные рекомендации', text:'Конкретные действия под твою карту: что отслеживать, где не давить и как не кормить старый сценарий.' }
+  ];
+
+  document.getElementById('full-preview-grid').innerHTML = modules.map(module => `
+    <div class="full-preview-card locked">
+      <div class="full-preview-lock">🔐 закрытый модуль</div>
+      <b>${module.icon} ${module.title}</b>
+      <span>${module.text}</span>
+    </div>
+  `).join('');
+
+  const personalTitle = latest ? `Persona уже видит: ${latest.data.title}` : 'Persona ждёт первый слой';
+  const personalText = latest
+    ? `${latest.data.hook} В полном профиле этот сигнал будет связан с отношениями, окружением, работой и ежедневными состояниями.`
+    : 'После первого теста этот блок станет персональным: не общий текст, а вывод по твоим ответам.';
+  document.getElementById('full-preview-personal').innerHTML = `
+    <div class="full-preview-lock">🔐 предпросмотр</div>
+    <b>${personalTitle}</b>
+    <span>${personalText}</span>
+  `;
+}
+
+function fullProfileSection({ kicker, icon, title, text, points = [], accent = false, extra = '' }) {
+  return `
+    <div class="full-profile-section ${accent ? 'accent' : ''}">
+      <div class="full-section-kicker">${escapeHtml(kicker)}</div>
+      <div class="full-section-title">${icon} ${escapeHtml(title)}</div>
+      <div class="full-section-text">${escapeHtml(text)}</div>
+      ${points.length ? `<div class="full-section-points">${points.map(point => `
+        <div class="full-section-point">
+          <span>${point.icon}</span>
+          <span><b>${escapeHtml(point.title)}</b>${escapeHtml(point.text)}</span>
+        </div>
+      `).join('')}</div>` : ''}
+      ${extra}
+    </div>
+  `;
+}
+
+function getFullProfileBars(history) {
+  const fallback = [42, 58, 51, 76, 64, 82, 67];
+  if (!history.length) return fallback;
+  const rows = history.slice(-7).map(item => {
+    const values = Object.values(item.scores || {});
+    if (!values.length) return 44;
+    const avg = values.reduce((sum, value) => sum + Number(value || 0), 0) / values.length;
+    return Math.max(24, Math.min(92, Math.round(avg * 18)));
+  });
+  while (rows.length < 7) rows.unshift(fallback[rows.length]);
+  return rows;
+}
+
+function getIdealPartnerProfile(attachment) {
+  const type = attachment?.data?.type;
+  const profiles = {
+    secure: {
+      name:'Спокойный и честный партнёр',
+      text:'Тебе подходит человек, который не играет в холод-тепло, умеет говорить прямо и не пугается близости. Рядом с ним можно быть мягким, но не растворяться.',
+      rhythm:'ровный контакт без постоянных проверок',
+      danger:'драматичные качели могут показаться яркими, но быстро начнут утомлять'
+    },
+    anxious: {
+      name:'Тёплый человек с ясными сигналами',
+      text:'Тебе нужен тот, кто не исчезает без объяснений, не держит в подвешенном состоянии и умеет спокойно подтверждать контакт. Не идеальный, а предсказуемо живой.',
+      rhythm:'стабильность, короткие честные объяснения, понятные границы',
+      danger:'недоступные люди будут цеплять сильнее, но чаще запускать тревогу'
+    },
+    avoidant: {
+      name:'Близкий, но не давящий человек',
+      text:'Тебе подходит тот, кто умеет быть рядом без захвата территории. Он не ломится внутрь, не требует мгновенной открытости и уважает паузы, но не исчезает сам.',
+      rhythm:'пространство без холода и контакт без давления',
+      danger:'слишком требовательная близость быстро включит желание отойти'
+    },
+    mixed: {
+      name:'Устойчивый человек без игр',
+      text:'Тебе нужен партнёр, который выдерживает переменный ритм: сегодня ближе, завтра тише. Он не подливает драму, не мстит дистанцией и помогает возвращаться в контакт.',
+      rhythm:'много ясности, мало манипуляций, право на паузу без угрозы разрыва',
+      danger:'люди с такими же качелями будут давать искру, но усиливать нестабильность'
+    },
+    balanced: {
+      name:'Человек, с которым можно быть настоящим',
+      text:'Тебе подходит партнёр, рядом с которым не нужно постоянно играть роль: можно говорить прямо, ошибаться, просить пространство и возвращаться без спектакля.',
+      rhythm:'честность, уважение к границам и спокойное восстановление после напряжения',
+      danger:'если отношения держатся только на химии, карта быстро начнёт просить опору'
+    }
+  };
+  return profiles[type] || {
+    name:'Человек, с которым нервная система выдыхает',
+    text:'Persona уточнит портрет после теста привязанности. Базово тебе подойдёт тот, кто не превращает близость в экзамен, уважает границы и умеет говорить без игры в молчанку.',
+    rhythm:'ясность, уважение к темпу и честная обратная связь',
+    danger:'неопределённость и эмоциональные качели могут цеплять, но не всегда подходят'
+  };
+}
+
+function premiumFocusCard({ label, name, icon, text }) {
+  return `
+    <div class="ideal-partner-card">
+      <div class="ideal-partner-top">
+        <div>
+          <div class="ideal-partner-label">${escapeHtml(label)}</div>
+          <div class="ideal-partner-name">${escapeHtml(name)}</div>
+        </div>
+        <div class="ideal-partner-mark">${icon}</div>
+      </div>
+      <div class="ideal-partner-text">${escapeHtml(text)}</div>
+    </div>
+  `;
+}
+
+function getBestFriendProfile(boundaries) {
+  const type = boundaries?.data?.type;
+  const profiles = {
+    clear: {
+      name:'Друг, который уважает твоё “нет”',
+      text:'Тебе подходит человек, который не обижается на границы и не требует постоянного доступа. С ним можно быть честным, не превращая дружбу в работу по обслуживанию чужих эмоций.',
+      rhythm:'прямота, уважение к личному пространству, лёгкое возвращение после паузы',
+      danger:'люди без границ могут быстро начать пользоваться твоей зрелостью'
+    },
+    dissolved: {
+      name:'Друг, рядом с которым не нужно быть удобным',
+      text:'Тебе особенно нужен человек, который сам замечает перекос: когда ты слишком уступаешь, берёшь лишнее или молча терпишь. Хороший друг не покупает твою лояльность твоим истощением.',
+      rhythm:'можно отказывать, не объясняя свою ценность каждый раз',
+      danger:'сильные и требовательные люди могут незаметно посадить тебя в роль “всегда рядом”'
+    },
+    wall: {
+      name:'Тёплый, но не навязчивый друг',
+      text:'Тебе подходит человек, который не ломится через стену, но и не исчезает после первой паузы. Он даёт место, остаётся стабильным и не делает из твоей дистанции личное оскорбление.',
+      rhythm:'мало давления, много уважения, контакт без вторжения',
+      danger:'слишком липкая дружба быстро включит холод и желание отойти'
+    },
+    silent_trade: {
+      name:'Друг, который спрашивает прямо',
+      text:'Тебе нужен человек, рядом с которым не приходится надеяться, что тебя “считают без слов”. Он уточняет, проверяет реальность и помогает не копить тихую злость.',
+      rhythm:'прямые вопросы, ясные договорённости, без молчаливых долгов',
+      danger:'люди, которые всё угадывают за тебя, могут закреплять привычку молчать'
+    },
+    mixed: {
+      name:'Друг с гибкими границами',
+      text:'Тебе подходит человек, который выдерживает разные режимы: иногда ты открыт, иногда закрыт, иногда уступаешь, иногда резко защищаешься. Он не путает твою переменность с равнодушием.',
+      rhythm:'спокойное уточнение вместо давления и обиды',
+      danger:'хаотичные люди будут усиливать твою собственную неровность'
+    }
+  };
+  return profiles[type] || {
+    name:'Человек, рядом с которым не нужно играть роль',
+    text:'Persona уточнит дружеский портрет после слоя границ. Базово тебе подходит тот, кто уважает темп, не давит на лояльность и умеет говорить прямо, не превращая разговор в конфликт.',
+    rhythm:'простая честность, уважение к паузам и отсутствие скрытых счетов',
+    danger:'дружба, где нужно заслуживать место, быстро начнёт забирать энергию'
+  };
+}
+
+function getIdealWorkProfile(control, topAxis) {
+  const type = control?.data?.type;
+  const profiles = {
+    strategist: {
+      name:'Среда, где ценят стратегию',
+      text:'Тебе подходит работа, где нужно видеть систему, просчитывать последствия и влиять на форму. Скучная исполнительская роль быстро начнёт раздражать, потому что мозг хочет управлять картой целиком.',
+      rhythm:'автономия, сложные задачи, право предлагать ход',
+      growth:'Тебе важно не просто выполнять задачу, а понимать, зачем она нужна и где ты можешь улучшить ход. Рост начинается там, где тебе дают влияние на решение, а не только список поручений.',
+      money:'Деньги для тебя сильнее работают как рычаг свободы и уважения к компетентности. Если оплата не соответствует уровню ответственности, быстро появляется ощущение: “меня используют, но не слышат”.',
+      danger:'Выгорание начинается не от сложности, а от бессилия: когда ты видишь лучший ход, но не можешь повлиять. Тогда энергия уходит в раздражение, холодность и скрытое сопротивление.'
+    },
+    defender: {
+      name:'Роль, где виден твой вклад',
+      text:'Тебе важна не только задача, но и признание уровня. Лучше раскрываешься там, где есть понятные критерии, статус результата и ощущение, что тебя действительно видят.',
+      rhythm:'ясная обратная связь, рост, публичная ценность вклада',
+      growth:'Твоя точка роста — отделять реальную амбицию от попытки доказать ценность. Когда критерии прозрачны, ты растёшь быстрее и меньше зависишь от случайной оценки.',
+      money:'Деньги здесь связаны с признанием: “мой вклад видят и оценивают честно”. Недоплата или мутные обещания могут восприниматься не только как финансовая проблема, но и как обесценивание.',
+      danger:'Выгорание начинается, когда приходится постоянно доказывать очевидное. Тогда работа превращается в борьбу за значимость, а не в спокойное развитие.'
+    },
+    cold: {
+      name:'Кризисная или точная среда',
+      text:'Тебе подходит пространство, где ценят холодную голову, скорость и способность не теряться. Но важно, чтобы рядом были люди, которые помогают не превращать эффективность в эмоциональный лед.',
+      rhythm:'чёткие решения, высокая ответственность, минимум хаоса ради хаоса',
+      growth:'Твоя точка роста — не только быстро решать, но и объяснять людям, что происходит. Так твоя собранность становится лидерством, а не холодной дистанцией.',
+      money:'Деньги для тебя часто про независимость и право не быть уязвимым. Важно, чтобы доход не превращался в единственный способ чувствовать контроль.',
+      danger:'Выгорание приходит, когда ты слишком долго держишь режим “без эмоций”. Снаружи всё работает, но внутри копится усталость, резкость и отсутствие желания слышать людей.'
+    },
+    mixed: {
+      name:'Роль с переменными режимами',
+      text:'Тебе нужна работа, где можно быть разным: вести, договариваться, анализировать, давить темпом и менять стиль под ситуацию. Узкая роль быстро станет тесной.',
+      rhythm:'разные задачи, люди, переговоры, пространство для манёвра',
+      growth:'Твоя точка роста — выбирать режим осознанно, а не автоматически под человека или ситуацию. Когда ты понимаешь, где твой настоящий интерес, гибкость становится силой.',
+      money:'Деньги могут становиться мерой свободы менять траекторию. Риск — соглашаться на выгодное, но чужое направление, а потом терять вкус к работе.',
+      danger:'Выгорание появляется, когда ты слишком долго играешь нужную роль. Вроде справляешься, но внутри накапливается ощущение, что работа забирает настоящего тебя.'
+    },
+    balance: {
+      name:'Среда с доверием и ясными правилами',
+      text:'Тебе подходит место, где есть свобода действий, но понятны рамки. Там ты можешь работать устойчиво: без постоянного давления, но и без полного хаоса.',
+      rhythm:'доверие, предсказуемость, нормальная обратная связь',
+      growth:'Твоя точка роста — брать больше влияния, не дожидаясь идеальных условий. Когда рамки ясны, ты можешь спокойно усиливать роль и не перегреваться.',
+      money:'Деньги для тебя работают лучше всего как стабильная база: меньше тревоги, больше пространства думать о качестве, росте и долгой дистанции.',
+      danger:'Выгорание чаще приходит не от нагрузки, а от мутных ожиданий. Если непонятно, чего от тебя хотят, концентрация утекает в попытки угадать правила.'
+    }
+  };
+  return profiles[type] || {
+    name:'Среда, где твоя сильная ось работает на тебя',
+    text: topAxis ? `Сейчас ярче всего видна ось “${topAxis.axis.label}”. Полный профиль будет связывать её с карьерными решениями: где она даёт преимущество, а где превращается в напряжение.` : 'Persona уточнит рабочий стиль после тестов. Базово тебе нужна среда, где есть ясность, уважение к темпу и возможность влиять на результат.',
+    rhythm:'понятные правила, автономия и право на сильную сторону',
+    growth:topAxis ? `Рост начнётся с того, чтобы понять, как ось “${topAxis.axis.label}” влияет на решения, темп и реакцию на давление.` : 'Точка роста станет точнее после первых тестов.',
+    money:'Persona покажет, где деньги для тебя про безопасность, свободу, признание или контроль над собственной жизнью.',
+    danger:'Без ясности рабочая энергия начинает уходить в тревогу, контроль или внутреннее сопротивление вместо результата.'
+  };
+}
+
+function getRecommendationFocus({ anxiety, conflict, stability, attachment }) {
+  if (anxiety) return {
+    name:'Сначала снизить внутренний шум',
+    text:`${anxiety.data.red} Главный фокус — отделять факт от догадки и не принимать решения из перегрева.`,
+    rhythm:'пауза, проверка фактов, короткое действие вместо прокручивания',
+    danger:'если тревога рулит первой, остальные паттерны начинают усиливаться'
+  };
+  if (conflict) return {
+    name:'Сначала чинить контакт без атаки',
+    text:`${conflict.data.red} Главный фокус — заметить момент, где защита уже включилась, но разговор ещё можно не превращать в бой.`,
+    rhythm:'назвать напряжение, взять паузу, вернуться к сути',
+    danger:'победа в споре может стоить близости'
+  };
+  if (stability) return {
+    name:'Сначала укрепить опору',
+    text:`${stability.data.hook} Рекомендации будут строиться вокруг того, что возвращает тебя в устойчивость быстрее всего.`,
+    rhythm:'маленькие повторяемые действия вместо резкого рывка',
+    danger:'без опоры даже правильные советы ощущаются как давление'
+  };
+  if (attachment) return {
+    name:'Сначала прояснять близость',
+    text:`${attachment.data.red} Главный фокус — перестать проверять контакт косвенно и учиться говорить о важном прямее.`,
+    rhythm:'ясный вопрос, честная просьба, пауза без наказания',
+    danger:'молчаливые проверки могут выглядеть как недоверие'
+  };
+  return {
+    name:'Сначала собрать базовую карту',
+    text:'Persona даст точный фокус после нескольких тестов. Пока главный шаг — открыть первые слои, чтобы рекомендации были не общими, а твоими.',
+    rhythm:'один тест, один честный инсайт, одно действие',
+    danger:'без данных рекомендации превращаются в красивые, но слишком общие слова'
+  };
+}
+
+let fullProfileModules = {};
+
+function renderFullProfile() {
+  const completed = getCompletedTests();
+  const axisRows = getProfileAxisRows();
+  const topAxis = axisRows[0];
+  const control = getCompletedEntry(completed, 'control');
+  const attachment = getCompletedEntry(completed, 'attachment');
+  const boundaries = getCompletedEntry(completed, 'boundaries');
+  const anxiety = getCompletedEntry(completed, 'anxiety');
+  const conflict = getCompletedEntry(completed, 'conflict');
+  const stability = getCompletedEntry(completed, 'stability');
+  const workSignal = control || topAxis;
+  const idealPartner = getIdealPartnerProfile(attachment);
+  const bestFriend = getBestFriendProfile(boundaries);
+  const idealWork = getIdealWorkProfile(control, topAxis);
+  const recommendationFocus = getRecommendationFocus({ anxiety, conflict, stability, attachment });
+
+  fullProfileModules = {
+    relations: {
+      icon:'❤️',
+      title:'Отношения',
+      sub:'кто тебе подходит',
+      html:fullProfileSection({
+      kicker:'идеальная совместимость',
+      icon:'❤️',
+      title:'Кто тебе подходит',
+      text: attachment
+        ? `${attachment.data.title}. ${attachment.data.hook} Ниже Persona собирает не “идеал из мечты”, а тип человека, рядом с которым твой паттерн меньше воюет с близостью.`
+        : 'Этот модуль раскроется сильнее после теста привязанности: Persona покажет тип человека, который подходит тебе по темпу, близости и способу говорить о сложном.',
+      accent:true,
+      extra:`
+        <div class="ideal-partner-card">
+          <div class="ideal-partner-top">
+            <div>
+              <div class="ideal-partner-label">идеально подходит</div>
+              <div class="ideal-partner-name">${escapeHtml(idealPartner.name)}</div>
+            </div>
+            <div class="ideal-partner-mark">💞</div>
+          </div>
+          <div class="ideal-partner-text">${escapeHtml(idealPartner.text)}</div>
+        </div>
+      `,
+      points:[
+        { icon:'🫀', title:'Твой безопасный ритм', text:idealPartner.rhythm },
+        { icon:'🧲', title:'Кого может тянуть ошибочно', text:'ярких, недоступных или слишком похожих на твой старый сценарий людей. Они цепляют, но не всегда дают устойчивость.' },
+        { icon:'🚩', title:'Красная зона выбора', text:idealPartner.danger },
+        { icon:'🗣️', title:'Как с тобой говорить', text:attachment ? attachment.data.mirror : 'без давления, резких исчезновений и угадывания вместо прямого контакта' }
+      ]
+      })
+    },
+    friends: {
+      icon:'🤝',
+      title:'Дружба и окружение',
+      sub:'кто усиливает, кто гасит',
+      html:fullProfileSection({
+      kicker:'люди рядом',
+      icon:'🤝',
+      title:'Дружба и окружение',
+      text: boundaries
+        ? `${boundaries.data.title}. Persona связывает твои границы с тем, рядом с кем ты раскрываешься, а рядом с кем начинаешь защищаться.`
+        : 'Здесь будет видно, с кем ты становишься мягче, кто тебя истощает и почему иногда легче быть полезным, чем честным.',
+      extra:premiumFocusCard({
+        label:'лучший человек в дружбе',
+        name:bestFriend.name,
+        icon:'🤝',
+        text:bestFriend.text
+      }),
+      points:[
+        { icon:'🧭', title:'Комфортный ритм дружбы', text:bestFriend.rhythm },
+        { icon:'🧯', title:'Где теряешь энергию', text:boundaries ? boundaries.data.red : 'появится после слоя границ' },
+        { icon:'🫂', title:'С кем раскрываешься', text:'там, где рядом можно быть не идеальным, не удобным и не постоянно собранным.' },
+        { icon:'🚩', title:'Красная зона дружбы', text:bestFriend.danger }
+      ]
+      })
+    },
+    work: {
+      icon:'💼',
+      title:'Работа, амбиции, деньги',
+      sub:'давление, решения, статус',
+      html:fullProfileSection({
+      kicker:'дела и давление',
+      icon:'💼',
+      title:'Работа, амбиции, деньги',
+      text: control
+        ? `${control.data.title}. Твой контроль влияет не только на отношения: он меняет решения, темп, реакцию на конкуренцию и то, как ты переживаешь оценку.`
+        : 'Модуль покажет, где ты силён под давлением, а где начинаешь доказывать, тянуть всё на себе или резко выключать эмоции.',
+      accent:true,
+      extra:premiumFocusCard({
+        label:'идеальная среда',
+        name:idealWork.name,
+        icon:'💼',
+        text:idealWork.text
+      }),
+      points:[
+        { icon:'⚙️', title:'Рабочий ритм', text:idealWork.rhythm },
+        { icon:'📌', title:'Точка роста', text:idealWork.growth },
+        { icon:'💸', title:'Деньги и мотивация', text:idealWork.money },
+        { icon:'🔥', title:'Риск выгорания', text:workSignal ? idealWork.danger : 'раскроется после первых тестов.' }
+      ]
+      })
+    },
+    recommendations: {
+      icon:'🛠️',
+      title:'Персональные рекомендации',
+      sub:'что делать конкретно',
+      html:fullProfileSection({
+      kicker:'инструкция к себе',
+      icon:'🛠️',
+      title:'Персональные рекомендации',
+      text:'Не общие советы из интернета, а действия под твою карту. Чем больше тестов и инсайтов, тем меньше воды и тем точнее рекомендации.',
+      accent:true,
+      extra:premiumFocusCard({
+        label:'главный фокус сейчас',
+        name:recommendationFocus.name,
+        icon:'🛠️',
+        text:recommendationFocus.text
+      }),
+      points:[
+        { icon:'1', title:'Первый шаг', text:recommendationFocus.rhythm },
+        { icon:'2', title:'Где не давить', text:conflict ? conflict.data.red : 'в каких разговорах лучше брать паузу, а не усиливать защиту' },
+        { icon:'3', title:'Как возвращаться в опору', text:stability ? stability.data.hook : 'какой маленький шаг помогает не проваливаться в старый сценарий' },
+        { icon:'4', title:'Что может сорвать прогресс', text:recommendationFocus.danger }
+      ]
+      })
+    }
+  };
+
+  document.getElementById('full-profile-tabs').innerHTML = Object.entries(fullProfileModules).map(([id, module], index) => `
+    <button class="full-profile-tab ${index === 0 ? 'active' : ''}" onclick="switchFullProfileTab('${id}', this)">
+      <span class="full-profile-tab-icon">${module.icon}</span>
+      <span>
+        <span class="full-profile-tab-title">${escapeHtml(module.title)}</span>
+        <span class="full-profile-tab-sub">${escapeHtml(module.sub)}</span>
+      </span>
+    </button>
+  `).join('');
+  switchFullProfileTab('relations');
+}
+
+function switchFullProfileTab(id, el) {
+  const module = fullProfileModules[id] || fullProfileModules.relations;
+  document.querySelectorAll('.full-profile-tab').forEach(tab => tab.classList.remove('active'));
+  if (el) el.classList.add('active');
+  else document.querySelector(`.full-profile-tab[onclick*="${id}"]`)?.classList.add('active');
+  document.getElementById('full-profile-content').innerHTML = module.html;
+}
+
+function showFullProfilePreview() {
+  renderFullProfilePreview();
+  showScreen('full-preview');
+}
+
+function showFullProfile() {
+  renderFullProfile();
+  showScreen('full-profile');
+}
+
 function showSoon(message) {
   if (tg) tg.showAlert(message || 'Скоро!');
   else alert(message || 'Скоро!');
 }
 
 function openFullProfilePaywall() {
-  showSoon('Полный профиль Persona — 149 ₽ ранний доступ. Внутри: отношения, триггеры, скрытые противоречия, инструкция к тебе и рекомендации. Оплату подключим следующим шагом.');
+  showFullProfilePreview();
+}
+
+function startFullProfileCheckout() {
+  localStorage.setItem('personaFullProfileDemo', '1');
+  showFullProfile();
 }
 
 function unlockResult() {
@@ -4129,8 +5016,8 @@ renderProfile();
 updateProgress();
 setupCatalogScroll();
 setupProfileScroll();
+setupInsightsScroll();
 setupAppIntro();
 </script>
 </body>
 </html>
-
