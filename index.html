@@ -681,6 +681,12 @@ button { font: inherit; }
   gap:11px;
   text-align:left;
 }
+.compat-person-wrap {
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:8px;
+  align-items:stretch;
+}
 .compat-person.active {
   border-color:rgba(236,72,153,.54);
   background:
@@ -722,6 +728,15 @@ button { font: inherit; }
   font-size:11px;
   font-weight:900;
   white-space:nowrap;
+}
+.compat-delete {
+  width:48px;
+  border:.5px solid rgba(248,113,113,.22);
+  border-radius:18px;
+  background:rgba(248,113,113,.08);
+  color:#FCA5A5;
+  font-size:18px;
+  font-weight:900;
 }
 .duels-card {
   border:.5px solid rgba(255,255,255,.09);
@@ -5035,14 +5050,17 @@ function renderCompatibilityPeople() {
     return;
   }
   root.innerHTML = people.map(person => `
-    <button class="compat-person ${person.id === selectedCompatibilityPersonId ? 'active' : ''}" onclick="selectCompatibilityPerson('${escapeHtml(person.id)}')">
-      <div class="compat-avatar">${person.avatarUrl ? `<img src="${escapeHtml(person.avatarUrl)}" alt="">` : escapeHtml(person.avatar || person.name.slice(0, 1))}</div>
-      <div>
-        <b>${escapeHtml(person.name)}</b>
-        <span>${escapeHtml(person.note || 'профиль готов к сравнению')}</span>
-      </div>
-      <div class="compat-person-tag">${escapeHtml(person.tag || 'в Persona')}</div>
-    </button>
+    <div class="compat-person-wrap">
+      <button class="compat-person ${person.id === selectedCompatibilityPersonId ? 'active' : ''}" onclick="selectCompatibilityPerson('${escapeHtml(person.id)}')">
+        <div class="compat-avatar">${renderCompatibilityAvatar(person)}</div>
+        <div>
+          <b>${escapeHtml(person.name)}</b>
+          <span>${escapeHtml(person.note || 'профиль готов к сравнению')}</span>
+        </div>
+        <div class="compat-person-tag">${escapeHtml(person.tag || 'в Persona')}</div>
+      </button>
+      <button class="compat-delete" onclick="removeCompatibilityContact('${escapeHtml(person.id)}')" aria-label="Удалить контакт">×</button>
+    </div>
   `).join('');
 }
 
@@ -5050,12 +5068,28 @@ function selectCompatibilityPerson(id) {
   selectedCompatibilityPersonId = id;
   localStorage.setItem('personaSelectedCompatibilityPerson', id);
   renderCompatibilityPeople();
+  clearCompatibilityResult();
+  safeSelectionHaptic();
+}
+
+function clearCompatibilityResult() {
   const root = document.getElementById('compatibility-demo-result');
   if (root) {
     root.classList.remove('show');
     root.innerHTML = '';
   }
-  safeSelectionHaptic();
+}
+
+function removeCompatibilityContact(id) {
+  const contacts = getStoredCompatibilityContacts().filter(contact => normalizeCompatibilityPerson(contact)?.id !== id);
+  saveCompatibilityContacts(contacts);
+  if (selectedCompatibilityPersonId === id) {
+    selectedCompatibilityPersonId = contacts[0] ? normalizeCompatibilityPerson(contacts[0]).id : '';
+    localStorage.setItem('personaSelectedCompatibilityPerson', selectedCompatibilityPersonId);
+  }
+  clearCompatibilityResult();
+  renderCompatibilityPeople();
+  safeHaptic('impact');
 }
 
 function getStoredCompatibilityContacts() {
@@ -5079,9 +5113,10 @@ function hashPersonaCode(code) {
   return normalizePersonaCode(code).split('').reduce((sum, char, index) => sum + char.charCodeAt(0) * (index + 17), 0);
 }
 
-function getCompatibilityAvatarUrl(code) {
-  const normalized = encodeURIComponent(normalizePersonaCode(code) || 'PERSONA');
-  return `https://i.pravatar.cc/96?u=${normalized}`;
+function renderCompatibilityAvatar(person) {
+  const photo = person?.photoUrl || person?.avatarUrl || '';
+  if (photo) return `<img src="${escapeHtml(photo)}" alt="">`;
+  return escapeHtml(person?.avatar || person?.name?.slice(0, 1) || 'П');
 }
 
 function makeCompatibilityProfileFromCode(code) {
@@ -5100,10 +5135,10 @@ function makeCompatibilityProfileFromCode(code) {
     id:`code-${normalized}`,
     code:normalized,
     avatar:normalized.replace(/[^A-ZА-Я0-9]/g, '').slice(-1) || 'П',
-    avatarUrl:getCompatibilityAvatarUrl(normalized),
+    photoUrl:'',
     name:`${names[seed % names.length]} ${normalized.slice(-4)}`,
     tag:tags[seed % tags.length],
-    note:notes[(seed + 1) % notes.length],
+    note:'Telegram-аватарка появится после подключения бота',
     createdAt:Date.now(),
     rows:{
       closeness:value(1),
@@ -5124,7 +5159,7 @@ function normalizeCompatibilityPerson(person) {
     id:person.id || `invite-${person.code || 'saved'}`,
     code:person.code || 'saved',
     avatar:person.avatar || 'П',
-    avatarUrl:person.avatarUrl || getCompatibilityAvatarUrl(person.code || person.id || person.name),
+    photoUrl:person.photoUrl || person.avatarUrl || '',
     name:person.name || 'Партнёр Persona',
     tag:person.tag || 'в Persona',
     note:person.note || 'профиль готов к сравнению',
