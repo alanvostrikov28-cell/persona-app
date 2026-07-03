@@ -633,6 +633,36 @@ button { font: inherit; }
   color:inherit;
   text-decoration:none;
 }
+.compat-code-form {
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:8px;
+  margin-top:14px;
+}
+.compat-code-input {
+  min-width:0;
+  border:.5px solid rgba(255,255,255,.11);
+  border-radius:16px;
+  background:rgba(10,10,15,.42);
+  color:var(--text);
+  min-height:48px;
+  padding:0 13px;
+  font-weight:900;
+  outline:none;
+}
+.compat-code-input::placeholder {
+  color:var(--text3);
+}
+.compat-empty {
+  margin-top:14px;
+  border:.5px dashed rgba(236,72,153,.30);
+  border-radius:18px;
+  background:rgba(236,72,153,.055);
+  padding:14px;
+  color:var(--text2);
+  font-size:13px;
+  line-height:1.45;
+}
 .compat-people {
   display:grid;
   gap:9px;
@@ -1539,6 +1569,17 @@ button { font: inherit; }
   font-weight:800;
   letter-spacing:.08em;
   text-transform:uppercase;
+}
+.persona-code-btn {
+  margin-top:8px;
+  border:.5px solid rgba(139,92,246,.34);
+  border-radius:999px;
+  background:rgba(139,92,246,.12);
+  color:#C4B5FD;
+  min-height:30px;
+  padding:0 10px;
+  font-size:11px;
+  font-weight:900;
 }
 .persona-status {
   border:.5px solid rgba(52,211,153,.22);
@@ -3271,40 +3312,29 @@ button { font: inherit; }
       <div class="duels-hero">
         <div class="duels-status top">полный доступ · 149 ₽</div>
         <div class="duels-title">❤️ Совместимость</div>
-        <div class="duels-text">Выбери человека из Persona-карты. Сравнение строится на двух профилях, без отдельного теста пары.</div>
+        <div class="duels-text">Введи Persona-код друга. Он добавится в контакты, а сравнение соберётся по вашим профилям.</div>
+        <div class="compat-code-form">
+          <input class="compat-code-input" id="compatibility-code-input" placeholder="Например: PRS-8K4M2">
+          <button class="duels-action primary" onclick="addCompatibilityContact()">Добавить</button>
+        </div>
         <div class="compat-people" id="compatibility-people"></div>
         <div class="duels-actions">
-          <button class="duels-action primary" onclick="showCompatibilityDemo()">👤 Посмотреть совместимость</button>
-          <button class="duels-action primary" onclick="createCompatibilityInvite()">🔗 Пригласить партнёра</button>
+          <button class="duels-action primary" onclick="showCompatibilityDemo()">👤 Посмотреть сравнение</button>
+          <button class="duels-action" onclick="showMyPersonaCode()">🔑 Мой Persona-код</button>
           <button class="duels-action" onclick="showCompatibilityHistory()">📜 Мои сравнения</button>
         </div>
         <div class="duels-link-card" id="compatibility-link-card" style="display:none">
-          <div class="duels-link-label">ссылка для партнёра</div>
+          <div class="duels-link-label">твой код</div>
           <div class="duels-link" id="compatibility-link"></div>
-          <div class="duels-text">Партнёр открывает ссылку, попадает в Persona и появляется в списке людей для сравнения.</div>
-          <button class="duels-action primary" onclick="showCompatibilityDemo()">Посмотреть демо сравнения</button>
+          <div class="duels-text">Друг вводит этот код у себя во вкладке совместимости и добавляет тебя в контакты.</div>
+          <button class="duels-action primary" onclick="copyPersonaCode()">Скопировать код</button>
         </div>
         <div class="compat-flow">
-          <div class="compat-step"><div class="compat-step-num">1</div><b>Профиль</b><span>У каждого уже есть Persona-карта.</span></div>
-          <div class="compat-step"><div class="compat-step-num">2</div><b>Выбор</b><span>Ты выбираешь человека.</span></div>
-          <div class="compat-step"><div class="compat-step-num">3</div><b>Сравнение</b><span>Persona собирает карту пары.</span></div>
+          <div class="compat-step"><div class="compat-step-num">1</div><b>Код</b><span>Друг даёт свой Persona-код.</span></div>
+          <div class="compat-step"><div class="compat-step-num">2</div><b>Контакт</b><span>Ты добавляешь его в список.</span></div>
+          <div class="compat-step"><div class="compat-step-num">3</div><b>Разбор</b><span>Persona сравнивает две карты.</span></div>
         </div>
         <div class="compat-result" id="compatibility-demo-result"></div>
-      </div>
-      <div class="duels-hero">
-        <div class="duels-status top">основа сравнения</div>
-        <div class="duels-title">8 шкал сравнения</div>
-        <div class="duels-text">Для MVP Persona будет сравнивать пару по восьми понятным шкалам. Этого достаточно, чтобы результат был цепким, но не перегруженным.</div>
-        <div class="compat-scale-grid">
-          <div class="compat-scale"><div class="compat-scale-num">1</div><div class="compat-scale-name">Потребность в близости</div><div class="compat-scale-tag">контакт</div></div>
-          <div class="compat-scale"><div class="compat-scale-num">2</div><div class="compat-scale-name">Ревность</div><div class="compat-scale-tag">контроль</div></div>
-          <div class="compat-scale"><div class="compat-scale-num">3</div><div class="compat-scale-name">Доверие</div><div class="compat-scale-tag">опора</div></div>
-          <div class="compat-scale"><div class="compat-scale-num">4</div><div class="compat-scale-name">Эмоциональность</div><div class="compat-scale-tag">реакция</div></div>
-          <div class="compat-scale"><div class="compat-scale-num">5</div><div class="compat-scale-name">Конфликтность</div><div class="compat-scale-tag">ссоры</div></div>
-          <div class="compat-scale"><div class="compat-scale-num">6</div><div class="compat-scale-name">Избегание конфликтов</div><div class="compat-scale-tag">уход</div></div>
-          <div class="compat-scale"><div class="compat-scale-num">7</div><div class="compat-scale-name">Потребность в свободе</div><div class="compat-scale-tag">дистанция</div></div>
-          <div class="compat-scale"><div class="compat-scale-num">8</div><div class="compat-scale-name">Стиль общения</div><div class="compat-scale-tag">диалог</div></div>
-        </div>
       </div>
     </div>
   </div>
@@ -3313,24 +3343,6 @@ button { font: inherit; }
     <button class="nav-item" onclick="showProfile()"><span class="nav-icon">👤</span><span>Профиль</span></button>
     <button class="nav-item active"><span class="nav-icon">❤️</span><span>Совм.</span></button>
     <button class="nav-item" onclick="showInsights()"><span class="nav-icon">✨</span><span>Инсайты</span></button>
-  </div>
-</div>
-
-<div class="screen" id="screen-partner-match">
-  <div class="cat-header">
-    <div class="cat-header-top">
-      <div class="logo-mark">
-        <span class="nav-icon">❤️</span>
-        <span class="logo-name">ПАРТНЁР PERSONA</span>
-      </div>
-    </div>
-    <div class="greeting-label">Приглашение</div>
-    <div class="greeting-title">Партнёр<br><span>добавлен</span></div>
-  </div>
-  <div class="scrollable">
-    <div class="profile-dashboard">
-      <div id="partner-match-root"></div>
-    </div>
   </div>
 </div>
 
@@ -3961,6 +3973,20 @@ function getPersonaUser() {
     photo: tgUser?.photo_url || '',
     id: tgUser?.id ? 'TG-' + tgUser.id : getGuestPersonaId()
   };
+}
+
+async function copyPersonaCode() {
+  const code = getPersonaUser().id;
+  try {
+    await navigator.clipboard.writeText(code);
+    safeHaptic('success');
+    if (tg) tg.showAlert(`Код скопирован: ${code}`);
+    else alert(`Код скопирован: ${code}`);
+  } catch (error) {
+    safeHaptic('impact');
+    if (tg) tg.showAlert(`Твой Persona-код: ${code}`);
+    else alert(`Твой Persona-код: ${code}`);
+  }
 }
 
 function safeHaptic(type = 'success') {
@@ -4865,6 +4891,7 @@ function renderProfile() {
       <div class="persona-user">
         <div class="persona-name">${userName}</div>
         <div class="persona-id">Persona ID · ${escapeHtml(user.id)}</div>
+        <button class="persona-code-btn" onclick="copyPersonaCode()">Скопировать код</button>
       </div>
       <div class="persona-status">${completed.length ? 'в системе' : 'новый профиль'}</div>
     </div>
@@ -4976,40 +5003,11 @@ const compatibilityPartnerQuestions = [
   { key:'communication', name:'Стиль общения', text:'Мне проще, когда о сложном говорят прямо, без намёков и проверок.' }
 ];
 
-let partnerInviteCode = '';
-let partnerCompatibilityAnswers = [];
-let selectedCompatibilityPersonId = localStorage.getItem('personaSelectedCompatibilityPerson') || 'mira';
-
-const compatibilityPeople = [
-  {
-    id:'mira',
-    avatar:'М',
-    name:'Мира',
-    tag:'мягкий контакт',
-    note:'тёплая, но не любит давление',
-    rows:{ closeness:76, jealousy:42, trust:78, emotion:69, conflict:44, avoidance:58, freedom:63, communication:74 }
-  },
-  {
-    id:'alex',
-    avatar:'А',
-    name:'Алекс',
-    tag:'искрит быстро',
-    note:'много эмоций, много прямоты',
-    rows:{ closeness:88, jealousy:72, trust:54, emotion:84, conflict:78, avoidance:35, freedom:48, communication:67 }
-  },
-  {
-    id:'nika',
-    avatar:'Н',
-    name:'Ника',
-    tag:'свобода важна',
-    note:'держит дистанцию, но ценит честность',
-    rows:{ closeness:61, jealousy:38, trust:71, emotion:55, conflict:51, avoidance:72, freedom:86, communication:79 }
-  }
-];
+let selectedCompatibilityPersonId = localStorage.getItem('personaSelectedCompatibilityPerson') || '';
 
 function getSelectedCompatibilityPerson() {
   const people = getCompatibilityPeople();
-  return people.find(person => person.id === selectedCompatibilityPersonId) || people[0];
+  return people.find(person => person.id === selectedCompatibilityPersonId) || people[0] || null;
 }
 
 function renderCompatibilityPeople() {
@@ -5017,7 +5015,11 @@ function renderCompatibilityPeople() {
   if (!root) return;
   const people = getCompatibilityPeople();
   if (!people.some(person => person.id === selectedCompatibilityPersonId)) {
-    selectedCompatibilityPersonId = people[0]?.id || 'mira';
+    selectedCompatibilityPersonId = people[0]?.id || '';
+  }
+  if (!people.length) {
+    root.innerHTML = `<div class="compat-empty">Контактов пока нет. Введи Persona-код друга, и он появится здесь для сравнения.</div>`;
+    return;
   }
   root.innerHTML = people.map(person => `
     <button class="compat-person ${person.id === selectedCompatibilityPersonId ? 'active' : ''}" onclick="selectCompatibilityPerson('${escapeHtml(person.id)}')">
@@ -5043,32 +5045,57 @@ function selectCompatibilityPerson(id) {
   safeSelectionHaptic();
 }
 
-function getCompatibilityInviteUrl(code) {
-  const url = new URL(window.location.href);
-  url.search = '';
-  url.hash = '';
-  url.searchParams.set('match', code);
-  return url.toString();
-}
-
-function getStoredPartnerCompatibility() {
+function getStoredCompatibilityContacts() {
   try {
-    return JSON.parse(localStorage.getItem('personaCompatibilityPartner') || 'null');
+    const value = JSON.parse(localStorage.getItem('personaCompatibilityContacts') || '[]');
+    return Array.isArray(value) ? value : [];
   } catch {
-    return null;
+    return [];
   }
 }
 
-function makeInvitedCompatibilityProfile(code) {
+function saveCompatibilityContacts(contacts) {
+  localStorage.setItem('personaCompatibilityContacts', JSON.stringify(contacts));
+}
+
+function normalizePersonaCode(code) {
+  return String(code || '').trim().toUpperCase().replace(/\s+/g, '');
+}
+
+function hashPersonaCode(code) {
+  return normalizePersonaCode(code).split('').reduce((sum, char, index) => sum + char.charCodeAt(0) * (index + 17), 0);
+}
+
+function makeCompatibilityProfileFromCode(code) {
+  const normalized = normalizePersonaCode(code);
+  const seed = hashPersonaCode(normalized);
+  const names = ['Партнёр Persona', 'Друг Persona', 'Контакт Persona', 'Новый профиль'];
+  const notes = [
+    'добавлен по внутреннему коду',
+    'профиль готов к сравнению',
+    'карта уже в контактах',
+    'можно смотреть совместимость'
+  ];
+  const tags = ['код принят', 'в Persona', 'контакт', 'профиль'];
+  const value = (offset) => 34 + ((seed + offset * 19) % 58);
   return {
-    id:`invite-${code}`,
-    code,
-    avatar:'П',
-    name:'Приглашённый партнёр',
-    tag:'новый профиль',
-    note:'появился через ссылку приглашения',
+    id:`code-${normalized}`,
+    code:normalized,
+    avatar:normalized.replace(/[^A-ZА-Я0-9]/g, '').slice(-1) || 'П',
+    name:`${names[seed % names.length]} ${normalized.slice(-4)}`,
+    tag:tags[seed % tags.length],
+    note:notes[(seed + 1) % notes.length],
     createdAt:Date.now(),
-    rows:{ closeness:73, jealousy:55, trust:70, emotion:66, conflict:58, avoidance:62, freedom:69, communication:76 }
+    rows:{
+      closeness:value(1),
+      jealousy:value(2),
+      trust:value(3),
+      emotion:value(4),
+      conflict:value(5),
+      avoidance:value(6),
+      freedom:value(7),
+      communication:value(8)
+    }
   };
 }
 
@@ -5087,24 +5114,48 @@ function normalizeCompatibilityPerson(person) {
 }
 
 function getCompatibilityPeople() {
-  const invited = normalizeCompatibilityPerson(getStoredPartnerCompatibility());
-  return invited ? [invited, ...compatibilityPeople] : compatibilityPeople;
+  return getStoredCompatibilityContacts().map(normalizeCompatibilityPerson).filter(Boolean);
 }
 
-function createCompatibilityInvite() {
-  const code = Math.random().toString(36).slice(2, 7) + Date.now().toString(36).slice(-3);
-  const link = getCompatibilityInviteUrl(code);
+function showMyPersonaCode() {
   const card = document.getElementById('compatibility-link-card');
   const target = document.getElementById('compatibility-link');
-  localStorage.setItem('personaCompatibilityInvite', code);
-  if (target) target.innerHTML = `<a href="${escapeHtml(link)}">${escapeHtml(link)}</a>`;
+  const code = getPersonaUser().id;
+  if (target) target.textContent = code;
   if (card) card.style.display = 'block';
-  const invitedProfile = makeInvitedCompatibilityProfile(code);
-  localStorage.setItem('personaCompatibilityPartner', JSON.stringify(invitedProfile));
-  selectedCompatibilityPersonId = invitedProfile.id;
-  localStorage.setItem('personaSelectedCompatibilityPerson', invitedProfile.id);
+  safeSelectionHaptic();
+}
+
+function addCompatibilityContact() {
+  const input = document.getElementById('compatibility-code-input');
+  const code = normalizePersonaCode(input?.value);
+  const card = document.getElementById('compatibility-link-card');
+  const target = document.getElementById('compatibility-link');
+  if (!code || code.length < 4) {
+    if (target) target.textContent = 'Введи Persona-код друга полностью.';
+    if (card) card.style.display = 'block';
+    safeHaptic('error');
+    return;
+  }
+  const myCode = normalizePersonaCode(getPersonaUser().id);
+  if (code === myCode) {
+    if (target) target.textContent = 'Это твой код. Для сравнения нужен код другого человека.';
+    if (card) card.style.display = 'block';
+    safeHaptic('error');
+    return;
+  }
+  const contacts = getStoredCompatibilityContacts();
+  const existing = contacts.find(contact => normalizePersonaCode(contact.code) === code);
+  const profile = existing || makeCompatibilityProfileFromCode(code);
+  const next = existing ? contacts : [profile, ...contacts];
+  saveCompatibilityContacts(next);
+  selectedCompatibilityPersonId = profile.id;
+  localStorage.setItem('personaSelectedCompatibilityPerson', profile.id);
+  if (input) input.value = '';
+  if (target) target.textContent = `Контакт добавлен · ${profile.name}`;
+  if (card) card.style.display = 'block';
   renderCompatibilityPeople();
-  safeHaptic('impact');
+  safeHaptic('success');
 }
 
 function getCompatibilityDemoRows() {
@@ -5124,8 +5175,20 @@ function getCompatibilityDemoRows() {
 function showCompatibilityDemo() {
   const root = document.getElementById('compatibility-demo-result');
   if (!root) return;
-  const rows = getCompatibilityDemoRows();
   const partner = getSelectedCompatibilityPerson();
+  if (!partner) {
+    root.classList.add('show');
+    root.innerHTML = `
+      <div class="compat-insight">
+        <b>Сначала добавь контакт</b>
+        <span>Введи Persona-код друга. После этого здесь появится сравнение ваших двух профилей.</span>
+      </div>
+    `;
+    root.scrollIntoView({ behavior:'smooth', block:'nearest' });
+    safeHaptic('error');
+    return;
+  }
+  const rows = getCompatibilityDemoRows();
   const score = Math.round(rows.reduce((sum, row) => sum + (100 - Math.abs(row.you - row.partner)), 0) / rows.length);
   const tension = rows.reduce((max, row) => Math.abs(row.you - row.partner) > Math.abs(max.you - max.partner) ? row : max, rows[0]);
   const closest = rows.reduce((min, row) => Math.abs(row.you - row.partner) < Math.abs(min.you - min.partner) ? row : min, rows[0]);
@@ -5165,110 +5228,9 @@ function showCompatibilityHistory() {
   const person = getSelectedCompatibilityPerson();
   if (target) target.textContent = person
     ? `Сравнение · ${person.name} · готово`
-    : 'Выбери человека и нажми “Посмотреть совместимость”';
+    : 'Сравнений пока нет. Добавь Persona-код друга.';
   if (card) card.style.display = 'block';
-  showCompatibilityDemo();
-}
-
-function showPartnerMatch(code) {
-  partnerInviteCode = code || 'demo';
-  const invitedProfile = makeInvitedCompatibilityProfile(partnerInviteCode);
-  localStorage.setItem('personaCompatibilityPartner', JSON.stringify(invitedProfile));
-  selectedCompatibilityPersonId = invitedProfile.id;
-  localStorage.setItem('personaSelectedCompatibilityPerson', invitedProfile.id);
-  renderPartnerProfileAdded();
-  showScreen('partner-match');
-}
-
-function renderPartnerProfileAdded() {
-  const root = document.getElementById('partner-match-root');
-  if (!root) return;
-  root.innerHTML = `
-    <div class="duels-hero">
-      <div class="duels-status top">в Persona</div>
-      <div class="duels-title">Профиль партнёра добавлен</div>
-      <div class="duels-text">Для прототипа Persona уже собрала базовую карту человека. Теперь можно вернуться и посмотреть демо-совместимость без отдельного теста пары.</div>
-      <div class="compat-flow">
-        <div class="compat-step"><div class="compat-step-num">1</div><b>Профиль</b><span>Партнёр появился в списке.</span></div>
-        <div class="compat-step"><div class="compat-step-num">2</div><b>Выбор</b><span>Ты выбираешь его в совместимости.</span></div>
-        <div class="compat-step"><div class="compat-step-num">3</div><b>Разбор</b><span>Persona сравнивает две карты.</span></div>
-      </div>
-      <button class="duels-action primary" onclick="returnToCompatibilityFromPartner()">Вернуться к совместимости</button>
-    </div>
-  `;
-}
-
-function renderPartnerMatchQuestion() {
-  const root = document.getElementById('partner-match-root');
-  if (!root) return;
-  const index = partnerCompatibilityAnswers.length;
-  const question = compatibilityPartnerQuestions[index];
-  const progress = Math.round((index / compatibilityPartnerQuestions.length) * 100);
-  root.innerHTML = `
-    <div class="duels-hero">
-      <div class="duels-status top">${index + 1}/${compatibilityPartnerQuestions.length}</div>
-      <div class="duels-title">${question.name}</div>
-      <div class="duels-text">${question.text}</div>
-      <div class="partner-options">
-        ${['совсем нет','скорее нет','иногда','часто','очень про меня'].map((label, optionIndex) => `
-          <button class="partner-option" onclick="answerPartnerCompatibility(${optionIndex + 1})">${label}</button>
-        `).join('')}
-      </div>
-      <div class="partner-progress"><span style="width:${progress}%"></span></div>
-    </div>
-  `;
-}
-
-function answerPartnerCompatibility(value) {
-  partnerCompatibilityAnswers.push(value);
-  safeSelectionHaptic();
-  if (partnerCompatibilityAnswers.length >= compatibilityPartnerQuestions.length) {
-    completePartnerCompatibility();
-    return;
-  }
-  renderPartnerMatchQuestion();
-}
-
-function completePartnerCompatibility() {
-  const rows = {};
-  compatibilityPartnerQuestions.forEach((question, index) => {
-    rows[question.key] = Math.max(18, Math.min(96, partnerCompatibilityAnswers[index] * 20));
-  });
-  const result = {
-    code: partnerInviteCode,
-    name:'Партнёр Persona',
-    createdAt: Date.now(),
-    rows
-  };
-  localStorage.setItem('personaCompatibilityPartner', JSON.stringify(result));
-  const root = document.getElementById('partner-match-root');
-  if (root) {
-    root.innerHTML = `
-      <div class="duels-hero">
-        <div class="duels-status top">готово</div>
-        <div class="duels-title">Профиль партнёра собран</div>
-        <div class="duels-text">Теперь в основной вкладке Persona можно нажать “Сравнить с человеком” и увидеть демо-сравнение по вашим 8 шкалам.</div>
-        <button class="duels-action primary" onclick="returnToCompatibilityFromPartner()">Вернуться к совместимости</button>
-      </div>
-    `;
-  }
-  safeHaptic('success');
-}
-
-function returnToCompatibilityFromPartner() {
-  const url = new URL(window.location.href);
-  url.searchParams.delete('match');
-  window.history.replaceState({}, '', url.toString());
-  showDuels();
-  showCompatibilityHistory();
-}
-
-function bootCompatibilityInvite() {
-  const params = new URLSearchParams(window.location.search);
-  const code = params.get('match');
-  if (!code) return false;
-  showPartnerMatch(code);
-  return true;
+  if (person) showCompatibilityDemo();
 }
 
 function renderFullProfilePreview() {
@@ -5785,7 +5747,6 @@ setupCatalogScroll();
 setupProfileScroll();
 setupInsightsScroll();
 setupAppIntro();
-bootCompatibilityInvite();
 </script>
 </body>
 </html>
