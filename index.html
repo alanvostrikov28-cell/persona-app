@@ -792,43 +792,11 @@ button { font: inherit; }
   font-size:11px;
   font-weight:900;
 }
-.compat-flow {
-  display:grid;
-  grid-template-columns:repeat(3, 1fr);
-  gap:9px;
-  margin-top:14px;
-}
-.compat-step,
 .compat-result {
   border:.5px solid rgba(255,255,255,.09);
   border-radius:18px;
   background:rgba(10,10,15,.34);
   padding:13px;
-}
-.compat-step-num {
-  width:28px;
-  height:28px;
-  border-radius:10px;
-  display:grid;
-  place-items:center;
-  background:linear-gradient(135deg, rgba(139,92,246,.55), rgba(236,72,153,.42));
-  color:#fff;
-  font-size:12px;
-  font-weight:900;
-  margin-bottom:10px;
-}
-.compat-step b {
-  display:block;
-  color:var(--text);
-  font-size:13px;
-  line-height:1.25;
-}
-.compat-step span {
-  display:block;
-  margin-top:5px;
-  color:var(--text2);
-  font-size:11px;
-  line-height:1.35;
 }
 .compat-preview-head {
   display:flex;
@@ -966,10 +934,6 @@ button { font: inherit; }
   border-radius:inherit;
   background:linear-gradient(90deg, #8B5CF6, #EC4899);
 }
-@media (max-width:560px) {
-  .compat-flow { grid-template-columns:1fr; }
-}
-
 .back-wrap { flex-shrink:0; padding: 20px 0 0 22px; }
 .intro-content {
   padding: 20px 24px 28px;
@@ -2829,6 +2793,66 @@ button { font: inherit; }
   font-size:12px;
   line-height:1.45;
 }
+.full-access-status {
+  margin-top:14px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding:14px;
+  border-radius:18px;
+  border:.5px solid rgba(52,211,153,.34);
+  background:linear-gradient(135deg, rgba(52,211,153,.12), rgba(139,92,246,.08));
+}
+.full-access-status b {
+  display:block;
+  color:var(--text);
+  font-size:14px;
+}
+.full-access-status span {
+  display:block;
+  margin-top:4px;
+  color:var(--text2);
+  font-size:12px;
+  line-height:1.35;
+}
+.full-access-pill {
+  flex:0 0 auto;
+  padding:8px 10px;
+  border-radius:999px;
+  color:#BFFFE5;
+  font-size:12px;
+  font-weight:900;
+  background:rgba(16,185,129,.15);
+  border:.5px solid rgba(52,211,153,.34);
+}
+.checkout-panel {
+  margin-top:14px;
+  padding:14px;
+  border-radius:18px;
+  border:.5px solid rgba(236,72,153,.24);
+  background:rgba(255,255,255,.045);
+}
+.checkout-row {
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  padding:10px 0;
+  border-bottom:.5px solid rgba(255,255,255,.08);
+  color:var(--text2);
+  font-size:13px;
+}
+.checkout-row:last-child { border-bottom:0; }
+.checkout-row b {
+  color:var(--text);
+  font-size:14px;
+}
+.checkout-note {
+  margin-top:10px;
+  color:var(--text3);
+  font-size:12px;
+  line-height:1.45;
+}
 .full-preview-grid {
   display:grid;
   gap:10px;
@@ -3353,13 +3377,7 @@ button { font: inherit; }
         <div class="duels-link-card" id="compatibility-link-card">
           <div class="duels-link-label">твой код</div>
           <div class="duels-link" id="compatibility-link"></div>
-          <div class="duels-text">Друг вводит этот код у себя во вкладке совместимости и добавляет тебя в контакты.</div>
           <button class="duels-action primary" onclick="copyPersonaCode()">Скопировать код</button>
-        </div>
-        <div class="compat-flow">
-          <div class="compat-step"><div class="compat-step-num">1</div><b>Код</b><span>Друг даёт свой Persona-код.</span></div>
-          <div class="compat-step"><div class="compat-step-num">2</div><b>Контакт</b><span>Ты добавляешь его в список.</span></div>
-          <div class="compat-step"><div class="compat-step-num">3</div><b>Разбор</b><span>Persona сравнивает две карты.</span></div>
         </div>
         <div class="compat-result" id="compatibility-demo-result"></div>
       </div>
@@ -3485,7 +3503,7 @@ button { font: inherit; }
     </div>
   </div>
   <div class="full-preview-footer">
-    <button class="btn-primary" onclick="startFullProfileCheckout()">Разблокировать полный профиль — 149 ₽</button>
+    <button class="btn-primary" id="full-preview-buy-btn" onclick="startFullProfileCheckout()">Разблокировать полный профиль — 149 ₽</button>
   </div>
 </div>
 
@@ -3581,6 +3599,71 @@ if (tg) {
 }
 
 const tgUser = tg?.initDataUnsafe?.user || null;
+
+const FULL_ACCESS_PRODUCT = {
+  id:'persona_full_access',
+  title:'Полный доступ Persona',
+  price:149,
+  currency:'RUB',
+  storageKey:'personaFullAccess'
+};
+
+function getFullAccessState() {
+  try {
+    const saved = JSON.parse(localStorage.getItem(FULL_ACCESS_PRODUCT.storageKey) || 'null');
+    if (saved?.active) return saved;
+  } catch (error) {
+    console.warn('Full access state failed', error);
+  }
+  if (localStorage.getItem('personaFullProfileDemo') === '1') {
+    return {
+      active:true,
+      productId:FULL_ACCESS_PRODUCT.id,
+      source:'legacy-demo',
+      activatedAt:Date.now()
+    };
+  }
+  return { active:false };
+}
+
+function hasFullAccess() {
+  return Boolean(getFullAccessState().active);
+}
+
+function grantFullAccess(source = 'demo-checkout') {
+  const access = {
+    active:true,
+    productId:FULL_ACCESS_PRODUCT.id,
+    productTitle:FULL_ACCESS_PRODUCT.title,
+    price:FULL_ACCESS_PRODUCT.price,
+    currency:FULL_ACCESS_PRODUCT.currency,
+    source,
+    activatedAt:Date.now(),
+    userId:getPersonaUser().id
+  };
+  localStorage.setItem(FULL_ACCESS_PRODUCT.storageKey, JSON.stringify(access));
+  localStorage.setItem('personaFullProfileDemo', '1');
+  updateFullAccessUi();
+  return access;
+}
+
+function getFullAccessButtonText() {
+  return hasFullAccess()
+    ? '✓ Полный доступ'
+    : `🔐 Полный доступ <span>${FULL_ACCESS_PRODUCT.price} ₽</span>`;
+}
+
+function updateFullAccessUi() {
+  document.querySelectorAll('.premium-top-btn').forEach(button => {
+    button.innerHTML = getFullAccessButtonText();
+  });
+  const footerButton = document.getElementById('full-preview-buy-btn');
+  if (footerButton) {
+    footerButton.textContent = hasFullAccess()
+      ? 'Открыть полный профиль'
+      : `Разблокировать полный профиль — ${FULL_ACCESS_PRODUCT.price} ₽`;
+  }
+}
 
 const facets = [
   { id:'self', title:'Самооценка', text:'ценность, признание, уязвимость' },
@@ -4678,6 +4761,7 @@ function renderDailyPremium() {
   const root = document.getElementById('daily-premium');
   if (!root) return;
   const result = getTodayDailyResult();
+  const unlocked = hasFullAccess();
   const mood = result?.moodTitle || 'твоё состояние';
   const reason = result
     ? `Persona покажет, почему сегодня включается именно “${escapeHtml(mood)}”: контроль, тревога, усталость, близость или старый способ защиты.`
@@ -4690,29 +4774,29 @@ function renderDailyPremium() {
           <div class="insight-premium-title">Не просто настроение. Причины и повторения.</div>
           <div class="daily-text">Полный доступ усилит ежедневные инсайты: Persona будет видеть динамику недели и давать действия под твою карту, а не общие советы.</div>
         </div>
-        <div class="insight-premium-price">149 ₽</div>
+        <div class="insight-premium-price">${unlocked ? 'открыто' : `${FULL_ACCESS_PRODUCT.price} ₽`}</div>
       </div>
       <div class="insight-premium-grid">
-        <div class="premium-insight-card locked">
-          <div class="premium-insight-tag">🔐 недельная динамика</div>
+        <div class="premium-insight-card ${unlocked ? '' : 'locked'}">
+          <div class="premium-insight-tag">${unlocked ? '✓ открыто' : '🔐 недельная динамика'}</div>
           <b>Какие состояния повторяются</b>
           <span>Перегрев, закрытость, тревожный фон или жажда контакта — Persona покажет, что возвращается чаще всего.</span>
           <div class="premium-preview-bars">
             <i style="height:36%"></i><i style="height:68%"></i><i style="height:44%"></i><i style="height:82%"></i><i style="height:58%"></i><i style="height:74%"></i><i style="height:49%"></i>
           </div>
         </div>
-        <div class="premium-insight-card locked">
-          <div class="premium-insight-tag">🔐 персональная реализация</div>
+        <div class="premium-insight-card ${unlocked ? '' : 'locked'}">
+          <div class="premium-insight-tag">${unlocked ? '✓ открыто' : '🔐 персональная реализация'}</div>
           <b>Почему это включается именно у тебя</b>
           <span>${reason}</span>
         </div>
-        <div class="premium-insight-card locked">
-          <div class="premium-insight-tag">🔐 точное действие</div>
+        <div class="premium-insight-card ${unlocked ? '' : 'locked'}">
+          <div class="premium-insight-tag">${unlocked ? '✓ открыто' : '🔐 точное действие'}</div>
           <b>Что делать, чтобы не уйти в старый сценарий</b>
           <span>Не “будь спокойнее”, а конкретный ход на сегодня: что сказать, где взять паузу и как не кормить паттерн.</span>
         </div>
       </div>
-      <button class="paid-action" onclick="openFullProfilePaywall()">Разблокировать полный доступ — 149 ₽</button>
+      <button class="paid-action" onclick="openFullProfilePaywall()">${unlocked ? 'Открыть полный профиль' : `Разблокировать полный доступ — ${FULL_ACCESS_PRODUCT.price} ₽`}</button>
     </div>
   `;
 }
@@ -5262,6 +5346,71 @@ function getCompatibilityDemoRows() {
   });
 }
 
+function getCompatibilityScenario(rows, partnerName) {
+  const byKey = Object.fromEntries(rows.map(row => [row.key, row]));
+  const diff = (key) => (byKey[key]?.you || 0) - (byKey[key]?.partner || 0);
+  const absDiff = (key) => Math.abs(diff(key));
+  const closest = rows.reduce((min, row) => Math.abs(row.you - row.partner) < Math.abs(min.you - min.partner) ? row : min, rows[0]);
+  const tension = rows.reduce((max, row) => Math.abs(row.you - row.partner) > Math.abs(max.you - max.partner) ? row : max, rows[0]);
+  const partner = escapeHtml(partnerName || 'контакт');
+  const strongest = rows.reduce((max, row) => row.partner > max.partner ? row : max, rows[0]);
+
+  const closenessText = diff('closeness') > 14
+    ? `Ты быстрее идёшь в близость, чем ${partner}. Тебе может казаться, что контакт остывает, хотя человек просто держит свой темп.`
+    : diff('closeness') < -14
+      ? `${partner} может тянуться к контакту быстрее тебя. Если не обозначать границы мягко, близость начнёт ощущаться как давление.`
+      : `По близости вы довольно синхронны: контакт проще собирать без постоянных проверок и угадываний.`;
+
+  const freedomText = diff('freedom') > 14
+    ? `Тебе нужно больше свободы. Если ${partner} начнёт требовать постоянного подтверждения, ты можешь закрываться.`
+    : diff('freedom') < -14
+      ? `${partner} сильнее держится за личное пространство. Главный риск — принять его паузу за холодность.`
+      : `По свободе у вас похожий ритм: можно быть рядом и не душить друг друга контролем.`;
+
+  const conflictText = diff('conflict') > 14
+    ? `В ссоре ты идёшь прямее и резче. ${partner} может считывать это как давление, даже если ты просто хочешь ясности.`
+    : diff('conflict') < -14
+      ? `${partner} конфликтует прямее. Тебе важно не уходить в молчание, иначе разговор быстро станет борьбой за позицию.`
+      : `В конфликте вы близки по интенсивности: ссоры не обязаны становиться войной, если быстро возвращать конкретику.`;
+
+  const avoidText = diff('avoidance') > 14
+    ? `Ты чаще берёшь дистанцию в напряжении. Для ${partner} это может выглядеть как исчезновение.`
+    : diff('avoidance') < -14
+      ? `${partner} чаще уходит от тяжёлого разговора. Тебе лучше договариваться о времени возврата, а не дожимать сразу.`
+      : `Вы примерно одинаково выдерживаете трудные разговоры: паузы возможны, но контакт не должен пропадать.`;
+
+  const jealousyText = absDiff('jealousy') > 16
+    ? (diff('jealousy') > 0
+        ? `У тебя выше чувствительность к вниманию. Проверки могут появляться раньше, чем реальная проблема.`
+        : `У ${partner} выше ревнивость. Прозрачность и спокойные подтверждения здесь важнее, чем “докажи, что доверяешь”.`)
+    : `Ревность не выглядит главным разрывом: больше решает качество диалога, чем контроль.`;
+
+  const communicationText = absDiff('communication') > 15
+    ? `Стиль общения различается: одному нужна прямота, другому — более мягкий заход. Начинайте сложные темы с факта, а не с обвинения.`
+    : `По стилю общения вы можете быстро находить общий язык, если не прятать просьбы в намёки.`;
+
+  let title = 'Сценарий пары';
+  let summary = `${closenessText} ${freedomText}`;
+  if (absDiff('conflict') >= absDiff('freedom') && absDiff('conflict') >= absDiff('closeness')) {
+    title = 'Сценарий: искра и прямой разговор';
+    summary = `${conflictText} ${communicationText}`;
+  } else if (absDiff('freedom') >= 16 || absDiff('avoidance') >= 16) {
+    title = 'Сценарий: близость против дистанции';
+    summary = `${freedomText} ${avoidText}`;
+  } else if (absDiff('jealousy') >= 16) {
+    title = 'Сценарий: внимание и проверки';
+    summary = `${jealousyText} ${closenessText}`;
+  }
+
+  return {
+    title,
+    summary,
+    match:`Самая ровная зона — ${closest.name.toLowerCase()} (${closest.you}% / ${closest.partner}%). Здесь меньше поводов додумывать друг друга.`,
+    tension:`Главное напряжение — ${tension.name.toLowerCase()} (${tension.you}% / ${tension.partner}%). Именно здесь чаще рождаются разные ожидания.`,
+    talk:`Начинайте с темы “${tension.name.toLowerCase()}”: один факт, одна эмоция, одна просьба. ${strongest.name.toLowerCase()} у ${partner} сейчас выражена сильнее всего (${strongest.partner}%), это важно учитывать в тоне разговора.`
+  };
+}
+
 function showCompatibilityDemo() {
   const root = document.getElementById('compatibility-demo-result');
   if (!root) return;
@@ -5280,14 +5429,14 @@ function showCompatibilityDemo() {
   }
   const rows = getCompatibilityDemoRows();
   const score = Math.round(rows.reduce((sum, row) => sum + (100 - Math.abs(row.you - row.partner)), 0) / rows.length);
-  const tension = rows.reduce((max, row) => Math.abs(row.you - row.partner) > Math.abs(max.you - max.partner) ? row : max, rows[0]);
-  const closest = rows.reduce((min, row) => Math.abs(row.you - row.partner) < Math.abs(min.you - min.partner) ? row : min, rows[0]);
+  const scenario = getCompatibilityScenario(rows, partner?.name);
   root.classList.add('show');
   root.innerHTML = `
     <div class="compat-preview-head">
       <div>
         <div class="duels-link-label">сравнение готово</div>
         <div class="duels-title">Ты + ${escapeHtml(partner?.name || 'Партнёр Persona')}</div>
+        <div class="duels-text">${scenario.title}</div>
       </div>
       <div class="compat-score"><b>${score}%</b><span>совпадение</span></div>
     </div>
@@ -5303,9 +5452,10 @@ function showCompatibilityDemo() {
       `).join('')}
     </div>
     <div class="compat-insights">
-      <div class="compat-insight"><b>Где вы совпадаете</b><span>Самая ровная зона: ${escapeHtml(closest.name.toLowerCase())}. Здесь меньше угадывания и больше ощущения “мы понимаем темп друг друга”.</span></div>
-      <div class="compat-insight"><b>Где может искрить</b><span>Главное напряжение: ${escapeHtml(tension.name.toLowerCase())}. Чем больше разница, тем важнее проговаривать ожидания до того, как начнутся проверки.</span></div>
-      <div class="compat-insight"><b>Как говорить</b><span>Формула пары: факт → эмоция → просьба. Без допроса, без исчезновения и без попытки выиграть разговор.</span></div>
+      <div class="compat-insight"><b>${escapeHtml(scenario.title)}</b><span>${scenario.summary}</span></div>
+      <div class="compat-insight"><b>Где вы совпадаете</b><span>${scenario.match}</span></div>
+      <div class="compat-insight"><b>Где может искрить</b><span>${scenario.tension}</span></div>
+      <div class="compat-insight"><b>Как говорить</b><span>${scenario.talk}</span></div>
     </div>
   `;
   root.scrollIntoView({ behavior:'smooth', block:'nearest' });
@@ -5317,6 +5467,7 @@ function renderFullProfilePreview() {
   const axisRows = getProfileAxisRows();
   const topAxis = axisRows[0];
   const latest = completed[completed.length - 1];
+  const fullAccess = getFullAccessState();
   const signalTitle = topAxis ? `${topAxis.axis.icon} ${topAxis.axis.label}: ${topAxis.value}%` : '🧬 Карта ещё собирается';
   const signalText = topAxis
     ? `Persona уже видит главный сигнал из теста “${topAxis.testTitle}”. Полный профиль покажет, где он помогает тебе, а где начинает мешать отношениям, решениям и спокойствию.`
@@ -5325,6 +5476,22 @@ function renderFullProfilePreview() {
   document.getElementById('full-preview-signal').innerHTML = `
     <b>${signalTitle}</b>
     <span>${signalText}</span>
+    ${fullAccess.active ? `
+      <div class="full-access-status">
+        <div>
+          <b>Полный доступ уже открыт</b>
+          <span>Все платные разделы Persona доступны в твоём профиле.</span>
+        </div>
+        <div class="full-access-pill">активен</div>
+      </div>
+    ` : `
+      <div class="checkout-panel">
+        <div class="checkout-row"><span>Продукт</span><b>${FULL_ACCESS_PRODUCT.title}</b></div>
+        <div class="checkout-row"><span>Доступ</span><b>навсегда в профиле</b></div>
+        <div class="checkout-row"><span>К оплате</span><b>${FULL_ACCESS_PRODUCT.price} ₽</b></div>
+        <div class="checkout-note">Сейчас это демо-активация для сборки каркаса. На следующем этапе кнопку подключим к Telegram Payments через бота.</div>
+      </div>
+    `}
   `;
 
   const modules = [
@@ -5339,12 +5506,13 @@ function renderFullProfilePreview() {
 
   document.getElementById('full-preview-grid').innerHTML = modules.map(module => `
     <div class="full-preview-card locked">
-      <div class="full-preview-lock">🔐 закрытый модуль</div>
+      <div class="full-preview-lock">${fullAccess.active ? '✓ открыт' : '🔐 закрытый модуль'}</div>
       <b>${module.icon} ${module.title}</b>
       <span>${module.text}</span>
     </div>
   `).join('');
 
+  updateFullAccessUi();
 }
 
 function fullProfileSection({ kicker, icon, title, text, points = [], accent = false, extra = '' }) {
@@ -5798,11 +5966,16 @@ function showSoon(message) {
 }
 
 function openFullProfilePaywall() {
-  showFullProfilePreview();
+  if (hasFullAccess()) showFullProfile();
+  else showFullProfilePreview();
 }
 
 function startFullProfileCheckout() {
-  localStorage.setItem('personaFullProfileDemo', '1');
+  if (!hasFullAccess()) {
+    grantFullAccess('demo-checkout');
+    safeHaptic('success');
+    if (tg) tg.showAlert('Полный доступ открыт. Это демо-активация: дальше подключим реальную оплату через бота.');
+  }
   showFullProfile();
 }
 
@@ -5822,6 +5995,7 @@ function setupAppIntro() {
 renderCatalog();
 renderProfile();
 updateProgress();
+updateFullAccessUi();
 setupCatalogScroll();
 setupProfileScroll();
 setupInsightsScroll();
