@@ -3996,10 +3996,34 @@ function getPersonaUser() {
   const initials = name.split(/\s+/).map(part => part[0]).join('').slice(0, 2).toUpperCase() || 'P';
   return {
     name,
+    username:tgUser?.username || '',
     initials,
     photo: tgUser?.photo_url || '',
     id: tgUser?.id ? 'TG-' + tgUser.id : getGuestPersonaId()
   };
+}
+
+function publishMyPersonaProfile() {
+  const user = getPersonaUser();
+  const code = normalizePersonaCode(user.id);
+  if (!code) return;
+  let registry = {};
+  try {
+    registry = JSON.parse(localStorage.getItem('personaPublicProfiles') || '{}') || {};
+  } catch {
+    registry = {};
+  }
+  registry[code] = {
+    id:`code-${code}`,
+    code,
+    name:user.username ? `@${user.username}` : user.name,
+    avatar:user.initials,
+    photoUrl:user.photo,
+    tag:'Telegram',
+    note:'контакт из Telegram-профиля',
+    createdAt:Date.now()
+  };
+  localStorage.setItem('personaPublicProfiles', JSON.stringify(registry));
 }
 
 async function copyPersonaCode() {
@@ -4184,17 +4208,7 @@ function setupInsightsScroll() {
 }
 
 function renderCatalog() {
-  const featured = tests.control;
-  const featuredDone = Boolean((getState().completed || {})[featured.id]);
-  document.getElementById('featured-wrap').innerHTML = `
-    <button class="featured-card ${featuredDone ? 'done' : ''}" onclick="openTest('${featured.id}')">
-      <div class="featured-label">${featuredDone ? 'Слой уже в профиле' : 'Первый слой карты'}</div>
-      <div class="featured-title">${featured.title}</div>
-      <div class="featured-desc">${featured.short}<br>+2 грани профиля</div>
-      ${featuredDone ? '<div class="completion-chip">✓ тест пройден</div>' : ''}
-      <div class="featured-btn">${featuredDone ? 'Перепройти тест →' : 'Вскрыть слой →'}</div>
-    </button>
-  `;
+  document.getElementById('featured-wrap').innerHTML = '';
   renderSection('all', Object.values(tests));
   renderSection('self', Object.values(tests).filter(t => t.category === 'self'));
   renderSection('relations', Object.values(tests).filter(t => t.category === 'relations'));
@@ -4905,6 +4919,7 @@ function renderProfile() {
   const branches = getPersonalityBranches(opened);
   const profileStory = buildProfileStory(completed, axisRows);
   const user = getPersonaUser();
+  publishMyPersonaProfile();
   const userName = escapeHtml(user.name);
   const avatar = user.photo
     ? `<img src="${escapeHtml(user.photo)}" alt="">`
@@ -5015,6 +5030,7 @@ function showInsights() {
 }
 
 function showDuels() {
+  publishMyPersonaProfile();
   renderCompatibilityPeople();
   renderMyCompatibilityCode();
   showScreen('duels');
@@ -5119,26 +5135,28 @@ function renderCompatibilityAvatar(person) {
   return escapeHtml(person?.avatar || person?.name?.slice(0, 1) || 'П');
 }
 
-function makeCompatibilityProfileFromCode(code) {
+function getPersonaPublicProfileByCode(code) {
   const normalized = normalizePersonaCode(code);
+  try {
+    const registry = JSON.parse(localStorage.getItem('personaPublicProfiles') || '{}') || {};
+    return registry[normalized] || null;
+  } catch {
+    return null;
+  }
+}
+
+function makeCompatibilityProfileFromPublicProfile(profile) {
+  const normalized = normalizePersonaCode(profile.code);
   const seed = hashPersonaCode(normalized);
-  const names = ['Партнёр Persona', 'Друг Persona', 'Контакт Persona', 'Новый профиль'];
-  const notes = [
-    'добавлен по внутреннему коду',
-    'профиль готов к сравнению',
-    'карта уже в контактах',
-    'можно смотреть совместимость'
-  ];
-  const tags = ['код принят', 'в Persona', 'контакт', 'профиль'];
   const value = (offset) => 34 + ((seed + offset * 19) % 58);
   return {
     id:`code-${normalized}`,
     code:normalized,
-    avatar:normalized.replace(/[^A-ZА-Я0-9]/g, '').slice(-1) || 'П',
-    photoUrl:'',
-    name:`${names[seed % names.length]} ${normalized.slice(-4)}`,
-    tag:tags[seed % tags.length],
-    note:'Telegram-аватарка появится после подключения бота',
+    avatar:profile.avatar || profile.name?.slice(0, 1) || 'П',
+    photoUrl:profile.photoUrl || '',
+    name:profile.name || 'Telegram контакт',
+    tag:profile.tag || 'Telegram',
+    note:profile.note || 'контакт из Telegram-профиля',
     createdAt:Date.now(),
     rows:{
       closeness:value(1),
@@ -5205,7 +5223,14 @@ function addCompatibilityContact() {
   }
   const contacts = getStoredCompatibilityContacts();
   const existing = contacts.find(contact => normalizePersonaCode(contact.code) === code);
-  const profile = existing || makeCompatibilityProfileFromCode(code);
+  const publicProfile = getPersonaPublicProfileByCode(code);
+  if (!existing && !publicProfile) {
+    if (target) target.textContent = 'Профиль не найден. Реальные Telegram-контакты появятся после подключения бота к базе Persona-кодов.';
+    if (card) card.style.display = 'block';
+    safeHaptic('error');
+    return;
+  }
+  const profile = existing || makeCompatibilityProfileFromPublicProfile(publicProfile);
   const next = existing ? contacts : [profile, ...contacts];
   saveCompatibilityContacts(next);
   selectedCompatibilityPersonId = profile.id;
