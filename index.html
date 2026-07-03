@@ -361,6 +361,12 @@ button { font: inherit; }
   scrollbar-width:none;
 }
 .tabs-wrap::-webkit-scrollbar { display:none; }
+.catalog-heading {
+  padding: 2px 17px 10px;
+  font-family: Unbounded, sans-serif;
+  font-size: 24px;
+  line-height:1.15;
+}
 .tab {
   white-space:nowrap;
   border:.5px solid var(--border);
@@ -580,6 +586,105 @@ button { font: inherit; }
   gap:10px;
   margin-top:14px;
 }
+.duels-actions {
+  display:grid;
+  grid-template-columns:1fr;
+  gap:9px;
+  margin-top:16px;
+}
+.duels-action {
+  border:.5px solid rgba(255,255,255,.12);
+  border-radius:17px;
+  background:rgba(255,255,255,.055);
+  color:var(--text);
+  min-height:48px;
+  padding:0 14px;
+  font-weight:900;
+  text-align:left;
+}
+.duels-action.primary {
+  border-color:rgba(236,72,153,.42);
+  background:linear-gradient(135deg, rgba(139,92,246,.76), rgba(236,72,153,.72));
+  box-shadow:0 16px 34px rgba(236,72,153,.18);
+}
+.duels-link-card {
+  margin-top:14px;
+  border:.5px solid rgba(139,92,246,.24);
+  border-radius:18px;
+  background:rgba(139,92,246,.08);
+  padding:13px;
+}
+.duels-link-label {
+  color:#C4B5FD;
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+}
+.duels-link {
+  margin-top:7px;
+  color:var(--text);
+  font-size:12px;
+  font-weight:800;
+  line-height:1.45;
+  word-break:break-all;
+}
+.duels-link a {
+  color:inherit;
+  text-decoration:none;
+}
+.compat-people {
+  display:grid;
+  gap:9px;
+  margin-top:14px;
+}
+.compat-person {
+  width:100%;
+  border:.5px solid rgba(255,255,255,.09);
+  border-radius:18px;
+  background:rgba(10,10,15,.36);
+  padding:12px;
+  color:var(--text);
+  display:grid;
+  grid-template-columns:auto 1fr auto;
+  align-items:center;
+  gap:11px;
+  text-align:left;
+}
+.compat-person.active {
+  border-color:rgba(236,72,153,.54);
+  background:
+    radial-gradient(circle at 92% 8%, rgba(236,72,153,.20), transparent 36%),
+    rgba(139,92,246,.12);
+}
+.compat-avatar {
+  width:42px;
+  height:42px;
+  border-radius:16px;
+  display:grid;
+  place-items:center;
+  background:linear-gradient(135deg, rgba(139,92,246,.54), rgba(236,72,153,.44));
+  font-size:19px;
+  font-weight:900;
+}
+.compat-person b {
+  display:block;
+  font-size:14px;
+  line-height:1.25;
+}
+.compat-person span {
+  display:block;
+  margin-top:4px;
+  color:var(--text2);
+  font-size:12px;
+  line-height:1.35;
+}
+.compat-person-tag {
+  color:#F9A8D4;
+  font-size:11px;
+  font-weight:900;
+  white-space:nowrap;
+}
 .duels-card {
   border:.5px solid rgba(255,255,255,.09);
   border-radius:18px;
@@ -597,6 +702,213 @@ button { font: inherit; }
   color:var(--text2);
   font-size:12px;
   line-height:1.45;
+}
+.compat-scale-grid {
+  display:grid;
+  gap:9px;
+  margin-top:14px;
+}
+.compat-scale {
+  display:grid;
+  grid-template-columns:auto 1fr auto;
+  align-items:center;
+  gap:10px;
+  border:.5px solid rgba(255,255,255,.08);
+  border-radius:16px;
+  background:rgba(255,255,255,.035);
+  padding:11px;
+}
+.compat-scale-num {
+  width:26px;
+  height:26px;
+  border-radius:9px;
+  display:grid;
+  place-items:center;
+  background:rgba(139,92,246,.18);
+  color:#C4B5FD;
+  font-size:11px;
+  font-weight:900;
+}
+.compat-scale-name {
+  color:var(--text);
+  font-weight:900;
+  font-size:13px;
+}
+.compat-scale-tag {
+  color:var(--text3);
+  font-size:11px;
+  font-weight:900;
+}
+.compat-flow {
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:9px;
+  margin-top:14px;
+}
+.compat-step,
+.compat-result {
+  border:.5px solid rgba(255,255,255,.09);
+  border-radius:18px;
+  background:rgba(10,10,15,.34);
+  padding:13px;
+}
+.compat-step-num {
+  width:28px;
+  height:28px;
+  border-radius:10px;
+  display:grid;
+  place-items:center;
+  background:linear-gradient(135deg, rgba(139,92,246,.55), rgba(236,72,153,.42));
+  color:#fff;
+  font-size:12px;
+  font-weight:900;
+  margin-bottom:10px;
+}
+.compat-step b {
+  display:block;
+  color:var(--text);
+  font-size:13px;
+  line-height:1.25;
+}
+.compat-step span {
+  display:block;
+  margin-top:5px;
+  color:var(--text2);
+  font-size:11px;
+  line-height:1.35;
+}
+.compat-preview-head {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  margin-bottom:12px;
+}
+.compat-pair {
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+.compat-face {
+  width:38px;
+  height:38px;
+  border-radius:15px;
+  display:grid;
+  place-items:center;
+  background:linear-gradient(135deg, rgba(139,92,246,.62), rgba(236,72,153,.52));
+  color:#fff;
+  font-weight:900;
+}
+.compat-score {
+  min-width:72px;
+  border:.5px solid rgba(236,72,153,.28);
+  border-radius:16px;
+  padding:9px;
+  text-align:center;
+  background:rgba(236,72,153,.08);
+}
+.compat-score b {
+  display:block;
+  font-family:Unbounded,sans-serif;
+  font-size:20px;
+}
+.compat-score span {
+  color:var(--text3);
+  font-size:10px;
+  font-weight:900;
+}
+.compat-bars {
+  display:grid;
+  gap:9px;
+}
+.compat-bar {
+  display:grid;
+  grid-template-columns:96px 1fr 34px;
+  align-items:center;
+  gap:9px;
+  color:var(--text2);
+  font-size:11px;
+  font-weight:800;
+}
+.compat-track {
+  height:7px;
+  border-radius:999px;
+  overflow:hidden;
+  background:rgba(255,255,255,.08);
+}
+.compat-fill {
+  height:100%;
+  border-radius:inherit;
+  background:linear-gradient(90deg, #8B5CF6, #EC4899);
+}
+.compat-result {
+  margin-top:14px;
+  display:none;
+}
+.compat-result.show {
+  display:block;
+}
+.compat-insights {
+  display:grid;
+  gap:9px;
+  margin-top:12px;
+}
+.compat-insight {
+  border:.5px solid rgba(255,255,255,.08);
+  border-radius:15px;
+  background:rgba(255,255,255,.035);
+  padding:11px;
+}
+.compat-insight b {
+  display:block;
+  color:var(--text);
+  font-size:13px;
+  line-height:1.35;
+}
+.compat-insight span {
+  display:block;
+  margin-top:5px;
+  color:var(--text2);
+  font-size:12px;
+  line-height:1.45;
+}
+.partner-question {
+  display:grid;
+  gap:11px;
+}
+.partner-options {
+  display:grid;
+  gap:8px;
+  margin-top:12px;
+}
+.partner-option {
+  border:.5px solid rgba(255,255,255,.10);
+  border-radius:16px;
+  background:rgba(255,255,255,.045);
+  color:var(--text);
+  min-height:46px;
+  padding:0 13px;
+  font-weight:900;
+  text-align:left;
+}
+.partner-option:active {
+  transform:scale(.98);
+}
+.partner-progress {
+  height:7px;
+  border-radius:999px;
+  overflow:hidden;
+  background:rgba(255,255,255,.08);
+  margin-top:12px;
+}
+.partner-progress span {
+  display:block;
+  height:100%;
+  border-radius:inherit;
+  background:linear-gradient(90deg, #8B5CF6, #EC4899);
+}
+@media (max-width:560px) {
+  .compat-flow { grid-template-columns:1fr; }
 }
 
 .back-wrap { flex-shrink:0; padding: 20px 0 0 22px; }
@@ -2202,6 +2514,10 @@ button { font: inherit; }
   font-size:13px;
   line-height:1.55;
 }
+.story-text.large {
+  color:var(--text);
+  font-size:14px;
+}
 .story-points {
   display:grid;
   gap:8px;
@@ -2723,6 +3039,60 @@ button { font: inherit; }
   border-radius:999px 999px 5px 5px;
   background:linear-gradient(180deg, rgba(236,72,153,.86), rgba(139,92,246,.48));
 }
+.mood-chart {
+  margin-top:13px;
+  border:.5px solid rgba(255,255,255,.09);
+  border-radius:18px;
+  background:rgba(10,10,15,.36);
+  padding:13px;
+}
+.mood-chart-head {
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom:10px;
+}
+.mood-chart-title {
+  color:var(--text);
+  font-weight:900;
+}
+.mood-chart-sub {
+  margin-top:4px;
+  color:var(--text3);
+  font-size:12px;
+  line-height:1.4;
+}
+.mood-chart-bars {
+  display:grid;
+  grid-template-columns:repeat(7, 1fr);
+  align-items:end;
+  gap:8px;
+  height:96px;
+}
+.mood-chart-bar {
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  min-width:0;
+  height:100%;
+}
+.mood-chart-bar i {
+  display:block;
+  min-height:18px;
+  border-radius:999px 999px 7px 7px;
+  background:
+    linear-gradient(180deg, rgba(236,72,153,.92), rgba(139,92,246,.50)),
+    rgba(255,255,255,.08);
+  box-shadow:0 0 18px rgba(236,72,153,.13);
+}
+.mood-chart-bar span {
+  margin-top:7px;
+  color:var(--text3);
+  font-size:10px;
+  font-weight:900;
+  text-align:center;
+}
 .red-list {
   display:grid;
   gap:8px;
@@ -2830,6 +3200,7 @@ button { font: inherit; }
 
   <div class="scrollable" id="catalog-scroll">
     <div class="catalog-body">
+      <div class="catalog-heading">Тесты</div>
       <div id="featured-wrap"></div>
       <div class="cat-section active" id="sec-all"></div>
       <div class="cat-section" id="sec-self"></div>
@@ -2841,7 +3212,7 @@ button { font: inherit; }
   <div class="bottom-nav">
     <button class="nav-item active"><span class="nav-icon">🧬</span><span>Тесты</span></button>
     <button class="nav-item" onclick="showProfile()"><span class="nav-icon">👤</span><span>Профиль</span></button>
-    <button class="nav-item" onclick="showDuels()"><span class="nav-icon">⚔️</span><span>Дуэли</span></button>
+    <button class="nav-item" onclick="showDuels()"><span class="nav-icon">❤️</span><span>Совм.</span></button>
     <button class="nav-item" onclick="showInsights()"><span class="nav-icon">✨</span><span>Инсайты</span></button>
   </div>
 </div>
@@ -2878,7 +3249,7 @@ button { font: inherit; }
   <div class="bottom-nav">
     <button class="nav-item" onclick="showScreen('catalog')"><span class="nav-icon">🧬</span><span>Тесты</span></button>
     <button class="nav-item" onclick="showProfile()"><span class="nav-icon">👤</span><span>Профиль</span></button>
-    <button class="nav-item" onclick="showDuels()"><span class="nav-icon">⚔️</span><span>Дуэли</span></button>
+    <button class="nav-item" onclick="showDuels()"><span class="nav-icon">❤️</span><span>Совм.</span></button>
     <button class="nav-item active"><span class="nav-icon">✨</span><span>Инсайты</span></button>
   </div>
 </div>
@@ -2887,25 +3258,52 @@ button { font: inherit; }
   <div class="cat-header">
     <div class="cat-header-top">
       <div class="logo-mark">
-        <span class="nav-icon">⚔️</span>
-        <span class="logo-name">ДУЭЛИ</span>
+        <span class="nav-icon">❤️</span>
+        <span class="logo-name">СОВМЕСТИМОСТЬ</span>
       </div>
       <button class="profile-btn" onclick="showProfile()" aria-label="Открыть профиль">👤</button>
     </div>
-    <div class="duels-status top">в разработке</div>
     <div class="greeting-label">Парная диагностика</div>
-    <div class="greeting-title">Сравни ваши<br><span>паттерны</span></div>
-    <div class="greeting-copy">Будущий режим Persona: совместимость, точки напряжения и честная карта того, почему вас тянет друг к другу.</div>
+    <div class="greeting-title">Сравни ваши<br><span>отношения</span></div>
   </div>
   <div class="scrollable">
     <div class="profile-dashboard">
       <div class="duels-hero">
-        <div class="duels-title">Дуэли скоро откроют второй слой Persona</div>
-        <div class="duels-text">Ты сможешь пройти парный тест с человеком и увидеть, где вы усиливаете друг друга, где триггерите и почему один и тот же разговор вы воспринимаете по-разному.</div>
-        <div class="duels-grid">
-          <div class="duels-card"><b>❤️ Совместимость</b><span>Не “подходите / не подходите”, а где совпадает темп близости, контроль и эмоциональная реакция.</span></div>
-          <div class="duels-card"><b>⚡ Точки напряжения</b><span>Persona покажет, какие паттерны могут сталкиваться: тревога против дистанции, контроль против свободы, молчание против давления.</span></div>
-          <div class="duels-card"><b>🧭 Инструкция к паре</b><span>Как говорить друг с другом так, чтобы не кормить старые сценарии и не превращать близость в проверку.</span></div>
+        <div class="duels-status top">полный доступ · 149 ₽</div>
+        <div class="duels-title">❤️ Совместимость</div>
+        <div class="duels-text">Выбери человека из Persona-карты. Сравнение строится на двух профилях, без отдельного теста пары.</div>
+        <div class="compat-people" id="compatibility-people"></div>
+        <div class="duels-actions">
+          <button class="duels-action primary" onclick="showCompatibilityDemo()">👤 Посмотреть совместимость</button>
+          <button class="duels-action primary" onclick="createCompatibilityInvite()">🔗 Пригласить партнёра</button>
+          <button class="duels-action" onclick="showCompatibilityHistory()">📜 Мои сравнения</button>
+        </div>
+        <div class="duels-link-card" id="compatibility-link-card" style="display:none">
+          <div class="duels-link-label">ссылка для партнёра</div>
+          <div class="duels-link" id="compatibility-link"></div>
+          <div class="duels-text">Партнёр открывает ссылку, попадает в Persona и появляется в списке людей для сравнения.</div>
+          <button class="duels-action primary" onclick="showCompatibilityDemo()">Посмотреть демо сравнения</button>
+        </div>
+        <div class="compat-flow">
+          <div class="compat-step"><div class="compat-step-num">1</div><b>Профиль</b><span>У каждого уже есть Persona-карта.</span></div>
+          <div class="compat-step"><div class="compat-step-num">2</div><b>Выбор</b><span>Ты выбираешь человека.</span></div>
+          <div class="compat-step"><div class="compat-step-num">3</div><b>Сравнение</b><span>Persona собирает карту пары.</span></div>
+        </div>
+        <div class="compat-result" id="compatibility-demo-result"></div>
+      </div>
+      <div class="duels-hero">
+        <div class="duels-status top">основа сравнения</div>
+        <div class="duels-title">8 шкал сравнения</div>
+        <div class="duels-text">Для MVP Persona будет сравнивать пару по восьми понятным шкалам. Этого достаточно, чтобы результат был цепким, но не перегруженным.</div>
+        <div class="compat-scale-grid">
+          <div class="compat-scale"><div class="compat-scale-num">1</div><div class="compat-scale-name">Потребность в близости</div><div class="compat-scale-tag">контакт</div></div>
+          <div class="compat-scale"><div class="compat-scale-num">2</div><div class="compat-scale-name">Ревность</div><div class="compat-scale-tag">контроль</div></div>
+          <div class="compat-scale"><div class="compat-scale-num">3</div><div class="compat-scale-name">Доверие</div><div class="compat-scale-tag">опора</div></div>
+          <div class="compat-scale"><div class="compat-scale-num">4</div><div class="compat-scale-name">Эмоциональность</div><div class="compat-scale-tag">реакция</div></div>
+          <div class="compat-scale"><div class="compat-scale-num">5</div><div class="compat-scale-name">Конфликтность</div><div class="compat-scale-tag">ссоры</div></div>
+          <div class="compat-scale"><div class="compat-scale-num">6</div><div class="compat-scale-name">Избегание конфликтов</div><div class="compat-scale-tag">уход</div></div>
+          <div class="compat-scale"><div class="compat-scale-num">7</div><div class="compat-scale-name">Потребность в свободе</div><div class="compat-scale-tag">дистанция</div></div>
+          <div class="compat-scale"><div class="compat-scale-num">8</div><div class="compat-scale-name">Стиль общения</div><div class="compat-scale-tag">диалог</div></div>
         </div>
       </div>
     </div>
@@ -2913,8 +3311,26 @@ button { font: inherit; }
   <div class="bottom-nav">
     <button class="nav-item" onclick="showScreen('catalog')"><span class="nav-icon">🧬</span><span>Тесты</span></button>
     <button class="nav-item" onclick="showProfile()"><span class="nav-icon">👤</span><span>Профиль</span></button>
-    <button class="nav-item active"><span class="nav-icon">⚔️</span><span>Дуэли</span></button>
+    <button class="nav-item active"><span class="nav-icon">❤️</span><span>Совм.</span></button>
     <button class="nav-item" onclick="showInsights()"><span class="nav-icon">✨</span><span>Инсайты</span></button>
+  </div>
+</div>
+
+<div class="screen" id="screen-partner-match">
+  <div class="cat-header">
+    <div class="cat-header-top">
+      <div class="logo-mark">
+        <span class="nav-icon">❤️</span>
+        <span class="logo-name">ПАРТНЁР PERSONA</span>
+      </div>
+    </div>
+    <div class="greeting-label">Приглашение</div>
+    <div class="greeting-title">Партнёр<br><span>добавлен</span></div>
+  </div>
+  <div class="scrollable">
+    <div class="profile-dashboard">
+      <div id="partner-match-root"></div>
+    </div>
   </div>
 </div>
 
@@ -3026,10 +3442,6 @@ button { font: inherit; }
       <div class="profile-panel">
         <div class="profile-panel-title">Что откроется</div>
         <div class="full-preview-grid" id="full-preview-grid"></div>
-      </div>
-      <div class="profile-panel">
-        <div class="profile-panel-title">Первый платный слой</div>
-        <div class="full-preview-card locked" id="full-preview-personal"></div>
       </div>
     </div>
   </div>
@@ -3149,8 +3561,8 @@ const tests = {
     category:'self',
     group:'Личность и самовосприятие',
     icon:'🧭',
-    title:'Контроль и влияние',
-    label:'Тест · Самооценка и контроль',
+    title:'Кто тобой рулит?',
+    label:'Тест · Контроль и влияние',
     time:'~2',
     facets:['self','control'],
     short:'Признание, холод или расчёт.',
@@ -3187,8 +3599,8 @@ const tests = {
     category:'relations',
     group:'Отношения и близость',
     icon:'🤍',
-    title:'Стиль привязанности',
-    label:'Тест · Отношения и близость',
+    title:'Любовные качели',
+    label:'Тест · Близость и проверки',
     time:'~2',
     facets:['attachment','closeness','boundaries'],
     short:'Тревога, дистанция или спокойная близость.',
@@ -3226,8 +3638,8 @@ const tests = {
     category:'relations',
     group:'Отношения и близость',
     icon:'🛡️',
-    title:'Личные границы',
-    label:'Тест · Границы и личная территория',
+    title:'Где тебя продавливают?',
+    label:'Тест · Границы и уступки',
     time:'~2',
     facets:['boundaries','self','conflict'],
     short:'Где держишь себя, а где уступаешь.',
@@ -3265,8 +3677,8 @@ const tests = {
     category:'emotions',
     group:'Эмоции и состояние',
     icon:'🌫️',
-    title:'Уровень тревоги',
-    label:'Тест · Тревога и неопределённость',
+    title:'Тревожный радар',
+    label:'Тест · Шум и неопределённость',
     time:'~2',
     facets:['anxiety','emotion','control'],
     short:'Что включается без ясности и ответа.',
@@ -3304,8 +3716,8 @@ const tests = {
     category:'relations',
     group:'Отношения и близость',
     icon:'⚡',
-    title:'Конфликтный стиль',
-    label:'Тест · Ссоры и напряжение',
+    title:'Как ты ссоришься?',
+    label:'Тест · Ссоры и защита',
     time:'~2',
     facets:['conflict','emotion','boundaries'],
     short:'Давишь, молчишь, уходишь или чинишь.',
@@ -3343,8 +3755,8 @@ const tests = {
     category:'emotions',
     group:'Эмоции и состояние',
     icon:'🧱',
-    title:'Внутренняя опора',
-    label:'Тест · Устойчивость и ресурс',
+    title:'На чём ты держишься?',
+    label:'Тест · Опора и устойчивость',
     time:'~2',
     facets:['emotion','control','self'],
     short:'На чём держишься в нестабильности.',
@@ -3657,7 +4069,7 @@ function getPersonalityBranches(opened) {
     { icon:'🛡️', title:'Границы', facets:['boundaries'], text:'где ты сохраняешь себя, уступаешь или строишь стену' },
     { icon:'⚡', title:'Конфликт', facets:['conflict'], text:'что включается, когда контакт становится напряжённым' },
     { icon:'🌫️', title:'Эмоции', facets:['emotion','anxiety'], text:'тревога, перегруз, вина, злость и реакция на неопределённость' },
-    { icon:'❤️‍🔥', title:'Совместимость', facets:['compatibility'], text:'будущие дуэли, лучшая пара и сложные совпадения' }
+    { icon:'❤️‍🔥', title:'Совместимость', facets:['compatibility'], text:'платное сравнение пары, лучшая пара и сложные совпадения' }
   ].map(branch => {
     const openedCount = branch.facets.filter(id => opened.has(id)).length;
     return { ...branch, openedCount, total: branch.facets.length, open: openedCount > 0 };
@@ -3941,12 +4353,12 @@ function getCompletedEntry(completed, id) {
   return completed.find(item => item.id === id);
 }
 
-function storyCard({ kicker, title, text, icon = '✦', accent = false, paid = false, points = [], action = '' }) {
+function storyCard({ kicker, title, text, icon = '✦', accent = false, paid = false, points = [], action = '', textLarge = false }) {
   return `
     <div class="story-card ${accent ? 'accent' : ''} ${paid ? 'paid' : ''}">
       <div class="story-kicker">${kicker}</div>
-      <div class="story-title">${icon} ${title}</div>
-      <div class="story-text">${text}</div>
+      ${title ? `<div class="story-title">${icon} ${title}</div>` : ''}
+      <div class="story-text ${textLarge ? 'large' : ''}">${text}</div>
       ${points.length ? `<div class="story-points">${points.map(point => `<div class="story-point"><span>${point.icon}</span><span>${point.text}</span></div>`).join('')}</div>` : ''}
       ${paid ? '<div class="story-lock">🔐 полный доступ</div>' : ''}
       ${action ? `<button class="paid-action" onclick="openFullProfilePaywall()">${action}</button>` : ''}
@@ -3988,7 +4400,6 @@ function fingerprintCard(completed) {
           </div>
         `).join('')}
       </div>
-      <div class="fingerprint-hook">🔐 Полный доступ покажет, какие оси конфликтуют между собой: где ты хочешь близости, но защищаешься контролем.</div>
     </div>
   `;
 }
@@ -4012,9 +4423,7 @@ function knownPeopleWidget(completed, axisRows) {
         <div class="matches-head">
           <div>
             <div class="matches-title">Похожие известные личности</div>
-            <div class="matches-sub">Persona покажет, с какими публичными архетипами у тебя совпадает поведенческий вайб.</div>
           </div>
-          <div class="matches-lock">после теста</div>
         </div>
         <div class="matches-list">
           <div class="match-person">
@@ -4054,9 +4463,7 @@ function knownPeopleWidget(completed, axisRows) {
       <div class="matches-head">
         <div>
           <div class="matches-title">Похожие известные личности</div>
-          <div class="matches-sub">Не “ты такой же”. Это публичные архетипы, где Persona видит похожий поведенческий рисунок.</div>
         </div>
-        <div class="matches-lock">${picked[0].score}%</div>
       </div>
       <div class="matches-list">
         ${picked.map(person => `
@@ -4327,6 +4734,12 @@ function buildFullProfileSections({ latest, attachment, topAxis }) {
       locked:'Разбор покажет, как ты работаешь под давлением, где выгораешь, как реагируешь на конкуренцию и неопределённость.'
     }),
     fullSection({
+      icon:'❤️',
+      title:'Совместимость',
+      open:'Платное сравнение покажет не “подходите или нет”, а где вы усиливаете друг друга, где триггерите и почему один разговор вы можете воспринимать по-разному.',
+      locked:'Полный доступ станет базой для совместимости: точки напряжения, карта пары, invite-ссылка и инструкция, как говорить друг с другом без старых сценариев.'
+    }),
+    fullSection({
       icon:'🛠️',
       title:'Персональные рекомендации',
       open:'Не “будь увереннее”, а конкретные действия под твой профиль.',
@@ -4355,12 +4768,6 @@ function buildProfileStory(completed, axisRows) {
       accent:true,
       title:`Persona видит: ${latest.data.title}`,
       text:`${latest.data.hook} Это не финальный ярлык, а самый свежий слой твоей карточки. Чем больше тестов ты проходишь, тем точнее становится общий портрет.`
-    }),
-    storyCard({
-      kicker:'Как ты считываешься',
-      icon:'👁️',
-      title: topAxis ? `${topAxis.axis.label}: ${topAxis.value}%` : 'Первые сигналы собираются',
-      text: topAxis ? `Самый яркий сигнал сейчас пришёл из теста “${topAxis.testTitle}”. Persona будет проверять, повторяется ли он в отношениях, конфликте, тревоге и опоре.` : 'Пройди первый тест, чтобы Persona начала собирать не ответы, а поведенческий портрет.'
     })
   ] : [
     fingerprintCard(completed),
@@ -4385,8 +4792,9 @@ function buildProfileStory(completed, axisRows) {
     storyCard({
       kicker:'🚩 Слабое место',
       icon:'🚩',
-      title:'Где паттерн может ударить обратно',
-      text: latest.data.red || 'Ред флаг появится после первого результата.'
+      title:'',
+      text:`🚩 ${latest.data.red || 'Ред флаг появится после первого результата.'}`,
+      textLarge:true
     })
   ] : [
     storyCard({
@@ -4415,13 +4823,6 @@ function buildProfileStory(completed, axisRows) {
       icon:'🌫️',
       title: anxiety ? anxiety.data.title : 'Тревожный фон ещё не измерен',
       text: anxiety ? `${anxiety.data.hook} ${stability ? 'Опора показывает, на чём ты держишься: ' + stability.data.title + '.' : 'После теста опоры станет видно, что помогает тебе не разваливаться.'}` : 'Здесь появится твоя реакция на неопределённость, контроль, перегруз и способы возвращать себе ясность.'
-    }),
-    storyCard({
-      kicker:'Работа, дружба, выбор людей',
-      icon:'🔐',
-      paid:true,
-      title:'Сферы жизни откроются в полном профиле',
-      text:'Persona покажет, как твой паттерн проявляется в дружбе, амбициях, работе, деньгах и выборе людей. Это уже не проценты, а сценарии, которые повторяются в жизни.'
     })
   ];
 
@@ -4458,9 +4859,6 @@ function renderProfile() {
   const profileHeadline = completed.length
     ? `Главный сигнал: ${topAxis.axis.label.toLowerCase()}`
     : 'Пока Persona видит только силуэт';
-  const profileText = completed.length
-    ? `${topAxis.testTitle}: ${topAxis.value}%. Уже можно ловить первые пересечения, но карта ещё не полная.`
-    : 'Пройди первый тест, чтобы открыть стартовую аналитику, ред флаги и живые шкалы.';
   document.getElementById('profile-hero-card').innerHTML = `
     <div class="persona-card-top">
       <div class="persona-avatar">${avatar}</div>
@@ -4474,7 +4872,6 @@ function renderProfile() {
       <div>
         <div class="profile-rank">${completed.length ? 'Профиль оживает' : 'Пустая карточка'}</div>
         <div class="profile-headline">${profileHeadline}</div>
-        <div class="profile-mini">${profileText}</div>
       </div>
       <div class="profile-stat-pill"><b>${done}</b><span>из 8 граней</span></div>
     </div>
@@ -4564,7 +4961,314 @@ function showInsights() {
 }
 
 function showDuels() {
+  renderCompatibilityPeople();
   showScreen('duels');
+}
+
+const compatibilityPartnerQuestions = [
+  { key:'closeness', name:'Близость', text:'Мне важно часто чувствовать контакт и подтверждение от человека.' },
+  { key:'jealousy', name:'Ревность', text:'Если человек становится мне важен, я начинаю сильнее отслеживать его внимание.' },
+  { key:'trust', name:'Доверие', text:'Мне легко доверять, если человек ведёт себя стабильно и понятно.' },
+  { key:'emotion', name:'Эмоции', text:'В отношениях я быстро реагирую эмоционально, даже если стараюсь держаться спокойно.' },
+  { key:'conflict', name:'Конфликтность', text:'Если меня задели, я скорее пойду в прямой разговор, чем буду молчать.' },
+  { key:'avoidance', name:'Избегание конфликтов', text:'Когда разговор становится тяжёлым, мне хочется взять дистанцию.' },
+  { key:'freedom', name:'Свобода', text:'Мне важно сохранять личное пространство даже в близких отношениях.' },
+  { key:'communication', name:'Стиль общения', text:'Мне проще, когда о сложном говорят прямо, без намёков и проверок.' }
+];
+
+let partnerInviteCode = '';
+let partnerCompatibilityAnswers = [];
+let selectedCompatibilityPersonId = localStorage.getItem('personaSelectedCompatibilityPerson') || 'mira';
+
+const compatibilityPeople = [
+  {
+    id:'mira',
+    avatar:'М',
+    name:'Мира',
+    tag:'мягкий контакт',
+    note:'тёплая, но не любит давление',
+    rows:{ closeness:76, jealousy:42, trust:78, emotion:69, conflict:44, avoidance:58, freedom:63, communication:74 }
+  },
+  {
+    id:'alex',
+    avatar:'А',
+    name:'Алекс',
+    tag:'искрит быстро',
+    note:'много эмоций, много прямоты',
+    rows:{ closeness:88, jealousy:72, trust:54, emotion:84, conflict:78, avoidance:35, freedom:48, communication:67 }
+  },
+  {
+    id:'nika',
+    avatar:'Н',
+    name:'Ника',
+    tag:'свобода важна',
+    note:'держит дистанцию, но ценит честность',
+    rows:{ closeness:61, jealousy:38, trust:71, emotion:55, conflict:51, avoidance:72, freedom:86, communication:79 }
+  }
+];
+
+function getSelectedCompatibilityPerson() {
+  const people = getCompatibilityPeople();
+  return people.find(person => person.id === selectedCompatibilityPersonId) || people[0];
+}
+
+function renderCompatibilityPeople() {
+  const root = document.getElementById('compatibility-people');
+  if (!root) return;
+  const people = getCompatibilityPeople();
+  if (!people.some(person => person.id === selectedCompatibilityPersonId)) {
+    selectedCompatibilityPersonId = people[0]?.id || 'mira';
+  }
+  root.innerHTML = people.map(person => `
+    <button class="compat-person ${person.id === selectedCompatibilityPersonId ? 'active' : ''}" onclick="selectCompatibilityPerson('${escapeHtml(person.id)}')">
+      <div class="compat-avatar">${escapeHtml(person.avatar || person.name.slice(0, 1))}</div>
+      <div>
+        <b>${escapeHtml(person.name)}</b>
+        <span>${escapeHtml(person.note || 'профиль готов к сравнению')}</span>
+      </div>
+      <div class="compat-person-tag">${escapeHtml(person.tag || 'в Persona')}</div>
+    </button>
+  `).join('');
+}
+
+function selectCompatibilityPerson(id) {
+  selectedCompatibilityPersonId = id;
+  localStorage.setItem('personaSelectedCompatibilityPerson', id);
+  renderCompatibilityPeople();
+  const root = document.getElementById('compatibility-demo-result');
+  if (root) {
+    root.classList.remove('show');
+    root.innerHTML = '';
+  }
+  safeSelectionHaptic();
+}
+
+function getCompatibilityInviteUrl(code) {
+  const url = new URL(window.location.href);
+  url.search = '';
+  url.hash = '';
+  url.searchParams.set('match', code);
+  return url.toString();
+}
+
+function getStoredPartnerCompatibility() {
+  try {
+    return JSON.parse(localStorage.getItem('personaCompatibilityPartner') || 'null');
+  } catch {
+    return null;
+  }
+}
+
+function makeInvitedCompatibilityProfile(code) {
+  return {
+    id:`invite-${code}`,
+    code,
+    avatar:'П',
+    name:'Приглашённый партнёр',
+    tag:'новый профиль',
+    note:'появился через ссылку приглашения',
+    createdAt:Date.now(),
+    rows:{ closeness:73, jealousy:55, trust:70, emotion:66, conflict:58, avoidance:62, freedom:69, communication:76 }
+  };
+}
+
+function normalizeCompatibilityPerson(person) {
+  if (!person) return null;
+  return {
+    id:person.id || `invite-${person.code || 'saved'}`,
+    code:person.code || 'saved',
+    avatar:person.avatar || 'П',
+    name:person.name || 'Партнёр Persona',
+    tag:person.tag || 'в Persona',
+    note:person.note || 'профиль готов к сравнению',
+    createdAt:person.createdAt || Date.now(),
+    rows:person.rows || {}
+  };
+}
+
+function getCompatibilityPeople() {
+  const invited = normalizeCompatibilityPerson(getStoredPartnerCompatibility());
+  return invited ? [invited, ...compatibilityPeople] : compatibilityPeople;
+}
+
+function createCompatibilityInvite() {
+  const code = Math.random().toString(36).slice(2, 7) + Date.now().toString(36).slice(-3);
+  const link = getCompatibilityInviteUrl(code);
+  const card = document.getElementById('compatibility-link-card');
+  const target = document.getElementById('compatibility-link');
+  localStorage.setItem('personaCompatibilityInvite', code);
+  if (target) target.innerHTML = `<a href="${escapeHtml(link)}">${escapeHtml(link)}</a>`;
+  if (card) card.style.display = 'block';
+  const invitedProfile = makeInvitedCompatibilityProfile(code);
+  localStorage.setItem('personaCompatibilityPartner', JSON.stringify(invitedProfile));
+  selectedCompatibilityPersonId = invitedProfile.id;
+  localStorage.setItem('personaSelectedCompatibilityPerson', invitedProfile.id);
+  renderCompatibilityPeople();
+  safeHaptic('impact');
+}
+
+function getCompatibilityDemoRows() {
+  const partner = getSelectedCompatibilityPerson();
+  const partnerRows = partner?.rows || {};
+  return compatibilityPartnerQuestions.map((question, index) => {
+    const you = [82, 58, 68, 77, 64, 42, 54, 71][index];
+    return {
+      key: question.key,
+      name: question.name,
+      you,
+      partner: partnerRows[question.key] ?? [74, 66, 72, 61, 81, 69, 76, 63][index]
+    };
+  });
+}
+
+function showCompatibilityDemo() {
+  const root = document.getElementById('compatibility-demo-result');
+  if (!root) return;
+  const rows = getCompatibilityDemoRows();
+  const partner = getSelectedCompatibilityPerson();
+  const score = Math.round(rows.reduce((sum, row) => sum + (100 - Math.abs(row.you - row.partner)), 0) / rows.length);
+  const tension = rows.reduce((max, row) => Math.abs(row.you - row.partner) > Math.abs(max.you - max.partner) ? row : max, rows[0]);
+  const closest = rows.reduce((min, row) => Math.abs(row.you - row.partner) < Math.abs(min.you - min.partner) ? row : min, rows[0]);
+  root.classList.add('show');
+  root.innerHTML = `
+    <div class="compat-preview-head">
+      <div>
+        <div class="duels-link-label">сравнение готово</div>
+        <div class="duels-title">Ты + ${escapeHtml(partner?.name || 'Партнёр Persona')}</div>
+      </div>
+      <div class="compat-score"><b>${score}%</b><span>совпадение</span></div>
+    </div>
+    <div class="compat-bars">
+      ${rows.map(row => `
+        <div class="compat-bar">
+          <span>${row.name}</span>
+          <div class="compat-track">
+            <div class="compat-fill" style="width:${Math.round((row.you + row.partner) / 2)}%"></div>
+          </div>
+          <span>${Math.abs(row.you - row.partner) <= 12 ? '≈' : '!'}</span>
+        </div>
+      `).join('')}
+    </div>
+    <div class="compat-insights">
+      <div class="compat-insight"><b>Где вы совпадаете</b><span>Самая ровная зона: ${escapeHtml(closest.name.toLowerCase())}. Здесь меньше угадывания и больше ощущения “мы понимаем темп друг друга”.</span></div>
+      <div class="compat-insight"><b>Где может искрить</b><span>Главное напряжение: ${escapeHtml(tension.name.toLowerCase())}. Чем больше разница, тем важнее проговаривать ожидания до того, как начнутся проверки.</span></div>
+      <div class="compat-insight"><b>Как говорить</b><span>Формула пары: факт → эмоция → просьба. Без допроса, без исчезновения и без попытки выиграть разговор.</span></div>
+    </div>
+  `;
+  root.scrollIntoView({ behavior:'smooth', block:'nearest' });
+  safeHaptic('success');
+}
+
+function showCompatibilityHistory() {
+  const card = document.getElementById('compatibility-link-card');
+  const target = document.getElementById('compatibility-link');
+  const person = getSelectedCompatibilityPerson();
+  if (target) target.textContent = person
+    ? `Сравнение · ${person.name} · готово`
+    : 'Выбери человека и нажми “Посмотреть совместимость”';
+  if (card) card.style.display = 'block';
+  showCompatibilityDemo();
+}
+
+function showPartnerMatch(code) {
+  partnerInviteCode = code || 'demo';
+  const invitedProfile = makeInvitedCompatibilityProfile(partnerInviteCode);
+  localStorage.setItem('personaCompatibilityPartner', JSON.stringify(invitedProfile));
+  selectedCompatibilityPersonId = invitedProfile.id;
+  localStorage.setItem('personaSelectedCompatibilityPerson', invitedProfile.id);
+  renderPartnerProfileAdded();
+  showScreen('partner-match');
+}
+
+function renderPartnerProfileAdded() {
+  const root = document.getElementById('partner-match-root');
+  if (!root) return;
+  root.innerHTML = `
+    <div class="duels-hero">
+      <div class="duels-status top">в Persona</div>
+      <div class="duels-title">Профиль партнёра добавлен</div>
+      <div class="duels-text">Для прототипа Persona уже собрала базовую карту человека. Теперь можно вернуться и посмотреть демо-совместимость без отдельного теста пары.</div>
+      <div class="compat-flow">
+        <div class="compat-step"><div class="compat-step-num">1</div><b>Профиль</b><span>Партнёр появился в списке.</span></div>
+        <div class="compat-step"><div class="compat-step-num">2</div><b>Выбор</b><span>Ты выбираешь его в совместимости.</span></div>
+        <div class="compat-step"><div class="compat-step-num">3</div><b>Разбор</b><span>Persona сравнивает две карты.</span></div>
+      </div>
+      <button class="duels-action primary" onclick="returnToCompatibilityFromPartner()">Вернуться к совместимости</button>
+    </div>
+  `;
+}
+
+function renderPartnerMatchQuestion() {
+  const root = document.getElementById('partner-match-root');
+  if (!root) return;
+  const index = partnerCompatibilityAnswers.length;
+  const question = compatibilityPartnerQuestions[index];
+  const progress = Math.round((index / compatibilityPartnerQuestions.length) * 100);
+  root.innerHTML = `
+    <div class="duels-hero">
+      <div class="duels-status top">${index + 1}/${compatibilityPartnerQuestions.length}</div>
+      <div class="duels-title">${question.name}</div>
+      <div class="duels-text">${question.text}</div>
+      <div class="partner-options">
+        ${['совсем нет','скорее нет','иногда','часто','очень про меня'].map((label, optionIndex) => `
+          <button class="partner-option" onclick="answerPartnerCompatibility(${optionIndex + 1})">${label}</button>
+        `).join('')}
+      </div>
+      <div class="partner-progress"><span style="width:${progress}%"></span></div>
+    </div>
+  `;
+}
+
+function answerPartnerCompatibility(value) {
+  partnerCompatibilityAnswers.push(value);
+  safeSelectionHaptic();
+  if (partnerCompatibilityAnswers.length >= compatibilityPartnerQuestions.length) {
+    completePartnerCompatibility();
+    return;
+  }
+  renderPartnerMatchQuestion();
+}
+
+function completePartnerCompatibility() {
+  const rows = {};
+  compatibilityPartnerQuestions.forEach((question, index) => {
+    rows[question.key] = Math.max(18, Math.min(96, partnerCompatibilityAnswers[index] * 20));
+  });
+  const result = {
+    code: partnerInviteCode,
+    name:'Партнёр Persona',
+    createdAt: Date.now(),
+    rows
+  };
+  localStorage.setItem('personaCompatibilityPartner', JSON.stringify(result));
+  const root = document.getElementById('partner-match-root');
+  if (root) {
+    root.innerHTML = `
+      <div class="duels-hero">
+        <div class="duels-status top">готово</div>
+        <div class="duels-title">Профиль партнёра собран</div>
+        <div class="duels-text">Теперь в основной вкладке Persona можно нажать “Сравнить с человеком” и увидеть демо-сравнение по вашим 8 шкалам.</div>
+        <button class="duels-action primary" onclick="returnToCompatibilityFromPartner()">Вернуться к совместимости</button>
+      </div>
+    `;
+  }
+  safeHaptic('success');
+}
+
+function returnToCompatibilityFromPartner() {
+  const url = new URL(window.location.href);
+  url.searchParams.delete('match');
+  window.history.replaceState({}, '', url.toString());
+  showDuels();
+  showCompatibilityHistory();
+}
+
+function bootCompatibilityInvite() {
+  const params = new URLSearchParams(window.location.search);
+  const code = params.get('match');
+  if (!code) return false;
+  showPartnerMatch(code);
+  return true;
 }
 
 function renderFullProfilePreview() {
@@ -4588,6 +5292,7 @@ function renderFullProfilePreview() {
     { icon:'🤝', title:'Дружба и окружение', text:'С кем ты раскрываешься, кто тебя истощает и почему рядом с одними ты мягче, а рядом с другими закрываешься.' },
     { icon:'💼', title:'Работа, амбиции, деньги', text:'Как ты действуешь под давлением, где выгораешь и как твой главный паттерн влияет на решения.' },
     { icon:'✨', title:'Недельная динамика инсайтов', text:'Persona покажет, какие состояния повторяются: перегрев, закрытость, тревожный фон или жажда контакта.' },
+    { icon:'❤️', title:'Совместимость', text:'Платная парная диагностика: где вы совпадаете, где триггерите друг друга и почему один разговор видите по-разному.' },
     { icon:'🛠️', title:'Персональные рекомендации', text:'Конкретные действия под твою карту: что отслеживать, где не давить и как не кормить старый сценарий.' }
   ];
 
@@ -4599,15 +5304,6 @@ function renderFullProfilePreview() {
     </div>
   `).join('');
 
-  const personalTitle = latest ? `Persona уже видит: ${latest.data.title}` : 'Persona ждёт первый слой';
-  const personalText = latest
-    ? `${latest.data.hook} В полном профиле этот сигнал будет связан с отношениями, окружением, работой и ежедневными состояниями.`
-    : 'После первого теста этот блок станет персональным: не общий текст, а вывод по твоим ответам.';
-  document.getElementById('full-preview-personal').innerHTML = `
-    <div class="full-preview-lock">🔐 предпросмотр</div>
-    <b>${personalTitle}</b>
-    <span>${personalText}</span>
-  `;
 }
 
 function fullProfileSection({ kicker, icon, title, text, points = [], accent = false, extra = '' }) {
@@ -4693,6 +5389,66 @@ function premiumFocusCard({ label, name, icon, text }) {
         <div class="ideal-partner-mark">${icon}</div>
       </div>
       <div class="ideal-partner-text">${escapeHtml(text)}</div>
+    </div>
+  `;
+}
+
+function fullProfileInsightsCard(history) {
+  const bars = getFullProfileBars(history || []);
+  const count = history?.length || 0;
+  const text = count
+    ? `Persona уже видит ${count} ежедневных срезов. Полный доступ связывает их с профилем: какие состояния повторяются, когда тебя перегревает и что помогает быстрее вернуться в норму.`
+    : 'Когда ты начнёшь проходить ежедневные инсайты, здесь появится недельная динамика: не просто настроение дня, а повторяющиеся состояния и персональные действия.';
+  return `
+    <div class="ideal-partner-card">
+      <div class="ideal-partner-top">
+        <div>
+          <div class="ideal-partner-label">полный доступ инсайтов</div>
+          <div class="ideal-partner-name">Недельная динамика</div>
+        </div>
+        <div class="ideal-partner-mark">📈</div>
+      </div>
+      <div class="ideal-partner-text">${escapeHtml(text)}</div>
+      <div class="full-dynamics-bars">${bars.map(value => `<i style="height:${value}%"></i>`).join('')}</div>
+    </div>
+  `;
+}
+
+function fullMoodChart(history) {
+  const source = (history || []).slice(0, 7).reverse();
+  const fallbackValues = [46, 61, 52, 74, 58, 69, 55];
+  const fallbackLabels = ['Д1', 'Д2', 'Д3', 'Д4', 'Д5', 'Д6', 'Д7'];
+  const rows = source.length ? source.map(item => {
+    const values = Object.values(item.scores || {});
+    const avg = values.length ? values.reduce((sum, value) => sum + Number(value || 0), 0) / values.length : 4;
+    return {
+      value: Math.max(24, Math.min(92, Math.round(avg * 18))),
+      label: item.moodIcon || '•',
+      title: item.moodTitle || 'Срез'
+    };
+  }) : fallbackValues.map((value, index) => ({ value, label:fallbackLabels[index], title:'пример динамики' }));
+  while (rows.length < 7) {
+    const index = rows.length;
+    rows.unshift({ value:fallbackValues[index], label:fallbackLabels[index], title:'пример динамики' });
+  }
+  const latest = history?.[0]?.moodTitle || 'скоро';
+  return `
+    <div class="mood-chart">
+      <div class="mood-chart-head">
+        <div>
+          <div class="mood-chart-title">График изменения настроения</div>
+          <div class="mood-chart-sub">На основе инсайта дня Persona покажет, что повторяется: перегрев, броня, тревожный шум или контакт.</div>
+        </div>
+        <div class="insight-premium-price">${escapeHtml(latest)}</div>
+      </div>
+      <div class="mood-chart-bars">
+        ${rows.map(row => `
+          <div class="mood-chart-bar" title="${escapeHtml(row.title)}">
+            <i style="height:${row.value}%"></i>
+            <span>${escapeHtml(row.label)}</span>
+          </div>
+        `).join('')}
+      </div>
     </div>
   `;
 }
@@ -4796,33 +5552,43 @@ function getIdealWorkProfile(control, topAxis) {
 function getRecommendationFocus({ anxiety, conflict, stability, attachment }) {
   if (anxiety) return {
     name:'Сначала снизить внутренний шум',
-    text:`${anxiety.data.red} Главный фокус — отделять факт от догадки и не принимать решения из перегрева.`,
-    rhythm:'пауза, проверка фактов, короткое действие вместо прокручивания',
-    danger:'если тревога рулит первой, остальные паттерны начинают усиливаться'
+    text:`${anxiety.data.red} Главный фокус — не принимать решения в момент перегрева. Сначала вернуть себе ясность, потом действовать.`,
+    step:'Когда накрывает, остановись на 10 минут: что я точно знаю, а что уже додумал?',
+    pressure:'Не требуй мгновенного ответа там, где другому человеку нужна пауза. Лучше договориться о времени возвращения к разговору.',
+    support:'Опора возвращается через маленькое действие: вода, заметка, короткая прогулка, один понятный следующий шаг.',
+    danger:'Если тревога первая садится за руль, ты начинаешь читать угрозу даже там, где есть только неопределённость.'
   };
   if (conflict) return {
     name:'Сначала чинить контакт без атаки',
-    text:`${conflict.data.red} Главный фокус — заметить момент, где защита уже включилась, но разговор ещё можно не превращать в бой.`,
-    rhythm:'назвать напряжение, взять паузу, вернуться к сути',
-    danger:'победа в споре может стоить близости'
+    text:`${conflict.data.red} Главный фокус — не бросать разговор в подвешенном состоянии. Пауза нормальна, если после неё есть возвращение.`,
+    step:'Если разговор перегрелся, скажи прямо: “мне нужна пауза, я вернусь к этому сегодня”.',
+    pressure:'Не дави молчанием и не исчезай без рамки. Для другого человека это выглядит как наказание, а не как саморегуляция.',
+    support:'Возвращайся к одной конкретной фразе: что меня задело, чего я хочу, что готов обсудить.',
+    danger:'Отложенный разговор становится опасным, когда превращается не в паузу, а в тихий разрыв контакта.'
   };
   if (stability) return {
     name:'Сначала укрепить опору',
-    text:`${stability.data.hook} Рекомендации будут строиться вокруг того, что возвращает тебя в устойчивость быстрее всего.`,
-    rhythm:'маленькие повторяемые действия вместо резкого рывка',
-    danger:'без опоры даже правильные советы ощущаются как давление'
+    text:`${stability.data.hook} Главный фокус — держаться не на героизме, а на понятном смысле и маленьких повторяемых действиях.`,
+    step:'Сформулируй, ради чего ты сейчас это делаешь. Один ясный смысл снижает хаос сильнее, чем десять советов.',
+    pressure:'Не пытайся решить всё сразу. Когда опора в смысле, большой путь лучше дробить на короткие участки.',
+    support:'Возвращайся к вопросу: “какой следующий шаг подтверждает мой смысл, а не просто тушит тревогу?”',
+    danger:'Если смысл теряется, ты можешь продолжать на силе воли, но внутри быстро появится пустота и усталость.'
   };
   if (attachment) return {
     name:'Сначала прояснять близость',
-    text:`${attachment.data.red} Главный фокус — перестать проверять контакт косвенно и учиться говорить о важном прямее.`,
-    rhythm:'ясный вопрос, честная просьба, пауза без наказания',
-    danger:'молчаливые проверки могут выглядеть как недоверие'
+    text:`${attachment.data.red} Главный фокус — говорить о важном прямо, пока тревога не превратила контакт в проверку.`,
+    step:'Замени проверку на фразу: “мне важно понять, что между нами происходит”.',
+    pressure:'Не заставляй человека угадывать, что именно тебя задело. Чем тише сигнал, тем больше риск недопонимания.',
+    support:'Возвращай контакт через ясную просьбу: что тебе нужно сейчас — ответ, пауза, тепло или честность.',
+    danger:'Молчаливые проверки могут выглядеть как недоверие, даже если внутри тебе просто страшно потерять связь.'
   };
   return {
     name:'Сначала собрать базовую карту',
     text:'Persona даст точный фокус после нескольких тестов. Пока главный шаг — открыть первые слои, чтобы рекомендации были не общими, а твоими.',
-    rhythm:'один тест, один честный инсайт, одно действие',
-    danger:'без данных рекомендации превращаются в красивые, но слишком общие слова'
+    step:'Пройди один тест и один ежедневный инсайт. Этого уже хватит, чтобы рекомендации стали точнее.',
+    pressure:'Не пытайся сразу собрать идеальный профиль. Persona работает лучше, когда карта растёт слоями.',
+    support:'Один честный ответ важнее десяти случайных прохождений.',
+    danger:'Без данных рекомендации превращаются в красивые, но слишком общие слова.'
   };
 }
 
@@ -4838,6 +5604,7 @@ function renderFullProfile() {
   const anxiety = getCompletedEntry(completed, 'anxiety');
   const conflict = getCompletedEntry(completed, 'conflict');
   const stability = getCompletedEntry(completed, 'stability');
+  const dailyHistory = getDailyState().history || [];
   const workSignal = control || topAxis;
   const idealPartner = getIdealPartnerProfile(attachment);
   const bestFriend = getBestFriendProfile(boundaries);
@@ -4945,9 +5712,9 @@ function renderFullProfile() {
         text:recommendationFocus.text
       }),
       points:[
-        { icon:'1', title:'Первый шаг', text:recommendationFocus.rhythm },
-        { icon:'2', title:'Где не давить', text:conflict ? conflict.data.red : 'в каких разговорах лучше брать паузу, а не усиливать защиту' },
-        { icon:'3', title:'Как возвращаться в опору', text:stability ? stability.data.hook : 'какой маленький шаг помогает не проваливаться в старый сценарий' },
+        { icon:'1', title:'Первый шаг', text:recommendationFocus.step },
+        { icon:'2', title:'Где не давить', text:recommendationFocus.pressure },
+        { icon:'3', title:'Как возвращаться в опору', text:recommendationFocus.support },
         { icon:'4', title:'Что может сорвать прогресс', text:recommendationFocus.danger }
       ]
       })
@@ -5018,6 +5785,7 @@ setupCatalogScroll();
 setupProfileScroll();
 setupInsightsScroll();
 setupAppIntro();
+bootCompatibilityInvite();
 </script>
 </body>
 </html>
