@@ -688,14 +688,22 @@ button { font: inherit; }
     rgba(139,92,246,.12);
 }
 .compat-avatar {
-  width:42px;
-  height:42px;
-  border-radius:16px;
+  width:52px;
+  height:52px;
+  border-radius:18px;
   display:grid;
   place-items:center;
   background:linear-gradient(135deg, rgba(139,92,246,.54), rgba(236,72,153,.44));
   font-size:19px;
   font-weight:900;
+  overflow:hidden;
+  box-shadow:0 0 22px rgba(139,92,246,.16);
+}
+.compat-avatar img {
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
 }
 .compat-person b {
   display:block;
@@ -853,12 +861,18 @@ button { font: inherit; }
 }
 .compat-bar {
   display:grid;
-  grid-template-columns:96px 1fr 34px;
+  grid-template-columns:96px 1fr 42px;
   align-items:center;
   gap:9px;
   color:var(--text2);
   font-size:11px;
   font-weight:800;
+}
+.compat-bar-value {
+  color:#F0ABFC;
+  text-align:right;
+  font-size:12px;
+  font-weight:900;
 }
 .compat-track {
   height:7px;
@@ -3320,10 +3334,8 @@ button { font: inherit; }
         <div class="compat-people" id="compatibility-people"></div>
         <div class="duels-actions">
           <button class="duels-action primary" onclick="showCompatibilityDemo()">👤 Посмотреть сравнение</button>
-          <button class="duels-action" onclick="showMyPersonaCode()">🔑 Мой Persona-код</button>
-          <button class="duels-action" onclick="showCompatibilityHistory()">📜 Мои сравнения</button>
         </div>
-        <div class="duels-link-card" id="compatibility-link-card" style="display:none">
+        <div class="duels-link-card" id="compatibility-link-card">
           <div class="duels-link-label">твой код</div>
           <div class="duels-link" id="compatibility-link"></div>
           <div class="duels-text">Друг вводит этот код у себя во вкладке совместимости и добавляет тебя в контакты.</div>
@@ -4989,6 +5001,7 @@ function showInsights() {
 
 function showDuels() {
   renderCompatibilityPeople();
+  renderMyCompatibilityCode();
   showScreen('duels');
 }
 
@@ -5023,7 +5036,7 @@ function renderCompatibilityPeople() {
   }
   root.innerHTML = people.map(person => `
     <button class="compat-person ${person.id === selectedCompatibilityPersonId ? 'active' : ''}" onclick="selectCompatibilityPerson('${escapeHtml(person.id)}')">
-      <div class="compat-avatar">${escapeHtml(person.avatar || person.name.slice(0, 1))}</div>
+      <div class="compat-avatar">${person.avatarUrl ? `<img src="${escapeHtml(person.avatarUrl)}" alt="">` : escapeHtml(person.avatar || person.name.slice(0, 1))}</div>
       <div>
         <b>${escapeHtml(person.name)}</b>
         <span>${escapeHtml(person.note || 'профиль готов к сравнению')}</span>
@@ -5066,6 +5079,11 @@ function hashPersonaCode(code) {
   return normalizePersonaCode(code).split('').reduce((sum, char, index) => sum + char.charCodeAt(0) * (index + 17), 0);
 }
 
+function getCompatibilityAvatarUrl(code) {
+  const normalized = encodeURIComponent(normalizePersonaCode(code) || 'PERSONA');
+  return `https://i.pravatar.cc/96?u=${normalized}`;
+}
+
 function makeCompatibilityProfileFromCode(code) {
   const normalized = normalizePersonaCode(code);
   const seed = hashPersonaCode(normalized);
@@ -5082,6 +5100,7 @@ function makeCompatibilityProfileFromCode(code) {
     id:`code-${normalized}`,
     code:normalized,
     avatar:normalized.replace(/[^A-ZА-Я0-9]/g, '').slice(-1) || 'П',
+    avatarUrl:getCompatibilityAvatarUrl(normalized),
     name:`${names[seed % names.length]} ${normalized.slice(-4)}`,
     tag:tags[seed % tags.length],
     note:notes[(seed + 1) % notes.length],
@@ -5105,6 +5124,7 @@ function normalizeCompatibilityPerson(person) {
     id:person.id || `invite-${person.code || 'saved'}`,
     code:person.code || 'saved',
     avatar:person.avatar || 'П',
+    avatarUrl:person.avatarUrl || getCompatibilityAvatarUrl(person.code || person.id || person.name),
     name:person.name || 'Партнёр Persona',
     tag:person.tag || 'в Persona',
     note:person.note || 'профиль готов к сравнению',
@@ -5117,11 +5137,15 @@ function getCompatibilityPeople() {
   return getStoredCompatibilityContacts().map(normalizeCompatibilityPerson).filter(Boolean);
 }
 
-function showMyPersonaCode() {
-  const card = document.getElementById('compatibility-link-card');
+function renderMyCompatibilityCode() {
   const target = document.getElementById('compatibility-link');
   const code = getPersonaUser().id;
   if (target) target.textContent = code;
+}
+
+function showMyPersonaCode() {
+  const card = document.getElementById('compatibility-link-card');
+  renderMyCompatibilityCode();
   if (card) card.style.display = 'block';
   safeSelectionHaptic();
 }
@@ -5208,7 +5232,7 @@ function showCompatibilityDemo() {
           <div class="compat-track">
             <div class="compat-fill" style="width:${Math.round((row.you + row.partner) / 2)}%"></div>
           </div>
-          <span>${Math.abs(row.you - row.partner) <= 12 ? '≈' : '!'}</span>
+          <span class="compat-bar-value">${row.partner}%</span>
         </div>
       `).join('')}
     </div>
@@ -5220,17 +5244,6 @@ function showCompatibilityDemo() {
   `;
   root.scrollIntoView({ behavior:'smooth', block:'nearest' });
   safeHaptic('success');
-}
-
-function showCompatibilityHistory() {
-  const card = document.getElementById('compatibility-link-card');
-  const target = document.getElementById('compatibility-link');
-  const person = getSelectedCompatibilityPerson();
-  if (target) target.textContent = person
-    ? `Сравнение · ${person.name} · готово`
-    : 'Сравнений пока нет. Добавь Persona-код друга.';
-  if (card) card.style.display = 'block';
-  if (person) showCompatibilityDemo();
 }
 
 function renderFullProfilePreview() {
