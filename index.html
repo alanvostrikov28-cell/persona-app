@@ -4016,9 +4016,9 @@ function publishMyPersonaProfile() {
   registry[code] = {
     id:`code-${code}`,
     code,
-    name:user.username ? `@${user.username}` : user.name,
-    avatar:user.initials,
-    photoUrl:user.photo,
+    name:user.name,
+    username:user.username,
+    avatar:'👤',
     tag:'Telegram',
     note:'контакт из Telegram-профиля',
     createdAt:Date.now()
@@ -5130,18 +5130,26 @@ function hashPersonaCode(code) {
 }
 
 function renderCompatibilityAvatar(person) {
-  const photo = person?.photoUrl || person?.avatarUrl || '';
-  if (photo) return `<img src="${escapeHtml(photo)}" alt="">`;
-  return escapeHtml(person?.avatar || person?.name?.slice(0, 1) || 'П');
+  return escapeHtml(person?.avatar || '👤');
 }
 
 function getPersonaPublicProfileByCode(code) {
   const normalized = normalizePersonaCode(code);
+  const demoProfiles = {
+    'TG-6639901180': {
+      id:'code-TG-6639901180',
+      code:'TG-6639901180',
+      name:'Opaul',
+      avatar:'👤',
+      tag:'Telegram',
+      note:'контакт из Persona-профиля'
+    }
+  };
   try {
     const registry = JSON.parse(localStorage.getItem('personaPublicProfiles') || '{}') || {};
-    return registry[normalized] || null;
+    return registry[normalized] || demoProfiles[normalized] || null;
   } catch {
-    return null;
+    return demoProfiles[normalized] || null;
   }
 }
 
@@ -5152,8 +5160,7 @@ function makeCompatibilityProfileFromPublicProfile(profile) {
   return {
     id:`code-${normalized}`,
     code:normalized,
-    avatar:profile.avatar || profile.name?.slice(0, 1) || 'П',
-    photoUrl:profile.photoUrl || '',
+    avatar:'👤',
     name:profile.name || 'Telegram контакт',
     tag:profile.tag || 'Telegram',
     note:profile.note || 'контакт из Telegram-профиля',
@@ -5176,8 +5183,7 @@ function normalizeCompatibilityPerson(person) {
   return {
     id:person.id || `invite-${person.code || 'saved'}`,
     code:person.code || 'saved',
-    avatar:person.avatar || 'П',
-    photoUrl:person.photoUrl || person.avatarUrl || '',
+    avatar:person.avatar || '👤',
     name:person.name || 'Партнёр Persona',
     tag:person.tag || 'в Persona',
     note:person.note || 'профиль готов к сравнению',
