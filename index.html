@@ -3663,6 +3663,7 @@ async function requestJson(url, options = {}) {
     ...options,
     headers:{
       'Content-Type':'application/json',
+      'ngrok-skip-browser-warning':'true',
       ...(tg?.initData ? {'X-Telegram-Init-Data':tg.initData} : {}),
       ...(options.headers || {})
     }
