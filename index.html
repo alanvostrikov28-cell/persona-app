@@ -3510,7 +3510,7 @@ button { font: inherit; }
 <div class="screen" id="screen-full-profile">
   <div class="profile-header">
     <div class="cat-header-top">
-      <button class="btn-back" onclick="showFullProfilePreview()">← Назад</button>
+      <button class="btn-back" onclick="showScreen('catalog')">← Назад</button>
       <div class="logo-name">PERSONA</div>
     </div>
     <div class="greeting-label">Полный доступ</div>
@@ -3590,6 +3590,9 @@ button { font: inherit; }
 </div>
 
 <script>
+// Production payment server URL. Example:
+// window.PERSONA_PAYMENT_API_BASE = 'https://persona-payment.example.com';
+window.PERSONA_PAYMENT_API_BASE = window.PERSONA_PAYMENT_API_BASE || 'https://clench-movie-schilling.ngrok-free.dev';
 const tg = window.Telegram?.WebApp;
 if (tg) {
   tg.ready();
@@ -3607,6 +3610,7 @@ const FULL_ACCESS_PRODUCT = {
   currency:'RUB',
   storageKey:'personaFullAccess'
 };
+const PAYMENT_API_BASE = (window.PERSONA_PAYMENT_API_BASE || localStorage.getItem('personaPaymentApiBase') || '').replace(/\/$/, '');
 
 function getFullAccessState() {
   try {
@@ -3645,6 +3649,50 @@ function grantFullAccess(source = 'demo-checkout') {
   localStorage.setItem('personaFullProfileDemo', '1');
   updateFullAccessUi();
   return access;
+}
+
+async function requestJson(url, options = {}) {
+  const response = await fetch(url, {
+    ...options,
+    headers:{
+      'Content-Type':'application/json',
+      ...(tg?.initData ? {'X-Telegram-Init-Data':tg.initData} : {}),
+      ...(options.headers || {})
+    }
+  });
+  const data = await response.json().catch(() => ({}));
+  if (!response.ok || data.ok === false) {
+    throw new Error(data.error || `Request failed: ${response.status}`);
+  }
+  return data;
+}
+
+async function syncFullAccessFromServer() {
+  if (!PAYMENT_API_BASE || !tg?.initData) return getFullAccessState();
+  const data = await requestJson(`${PAYMENT_API_BASE}/api/access/full-access`);
+  if (data.active) return grantFullAccess(data.source || 'telegram-payment');
+  return { active:false };
+}
+
+async function createFullAccessInvoice() {
+  if (!PAYMENT_API_BASE) throw new Error('PAYMENT_API_BASE is not configured');
+  return requestJson(`${PAYMENT_API_BASE}/api/payments/full-access/invoice`, {
+    method:'POST',
+    body:JSON.stringify({
+      productId:FULL_ACCESS_PRODUCT.id,
+      userId:getPersonaUser().id
+    })
+  });
+}
+
+function openTelegramInvoice(invoiceUrl) {
+  return new Promise((resolve, reject) => {
+    if (!tg?.openInvoice) {
+      reject(new Error('Telegram invoice is available only inside Telegram Mini App'));
+      return;
+    }
+    tg.openInvoice(invoiceUrl, status => resolve(status));
+  });
 }
 
 function getFullAccessButtonText() {
@@ -5970,13 +6018,44 @@ function openFullProfilePaywall() {
   else showFullProfilePreview();
 }
 
-function startFullProfileCheckout() {
-  if (!hasFullAccess()) {
-    grantFullAccess('demo-checkout');
-    safeHaptic('success');
-    if (tg) tg.showAlert('Полный доступ открыт. Это демо-активация: дальше подключим реальную оплату через бота.');
+async function startFullProfileCheckout() {
+  if (hasFullAccess()) {
+    showFullProfile();
+    return;
   }
-  showFullProfile();
+
+  if (!tg || !PAYMENT_API_BASE) {
+    grantFullAccess('local-demo');
+    safeHaptic('success');
+    showSoon('Локальный демо-режим: полный доступ открыт. В Telegram оплата пойдёт через бота.');
+    showFullProfile();
+    return;
+  }
+
+  const button = document.getElementById('full-preview-buy-btn');
+  if (button) {
+    button.disabled = true;
+    button.textContent = 'Открываем оплату...';
+  }
+
+  try {
+    const invoice = await createFullAccessInvoice();
+    const status = await openTelegramInvoice(invoice.invoiceUrl);
+    if (status === 'paid') {
+      await syncFullAccessFromServer();
+      safeHaptic('success');
+      showFullProfile();
+      return;
+    }
+    safeHaptic('impact');
+    showSoon(status === 'cancelled' ? 'Оплата отменена.' : 'Оплата не завершена. Попробуй ещё раз.');
+  } catch (error) {
+    console.warn('Payment checkout failed', error);
+    safeHaptic('impact');
+    showSoon('Не получилось открыть оплату. Проверь бота и payment API.');
+  } finally {
+    updateFullAccessUi();
+  }
 }
 
 function unlockResult() {
