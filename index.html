@@ -3362,7 +3362,15 @@ button { font: inherit; }
   </div>
   <div class="scrollable">
     <div class="profile-dashboard">
-      <div class="duels-hero">
+      <div class="duels-hero" id="compatibility-paywall">
+        <div class="duels-status top">полный доступ · 149 ₽</div>
+        <div class="duels-title">❤️ Совместимость</div>
+        <div class="duels-text">Persona сравнит две психологические карты и покажет, где вы совпадаете, где может искрить и как говорить без старых сценариев.</div>
+        <div class="duels-actions">
+          <button class="duels-action primary" onclick="startFullProfileCheckout()">🔐 Разблокировать полный профиль</button>
+        </div>
+      </div>
+      <div class="duels-hero" id="compatibility-workspace" style="display:none">
         <div class="duels-status top">полный доступ · 149 ₽</div>
         <div class="duels-title">❤️ Совместимость</div>
         <div class="duels-text">Введи Persona-код друга. Он добавится в контакты, а сравнение соберётся по вашим профилям.</div>
@@ -5170,6 +5178,16 @@ function showInsights() {
 }
 
 function showDuels() {
+  const paywall = document.getElementById('compatibility-paywall');
+  const workspace = document.getElementById('compatibility-workspace');
+  if (!hasFullAccess()) {
+    if (paywall) paywall.style.display = 'block';
+    if (workspace) workspace.style.display = 'none';
+    showScreen('duels');
+    return;
+  }
+  if (paywall) paywall.style.display = 'none';
+  if (workspace) workspace.style.display = 'block';
   publishMyPersonaProfile();
   renderCompatibilityPeople();
   renderMyCompatibilityCode();
@@ -6054,7 +6072,8 @@ async function startFullProfileCheckout() {
     const invoice = await createFullAccessInvoice();
     const status = await openTelegramInvoice(invoice.invoiceUrl);
     if (status === 'paid') {
-      await syncFullAccessFromServer();
+      grantFullAccess('telegram-payment');
+      syncFullAccessFromServer().catch(error => console.warn('Post-payment sync failed', error));
       safeHaptic('success');
       showFullProfile();
       return;
@@ -6087,6 +6106,9 @@ renderCatalog();
 renderProfile();
 updateProgress();
 updateFullAccessUi();
+syncFullAccessFromServer()
+  .then(() => updateFullAccessUi())
+  .catch(error => console.warn('Initial full access sync failed', error));
 setupCatalogScroll();
 setupProfileScroll();
 setupInsightsScroll();
