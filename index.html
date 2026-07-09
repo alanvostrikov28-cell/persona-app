@@ -3598,13 +3598,6 @@ button { font: inherit; }
 </div>
 
 <script>
-window.PERSONA_FORCE_NO_FULL_ACCESS = true;
-try {
-  localStorage.removeItem('personaFullAccess');
-  localStorage.removeItem('personaFullProfileDemo');
-} catch (error) {
-  console.warn('No-access test reset failed', error);
-}
 // Production payment server URL. Example:
 // window.PERSONA_PAYMENT_API_BASE = 'https://persona-payment.example.com';
 window.PERSONA_PAYMENT_API_BASE = window.PERSONA_PAYMENT_API_BASE || 'https://clench-movie-schilling.ngrok-free.dev';
@@ -3689,11 +3682,11 @@ function makeManualPaymentRequest() {
 async function copyManualPaymentRequest(request) {
   const username = request.username ? `@${request.username}` : 'нет username';
   const text = [
-    `Persona заявка: ${request.orderCode}`,
+    'ЗАЯВКА PERSONA',
+    `Код: ${request.orderCode}`,
     `Persona ID: ${request.personaId}`,
     `Telegram: ${request.name} (${username})`,
-    `Товар: ${request.productTitle}`,
-    `Сумма: ${request.price} ₽`
+    `Тариф: ${request.productTitle} — ${request.price} ₽`
   ].join('\n');
   try {
     await navigator.clipboard.writeText(text);
@@ -3723,7 +3716,7 @@ async function requestJson(url, options = {}) {
 async function syncFullAccessFromServer() {
   if (!PAYMENT_API_BASE || !tg?.initData) return getFullAccessState();
   const data = await requestJson(`${PAYMENT_API_BASE}/api/access/full-access`);
-  if (!window.PERSONA_FORCE_NO_FULL_ACCESS && data.active) return grantFullAccess(data.source || 'telegram-payment');
+  if (data.active) return grantFullAccess(data.source || 'telegram-payment');
   return { active:false };
 }
 
@@ -6070,7 +6063,7 @@ async function startFullProfileCheckout() {
   await copyManualPaymentRequest(request);
 
   if (!tg) {
-    showSoon(`Заявка скопирована: ${request.orderCode}. Открой @${MANUAL_PAYMENT_BOT_USERNAME} и отправь её для оплаты.`);
+    showSoon(`Заявка скопирована: ${request.orderCode}. Открой @${MANUAL_PAYMENT_BOT_USERNAME}, нажми “Купить полный доступ” и вставь заявку после оплаты.`);
     return;
   }
 
@@ -6080,14 +6073,7 @@ async function startFullProfileCheckout() {
     button.textContent = 'Открываем бота...';
   }
 
-  const params = new URLSearchParams({
-    start: request.payload,
-    utm_source: 'persona_app',
-    utm_medium: 'telegram_mini_app',
-    utm_campaign: 'full_access',
-    utm_content: request.payload
-  });
-  const botUrl = `https://t.me/${MANUAL_PAYMENT_BOT_USERNAME}?${params.toString()}`;
+  const botUrl = `https://t.me/${MANUAL_PAYMENT_BOT_USERNAME}`;
   tg.openTelegramLink(botUrl);
   safeHaptic('success');
   window.setTimeout(() => tg.close(), 450);
@@ -6126,4 +6112,3 @@ setupAppIntro();
 </script>
 </body>
 </html>
-
