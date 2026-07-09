@@ -3598,6 +3598,13 @@ button { font: inherit; }
 </div>
 
 <script>
+window.PERSONA_FORCE_NO_FULL_ACCESS = true;
+try {
+  localStorage.removeItem('personaFullAccess');
+  localStorage.removeItem('personaFullProfileDemo');
+} catch (error) {
+  console.warn('No-access test reset failed', error);
+}
 // Production payment server URL. Example:
 // window.PERSONA_PAYMENT_API_BASE = 'https://persona-payment.example.com';
 window.PERSONA_PAYMENT_API_BASE = window.PERSONA_PAYMENT_API_BASE || 'https://clench-movie-schilling.ngrok-free.dev';
@@ -3716,7 +3723,7 @@ async function requestJson(url, options = {}) {
 async function syncFullAccessFromServer() {
   if (!PAYMENT_API_BASE || !tg?.initData) return getFullAccessState();
   const data = await requestJson(`${PAYMENT_API_BASE}/api/access/full-access`);
-  if (data.active) return grantFullAccess(data.source || 'telegram-payment');
+  if (!window.PERSONA_FORCE_NO_FULL_ACCESS && data.active) return grantFullAccess(data.source || 'telegram-payment');
   return { active:false };
 }
 
@@ -6112,3 +6119,4 @@ setupAppIntro();
 </script>
 </body>
 </html>
+
