@@ -1063,6 +1063,302 @@ button { font: inherit; }
   font-size:12px;
   line-height:1.45;
 }
+.relation-card {
+  display:grid;
+  gap:13px;
+}
+.relation-hero {
+  border:.5px solid rgba(236,72,153,.28);
+  border-radius:22px;
+  background:
+    radial-gradient(circle at 86% 5%, rgba(236,72,153,.22), transparent 34%),
+    linear-gradient(135deg, rgba(139,92,246,.18), rgba(255,255,255,.035));
+  padding:15px;
+}
+.relation-hero-top {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+}
+.relation-pair {
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+.relation-avatar {
+  width:42px;
+  height:42px;
+  border-radius:15px;
+  display:grid;
+  place-items:center;
+  background:linear-gradient(135deg, rgba(139,92,246,.78), rgba(236,72,153,.58));
+  color:#fff;
+  font-size:18px;
+  font-weight:900;
+  box-shadow:0 0 20px rgba(236,72,153,.16);
+}
+.relation-bridge {
+  width:28px;
+  height:2px;
+  border-radius:999px;
+  background:linear-gradient(90deg, #8B5CF6, #EC4899);
+  box-shadow:0 0 14px rgba(236,72,153,.25);
+}
+.relation-score {
+  min-width:70px;
+  border:.5px solid rgba(255,255,255,.13);
+  border-radius:16px;
+  background:rgba(255,255,255,.06);
+  padding:8px;
+  text-align:center;
+}
+.relation-score b {
+  display:block;
+  font-family:Unbounded,sans-serif;
+  font-size:19px;
+}
+.relation-score span {
+  color:var(--text3);
+  font-size:10px;
+  font-weight:900;
+}
+.relation-title {
+  margin-top:14px;
+  font-family:Unbounded,sans-serif;
+  font-size:20px;
+  line-height:1.2;
+}
+.relation-text {
+  margin-top:8px;
+  color:var(--text2);
+  font-size:12px;
+  line-height:1.5;
+}
+.relation-metrics {
+  display:grid;
+  grid-template-columns:repeat(3, minmax(0,1fr));
+  gap:7px;
+  margin-top:12px;
+}
+.relation-metric {
+  border:.5px solid rgba(255,255,255,.09);
+  border-radius:14px;
+  background:rgba(10,10,15,.24);
+  padding:9px;
+}
+.relation-metric b {
+  display:block;
+  color:var(--text);
+  font-size:13px;
+}
+.relation-metric span {
+  display:block;
+  margin-top:4px;
+  color:var(--text3);
+  font-size:10px;
+  font-weight:900;
+}
+.relation-tabs {
+  display:grid;
+  grid-template-columns:repeat(4, minmax(0,1fr));
+  gap:6px;
+}
+.relation-tab {
+  min-height:40px;
+  border:.5px solid rgba(255,255,255,.09);
+  border-radius:14px;
+  background:rgba(255,255,255,.04);
+  color:var(--text2);
+  font-size:11px;
+  font-weight:900;
+}
+.relation-tab.active {
+  color:#fff;
+  border-color:rgba(236,72,153,.34);
+  background:linear-gradient(135deg, rgba(139,92,246,.74), rgba(236,72,153,.58));
+}
+.relation-module {
+  border:.5px solid rgba(255,255,255,.09);
+  border-radius:20px;
+  padding:14px;
+  background:rgba(255,255,255,.035);
+}
+.relation-module.story {
+  border-color:rgba(236,72,153,.28);
+  background:
+    radial-gradient(circle at 96% 0%, rgba(236,72,153,.16), transparent 32%),
+    rgba(255,255,255,.04);
+}
+.relation-module.map {
+  border-color:rgba(6,182,212,.24);
+  background:
+    radial-gradient(circle at 0% 10%, rgba(6,182,212,.12), transparent 30%),
+    rgba(255,255,255,.035);
+}
+.relation-module.talk {
+  border-color:rgba(52,211,153,.22);
+  background:
+    radial-gradient(circle at 100% 0%, rgba(52,211,153,.12), transparent 31%),
+    rgba(255,255,255,.035);
+}
+.relation-module.days {
+  border-color:rgba(251,191,36,.22);
+  background:
+    radial-gradient(circle at 0% 100%, rgba(251,191,36,.12), transparent 32%),
+    rgba(255,255,255,.035);
+}
+.relation-module-kicker {
+  color:#C4B5FD;
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:.13em;
+  text-transform:uppercase;
+}
+.relation-module-title {
+  margin-top:7px;
+  font-weight:900;
+  font-size:16px;
+  line-height:1.25;
+}
+.relation-module-text {
+  margin-top:8px;
+  color:var(--text2);
+  font-size:12px;
+  line-height:1.5;
+}
+.relation-pill-row {
+  display:grid;
+  grid-template-columns:repeat(3, minmax(0,1fr));
+  gap:7px;
+  margin-top:12px;
+}
+.relation-pill {
+  border:.5px solid rgba(255,255,255,.08);
+  border-radius:14px;
+  padding:9px;
+  background:rgba(10,10,15,.25);
+}
+.relation-pill b {
+  display:block;
+  color:var(--text);
+  font-size:12px;
+}
+.relation-pill span {
+  display:block;
+  margin-top:4px;
+  color:var(--text3);
+  font-size:10px;
+  line-height:1.35;
+}
+.relation-map {
+  display:grid;
+  gap:9px;
+  margin-top:12px;
+}
+.relation-map-row {
+  border:.5px solid rgba(255,255,255,.08);
+  border-radius:15px;
+  background:rgba(10,10,15,.24);
+  padding:10px;
+}
+.relation-map-head {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom:8px;
+  color:var(--text);
+  font-size:12px;
+  font-weight:900;
+}
+.relation-map-status {
+  color:#F0ABFC;
+  font-size:10px;
+  font-weight:900;
+  white-space:nowrap;
+}
+.relation-map-track {
+  position:relative;
+  height:16px;
+  border-radius:999px;
+  background:rgba(255,255,255,.08);
+  overflow:hidden;
+}
+.relation-map-fill {
+  position:absolute;
+  left:0;
+  top:5px;
+  height:6px;
+  border-radius:999px;
+  background:linear-gradient(90deg, #8B5CF6, #EC4899);
+}
+.relation-map-dot {
+  position:absolute;
+  top:50%;
+  width:11px;
+  height:11px;
+  border-radius:50%;
+  transform:translate(-50%,-50%);
+  border:2px solid rgba(255,255,255,.72);
+  background:#EC4899;
+}
+.relation-map-dot.you {
+  background:#EC4899;
+}
+.relation-map-dot.partner {
+  background:#8B5CF6;
+}
+.relation-map-values {
+  display:flex;
+  justify-content:space-between;
+  margin-top:7px;
+  color:var(--text3);
+  font-size:10px;
+  font-weight:900;
+}
+.relation-rules,
+.relation-timeline {
+  display:grid;
+  gap:9px;
+  margin-top:12px;
+}
+.relation-rule,
+.relation-day {
+  border:.5px solid rgba(255,255,255,.08);
+  border-radius:15px;
+  background:rgba(10,10,15,.28);
+  padding:11px;
+}
+.relation-rule b,
+.relation-day b {
+  display:block;
+  color:var(--text);
+  font-size:13px;
+}
+.relation-rule span,
+.relation-day span {
+  display:block;
+  margin-top:5px;
+  color:var(--text2);
+  font-size:12px;
+  line-height:1.45;
+}
+.relation-day {
+  display:grid;
+  grid-template-columns:54px 1fr;
+  gap:10px;
+  align-items:start;
+}
+.relation-day-num {
+  border-radius:13px;
+  background:rgba(251,191,36,.12);
+  color:#FDE68A;
+  padding:7px 6px;
+  text-align:center;
+  font-size:10px;
+  font-weight:900;
+}
 .partner-question {
   display:grid;
   gap:11px;
@@ -3592,7 +3888,7 @@ button { font: inherit; }
         <span class="logo-name">PERSONA</span>
       </div>
       <div class="header-actions">
-        <button class="premium-top-btn" onclick="openFullProfilePaywall()">🔐 Полный доступ <span>149 ₽</span></button>
+        <button class="premium-top-btn" onclick="openFullProfilePaywall()">🔐 Полный доступ <span>199 ₽/мес</span></button>
         <button class="profile-btn" onclick="showProfile()" aria-label="Открыть профиль">👤</button>
       </div>
     </div>
@@ -3685,7 +3981,7 @@ button { font: inherit; }
   <div class="scrollable">
     <div class="profile-dashboard">
       <div class="duels-hero" id="compatibility-paywall">
-        <div class="duels-status top">полный доступ · 149 ₽</div>
+        <div class="duels-status top">полный доступ · 199 ₽/мес</div>
         <div class="duels-title">❤️ Совместимость</div>
         <div class="duels-text">Persona сравнит две психологические карты и покажет, где вы совпадаете, где может искрить и как говорить без старых сценариев.</div>
         <div class="duels-actions">
@@ -3693,7 +3989,7 @@ button { font: inherit; }
         </div>
       </div>
       <div class="duels-hero" id="compatibility-workspace" style="display:none">
-        <div class="duels-status top">полный доступ · 149 ₽</div>
+        <div class="duels-status top">полный доступ · 199 ₽/мес</div>
         <div class="duels-title">❤️ Совместимость</div>
         <div class="duels-text">Введи Persona-код друга. Он добавится в контакты, а сравнение соберётся по вашим профилям.</div>
         <div class="compat-code-form">
@@ -3793,7 +4089,7 @@ button { font: inherit; }
           <li>как твой паттерн ведёт себя в отношениях;</li>
           <li>инструкция: как с тобой говорить и не ломать контакт.</li>
         </ul>
-        <button class="locked-action" onclick="openFullProfilePaywall()">Купить полный профиль — 149 ₽</button>
+        <button class="locked-action" onclick="openFullProfilePaywall()">Оформить полный профиль — 199 ₽/мес</button>
         <button class="locked-action secondary" onclick="showProfile()">Сначала посмотреть профиль →</button>
       </div>
     </div>
@@ -3820,7 +4116,7 @@ button { font: inherit; }
           <div class="full-preview-kicker">разблокировка карты</div>
           <div class="full-preview-title">Узнай о себе больше, чем покажет один тест</div>
         </div>
-        <div class="full-preview-price"><b>149 ₽</b><span>ранний доступ</span></div>
+        <div class="full-preview-price"><b>199 ₽</b><span>в месяц</span></div>
       </div>
       <div class="full-preview-text">Persona соберёт твои тесты, ежедневные инсайты и повторяющиеся состояния в одну психологическую карту: отношения, окружение, работа, сильные стороны и конкретные рекомендации.</div>
       <div class="full-preview-signal" id="full-preview-signal"></div>
@@ -3833,7 +4129,7 @@ button { font: inherit; }
     </div>
   </div>
   <div class="full-preview-footer">
-    <button class="btn-primary" id="full-preview-buy-btn" onclick="startFullProfileCheckout()">Разблокировать полный профиль — 149 ₽</button>
+    <button class="btn-primary" id="full-preview-buy-btn" onclick="startFullProfileCheckout()">Оформить подписку — 199 ₽/мес</button>
   </div>
 </div>
 
@@ -3936,7 +4232,8 @@ const tgUser = tg?.initDataUnsafe?.user || null;
 const FULL_ACCESS_PRODUCT = {
   id:'persona_full_access',
   title:'Полный доступ Persona',
-  price:149,
+  price:199,
+  period:'месяц',
   currency:'RUB',
   storageKey:'personaFullAccess'
 };
@@ -3944,20 +4241,37 @@ const MANUAL_PAYMENT_BOT_USERNAME = 'PersonaMirror_bot';
 const PAYMENT_API_BASE = (window.PERSONA_PAYMENT_API_BASE || localStorage.getItem('personaPaymentApiBase') || '').replace(/\/$/, '');
 const ACCESS_LIST_URL = window.PERSONA_ACCESS_LIST_URL || './persona-access.json';
 
+function parseAccessTime(value) {
+  if (!value) return null;
+  const time = typeof value === 'number' ? value : Date.parse(value);
+  return Number.isFinite(time) ? time : null;
+}
+
+function getTrustedAccessNow(access) {
+  const localNow = Date.now();
+  const serverNow = parseAccessTime(access?.serverNowAt);
+  const verifiedAt = parseAccessTime(access?.verifiedAtLocal);
+  if (!serverNow || !verifiedAt) return localNow;
+  const elapsed = Math.max(0, localNow - verifiedAt);
+  return Math.max(serverNow + elapsed, serverNow);
+}
+
+function isAccessActiveByTime(access, now = Date.now()) {
+  if (!access?.active) return false;
+  const expiresAt = parseAccessTime(access.expiresAt);
+  return expiresAt ? now <= expiresAt : false;
+}
+
 function getFullAccessState() {
   try {
     const saved = JSON.parse(localStorage.getItem(FULL_ACCESS_PRODUCT.storageKey) || 'null');
-    if (saved?.active) return saved;
+    const verifiedAt = parseAccessTime(saved?.verifiedAtLocal);
+    if (verifiedAt && Date.now() + 5 * 60 * 1000 < verifiedAt) {
+      return { active:false, source:'clock-tamper', productId:FULL_ACCESS_PRODUCT.id };
+    }
+    if (saved?.active && isAccessActiveByTime(saved, getTrustedAccessNow(saved))) return saved;
   } catch (error) {
     console.warn('Full access state failed', error);
-  }
-  if (localStorage.getItem('personaFullProfileDemo') === '1') {
-    return {
-      active:true,
-      productId:FULL_ACCESS_PRODUCT.id,
-      source:'legacy-demo',
-      activatedAt:Date.now()
-    };
   }
   return { active:false };
 }
@@ -3966,19 +4280,32 @@ function hasFullAccess() {
   return Boolean(getFullAccessState().active);
 }
 
-function grantFullAccess(source = 'demo-checkout') {
+function grantFullAccess(source = 'admin-access-list', options = {}) {
+  const now = Date.now();
+  const serverNow = parseAccessTime(options.serverNowAt) || now;
+  const expiresAt = parseAccessTime(options.expiresAt);
+  if (!expiresAt || expiresAt <= serverNow) {
+    localStorage.removeItem(FULL_ACCESS_PRODUCT.storageKey);
+    localStorage.removeItem('personaFullProfileDemo');
+    updateFullAccessUi();
+    return { active:false, source:'expired', productId:FULL_ACCESS_PRODUCT.id };
+  }
   const access = {
     active:true,
     productId:FULL_ACCESS_PRODUCT.id,
     productTitle:FULL_ACCESS_PRODUCT.title,
     price:FULL_ACCESS_PRODUCT.price,
+    period:FULL_ACCESS_PRODUCT.period,
     currency:FULL_ACCESS_PRODUCT.currency,
     source,
-    activatedAt:Date.now(),
+    activatedAt:options.grantedAt || new Date(serverNow).toISOString(),
+    expiresAt:new Date(expiresAt).toISOString(),
+    serverNowAt:new Date(serverNow).toISOString(),
+    verifiedAtLocal:now,
     userId:getPersonaUser().id
   };
   localStorage.setItem(FULL_ACCESS_PRODUCT.storageKey, JSON.stringify(access));
-  localStorage.setItem('personaFullProfileDemo', '1');
+  localStorage.removeItem('personaFullProfileDemo');
   updateFullAccessUi();
   return access;
 }
@@ -4009,7 +4336,7 @@ async function copyManualPaymentRequest(request) {
     `Код: ${request.orderCode}`,
     `Persona ID: ${request.personaId}`,
     `Telegram: ${request.name} (${username})`,
-    `Тариф: ${request.productTitle} — ${request.price} ₽`
+    `Тариф: ${request.productTitle} — ${request.price} ₽/мес`
   ].join('\n');
   try {
     await navigator.clipboard.writeText(text);
@@ -4037,18 +4364,30 @@ async function requestJson(url, options = {}) {
 }
 
 function isPersonaIdGranted(currentPersonaId, rawList = []) {
-  return rawList.some(item => {
+  const result = rawList.find(item => {
     const code = typeof item === 'string' ? item : (item.personaId || item.id || item.code);
     return normalizePersonaCode(code) === currentPersonaId;
   });
+  return result || null;
+}
+
+function getAccessEntryExpiry(entry) {
+  if (typeof entry === 'string') return null;
+  return parseAccessTime(entry.expiresAt || entry.validUntil || entry.subscriptionUntil);
 }
 
 async function syncFullAccessFromAccessList() {
   const currentPersonaId = normalizePersonaCode(getPersonaUser().id);
   try {
     const localList = JSON.parse(localStorage.getItem('personaAdminAccessList') || '[]');
-    if (Array.isArray(localList) && isPersonaIdGranted(currentPersonaId, localList)) {
-      return grantFullAccess('local-admin-access-list');
+    const localEntry = Array.isArray(localList) ? isPersonaIdGranted(currentPersonaId, localList) : null;
+    if (localEntry) {
+      const expiresAt = getAccessEntryExpiry(localEntry);
+      if (expiresAt && expiresAt > Date.now()) return grantFullAccess('local-admin-access-list', {
+        expiresAt,
+        grantedAt:typeof localEntry === 'object' ? localEntry.grantedAt : null,
+        serverNowAt:Date.now()
+      });
     }
   } catch (error) {
     console.warn('Local full access list sync failed', error);
@@ -4057,12 +4396,23 @@ async function syncFullAccessFromAccessList() {
     const url = `${ACCESS_LIST_URL}${ACCESS_LIST_URL.includes('?') ? '&' : '?'}v=${Date.now()}`;
     const response = await fetch(url, { cache:'no-store' });
     if (!response.ok) return { active:false };
+    const responseServerNow = parseAccessTime(response.headers.get('Date')) || Date.now();
     const data = await response.json();
     const rawList = Array.isArray(data) ? data : (data.fullAccess || data.users || []);
-    if (isPersonaIdGranted(currentPersonaId, rawList)) return grantFullAccess('admin-access-list');
+    const entry = isPersonaIdGranted(currentPersonaId, rawList);
+    if (entry) {
+      const expiresAt = getAccessEntryExpiry(entry);
+      if (expiresAt && expiresAt > responseServerNow) return grantFullAccess('admin-access-list', {
+        expiresAt,
+        grantedAt:typeof entry === 'object' ? entry.grantedAt : null,
+        serverNowAt:responseServerNow
+      });
+    }
   } catch (error) {
     console.warn('Static full access list sync failed', error);
   }
+  localStorage.removeItem(FULL_ACCESS_PRODUCT.storageKey);
+  localStorage.removeItem('personaFullProfileDemo');
   return { active:false };
 }
 
@@ -4071,14 +4421,18 @@ async function syncFullAccessFromServer() {
   if (staticAccess.active) return staticAccess;
   if (!PAYMENT_API_BASE || !tg?.initData) return getFullAccessState();
   const data = await requestJson(`${PAYMENT_API_BASE}/api/access/full-access`);
-  if (data.active) return grantFullAccess(data.source || 'telegram-payment');
+  if (data.active) return grantFullAccess(data.source || 'telegram-payment', {
+    expiresAt:data.expiresAt || data.validUntil,
+    grantedAt:data.grantedAt,
+    serverNowAt:data.serverNow || Date.now()
+  });
   return { active:false };
 }
 
 function getFullAccessButtonText() {
   return hasFullAccess()
     ? '✓ Полный доступ'
-    : `🔐 Полный доступ <span>${FULL_ACCESS_PRODUCT.price} ₽</span>`;
+    : `🔐 Полный доступ <span>${FULL_ACCESS_PRODUCT.price} ₽/мес</span>`;
 }
 
 function updateFullAccessUi() {
@@ -4089,7 +4443,7 @@ function updateFullAccessUi() {
   if (footerButton) {
     footerButton.textContent = hasFullAccess()
       ? 'Открыть полный профиль'
-      : `Разблокировать полный профиль — ${FULL_ACCESS_PRODUCT.price} ₽`;
+      : `Оформить подписку — ${FULL_ACCESS_PRODUCT.price} ₽/мес`;
   }
 }
 
@@ -5287,7 +5641,7 @@ function fullProfileOffer(completed, topAxis) {
     : 'Пройди хотя бы один тест, и полный профиль начнёт собираться вокруг твоих реальных ответов.';
   return `
     <div class="full-profile-hero">
-      <div class="full-profile-eyebrow">ранний доступ · beta</div>
+      <div class="full-profile-eyebrow">подписка · beta</div>
       <div class="full-profile-title">Полный профиль Persona</div>
       <div class="full-profile-text">${readyText}</div>
       <div class="full-profile-list">
@@ -5298,15 +5652,15 @@ function fullProfileOffer(completed, topAxis) {
       </div>
       <div class="full-price-row">
         <div>
-          <div class="full-price">149 ₽</div>
-          <div class="full-price-note">позже 299 ₽</div>
+          <div class="full-price">${FULL_ACCESS_PRODUCT.price} ₽</div>
+          <div class="full-price-note">ежемесячно</div>
         </div>
       </div>
     </div>
   `;
 }
 
-function fullSection({ icon, title, open, locked }) {
+function fullSection({ icon, title, open }) {
   return `
     <div class="full-section locked">
       <div class="full-section-top">
@@ -5314,7 +5668,6 @@ function fullSection({ icon, title, open, locked }) {
         <div class="full-section-tag">закрыто</div>
       </div>
       <div class="full-section-open">${open}</div>
-      <div class="full-section-locked">🔐 ${locked}</div>
     </div>
   `;
 }
@@ -5327,38 +5680,32 @@ function buildFullProfileSections({ latest, attachment, topAxis }) {
     fullSection({
       icon:'🧬',
       title:'Глубокий портрет',
-      open:`Главный текущий слой: ${mainSignal}. Это уже не отдельный результат, а материал для общей психологической карты.`,
-      locked:'Полный разбор свяжет твои реакции, защиту, тревогу и опору в один портрет без ощущения “разрозненных тестов”.'
+      open:`Главный текущий слой: ${mainSignal}. Это уже не отдельный результат, а материал для общей психологической карты.`
     }),
     fullSection({
       icon:'❤️',
       title:'Романтические отношения',
-      open: relationSignal,
-      locked:'Persona покажет, кого тебя тянет выбирать, как ты проверяешь близость и где можешь сам ломать контакт.'
+      open: relationSignal
     }),
     fullSection({
       icon:'🤝',
       title:'Дружба и окружение',
-      open:'Persona уже готовит слой про то, рядом с кем ты раскрываешься, а рядом с кем начинаешь защищаться.',
-      locked:'Полный профиль покажет, какой ты друг, кто тебя истощает, почему ты отдаляешься и что делает тебя лояльным.'
+      open:'Persona уже готовит слой про то, рядом с кем ты раскрываешься, а рядом с кем начинаешь защищаться.'
     }),
     fullSection({
       icon:'💼',
       title:'Работа, амбиции, деньги',
-      open: topAxis ? `Самый яркий сигнал сейчас: ${topAxis.axis.label} ${topAxis.value}%. Он будет влиять на стиль решений и давления.` : 'Этот раздел откроется точнее после первых тестов.',
-      locked:'Разбор покажет, как ты работаешь под давлением, где выгораешь, как реагируешь на конкуренцию и неопределённость.'
+      open: topAxis ? `Самый яркий сигнал сейчас: ${topAxis.axis.label} ${topAxis.value}%. Он будет влиять на стиль решений и давления.` : 'Этот раздел откроется точнее после первых тестов.'
     }),
     fullSection({
       icon:'❤️',
       title:'Совместимость',
-      open:'Платное сравнение покажет не “подходите или нет”, а где вы усиливаете друг друга, где триггерите и почему один разговор вы можете воспринимать по-разному.',
-      locked:'Полный доступ станет базой для совместимости: точки напряжения, карта пары, invite-ссылка и инструкция, как говорить друг с другом без старых сценариев.'
+      open:'Платное сравнение покажет не “подходите или нет”, а где вы усиливаете друг друга, где триггерите и почему один разговор вы можете воспринимать по-разному.'
     }),
     fullSection({
       icon:'⚔️',
       title:'Внутренние конфликты',
-      open:'Карта покажет, где тебя одновременно тянет к близости и защите, контролю и доверию, эмоции и опоре.',
-      locked:'Три визуальные оси покажут, как именно твои потребности спорят между собой и где паттерн может ударить обратно.'
+      open:'Карта покажет, где тебя одновременно тянет к близости и защите, контролю и доверию, эмоции и опоре.'
     })
   ].join('');
 }
@@ -5449,7 +5796,7 @@ function buildProfileStory(completed, axisRows) {
         <div class="story-title">🔐 Что именно откроется после покупки</div>
         <div class="story-text">Ниже — не заглушки, а структура будущего платного разбора. Открытый фрагмент уже персонализируется по твоим результатам.</div>
         <div class="full-section-list">${fullSections}</div>
-        <button class="paid-action" onclick="openFullProfilePaywall()">Купить полный профиль — 149 ₽</button>
+        <button class="paid-action" onclick="openFullProfilePaywall()">Оформить подписку — ${FULL_ACCESS_PRODUCT.price} ₽/мес</button>
       </div>
     `
   ];
@@ -5606,6 +5953,7 @@ const compatibilityPartnerQuestions = [
 ];
 
 let selectedCompatibilityPersonId = localStorage.getItem('personaSelectedCompatibilityPerson') || '';
+let activeCompatibilityModule = 'story';
 
 function getSelectedCompatibilityPerson() {
   const people = getCompatibilityPeople();
@@ -5809,15 +6157,45 @@ function addCompatibilityContact() {
 function getCompatibilityDemoRows() {
   const partner = getSelectedCompatibilityPerson();
   const partnerRows = partner?.rows || {};
+  const selfRows = getCompatibilitySelfScores();
   return compatibilityPartnerQuestions.map((question, index) => {
-    const you = [82, 58, 68, 77, 64, 42, 54, 71][index];
     return {
       key: question.key,
       name: question.name,
-      you,
+      you: selfRows[question.key] ?? [62, 48, 64, 58, 52, 46, 57, 60][index],
       partner: partnerRows[question.key] ?? [74, 66, 72, 61, 81, 69, 76, 63][index]
     };
   });
+}
+
+function clampCompatibilityScore(value, fallback = 55) {
+  const score = Number.isFinite(value) ? value : fallback;
+  return Math.max(24, Math.min(94, Math.round(score)));
+}
+
+function getCompatibilitySelfScores() {
+  const completed = getCompletedTests();
+  const entry = (id) => getCompletedEntry(completed, id);
+  const avg = (id) => getAverageScore(entry(id));
+  const completedBoost = Math.min(18, completed.length * 3);
+
+  const attachment = avg('attachment');
+  const anxiety = avg('anxiety');
+  const conflict = avg('conflict');
+  const boundaries = avg('boundaries');
+  const control = avg('control');
+  const stability = avg('stability');
+
+  return {
+    closeness: clampCompatibilityScore(attachment, 48 + completedBoost),
+    jealousy: clampCompatibilityScore((attachment ?? 50) * 0.45 + (anxiety ?? 50) * 0.55, 52),
+    trust: clampCompatibilityScore((stability ?? 62) - ((anxiety ?? 50) - 50) * 0.25, 62),
+    emotion: clampCompatibilityScore((anxiety ?? 50) * 0.45 + (attachment ?? 50) * 0.35 + (conflict ?? 50) * 0.2, 58),
+    conflict: clampCompatibilityScore(conflict, 50 + completedBoost),
+    avoidance: clampCompatibilityScore((boundaries ?? 50) * 0.45 + (attachment ?? 50) * 0.25 + (100 - (conflict ?? 50)) * 0.3, 50),
+    freedom: clampCompatibilityScore(boundaries, 54 + completedBoost),
+    communication: clampCompatibilityScore((conflict ?? 52) * 0.45 + (control ?? 52) * 0.35 + (stability ?? 52) * 0.2, 58)
+  };
 }
 
 function getCompatibilityScenario(rows, partnerName) {
@@ -5876,13 +6254,166 @@ function getCompatibilityScenario(rows, partnerName) {
     summary = `${jealousyText} ${closenessText}`;
   }
 
+  const attraction = Math.round(((byKey.closeness?.you || 0) + (byKey.closeness?.partner || 0) + (byKey.emotion?.you || 0) + (byKey.emotion?.partner || 0)) / 4);
+  const risk = Math.round((absDiff('freedom') + absDiff('avoidance') + absDiff('conflict') + absDiff('jealousy')) / 4);
+  const rescue = Math.round(((100 - absDiff('trust')) + (100 - absDiff('communication'))) / 2);
+
   return {
     title,
     summary,
     match:`Самая ровная зона — ${closest.name.toLowerCase()} (${closest.you}% / ${closest.partner}%). Здесь меньше поводов додумывать друг друга.`,
     tension:`Главное напряжение — ${tension.name.toLowerCase()} (${tension.you}% / ${tension.partner}%). Именно здесь чаще рождаются разные ожидания.`,
-    talk:`Начинайте с темы “${tension.name.toLowerCase()}”: один факт, одна эмоция, одна просьба. ${strongest.name.toLowerCase()} у ${partner} сейчас выражена сильнее всего (${strongest.partner}%), это важно учитывать в тоне разговора.`
+    talk:`Начинайте с темы “${tension.name.toLowerCase()}”: один факт, одна эмоция, одна просьба. ${strongest.name.toLowerCase()} у ${partner} сейчас выражена сильнее всего (${strongest.partner}%), это важно учитывать в тоне разговора.`,
+    attraction,
+    risk,
+    rescue,
+    closest,
+    tensionRow:tension,
+    strongest,
+    partner
   };
+}
+
+function getCompatibilityPayload() {
+  const partner = getSelectedCompatibilityPerson();
+  if (!partner) return null;
+  const rows = getCompatibilityDemoRows();
+  const score = Math.round(rows.reduce((sum, row) => sum + (100 - Math.abs(row.you - row.partner)), 0) / rows.length);
+  const scenario = getCompatibilityScenario(rows, partner?.name);
+  return { partner, rows, score, scenario };
+}
+
+function compatibilityModuleTabs(active = activeCompatibilityModule) {
+  const tabs = [
+    { id:'story', label:'Сюжет' },
+    { id:'map', label:'Карта' },
+    { id:'talk', label:'Разговор' },
+    { id:'days', label:'30 дней' }
+  ];
+  return `
+    <div class="relation-tabs">
+      ${tabs.map(tab => `
+        <button class="relation-tab ${tab.id === active ? 'active' : ''}" onclick="switchCompatibilityModule('${tab.id}')">${tab.label}</button>
+      `).join('')}
+    </div>
+  `;
+}
+
+function renderCompatibilityModuleContent(moduleId, payload) {
+  const { rows, scenario } = payload;
+  const mapRows = rows.slice(0, 6);
+  if (moduleId === 'map') {
+    return `
+      <div class="relation-module map">
+        <div class="relation-module-kicker">карта пары</div>
+        <div class="relation-module-title">Где вы рядом, а где между вами расстояние</div>
+        <div class="relation-module-text">Линии показывают не “норму”, а разницу между вашими ритмами. Чем дальше маркеры друг от друга, тем важнее проговаривать ожидания.</div>
+        <div class="relation-map">
+          ${mapRows.map(row => {
+            const start = Math.min(row.you, row.partner);
+            const end = Math.max(row.you, row.partner);
+            const gap = Math.abs(row.you - row.partner);
+            return `
+              <div class="relation-map-row">
+                <div class="relation-map-head">
+                  <span>${row.name}</span>
+                  <span class="relation-map-status">${gap > 18 ? 'искрит' : 'ровно'}</span>
+                </div>
+                <div class="relation-map-track">
+                  <i class="relation-map-fill" style="left:${start}%; width:${Math.max(8, end - start)}%"></i>
+                  <i class="relation-map-dot you" style="left:${row.you}%"></i>
+                  <i class="relation-map-dot partner" style="left:${row.partner}%"></i>
+                </div>
+                <div class="relation-map-values">
+                  <span>Ты ${row.you}%</span>
+                  <span>${escapeHtml(payload.partner?.name || 'Партнёр')} ${row.partner}%</span>
+                </div>
+              </div>
+            `;
+          }).join('')}
+        </div>
+      </div>
+    `;
+  }
+  if (moduleId === 'talk') {
+    return `
+      <div class="relation-module talk">
+        <div class="relation-module-kicker">инструкция к паре</div>
+        <div class="relation-module-title">Как говорить, чтобы не запускать старый сценарий</div>
+        <div class="relation-module-text">${scenario.talk}</div>
+        <div class="relation-rules">
+          <div class="relation-rule"><b>Когда начинается ссора</b><span>Сначала факт, потом эмоция, потом просьба. Без допроса и без попытки выиграть разговор.</span></div>
+          <div class="relation-rule"><b>Когда один отдаляется</b><span>Не считывать паузу как отказ. Договориться: “когда вернёмся к разговору?”.</span></div>
+          <div class="relation-rule"><b>Когда хочется проверить</b><span>Говорить прямо: “мне нужна ясность”, а не устраивать тест на любовь или лояльность.</span></div>
+        </div>
+      </div>
+    `;
+  }
+  if (moduleId === 'days') {
+    return `
+      <div class="relation-module days">
+        <div class="relation-module-kicker">прогноз на 30 дней</div>
+        <div class="relation-module-title">Как может развиваться контакт</div>
+        <div class="relation-module-text">Это не приговор, а вероятная траектория, если вы будете действовать из текущих паттернов.</div>
+        <div class="relation-timeline">
+          <div class="relation-day"><div class="relation-day-num">1-7</div><div><b>Притяжение</b><span>Сильнее всего работает интерес: хочется понять человека и быстрее почувствовать контакт.</span></div></div>
+          <div class="relation-day"><div class="relation-day-num">8-14</div><div><b>Первая проверка</b><span>${scenario.tension} Здесь важно не превращать разницу в скрытый экзамен.</span></div></div>
+          <div class="relation-day"><div class="relation-day-num">15-21</div><div><b>Зона риска</b><span>Один может ускоряться, другой брать воздух. Если молчать, появится ощущение “меня не слышат”.</span></div></div>
+          <div class="relation-day"><div class="relation-day-num">22-30</div><div><b>Развилка</b><span>Либо вы вводите ясные правила контакта, либо повторяете старый сценарий: проверка, защита, дистанция.</span></div></div>
+        </div>
+      </div>
+    `;
+  }
+  return `
+    <div class="relation-module story">
+      <div class="relation-module-kicker">сценарий пары</div>
+      <div class="relation-module-title">${escapeHtml(scenario.title)}</div>
+      <div class="relation-module-text">${scenario.summary}</div>
+      <div class="relation-pill-row">
+        <div class="relation-pill"><b>${scenario.attraction}%</b><span>притяжение</span></div>
+        <div class="relation-pill"><b>${scenario.risk}%</b><span>зона искры</span></div>
+        <div class="relation-pill"><b>${scenario.rescue}%</b><span>что спасает</span></div>
+      </div>
+    </div>
+  `;
+}
+
+function renderCompatibilityResult(moduleId = activeCompatibilityModule) {
+  const root = document.getElementById('compatibility-demo-result');
+  const payload = getCompatibilityPayload();
+  if (!root || !payload) return;
+  const { partner, score, scenario } = payload;
+  activeCompatibilityModule = moduleId;
+  root.classList.add('show');
+  root.innerHTML = `
+    <div class="relation-card">
+      <div class="relation-hero">
+        <div class="relation-hero-top">
+          <div class="relation-pair">
+            <div class="relation-avatar">Ты</div>
+            <div class="relation-bridge"></div>
+            <div class="relation-avatar">${renderCompatibilityAvatar(partner)}</div>
+          </div>
+          <div class="relation-score"><b>${score}%</b><span>потенциал</span></div>
+        </div>
+        <div class="relation-title">Persona-карта пары</div>
+        <div class="relation-text">Ты + ${escapeHtml(partner?.name || 'Партнёр Persona')}: ${scenario.title.toLowerCase()}. Здесь не “подходите / не подходите”, а сценарий, по которому между вами может строиться контакт.</div>
+        <div class="relation-metrics">
+          <div class="relation-metric"><b>${scenario.closest.name}</b><span>где легче</span></div>
+          <div class="relation-metric"><b>${scenario.tensionRow.name}</b><span>где искрит</span></div>
+          <div class="relation-metric"><b>${scenario.strongest.name}</b><span>сигнал партнёра</span></div>
+        </div>
+      </div>
+      ${compatibilityModuleTabs(moduleId)}
+      <div id="compatibility-module-content">${renderCompatibilityModuleContent(moduleId, payload)}</div>
+    </div>
+  `;
+}
+
+function switchCompatibilityModule(moduleId) {
+  activeCompatibilityModule = moduleId;
+  renderCompatibilityResult(moduleId);
+  safeSelectionHaptic();
 }
 
 function showCompatibilityDemo() {
@@ -5901,37 +6432,8 @@ function showCompatibilityDemo() {
     safeHaptic('error');
     return;
   }
-  const rows = getCompatibilityDemoRows();
-  const score = Math.round(rows.reduce((sum, row) => sum + (100 - Math.abs(row.you - row.partner)), 0) / rows.length);
-  const scenario = getCompatibilityScenario(rows, partner?.name);
-  root.classList.add('show');
-  root.innerHTML = `
-    <div class="compat-preview-head">
-      <div>
-        <div class="duels-link-label">сравнение готово</div>
-        <div class="duels-title">Ты + ${escapeHtml(partner?.name || 'Партнёр Persona')}</div>
-        <div class="duels-text">${scenario.title}</div>
-      </div>
-      <div class="compat-score"><b>${score}%</b><span>совпадение</span></div>
-    </div>
-    <div class="compat-bars">
-      ${rows.map(row => `
-        <div class="compat-bar">
-          <span>${row.name}</span>
-          <div class="compat-track">
-            <div class="compat-fill" style="width:${Math.round((row.you + row.partner) / 2)}%"></div>
-          </div>
-          <span class="compat-bar-value">${row.partner}%</span>
-        </div>
-      `).join('')}
-    </div>
-    <div class="compat-insights">
-      <div class="compat-insight"><b>${escapeHtml(scenario.title)}</b><span>${scenario.summary}</span></div>
-      <div class="compat-insight"><b>Где вы совпадаете</b><span>${scenario.match}</span></div>
-      <div class="compat-insight"><b>Где может искрить</b><span>${scenario.tension}</span></div>
-      <div class="compat-insight"><b>Как говорить</b><span>${scenario.talk}</span></div>
-    </div>
-  `;
+  activeCompatibilityModule = 'story';
+  renderCompatibilityResult('story');
   root.scrollIntoView({ behavior:'smooth', block:'nearest' });
   safeHaptic('success');
 }
@@ -5961,9 +6463,9 @@ function renderFullProfilePreview() {
     ` : `
       <div class="checkout-panel">
         <div class="checkout-row"><span>Продукт</span><b>${FULL_ACCESS_PRODUCT.title}</b></div>
-        <div class="checkout-row"><span>Доступ</span><b>навсегда в профиле</b></div>
-        <div class="checkout-row"><span>К оплате</span><b>${FULL_ACCESS_PRODUCT.price} ₽</b></div>
-        <div class="checkout-note">После оплаты пришли Persona-код в бот. Админ проверит оплату, добавит твой код в список доступа, и полный профиль откроется после обновления приложения.</div>
+        <div class="checkout-row"><span>Доступ</span><b>подписка на месяц</b></div>
+        <div class="checkout-row"><span>К оплате</span><b>${FULL_ACCESS_PRODUCT.price} ₽/мес</b></div>
+        <div class="checkout-note">После оплаты пришли Persona-код в бот. Админ проверит оплату, добавит код в список доступа со сроком окончания, и полный профиль откроется после обновления приложения.</div>
       </div>
     `}
   `;
