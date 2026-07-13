@@ -355,16 +355,16 @@ button { font: inherit; }
 .tabs-wrap {
   flex-shrink:0;
   display:flex;
-  gap:8px;
+  gap:7px;
   overflow-x:auto;
-  padding: 0 17px 14px;
+  padding: 0 17px 10px;
   scrollbar-width:none;
 }
 .tabs-wrap::-webkit-scrollbar { display:none; }
 .catalog-heading {
-  padding: 2px 17px 10px;
+  padding: 0 0 10px;
   font-family: Unbounded, sans-serif;
-  font-size: 24px;
+  font-size: 22px;
   line-height:1.15;
 }
 .tab {
@@ -373,8 +373,8 @@ button { font: inherit; }
   border-radius:999px;
   background: rgba(255,255,255,.035);
   color: var(--text2);
-  padding:10px 14px;
-  font-size:12px;
+  padding:8px 12px;
+  font-size:11px;
   font-weight:700;
   cursor:pointer;
 }
@@ -386,14 +386,85 @@ button { font: inherit; }
 
 .catalog-body { padding: 0 17px 16px; }
 .section-label {
-  margin: 18px 0 9px;
+  margin: 14px 0 8px;
   color: var(--text3);
-  font-size: 11px;
+  font-size: 10px;
   letter-spacing: .13em;
   text-transform: uppercase;
   font-weight: 800;
 }
-.cards-list { display:grid; gap:10px; }
+.cards-list { display:grid; gap:8px; }
+.next-step-card {
+  width:100%;
+  color:var(--text);
+  cursor:pointer;
+  text-align:left;
+  border:.5px solid rgba(236,72,153,.30);
+  border-radius:18px;
+  background:
+    radial-gradient(circle at 94% 10%, rgba(236,72,153,.20), transparent 34%),
+    linear-gradient(135deg, rgba(139,92,246,.15), rgba(255,255,255,.035));
+  padding:13px;
+  margin-bottom:14px;
+  display:grid;
+  gap:10px;
+}
+.next-step-top {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+}
+.next-step-label {
+  color:#C4B5FD;
+  font-size:10px;
+  letter-spacing:.13em;
+  text-transform:uppercase;
+  font-weight:900;
+}
+.next-step-status {
+  border:.5px solid rgba(255,255,255,.11);
+  border-radius:999px;
+  padding:5px 8px;
+  color:var(--text2);
+  font-size:10px;
+  font-weight:800;
+}
+.next-step-main {
+  display:grid;
+  grid-template-columns:42px 1fr auto;
+  align-items:center;
+  gap:10px;
+}
+.next-step-icon {
+  width:42px;
+  height:42px;
+  border-radius:14px;
+  display:grid;
+  place-items:center;
+  background:rgba(139,92,246,.18);
+  font-size:19px;
+}
+.next-step-title {
+  font-family:Unbounded,sans-serif;
+  font-size:16px;
+  line-height:1.2;
+}
+.next-step-sub {
+  margin-top:4px;
+  color:var(--text2);
+  font-size:12px;
+  line-height:1.35;
+}
+.next-step-go {
+  width:34px;
+  height:34px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  background:linear-gradient(135deg, rgba(139,92,246,.86), rgba(236,72,153,.78));
+  font-weight:900;
+}
 .featured-card,
 .test-card {
   border: .5px solid var(--border);
@@ -457,10 +528,15 @@ button { font: inherit; }
 }
 .test-card {
   width:100%;
-  padding:15px;
+  min-height:78px;
+  padding:11px 12px;
   background: var(--bg3);
   position:relative;
   overflow:hidden;
+  display:grid;
+  grid-template-columns:42px 1fr auto;
+  gap:11px;
+  align-items:center;
 }
 .test-card.ready { border-color: rgba(139,92,246,.35); }
 .test-card.done {
@@ -469,52 +545,91 @@ button { font: inherit; }
     linear-gradient(135deg, rgba(139,92,246,.09), rgba(52,211,153,.045)),
     var(--bg3);
 }
-.card-top {
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  margin-bottom:12px;
-}
+.card-top { display:contents; }
 .card-icon {
-  width:42px;
-  height:42px;
-  border-radius:13px;
+  width:40px;
+  height:40px;
+  border-radius:12px;
   display:grid;
   place-items:center;
   background: rgba(139,92,246,.15);
+  grid-column:1;
+  grid-row:1 / span 3;
 }
-.card-badges { display:flex; gap:6px; }
+.card-badges {
+  display:flex;
+  gap:5px;
+  grid-column:3;
+  grid-row:1 / span 3;
+  align-items:flex-start;
+  justify-content:flex-end;
+  min-width:72px;
+  flex-wrap:wrap;
+}
 .card-title {
   font-family: Unbounded, sans-serif;
-  font-size: 17px;
-  line-height:1.25;
+  font-size: 15px;
+  line-height:1.2;
+  grid-column:2;
+  grid-row:1;
 }
 .card-desc {
-  margin-top:7px;
+  margin-top:0;
   color:var(--text2);
-  font-size:13px;
-  line-height:1.45;
+  font-size:12px;
+  line-height:1.35;
+  grid-column:2;
+  grid-row:2;
+  display:-webkit-box;
+  -webkit-line-clamp:2;
+  -webkit-box-orient:vertical;
+  overflow:hidden;
 }
 .completion-chip {
   display:inline-flex;
   align-items:center;
   gap:6px;
-  margin-top:10px;
+  margin-top:0;
   border:.5px solid rgba(52,211,153,.25);
   border-radius:999px;
   background:rgba(52,211,153,.09);
   color:#BBF7D0;
-  padding:7px 10px;
-  font-size:11px;
+  padding:5px 8px;
+  font-size:10px;
   font-weight:900;
+  grid-column:2;
+  grid-row:3;
+  width:max-content;
 }
 .card-footer {
-  margin-top:14px;
+  margin-top:0;
   display:flex;
   align-items:center;
   justify-content:space-between;
   color:var(--text3);
-  font-size:12px;
+  font-size:11px;
+  grid-column:2 / 4;
+  grid-row:3;
+}
+.test-card.done .card-footer { display:none; }
+@media (max-width:390px) {
+  .test-card {
+    grid-template-columns:38px 1fr;
+    gap:10px;
+  }
+  .card-badges {
+    grid-column:2;
+    grid-row:3;
+    justify-content:flex-start;
+    min-width:0;
+  }
+  .completion-chip {
+    grid-row:4;
+  }
+  .card-footer {
+    grid-column:2;
+    grid-row:4;
+  }
 }
 .cat-section { display:none; }
 .cat-section.active { display:block; }
@@ -1962,6 +2077,10 @@ button { font: inherit; }
   .profile-tabs { gap:5px; }
   .profile-tab { font-size:10px; border-radius:12px; }
   .daily-guides { grid-template-columns:1fr; }
+  .ideal-details { grid-template-columns:1fr; }
+  .conflict-axis-top { grid-template-columns:1fr; gap:3px; }
+  .conflict-axis-top span:nth-child(2),
+  .conflict-axis-top span:last-child { text-align:left; }
 }
 .level-card {
   margin-top:14px;
@@ -2853,6 +2972,64 @@ button { font: inherit; }
   font-size:12px;
   line-height:1.45;
 }
+.activation-panel {
+  margin-top:12px;
+  padding:12px;
+  border-radius:16px;
+  border:.5px solid rgba(139,92,246,.28);
+  background:rgba(139,92,246,.08);
+}
+.activation-title {
+  color:var(--text);
+  font-size:13px;
+  font-weight:900;
+}
+.activation-text {
+  margin-top:5px;
+  color:var(--text3);
+  font-size:12px;
+  line-height:1.4;
+}
+.activation-form {
+  margin-top:10px;
+  display:flex;
+  gap:8px;
+}
+.activation-input {
+  min-width:0;
+  flex:1;
+  height:46px;
+  border:1px solid rgba(255,255,255,.11);
+  border-radius:15px;
+  background:rgba(10,10,15,.62);
+  color:var(--text);
+  padding:0 13px;
+  font:800 13px Montserrat,sans-serif;
+  outline:none;
+  text-transform:uppercase;
+}
+.activation-input::placeholder {
+  color:rgba(245,243,255,.38);
+  text-transform:none;
+}
+.activation-button {
+  flex:0 0 auto;
+  height:46px;
+  border:0;
+  border-radius:15px;
+  color:white;
+  font:900 13px Montserrat,sans-serif;
+  padding:0 14px;
+  background:linear-gradient(135deg,#8B5CF6,#EC4899);
+  cursor:pointer;
+}
+.activation-message {
+  min-height:18px;
+  margin-top:8px;
+  color:#F0ABFC;
+  font-size:12px;
+  font-weight:800;
+}
 .full-preview-grid {
   display:grid;
   gap:10px;
@@ -3118,6 +3295,102 @@ button { font: inherit; }
   color:var(--text2);
   font-size:13px;
   line-height:1.58;
+}
+.ideal-details {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+  margin-top:10px;
+}
+.ideal-detail {
+  border:.5px solid rgba(255,255,255,.08);
+  border-radius:14px;
+  background:rgba(10,10,15,.30);
+  padding:10px;
+}
+.ideal-detail b {
+  display:block;
+  color:var(--text);
+  font-size:12px;
+}
+.ideal-detail span {
+  display:block;
+  margin-top:5px;
+  color:var(--text2);
+  font-size:11px;
+  line-height:1.38;
+}
+.conflict-map {
+  display:grid;
+  gap:10px;
+  margin-top:13px;
+}
+.conflict-axis {
+  border:.5px solid rgba(255,255,255,.09);
+  border-radius:17px;
+  background:rgba(10,10,15,.34);
+  padding:12px;
+}
+.conflict-axis-top {
+  display:grid;
+  grid-template-columns:1fr auto 1fr;
+  gap:8px;
+  align-items:center;
+  color:var(--text);
+  font-size:12px;
+  font-weight:900;
+}
+.conflict-axis-top span:nth-child(2) {
+  color:#F0ABFC;
+  font-size:10px;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+.conflict-axis-top span:last-child {
+  text-align:right;
+}
+.conflict-track {
+  position:relative;
+  height:10px;
+  margin-top:12px;
+  border-radius:999px;
+  background:linear-gradient(90deg, rgba(139,92,246,.72), rgba(255,255,255,.13) 50%, rgba(236,72,153,.72));
+  overflow:visible;
+}
+.conflict-marker {
+  position:absolute;
+  top:50%;
+  width:20px;
+  height:20px;
+  border-radius:50%;
+  transform:translate(-50%,-50%);
+  border:3px solid rgba(255,255,255,.82);
+  background:linear-gradient(135deg,#8B5CF6,#EC4899);
+  box-shadow:0 0 22px rgba(236,72,153,.45);
+}
+.conflict-axis-text {
+  margin-top:12px;
+  color:var(--text2);
+  font-size:12px;
+  line-height:1.45;
+}
+.conflict-axis-text b {
+  color:var(--text);
+}
+.conflict-summary {
+  margin-top:12px;
+  border:.5px solid rgba(236,72,153,.22);
+  border-radius:16px;
+  background:rgba(236,72,153,.08);
+  padding:12px;
+  color:var(--text2);
+  font-size:12px;
+  line-height:1.45;
+}
+.conflict-summary b {
+  display:block;
+  color:var(--text);
+  margin-bottom:5px;
 }
 .full-dynamics-bars {
   display:grid;
@@ -3620,6 +3893,7 @@ const FULL_ACCESS_PRODUCT = {
 };
 const MANUAL_PAYMENT_BOT_USERNAME = 'PersonaMirror_bot';
 const PAYMENT_API_BASE = (window.PERSONA_PAYMENT_API_BASE || localStorage.getItem('personaPaymentApiBase') || '').replace(/\/$/, '');
+const ACCESS_LIST_URL = window.PERSONA_ACCESS_LIST_URL || './persona-access.json';
 
 function getFullAccessState() {
   try {
@@ -3713,7 +3987,39 @@ async function requestJson(url, options = {}) {
   return data;
 }
 
+function isPersonaIdGranted(currentPersonaId, rawList = []) {
+  return rawList.some(item => {
+    const code = typeof item === 'string' ? item : (item.personaId || item.id || item.code);
+    return normalizePersonaCode(code) === currentPersonaId;
+  });
+}
+
+async function syncFullAccessFromAccessList() {
+  const currentPersonaId = normalizePersonaCode(getPersonaUser().id);
+  try {
+    const localList = JSON.parse(localStorage.getItem('personaAdminAccessList') || '[]');
+    if (Array.isArray(localList) && isPersonaIdGranted(currentPersonaId, localList)) {
+      return grantFullAccess('local-admin-access-list');
+    }
+  } catch (error) {
+    console.warn('Local full access list sync failed', error);
+  }
+  try {
+    const url = `${ACCESS_LIST_URL}${ACCESS_LIST_URL.includes('?') ? '&' : '?'}v=${Date.now()}`;
+    const response = await fetch(url, { cache:'no-store' });
+    if (!response.ok) return { active:false };
+    const data = await response.json();
+    const rawList = Array.isArray(data) ? data : (data.fullAccess || data.users || []);
+    if (isPersonaIdGranted(currentPersonaId, rawList)) return grantFullAccess('admin-access-list');
+  } catch (error) {
+    console.warn('Static full access list sync failed', error);
+  }
+  return { active:false };
+}
+
 async function syncFullAccessFromServer() {
+  const staticAccess = await syncFullAccessFromAccessList();
+  if (staticAccess.active) return staticAccess;
   if (!PAYMENT_API_BASE || !tg?.initData) return getFullAccessState();
   const data = await requestJson(`${PAYMENT_API_BASE}/api/access/full-access`);
   if (data.active) return grantFullAccess(data.source || 'telegram-payment');
@@ -4364,11 +4670,48 @@ function setupInsightsScroll() {
 }
 
 function renderCatalog() {
-  document.getElementById('featured-wrap').innerHTML = '';
+  document.getElementById('featured-wrap').innerHTML = nextStepTemplate();
   renderSection('all', Object.values(tests));
   renderSection('self', Object.values(tests).filter(t => t.category === 'self'));
   renderSection('relations', Object.values(tests).filter(t => t.category === 'relations'));
   renderSection('emotions', Object.values(tests).filter(t => t.category === 'emotions'));
+}
+
+function getNextCatalogTest() {
+  const state = getState();
+  const completed = state.completed || {};
+  return Object.values(tests).find(test => test.status === 'ready' && !completed[test.id])
+    || Object.values(tests).find(test => test.status === 'ready')
+    || Object.values(tests)[0];
+}
+
+function nextStepTemplate() {
+  const next = getNextCatalogTest();
+  const completedCount = Object.keys(getState().completed || {}).length;
+  const totalCount = Object.values(tests).filter(test => test.status === 'ready').length;
+  const isComplete = completedCount >= totalCount;
+  const label = isComplete ? 'Профиль собран' : 'Следующий шаг';
+  const status = isComplete ? 'можно перепройти' : `${completedCount}/${totalCount}`;
+  const title = isComplete ? 'Уточнить Persona-карту' : next.title;
+  const sub = isComplete
+    ? 'Выбери любой тест ниже, чтобы обновить слой профиля.'
+    : next.short;
+  return `
+    <button class="next-step-card" onclick="openTest('${next.id}')">
+      <div class="next-step-top">
+        <div class="next-step-label">${label}</div>
+        <div class="next-step-status">${status}</div>
+      </div>
+      <div class="next-step-main">
+        <div class="next-step-icon">${next.icon}</div>
+        <div>
+          <div class="next-step-title">${title}</div>
+          <div class="next-step-sub">${sub}</div>
+        </div>
+        <div class="next-step-go">→</div>
+      </div>
+    </button>
+  `;
 }
 
 function renderSection(id, items) {
@@ -4964,10 +5307,10 @@ function buildFullProfileSections({ latest, attachment, topAxis }) {
       locked:'Полный доступ станет базой для совместимости: точки напряжения, карта пары, invite-ссылка и инструкция, как говорить друг с другом без старых сценариев.'
     }),
     fullSection({
-      icon:'🛠️',
-      title:'Персональные рекомендации',
-      open:'Не “будь увереннее”, а конкретные действия под твой профиль.',
-      locked:'Что перестать делать, что отслеживать, как вести себя в близости, конфликте и тревоге, чтобы паттерн не работал против тебя.'
+      icon:'⚔️',
+      title:'Внутренние конфликты',
+      open:'Карта покажет, где тебя одновременно тянет к близости и защите, контролю и доверию, эмоции и опоре.',
+      locked:'Три визуальные оси покажут, как именно твои потребности спорят между собой и где паттерн может ударить обратно.'
     })
   ].join('');
 }
@@ -5572,7 +5915,7 @@ function renderFullProfilePreview() {
         <div class="checkout-row"><span>Продукт</span><b>${FULL_ACCESS_PRODUCT.title}</b></div>
         <div class="checkout-row"><span>Доступ</span><b>навсегда в профиле</b></div>
         <div class="checkout-row"><span>К оплате</span><b>${FULL_ACCESS_PRODUCT.price} ₽</b></div>
-        <div class="checkout-note">Сейчас это демо-активация для сборки каркаса. На следующем этапе кнопку подключим к Telegram Payments через бота.</div>
+        <div class="checkout-note">После оплаты пришли Persona-код в бот. Админ проверит оплату, добавит твой код в список доступа, и полный профиль откроется после обновления приложения.</div>
       </div>
     `}
   `;
@@ -5582,9 +5925,9 @@ function renderFullProfilePreview() {
     { icon:'❤️', title:'Отношения', text:'Кого тебя тянет выбирать, как ты проверяешь близость и где сам можешь ломать контакт.' },
     { icon:'🤝', title:'Дружба и окружение', text:'С кем ты раскрываешься, кто тебя истощает и почему рядом с одними ты мягче, а рядом с другими закрываешься.' },
     { icon:'💼', title:'Работа, амбиции, деньги', text:'Как ты действуешь под давлением, где выгораешь и как твой главный паттерн влияет на решения.' },
+    { icon:'⚔️', title:'Внутренние конфликты', text:'Где внутри тебя спорят близость и свобода, контроль и доверие, эмоции и опора.' },
     { icon:'✨', title:'Недельная динамика инсайтов', text:'Persona покажет, какие состояния повторяются: перегрев, закрытость, тревожный фон или жажда контакта.' },
-    { icon:'❤️', title:'Совместимость', text:'Платная парная диагностика: где вы совпадаете, где триггерите друг друга и почему один разговор видите по-разному.' },
-    { icon:'🛠️', title:'Персональные рекомендации', text:'Конкретные действия под твою карту: что отслеживать, где не давить и как не кормить старый сценарий.' }
+    { icon:'❤️', title:'Совместимость', text:'Платная парная диагностика: где вы совпадаете, где триггерите друг друга и почему один разговор видите по-разному.' }
   ];
 
   document.getElementById('full-preview-grid').innerHTML = modules.map(module => `
@@ -5668,6 +6011,154 @@ function getIdealPartnerProfile(attachment) {
     rhythm:'ясность, уважение к темпу и честная обратная связь',
     danger:'неопределённость и эмоциональные качели могут цеплять, но не всегда подходят'
   };
+}
+
+function getIdealPartnerDetails({ attachment, anxiety, conflict, boundaries }) {
+  const attachmentType = attachment?.data?.type;
+  const anxietyType = anxiety?.data?.type;
+  const conflictType = conflict?.data?.type;
+  const boundariesType = boundaries?.data?.type;
+  const tempo = attachmentType === 'anxious'
+    ? 'частый контакт и понятные подтверждения, без игры в недоступность'
+    : attachmentType === 'avoidant'
+      ? 'медленное сближение: тепло без захвата пространства'
+      : attachmentType === 'mixed'
+        ? 'ровный темп: не ускорять близость драмой и не наказывать паузой'
+        : 'спокойное сближение без проверок и резких откатов';
+  const argument = conflictType === 'explosive'
+    ? 'он должен выдерживать прямой разговор и не отвечать ударом на удар'
+    : conflictType === 'silent'
+      ? 'он должен возвращать разговор, а не оставлять молчание висеть сутками'
+      : conflictType === 'repair'
+        ? 'он должен уметь чинить контакт, а не искать победителя в споре'
+        : 'ему важна ясность: один факт, одна эмоция, одна просьба';
+  const withstand = anxietyType === 'overheat'
+    ? 'твою потребность в ясности, когда внутри быстро растёт шум'
+    : boundariesType === 'wall'
+      ? 'твои паузы и закрытость, не принимая их за равнодушие'
+      : boundariesType === 'dissolved'
+        ? 'твоё “нет”, не превращая его в обвинение или проверку любви'
+        : 'переменный ритм: иногда ближе, иногда тише, без игры в исчезновение';
+  const forbidden = attachmentType === 'anxious'
+    ? 'исчезать без объяснения, держать в подвешенном состоянии, проверять ревностью'
+    : attachmentType === 'avoidant'
+      ? 'давить срочностью, требовать мгновенной открытости, ломиться через границы'
+      : anxietyType === 'overheat'
+        ? 'обесценивать тревогу, говорить “успокойся” вместо ясного ответа'
+        : 'играть в холод, обещать больше, чем делает, и оставлять важное в тумане';
+  return { tempo, argument, withstand, forbidden };
+}
+
+function idealPartnerDetailsCard(details) {
+  return `
+    <div class="ideal-details">
+      <div class="ideal-detail"><b>Темп близости</b><span>${escapeHtml(details.tempo)}</span></div>
+      <div class="ideal-detail"><b>Как спорить</b><span>${escapeHtml(details.argument)}</span></div>
+      <div class="ideal-detail"><b>Что выдерживать</b><span>${escapeHtml(details.withstand)}</span></div>
+      <div class="ideal-detail"><b>Что нельзя делать</b><span>${escapeHtml(details.forbidden)}</span></div>
+    </div>
+  `;
+}
+
+function clampPercent(value) {
+  return Math.max(8, Math.min(92, Math.round(value)));
+}
+
+function makeConflictAxis({ left, right, value, behavior, risk, helper }) {
+  const marker = clampPercent(value);
+  return `
+    <div class="conflict-axis">
+      <div class="conflict-axis-top">
+        <span>${escapeHtml(left)}</span>
+        <span>${marker}%</span>
+        <span>${escapeHtml(right)}</span>
+      </div>
+      <div class="conflict-track"><i class="conflict-marker" style="left:${marker}%"></i></div>
+      <div class="conflict-axis-text"><b>Как это выглядит:</b> ${escapeHtml(behavior)}<br><b>Риск:</b> ${escapeHtml(risk)}<br><b>Что помогает:</b> ${escapeHtml(helper)}</div>
+    </div>
+  `;
+}
+
+function getInternalConflictMap({ attachment, control, anxiety, conflict, stability, boundaries }) {
+  const attachmentScore = getAverageScore(attachment) ?? 56;
+  const controlScore = getAverageScore(control) ?? 54;
+  const anxietyScore = getAverageScore(anxiety) ?? 58;
+  const conflictScore = getAverageScore(conflict) ?? 52;
+  const stabilityScore = getAverageScore(stability) ?? 50;
+  const boundariesScore = getAverageScore(boundaries) ?? 50;
+  const attachmentType = attachment?.data?.type;
+  const boundariesType = boundaries?.data?.type;
+  const conflictType = conflict?.data?.type;
+  const closenessFreedom = clampPercent((attachmentScore * .55) + (boundariesScore * .25) + (anxietyScore * .20));
+  const controlTrust = clampPercent((controlScore * .62) + (anxietyScore * .28) - (stabilityScore * .10));
+  const emotionSupport = clampPercent((anxietyScore * .45) + (conflictScore * .35) + (100 - stabilityScore) * .20);
+  const axis1Behavior = attachmentType === 'avoidant'
+    ? 'тебе нужен контакт, но при напоре быстро включается дистанция'
+    : attachmentType === 'anxious'
+      ? 'тебя тянет к близости, но паузы другого могут читаться как угроза'
+      : 'ты хочешь близости, но проверяешь, безопасно ли не потерять себя';
+  const axis1Risk = boundariesType === 'wall'
+    ? 'можешь выглядеть холоднее, чем чувствуешь внутри'
+    : 'можешь сначала искать подтверждение, а потом резко отходить, когда становится слишком тесно';
+  const axis2Behavior = control
+    ? `${control.data.hook} В отношениях это превращается в желание быстрее понять правила игры.`
+    : 'когда ясности мало, мозг пытается достроить картину сам';
+  const axis2Risk = anxietyScore > 65
+    ? 'можно начать читать человека вместо того, чтобы спросить прямо'
+    : 'можно путать осторожность с недоверием и собирать доказательства там, где нужен разговор';
+  const axis3Behavior = conflictType === 'silent'
+    ? 'в напряжении реакция уходит внутрь: снаружи тише, внутри больше незакрытого'
+    : conflictType === 'explosive'
+      ? 'реакция включается быстро: хочется сразу расставить всё по местам'
+      : 'эмоция может приходить быстрее, чем появляется спокойная формулировка';
+  const axis3Risk = stabilityScore < 55
+    ? 'временное состояние может показаться окончательным решением'
+    : 'можно перегреть разговор, даже если цель была просто вернуть ясность';
+  const summary = anxietyScore > 68
+    ? 'Главный конфликт сейчас вокруг ясности: когда её мало, профиль быстрее уходит в тревогу, контроль или проверку контакта.'
+    : attachmentScore > 68
+      ? 'Главный конфликт сейчас вокруг близости: хочется контакта, но важно не превращать его в проверку и не терять собственный темп.'
+      : controlScore > 68
+        ? 'Главный конфликт сейчас вокруг контроля: сильная сторона помогает видеть риски, но может мешать доверять живому процессу.'
+        : 'Главный конфликт сейчас не в одной яркой точке, а в балансе: Persona будет уточнять карту после новых тестов.';
+  return {
+    summary,
+    axes:[
+      {
+        left:'Близость',
+        right:'Свобода',
+        value:closenessFreedom,
+        behavior:axis1Behavior,
+        risk:axis1Risk,
+        helper:'договариваться о темпе: где нужен контакт, а где нужна пауза без угрозы разрыва'
+      },
+      {
+        left:'Контроль',
+        right:'Доверие',
+        value:controlTrust,
+        behavior:axis2Behavior,
+        risk:axis2Risk,
+        helper:'заменять догадки коротким вопросом и не проверять человека молчанием'
+      },
+      {
+        left:'Эмоции',
+        right:'Опора',
+        value:emotionSupport,
+        behavior:axis3Behavior,
+        risk:axis3Risk,
+        helper:'сначала снизить шум, потом выбирать действие: говорить, брать паузу или возвращаться к фактам'
+      }
+    ]
+  };
+}
+
+function internalConflictMapCard(map) {
+  return `
+    <div class="conflict-map">
+      ${map.axes.map(axis => makeConflictAxis(axis)).join('')}
+    </div>
+    <div class="conflict-summary"><b>Главный вывод</b>${escapeHtml(map.summary)}</div>
+  `;
 }
 
 function premiumFocusCard({ label, name, icon, text }) {
@@ -5899,9 +6390,10 @@ function renderFullProfile() {
   const dailyHistory = getDailyState().history || [];
   const workSignal = control || topAxis;
   const idealPartner = getIdealPartnerProfile(attachment);
+  const idealPartnerDetails = getIdealPartnerDetails({ attachment, anxiety, conflict, boundaries });
   const bestFriend = getBestFriendProfile(boundaries);
   const idealWork = getIdealWorkProfile(control, topAxis);
-  const recommendationFocus = getRecommendationFocus({ anxiety, conflict, stability, attachment });
+  const internalConflicts = getInternalConflictMap({ attachment, control, anxiety, conflict, stability, boundaries });
 
   fullProfileModules = {
     relations: {
@@ -5926,6 +6418,7 @@ function renderFullProfile() {
             <div class="ideal-partner-mark">💞</div>
           </div>
           <div class="ideal-partner-text">${escapeHtml(idealPartner.text)}</div>
+          ${idealPartnerDetailsCard(idealPartnerDetails)}
         </div>
       `,
       points:[
@@ -5987,27 +6480,21 @@ function renderFullProfile() {
       ]
       })
     },
-    recommendations: {
-      icon:'🛠️',
-      title:'Персональные рекомендации',
-      sub:'что делать конкретно',
+    conflicts: {
+      icon:'⚔️',
+      title:'Внутренние конфликты',
+      sub:'где тебя тянет в разные стороны',
       html:fullProfileSection({
-      kicker:'инструкция к себе',
-      icon:'🛠️',
-      title:'Персональные рекомендации',
-      text:'Не общие советы из интернета, а действия под твою карту. Чем больше тестов и инсайтов, тем меньше воды и тем точнее рекомендации.',
+      kicker:'визуальная карта напряжения',
+      icon:'⚔️',
+      title:'Карта внутренних конфликтов',
+      text:'Это не “противоречия вообще”, а места, где две реальные потребности тянут тебя в разные стороны. Чем больше тестов пройдено, тем точнее маркер на каждой оси.',
       accent:true,
-      extra:premiumFocusCard({
-        label:'главный фокус сейчас',
-        name:recommendationFocus.name,
-        icon:'🛠️',
-        text:recommendationFocus.text
-      }),
+      extra:internalConflictMapCard(internalConflicts),
       points:[
-        { icon:'1', title:'Первый шаг', text:recommendationFocus.step },
-        { icon:'2', title:'Где не давить', text:recommendationFocus.pressure },
-        { icon:'3', title:'Как возвращаться в опору', text:recommendationFocus.support },
-        { icon:'4', title:'Что может сорвать прогресс', text:recommendationFocus.danger }
+        { icon:'❤️', title:'Близость против свободы', text:'показывает, где ты хочешь контакта, но можешь защищаться дистанцией.' },
+        { icon:'🧭', title:'Контроль против доверия', text:'показывает, где ясность помогает, а где превращается в попытку всё просчитать.' },
+        { icon:'⚡', title:'Эмоции против опоры', text:'показывает, где реакция приходит быстрее, чем спокойное решение.' }
       ]
       })
     }
