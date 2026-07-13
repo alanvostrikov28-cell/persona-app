@@ -217,18 +217,14 @@ button { font: inherit; }
   border-radius:999px;
   background:linear-gradient(135deg, rgba(139,92,246,.92), rgba(236,72,153,.82));
   color:#fff;
-  padding:0 13px;
+  padding:0 11px;
   display:flex;
   align-items:center;
-  gap:7px;
+  gap:5px;
   font-size:11px;
   font-weight:900;
   cursor:pointer;
   box-shadow:0 0 24px rgba(236,72,153,.18);
-}
-.premium-top-btn span {
-  color:rgba(255,255,255,.78);
-  font-size:10px;
 }
 .premium-top-btn:active { transform:scale(.98); }
 @media (max-width:380px) {
@@ -399,15 +395,17 @@ button { font: inherit; }
   color:var(--text);
   cursor:pointer;
   text-align:left;
-  border:.5px solid rgba(236,72,153,.30);
-  border-radius:18px;
+  border:1px solid rgba(236,72,153,.44);
+  border-radius:20px;
   background:
-    radial-gradient(circle at 94% 10%, rgba(236,72,153,.20), transparent 34%),
-    linear-gradient(135deg, rgba(139,92,246,.15), rgba(255,255,255,.035));
-  padding:13px;
-  margin-bottom:14px;
+    radial-gradient(circle at 92% 18%, rgba(236,72,153,.30), transparent 34%),
+    radial-gradient(circle at 8% 80%, rgba(6,182,212,.13), transparent 38%),
+    linear-gradient(135deg, rgba(139,92,246,.25), rgba(236,72,153,.10));
+  padding:15px;
+  margin-bottom:16px;
   display:grid;
-  gap:10px;
+  gap:12px;
+  box-shadow:0 14px 34px rgba(236,72,153,.10), inset 0 1px 0 rgba(255,255,255,.06);
 }
 .next-step-top {
   display:flex;
@@ -437,17 +435,17 @@ button { font: inherit; }
   gap:10px;
 }
 .next-step-icon {
-  width:42px;
-  height:42px;
-  border-radius:14px;
+  width:46px;
+  height:46px;
+  border-radius:15px;
   display:grid;
   place-items:center;
-  background:rgba(139,92,246,.18);
+  background:linear-gradient(135deg, rgba(139,92,246,.36), rgba(6,182,212,.14));
   font-size:19px;
 }
 .next-step-title {
   font-family:Unbounded,sans-serif;
-  font-size:16px;
+  font-size:17px;
   line-height:1.2;
 }
 .next-step-sub {
@@ -3888,7 +3886,7 @@ button { font: inherit; }
         <span class="logo-name">PERSONA</span>
       </div>
       <div class="header-actions">
-        <button class="premium-top-btn" onclick="openFullProfilePaywall()">🔐 Полный доступ <span>199 ₽/мес</span></button>
+        <button class="premium-top-btn" onclick="openFullProfilePaywall()">🔐 Полный доступ</button>
         <button class="profile-btn" onclick="showProfile()" aria-label="Открыть профиль">👤</button>
       </div>
     </div>
@@ -4432,7 +4430,7 @@ async function syncFullAccessFromServer() {
 function getFullAccessButtonText() {
   return hasFullAccess()
     ? '✓ Полный доступ'
-    : `🔐 Полный доступ <span>${FULL_ACCESS_PRODUCT.price} ₽/мес</span>`;
+    : '🔐 Полный доступ';
 }
 
 function updateFullAccessUi() {
