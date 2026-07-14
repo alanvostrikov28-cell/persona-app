@@ -112,6 +112,73 @@ button { font: inherit; }
   -webkit-overflow-scrolling: touch;
   overscroll-behavior: contain;
 }
+.legal-mini-link {
+  margin:18px auto 8px;
+  border:0;
+  background:transparent;
+  color:rgba(138,135,155,.72);
+  font-size:11px;
+  font-weight:700;
+  text-decoration:underline;
+  text-underline-offset:3px;
+  cursor:pointer;
+  display:block;
+}
+.about-page {
+  padding:18px 17px 28px;
+  display:grid;
+  gap:12px;
+}
+.about-card {
+  border:.5px solid rgba(255,255,255,.075);
+  border-radius:16px;
+  background:rgba(255,255,255,.035);
+  padding:16px;
+}
+.about-card h2 {
+  font-family:Unbounded,sans-serif;
+  font-size:16px;
+  line-height:1.25;
+  margin-bottom:9px;
+}
+.about-card h3 {
+  margin:13px 0 7px;
+  font-size:13px;
+  color:var(--text);
+}
+.about-card p,
+.about-card li {
+  color:var(--text2);
+  font-size:13px;
+  line-height:1.55;
+}
+.about-card ul,
+.about-card ol {
+  padding-left:18px;
+  display:grid;
+  gap:5px;
+}
+.about-muted {
+  color:var(--text3);
+  font-size:11px;
+  line-height:1.45;
+}
+.about-row {
+  display:grid;
+  grid-template-columns:112px 1fr;
+  gap:10px;
+  padding:8px 0;
+  border-bottom:.5px solid rgba(255,255,255,.06);
+}
+.about-row:last-child { border-bottom:0; }
+.about-row span:first-child {
+  color:var(--text3);
+  font-size:12px;
+}
+.about-row span:last-child {
+  color:var(--text2);
+  font-size:13px;
+}
 
 .footer-bar {
   flex-shrink: 0;
@@ -3916,6 +3983,7 @@ button { font: inherit; }
       <div class="cat-section" id="sec-self"></div>
       <div class="cat-section" id="sec-relations"></div>
       <div class="cat-section" id="sec-emotions"></div>
+      <button class="legal-mini-link" onclick="showAbout()">О сервисе</button>
     </div>
   </div>
 
@@ -3954,6 +4022,7 @@ button { font: inherit; }
         <div class="profile-panel-title">Недавние состояния</div>
         <div class="daily-history" id="daily-history"></div>
       </div>
+      <button class="legal-mini-link" onclick="showAbout()">О сервисе</button>
     </div>
   </div>
   <div class="bottom-nav">
@@ -4005,6 +4074,7 @@ button { font: inherit; }
         </div>
         <div class="compat-result" id="compatibility-demo-result"></div>
       </div>
+      <button class="legal-mini-link" onclick="showAbout()">О сервисе</button>
     </div>
   </div>
   <div class="bottom-nav">
@@ -4143,6 +4213,75 @@ button { font: inherit; }
   <div class="scrollable">
     <div class="full-profile-tabs" id="full-profile-tabs"></div>
     <div class="full-profile-content" id="full-profile-content"></div>
+  </div>
+</div>
+
+<div class="screen" id="screen-about">
+  <div class="profile-header">
+    <div class="cat-header-top">
+      <button class="btn-back" onclick="showScreen('catalog')">← Назад</button>
+      <div class="logo-name">PERSONA</div>
+    </div>
+    <div class="greeting-label">Информация</div>
+    <div class="greeting-title">О сервисе<br><span>Persona</span></div>
+  </div>
+  <div class="scrollable">
+    <div class="about-page">
+      <div class="about-card">
+        <h2>О сервисе Persona</h2>
+        <p>Persona — цифровой сервис для самопознания, прохождения психологических исследований и формирования персонального профиля.</p>
+        <p>Результаты Persona носят информационно-развлекательный характер, не являются медицинским диагнозом и не заменяют консультацию специалиста.</p>
+      </div>
+      <div class="about-card">
+        <h2>Услуги и стоимость</h2>
+        <h3>Persona Plus</h3>
+        <p>Стоимость: 199 ₽ за 30 дней.</p>
+        <p>Включает доступ к расширенным психологическим расшифровкам, дополнительным исследованиям, истории изменений, анализу совместимости и премиальным функциям Persona.</p>
+        <p>Актуальные цена, срок доступа и состав услуги всегда отображаются перед оплатой.</p>
+      </div>
+      <div class="about-card">
+        <h2>Оформление заказа</h2>
+        <ol>
+          <li>Пользователь выбирает тариф или услугу.</li>
+          <li>Ознакомляется с описанием и стоимостью.</li>
+          <li>Нажимает кнопку «Оплатить».</li>
+          <li>Производит оплату через платёжную страницу Robokassa.</li>
+        </ol>
+      </div>
+      <div class="about-card">
+        <h2>Оплата</h2>
+        <p>Оплата производится через сервис Robokassa доступными на платёжной странице способами.</p>
+        <p>После успешной оплаты покупателю направляется электронный чек.</p>
+        <p>Если тариф предполагает автоматическое продление, его периодичность, стоимость и условия отмены указываются перед оплатой.</p>
+      </div>
+      <div class="about-card">
+        <h2>Получение услуги</h2>
+        <p>Услуги предоставляются в электронном виде внутри приложения Persona. Доступ активируется автоматически после подтверждения оплаты, обычно в течение нескольких минут.</p>
+        <p>Физическая доставка не предусмотрена. Если доступ не активировался, необходимо обратиться в поддержку и указать Telegram ID, дату и сумму платежа.</p>
+      </div>
+      <div class="about-card">
+        <h2>Отказ от услуги и возврат</h2>
+        <p>Возврат не предусмотрен.</p>
+      </div>
+      <div class="about-card">
+        <h2>Персональные данные</h2>
+        <p>Persona обрабатывает данные, необходимые для работы сервиса, предоставления доступа, формирования профиля, технической поддержки и проведения оплаты.</p>
+        <p>Подробные условия указаны в Политике обработки персональных данных.</p>
+        <p class="about-muted">Пользователь может направить запрос на уточнение или удаление своих данных на e-mail: personamirrorsupport@gmail.com.</p>
+      </div>
+      <div class="about-card">
+        <h2>Контакты</h2>
+        <div class="about-row"><span>E-mail</span><span>personamirrorsupport@gmail.com</span></div>
+        <div class="about-row"><span>Telegram</span><span>@personasup</span></div>
+        <div class="about-row"><span>Ответ</span><span>до 2 рабочих дней</span></div>
+      </div>
+      <div class="about-card">
+        <h2>Реквизиты</h2>
+        <div class="about-row"><span>Самозанятый</span><span>Востриков Александр Сергеевич</span></div>
+        <div class="about-row"><span>ИНН</span><span>972700418195</span></div>
+        <div class="about-row"><span>Город</span><span>Москва</span></div>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -7076,6 +7215,10 @@ function showFullProfilePreview() {
 function showFullProfile() {
   renderFullProfile();
   showScreen('full-profile');
+}
+
+function showAbout() {
+  showScreen('about');
 }
 
 function showSoon(message) {
