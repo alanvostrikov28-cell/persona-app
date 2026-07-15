@@ -3,17 +3,6 @@
   "billing": "monthly",
   "price": 199,
   "currency": "RUB",
-  "updatedAt": "2026-07-14T10:38:31.183Z",
-  "fullAccess": [
-    {
-      "personaId": "TG-1741992742",
-      "grantedAt": "2026-07-14T10:38:21.867Z",
-      "renewedAt": "2026-07-14T10:38:31.182Z",
-      "expiresAt": "2026-09-12T10:38:21.867Z",
-      "plan": "monthly",
-      "price": 199,
-      "currency": "RUB",
-      "note": "подписка активна до 12.09.2026"
-    }
-  ]
+  "updatedAt": "2026-07-15T17:20:00.000Z",
+  "fullAccess": []
 }
