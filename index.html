@@ -4462,25 +4462,6 @@ if (tg) {
   tg.setBackgroundColor('#0A0A0F');
 }
 
-const launchTokenFromUrl = new URLSearchParams(window.location.search).get('persona_auth') || '';
-if (launchTokenFromUrl) sessionStorage.setItem('personaLaunchToken', launchTokenFromUrl);
-const PERSONA_LAUNCH_TOKEN = launchTokenFromUrl || sessionStorage.getItem('personaLaunchToken') || '';
-
-function getLaunchTokenTelegramId() {
-  if (!PERSONA_LAUNCH_TOKEN) return null;
-  try {
-    const encoded = PERSONA_LAUNCH_TOKEN.split('.')[0].replace(/-/g, '+').replace(/_/g, '/');
-    const padded = encoded + '='.repeat((4 - encoded.length % 4) % 4);
-    const payload = JSON.parse(atob(padded));
-    const telegramId = Number(payload.tg_id);
-    return Number.isSafeInteger(telegramId) && telegramId > 0 ? telegramId : null;
-  } catch (error) {
-    console.warn('Persona launch token payload failed', error);
-    return null;
-  }
-}
-
-const launchTelegramId = getLaunchTokenTelegramId();
 const tgUser = tg?.initDataUnsafe?.user || null;
 
 const FULL_ACCESS_PRODUCT = {
@@ -4605,7 +4586,6 @@ async function requestJson(url, options = {}) {
     headers:{
       'Content-Type':'application/json',
       ...(tg?.initData ? {'X-Telegram-Init-Data':tg.initData} : {}),
-      ...(PERSONA_LAUNCH_TOKEN ? {'X-Persona-Launch-Token':PERSONA_LAUNCH_TOKEN} : {}),
       ...(options.headers || {})
     }
   });
@@ -4672,7 +4652,7 @@ async function syncFullAccessFromAccessList() {
 async function syncFullAccessFromServer() {
   const staticAccess = await syncFullAccessFromAccessList();
   if (staticAccess.active) return staticAccess;
-  if (!PAYMENT_API_BASE || (!tg?.initData && !PERSONA_LAUNCH_TOKEN)) return getFullAccessState();
+  if (!PAYMENT_API_BASE || !tg?.initData) return getFullAccessState();
   const data = await requestJson(`${PAYMENT_API_BASE}/api/access/full-access`);
   if (data.active) return grantFullAccess(data.source || 'telegram-payment', {
     expiresAt:data.expiresAt || data.validUntil,
@@ -5117,7 +5097,7 @@ function getPersonaUser() {
     username:tgUser?.username || '',
     initials,
     photo: tgUser?.photo_url || '',
-    id: tgUser?.id ? 'TG-' + tgUser.id : (launchTelegramId ? 'TG-' + launchTelegramId : getGuestPersonaId())
+    id: tgUser?.id ? 'TG-' + tgUser.id : getGuestPersonaId()
   };
 }
 
@@ -7372,7 +7352,7 @@ async function openRobokassaCheckout() {
     errorBox.hidden = true;
     errorBox.textContent = '';
   }
-  if (!tg?.initData && !PERSONA_LAUNCH_TOKEN) {
+  if (!tg?.initData) {
     const message = 'Открой Persona внутри Telegram, чтобы создать персональный счёт.';
     if (errorBox) {
       errorBox.textContent = message;
