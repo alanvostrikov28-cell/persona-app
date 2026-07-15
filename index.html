@@ -180,6 +180,81 @@ button { font: inherit; }
   font-size:13px;
 }
 
+.payment-page {
+  width:min(100%, 560px);
+  margin:0 auto;
+  padding:18px 17px 32px;
+}
+.payment-card {
+  border:.5px solid rgba(236,72,153,.38);
+  border-radius:18px;
+  background:
+    linear-gradient(145deg, rgba(139,92,246,.12), rgba(236,72,153,.08)),
+    var(--bg3);
+  padding:18px;
+}
+.payment-kicker {
+  color:#c4b5fd;
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:1.1px;
+  text-transform:uppercase;
+}
+.payment-title {
+  margin-top:8px;
+  font-family:Unbounded,sans-serif;
+  font-size:20px;
+  line-height:1.25;
+}
+.payment-copy {
+  margin-top:9px;
+  color:var(--text2);
+  font-size:13px;
+  line-height:1.5;
+}
+.payment-widget-host {
+  width:100%;
+  min-height:74px;
+  margin-top:18px;
+  display:grid;
+  align-items:center;
+  justify-items:center;
+}
+.payment-widget-host iframe { display:block; margin:0 auto; }
+.payment-widget-host form { width:100%; }
+.payment-widget-host input[type="submit"],
+.payment-widget-host button,
+.payment-widget-host a {
+  width:100%;
+  min-height:52px;
+  border:0;
+  border-radius:14px;
+  background:linear-gradient(135deg,var(--accent1),var(--accent2));
+  color:#fff;
+  font-family:Unbounded,sans-serif;
+  font-size:13px;
+  font-weight:600;
+  cursor:pointer;
+}
+.payment-note {
+  margin-top:12px;
+  color:var(--text3);
+  font-size:11px;
+  line-height:1.45;
+}
+.payment-error {
+  width:100%;
+  margin-top:12px;
+  padding:11px 12px;
+  border:1px solid rgba(244,114,182,.28);
+  border-radius:10px;
+  background:rgba(244,114,182,.08);
+  color:#f9a8d4;
+  font-size:12px;
+  line-height:1.45;
+}
+.payment-error[hidden] { display:none; }
+
 .footer-bar {
   flex-shrink: 0;
   padding: 12px 16px calc(12px + env(safe-area-inset-bottom, 0px));
@@ -4216,6 +4291,31 @@ button { font: inherit; }
   </div>
 </div>
 
+<div class="screen" id="screen-payment">
+  <div class="profile-header">
+    <div class="cat-header-top">
+      <button class="btn-back" onclick="showFullProfilePreview()">← Назад</button>
+      <div class="logo-name">PERSONA</div>
+    </div>
+    <div class="greeting-label">Безопасная оплата</div>
+    <div class="greeting-title">Persona Plus<br><span>199 ₽ за 30 дней</span></div>
+  </div>
+  <div class="scrollable">
+    <div class="payment-page">
+      <div class="payment-card">
+        <div class="payment-kicker">Оформление подписки</div>
+        <div class="payment-title">Оформить полный доступ</div>
+        <div class="payment-copy">После подтверждения оплаты Persona активирует полный профиль и совместимость.</div>
+        <div class="payment-widget-host" id="robokassa-payment-widget">
+          <button type="button" id="robokassa-checkout-btn" onclick="openRobokassaCheckout()">Перейти к оплате</button>
+        </div>
+        <div class="payment-error" id="robokassa-payment-error" hidden></div>
+        <div class="payment-note">Счёт создаётся для твоего Telegram-профиля. После оплаты доступ включится автоматически.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="screen" id="screen-about">
   <div class="profile-header">
     <div class="cat-header-top">
@@ -4353,9 +4453,7 @@ button { font: inherit; }
 </div>
 
 <script>
-// Production payment server URL. Example:
-// window.PERSONA_PAYMENT_API_BASE = 'https://persona-payment.example.com';
-window.PERSONA_PAYMENT_API_BASE = window.PERSONA_PAYMENT_API_BASE || 'https://clench-movie-schilling.ngrok-free.dev';
+window.PERSONA_PAYMENT_API_BASE = window.PERSONA_PAYMENT_API_BASE || 'https://api.personamirror.space';
 const tg = window.Telegram?.WebApp;
 if (tg) {
   tg.ready();
@@ -4374,7 +4472,6 @@ const FULL_ACCESS_PRODUCT = {
   currency:'RUB',
   storageKey:'personaFullAccess'
 };
-const ROBOKASSA_PAYMENT_URL = 'https://telegrampay.robokassa.ru/Pay/24198?culture=ru';
 const PAYMENT_API_BASE = (window.PERSONA_PAYMENT_API_BASE || localStorage.getItem('personaPaymentApiBase') || '').replace(/\/$/, '');
 const ACCESS_LIST_URL = window.PERSONA_ACCESS_LIST_URL || './persona-access.json';
 
@@ -4488,7 +4585,6 @@ async function requestJson(url, options = {}) {
     ...options,
     headers:{
       'Content-Type':'application/json',
-      'ngrok-skip-browser-warning':'true',
       ...(tg?.initData ? {'X-Telegram-Init-Data':tg.initData} : {}),
       ...(options.headers || {})
     }
@@ -7237,12 +7333,6 @@ async function startFullProfileCheckout() {
     return;
   }
 
-  const button = document.getElementById('full-preview-buy-btn');
-  if (button) {
-    button.disabled = true;
-    button.textContent = 'Открываем оплату...';
-  }
-
   localStorage.setItem('personaPendingRobokassaPayment', JSON.stringify({
     personaId:getPersonaUser().id,
     productId:FULL_ACCESS_PRODUCT.id,
@@ -7250,15 +7340,56 @@ async function startFullProfileCheckout() {
     createdAt:Date.now()
   }));
 
-  if (tg?.openLink) tg.openLink(ROBOKASSA_PAYMENT_URL);
-  else window.location.assign(ROBOKASSA_PAYMENT_URL);
+  showScreen('payment');
   safeHaptic('success');
-  window.setTimeout(() => {
-    if (button) {
-      button.disabled = false;
-      updateFullAccessUi();
+}
+
+async function openRobokassaCheckout() {
+  const button = document.getElementById('robokassa-checkout-btn');
+  const errorBox = document.getElementById('robokassa-payment-error');
+  if (!button) return;
+  if (errorBox) {
+    errorBox.hidden = true;
+    errorBox.textContent = '';
+  }
+  if (!tg?.initData) {
+    const message = 'Открой Persona внутри Telegram, чтобы создать персональный счёт.';
+    if (errorBox) {
+      errorBox.textContent = message;
+      errorBox.hidden = false;
     }
-  }, 1200);
+    return;
+  }
+
+  const originalText = button.textContent;
+  button.disabled = true;
+  button.textContent = 'Создаём счёт...';
+  try {
+    const payment = await requestJson(
+      `${PAYMENT_API_BASE}/api/payments/robokassa/create`,
+      { method:'POST', body:'{}' }
+    );
+    if (!payment.paymentUrl) throw new Error('Robokassa не вернула ссылку на оплату');
+    localStorage.setItem('personaPendingRobokassaPayment', JSON.stringify({
+      personaId:getPersonaUser().id,
+      productId:FULL_ACCESS_PRODUCT.id,
+      price:FULL_ACCESS_PRODUCT.price,
+      invoiceId:payment.invoiceId,
+      createdAt:Date.now()
+    }));
+    if (typeof tg.openLink === 'function') tg.openLink(payment.paymentUrl);
+    else window.location.href = payment.paymentUrl;
+  } catch (error) {
+    const message = error?.message || 'Не удалось создать счёт. Попробуй ещё раз.';
+    if (errorBox) {
+      errorBox.textContent = message;
+      errorBox.hidden = false;
+    }
+    console.error('Robokassa checkout failed', error);
+  } finally {
+    button.disabled = false;
+    button.textContent = originalText;
+  }
 }
 
 function unlockResult() {
@@ -7281,6 +7412,20 @@ updateFullAccessUi();
 syncFullAccessFromServer()
   .then(() => updateFullAccessUi())
   .catch(error => console.warn('Initial full access sync failed', error));
+document.addEventListener('visibilitychange', () => {
+  if (!document.hidden) {
+    syncFullAccessFromServer()
+      .then(() => updateFullAccessUi())
+      .catch(error => console.warn('Access refresh failed', error));
+  }
+});
+if (tg?.onEvent) {
+  tg.onEvent('activated', () => {
+    syncFullAccessFromServer()
+      .then(() => updateFullAccessUi())
+      .catch(error => console.warn('Telegram access refresh failed', error));
+  });
+}
 setupCatalogScroll();
 setupProfileScroll();
 setupInsightsScroll();
