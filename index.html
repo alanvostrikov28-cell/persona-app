@@ -4374,7 +4374,7 @@ const FULL_ACCESS_PRODUCT = {
   currency:'RUB',
   storageKey:'personaFullAccess'
 };
-const MANUAL_PAYMENT_BOT_USERNAME = 'PersonaMirror_bot';
+const ROBOKASSA_PAYMENT_URL = 'https://telegrampay.robokassa.ru/Pay/24198?culture=ru';
 const PAYMENT_API_BASE = (window.PERSONA_PAYMENT_API_BASE || localStorage.getItem('personaPaymentApiBase') || '').replace(/\/$/, '');
 const ACCESS_LIST_URL = window.PERSONA_ACCESS_LIST_URL || './persona-access.json';
 
@@ -7237,24 +7237,22 @@ async function startFullProfileCheckout() {
     return;
   }
 
-  const request = makeManualPaymentRequest();
-  await copyManualPaymentRequest(request);
-
-  if (!tg) {
-    showSoon(`Заявка скопирована: ${request.orderCode}. Открой @${MANUAL_PAYMENT_BOT_USERNAME}, нажми “Купить полный доступ” и вставь заявку после оплаты.`);
-    return;
-  }
-
   const button = document.getElementById('full-preview-buy-btn');
   if (button) {
     button.disabled = true;
-    button.textContent = 'Открываем бота...';
+    button.textContent = 'Открываем оплату...';
   }
 
-  const botUrl = `https://t.me/${MANUAL_PAYMENT_BOT_USERNAME}`;
-  tg.openTelegramLink(botUrl);
+  localStorage.setItem('personaPendingRobokassaPayment', JSON.stringify({
+    personaId:getPersonaUser().id,
+    productId:FULL_ACCESS_PRODUCT.id,
+    price:FULL_ACCESS_PRODUCT.price,
+    createdAt:Date.now()
+  }));
+
+  if (tg?.openLink) tg.openLink(ROBOKASSA_PAYMENT_URL);
+  else window.location.assign(ROBOKASSA_PAYMENT_URL);
   safeHaptic('success');
-  window.setTimeout(() => tg.close(), 450);
   window.setTimeout(() => {
     if (button) {
       button.disabled = false;
