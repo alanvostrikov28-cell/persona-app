@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
@@ -3996,6 +3996,582 @@ button { font: inherit; }
   font-size: 13px;
   line-height: 1.55;
 }
+.profile-growth-card {
+  position: relative;
+  overflow: hidden;
+  padding: 16px;
+  border: 1px solid rgba(139,92,246,.32);
+  border-radius: 8px;
+  background: linear-gradient(115deg, rgba(139,92,246,.14), rgba(236,72,153,.08) 58%, rgba(6,182,212,.06));
+}
+.profile-growth-top,
+.profile-growth-meta,
+.unlock-step-top,
+.persona-passport-head,
+.persona-cost-row,
+.compat-discovery-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.profile-growth-kicker,
+.unlock-kicker,
+.passport-kicker,
+.scenario-kicker {
+  color: #c4b5fd;
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.profile-growth-title {
+  margin-top: 5px;
+  font-size: 19px;
+  font-weight: 800;
+}
+.profile-growth-score {
+  min-width: 58px;
+  text-align: right;
+  font-size: 25px;
+  font-weight: 800;
+  color: #f0abfc;
+}
+.profile-growth-score small {
+  display: block;
+  margin-top: 1px;
+  color: var(--muted);
+  font-size: 9px;
+  font-weight: 700;
+}
+.profile-growth-track {
+  height: 7px;
+  margin: 14px 0 10px;
+  overflow: hidden;
+  border-radius: 4px;
+  background: rgba(255,255,255,.08);
+}
+.profile-growth-fill {
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #8b5cf6, #ec4899, #22d3ee);
+  transition: width .55s ease;
+}
+.profile-growth-meta {
+  color: var(--muted);
+  font-size: 11px;
+}
+.profile-growth-meta b { color: var(--text); }
+.unlock-step {
+  margin-top: 12px;
+  padding: 12px;
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 7px;
+  background: rgba(8,8,14,.42);
+}
+.unlock-step-title {
+  margin-top: 7px;
+  font-size: 14px;
+  font-weight: 800;
+}
+.unlock-step-copy {
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.45;
+}
+.unlock-step-action {
+  color: #f0abfc;
+  font-size: 11px;
+  font-weight: 800;
+}
+.profile-milestones {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 6px;
+  margin-top: 10px;
+}
+.profile-milestone {
+  min-width: 0;
+  padding: 8px 7px;
+  border-radius: 6px;
+  background: rgba(255,255,255,.04);
+  color: var(--muted);
+  font-size: 9px;
+  line-height: 1.3;
+}
+.profile-milestone.done {
+  color: #a7f3d0;
+  background: rgba(16,185,129,.09);
+}
+.profile-milestone b {
+  display: block;
+  margin-bottom: 3px;
+  color: var(--text);
+  font-size: 10px;
+}
+.fingerprint-row.preview-locked .fingerprint-fill {
+  width: 38% !important;
+  opacity: .32;
+  filter: blur(2px);
+}
+.fingerprint-row.preview-locked .fingerprint-value {
+  color: #c4b5fd;
+  font-size: 9px;
+}
+.persona-matches.preview .match-person.locked {
+  position: relative;
+  min-height: 56px;
+}
+.persona-matches.preview .match-person.locked .match-avatar,
+.persona-matches.preview .match-person.locked .match-name,
+.persona-matches.preview .match-person.locked .match-reason {
+  filter: blur(5px);
+  opacity: .36;
+  user-select: none;
+}
+.persona-matches.preview .match-person.locked .match-score {
+  color: #c4b5fd;
+  font-size: 15px;
+}
+.match-preview-label {
+  position: absolute;
+  z-index: 2;
+  left: 62px;
+  color: #f5d0fe;
+  font-size: 11px;
+  font-weight: 800;
+}
+.locked-value-card {
+  position: relative;
+  overflow: hidden;
+  padding: 15px;
+  border: 1px solid rgba(236,72,153,.28);
+  border-radius: 8px;
+  background: linear-gradient(120deg, rgba(236,72,153,.10), rgba(139,92,246,.08));
+}
+.locked-value-title {
+  margin-top: 6px;
+  font-size: 16px;
+  font-weight: 800;
+}
+.locked-value-copy {
+  margin-top: 6px;
+  max-width: 92%;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.5;
+}
+.locked-value-preview {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 6px;
+  margin-top: 12px;
+}
+.locked-value-preview span {
+  padding: 8px 5px;
+  border-radius: 6px;
+  background: rgba(0,0,0,.22);
+  color: #ddd6fe;
+  font-size: 9px;
+  text-align: center;
+}
+.compat-discovery-card {
+  padding: 15px;
+  border: 1px solid rgba(244,63,94,.28);
+  border-radius: 8px;
+  background: linear-gradient(120deg, rgba(244,63,94,.11), rgba(139,92,246,.10));
+}
+.compat-discovery-avatars {
+  display: flex;
+  align-items: center;
+}
+.compat-discovery-avatar {
+  display: grid;
+  width: 38px;
+  height: 38px;
+  place-items: center;
+  border: 2px solid #21182d;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #7c3aed, #db2777);
+}
+.compat-discovery-avatar + .compat-discovery-avatar { margin-left: -10px; }
+.compat-discovery-score {
+  color: #f9a8d4;
+  font-size: 20px;
+  font-weight: 800;
+}
+.compat-discovery-title {
+  margin-top: 11px;
+  font-size: 17px;
+  font-weight: 800;
+}
+.compat-discovery-copy {
+  margin-top: 5px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.45;
+}
+.compat-discovery-card button {
+  width: 100%;
+  margin-top: 12px;
+}
+.profile-premium-teaser {
+  padding: 13px;
+  border: 1px solid rgba(236,72,153,.26);
+  border-radius: 8px;
+  background: linear-gradient(120deg, rgba(236,72,153,.10), rgba(139,92,246,.08));
+}
+.profile-premium-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.profile-premium-title {
+  font-size: 15px;
+  font-weight: 800;
+}
+.profile-premium-lock {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  border-radius: 7px;
+  background: rgba(255,255,255,.07);
+}
+.profile-premium-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 7px;
+  margin-top: 10px;
+}
+.profile-premium-grid button {
+  min-width: 0;
+  padding: 9px;
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 7px;
+  background: rgba(5,5,10,.28);
+  color: var(--text);
+  text-align: left;
+}
+.profile-premium-grid b,
+.profile-premium-grid span {
+  display: block;
+}
+.profile-premium-grid b {
+  font-size: 11px;
+}
+.profile-premium-grid span {
+  margin-top: 3px;
+  color: var(--muted);
+  font-size: 9px;
+}
+.catalog-momentum {
+  display: grid;
+  grid-template-columns: 1.2fr .8fr;
+  gap: 8px;
+  margin: 8px 0 14px;
+}
+.catalog-momentum-main,
+.catalog-momentum-side {
+  padding: 11px 12px;
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 7px;
+  background: rgba(255,255,255,.035);
+}
+.catalog-momentum-side.discovery {
+  border-color: rgba(244,63,94,.24);
+  background: rgba(244,63,94,.07);
+  cursor: pointer;
+}
+.catalog-momentum-side.discovery b { color: #f9a8d4; }
+.catalog-momentum-main b,
+.catalog-momentum-side b {
+  display: block;
+  font-size: 12px;
+}
+.catalog-momentum-main span,
+.catalog-momentum-side span {
+  display: block;
+  margin-top: 3px;
+  color: var(--muted);
+  font-size: 9px;
+  line-height: 1.3;
+}
+.catalog-momentum-main strong { color: #f0abfc; }
+.next-step-reward {
+  margin-top: 8px;
+  color: #c4b5fd;
+  font-size: 10px;
+  font-weight: 700;
+}
+.persona-passport {
+  position: relative;
+  overflow: hidden;
+  padding: 18px;
+  border: 1px solid rgba(34,211,238,.22);
+  border-radius: 8px;
+  background:
+    linear-gradient(115deg, rgba(139,92,246,.20), rgba(236,72,153,.12) 56%, rgba(34,211,238,.09)),
+    #12121a;
+}
+.persona-passport::after {
+  position: absolute;
+  right: -24px;
+  bottom: -34px;
+  width: 130px;
+  height: 130px;
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 50%;
+  content: "";
+}
+.passport-mark {
+  display: grid;
+  width: 48px;
+  height: 48px;
+  place-items: center;
+  border-radius: 8px;
+  background: linear-gradient(145deg, #8b5cf6, #ec4899);
+  font-size: 23px;
+}
+.passport-title {
+  margin-top: 13px;
+  max-width: 88%;
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 1.08;
+}
+.passport-copy {
+  margin-top: 8px;
+  max-width: 90%;
+  color: #b8b6c6;
+  font-size: 12px;
+  line-height: 1.55;
+}
+.persona-dna {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 7px;
+  margin-top: 15px;
+}
+.persona-dna div {
+  padding: 9px 7px;
+  border-radius: 6px;
+  background: rgba(0,0,0,.24);
+}
+.persona-dna b {
+  display: block;
+  color: #f5d0fe;
+  font-size: 11px;
+}
+.persona-dna span {
+  display: block;
+  margin-top: 3px;
+  color: #9c99aa;
+  font-size: 9px;
+}
+.persona-cost-card,
+.perspective-card,
+.relationship-scenarios {
+  margin-top: 12px;
+  padding: 15px;
+  border: 1px solid rgba(255,255,255,.09);
+  border-radius: 8px;
+  background: rgba(9,9,14,.45);
+}
+.persona-cost-row + .persona-cost-row {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255,255,255,.07);
+}
+.persona-cost-row b {
+  min-width: 88px;
+  color: #ddd6fe;
+  font-size: 11px;
+}
+.persona-cost-row span {
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.4;
+}
+.perspective-tabs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  margin-top: 11px;
+}
+.perspective-tab {
+  min-height: 36px;
+  border: 1px solid rgba(255,255,255,.09);
+  border-radius: 6px;
+  background: rgba(255,255,255,.03);
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 800;
+}
+.perspective-tab.active {
+  border-color: rgba(236,72,153,.45);
+  background: rgba(236,72,153,.13);
+  color: #fff;
+}
+.perspective-text {
+  min-height: 68px;
+  margin-top: 10px;
+  padding: 11px;
+  border-radius: 6px;
+  background: rgba(255,255,255,.035);
+  color: #cbc8d5;
+  font-size: 12px;
+  line-height: 1.5;
+}
+.scenario-path {
+  position: relative;
+  display: grid;
+  grid-template-columns: 20px 1fr;
+  gap: 10px;
+  padding: 10px 0;
+}
+.scenario-path + .scenario-path { border-top: 1px solid rgba(255,255,255,.07); }
+.scenario-index {
+  display: grid;
+  width: 20px;
+  height: 20px;
+  place-items: center;
+  border-radius: 50%;
+  background: rgba(139,92,246,.24);
+  color: #e9d5ff;
+  font-size: 9px;
+  font-weight: 800;
+}
+.scenario-path b {
+  display: block;
+  font-size: 11px;
+}
+.scenario-path span {
+  display: block;
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.45;
+}
+#screen-full-profile.active .full-profile-content {
+  animation: personaReveal .45s ease both;
+}
+@keyframes personaReveal {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@media (max-width: 480px) {
+  .profile-milestones,
+  .locked-value-preview,
+  .persona-dna { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .catalog-momentum { grid-template-columns: 1fr 1fr; }
+  .passport-title { font-size: 21px; }
+  .profile-growth-card { padding: 13px; }
+  .profile-growth-title { font-size: 16px; }
+  .profile-growth-score { font-size: 21px; }
+  .profile-growth-track { margin: 10px 0 8px; }
+  .unlock-step { margin-top: 9px; padding: 9px 10px; }
+  .unlock-step-title { margin-top: 4px; font-size: 13px; }
+  .fingerprint-head { margin-bottom: 9px; }
+  .fingerprint-sub { display: none; }
+  .fingerprint-mark { width: 34px; height: 34px; border-radius: 8px; }
+  .fingerprint-lines { gap: 8px; }
+  .fingerprint-row { grid-template-columns: 76px 1fr 34px; gap: 7px; }
+  .fingerprint-name { font-size: 10px; }
+  .matches-head { margin-bottom: 8px; }
+  .match-person { min-height: 52px; }
+  .full-profile-hero { padding: 14px; border-radius: 8px; }
+  .full-profile-title { font-size: 19px; }
+  .full-profile-text {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+  }
+  .full-profile-list { grid-template-columns: 1fr; gap: 6px; }
+  .full-profile-item {
+    min-height: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 9px 10px;
+    border-radius: 7px;
+  }
+  .full-profile-item span { margin-top: 0; text-align: right; }
+  .next-step-card { padding: 12px; }
+  .next-step-main { margin-top: 8px; }
+  .next-step-sub { display: none; }
+  .next-step-reward { margin-top: 4px; }
+  .test-card {
+    min-height: 72px;
+    grid-template-columns: 38px minmax(0, 1fr) auto;
+    gap: 9px;
+    padding: 9px 10px;
+  }
+  .card-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+  }
+  .card-title { font-size: 13px; }
+  .card-desc,
+  .card-footer { display: none; }
+  .card-badges {
+    grid-column: 3;
+    grid-row: 1 / span 3;
+    min-width: 0;
+    max-width: 68px;
+    justify-content: flex-end;
+  }
+  .card-badges .badge:first-child { display: none; }
+  #screen-profile .profile-header {
+    padding-top: 12px;
+    padding-bottom: 5px;
+  }
+  #screen-profile .profile-header .greeting-label,
+  #screen-profile .profile-header .greeting-title { display: none; }
+  #screen-profile .profile-header .cat-header-top { margin-bottom: 8px; }
+  #screen-profile .progress-strip {
+    margin-top: 0;
+    margin-bottom: 8px;
+    padding: 10px 12px;
+  }
+  .persona-card-top { margin-bottom: 0; }
+  .persona-avatar {
+    width: 42px;
+    height: 42px;
+    border-radius: 9px;
+    font-size: 17px;
+  }
+  .persona-id { margin-top: 2px; font-size: 9px; }
+  .persona-code-btn { min-height: 25px; margin-top: 4px; font-size: 9px; }
+  .persona-status { padding: 4px 6px; font-size: 8px; }
+  .profile-hero-top {
+    align-items: center;
+    margin-top: 10px;
+  }
+  .profile-rank,
+  .profile-stat-pill { display: none; }
+  .profile-headline { margin-top: 0; font-size: 14px; }
+  .level-card {
+    margin-top: 9px;
+    padding: 9px 10px;
+    border-radius: 8px;
+  }
+  .level-title { display: none; }
+  .level-name { margin-top: 0; font-size: 13px; }
+  .level-badge {
+    min-width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    font-size: 14px;
+  }
+  .level-track { height: 5px; margin: 7px 0 5px; }
+  .level-meta { font-size: 9px; }
+}
 </style>
 </head>
 <body>
@@ -4227,13 +4803,12 @@ button { font: inherit; }
         <div class="locked-title">Это только верхний слой.<br>Полный профиль уже собирается.</div>
         <div class="locked-desc">Этот результат ушёл в твою Persona-карту. Полный профиль покажет, как этот паттерн проявляется в отношениях, конфликтах, триггерах и выборе людей.</div>
         <ul>
-          <li>скрытые противоречия между твоими шкалами;</li>
-          <li>что люди считывают в тебе быстрее, чем ты думаешь;</li>
-          <li>как твой паттерн ведёт себя в отношениях;</li>
-          <li>инструкция: как с тобой говорить и не ломать контакт.</li>
+          <li>цена твоей сильной стороны;</li>
+          <li>какие потребности спорят внутри;</li>
+          <li>какой человек подходит тебе по ритму;</li>
+          <li>как твой сценарий выглядит глазами близкого.</li>
         </ul>
         <button class="locked-action" onclick="openFullProfilePaywall()">Оформить полный профиль — 199 ₽/мес</button>
-        <button class="locked-action secondary" onclick="showProfile()">Сначала посмотреть профиль →</button>
       </div>
     </div>
   </div>
@@ -4261,7 +4836,7 @@ button { font: inherit; }
         </div>
         <div class="full-preview-price"><b>199 ₽</b><span>в месяц</span></div>
       </div>
-      <div class="full-preview-text">Persona соберёт твои тесты, ежедневные инсайты и повторяющиеся состояния в одну психологическую карту: отношения, окружение, работа, сильные стороны и конкретные рекомендации.</div>
+      <div class="full-preview-text">Не ещё один результат теста. Карта того, почему ты повторяешь одни сценарии, каких людей выбираешь и что помогает тебе не возвращаться в старый круг.</div>
       <div class="full-preview-signal" id="full-preview-signal"></div>
     </div>
     <div class="profile-dashboard">
@@ -4474,6 +5049,14 @@ const FULL_ACCESS_PRODUCT = {
 };
 const PAYMENT_API_BASE = (window.PERSONA_PAYMENT_API_BASE || localStorage.getItem('personaPaymentApiBase') || '').replace(/\/$/, '');
 const ACCESS_LIST_URL = window.PERSONA_ACCESS_LIST_URL || './persona-access.json';
+const PERSONA_APP_VERSION = '2026.07.26';
+const IS_LOCAL_PREVIEW = location.protocol === 'file:'
+  || location.hostname === 'localhost'
+  || location.hostname === '127.0.0.1';
+const LOCAL_ACCESS_QUERY = new URLSearchParams(location.search).get('access');
+const LOCAL_ACCESS_MODE = IS_LOCAL_PREVIEW
+  ? (/persona-index-no-access\.html$/i.test(location.pathname) || LOCAL_ACCESS_QUERY === 'none' ? 'none' : 'full')
+  : 'server';
 
 function parseAccessTime(value) {
   if (!value) return null;
@@ -4497,6 +5080,20 @@ function isAccessActiveByTime(access, now = Date.now()) {
 }
 
 function getFullAccessState() {
+  if (LOCAL_ACCESS_MODE === 'full') {
+    return {
+      active:true,
+      source:'local-preview',
+      productId:FULL_ACCESS_PRODUCT.id,
+      productTitle:FULL_ACCESS_PRODUCT.title,
+      price:FULL_ACCESS_PRODUCT.price,
+      period:FULL_ACCESS_PRODUCT.period,
+      currency:FULL_ACCESS_PRODUCT.currency
+    };
+  }
+  if (LOCAL_ACCESS_MODE === 'none') {
+    return { active:false, source:'local-no-access-preview', productId:FULL_ACCESS_PRODUCT.id };
+  }
   try {
     const saved = JSON.parse(localStorage.getItem(FULL_ACCESS_PRODUCT.storageKey) || 'null');
     const verifiedAt = parseAccessTime(saved?.verifiedAtLocal);
@@ -4596,6 +5193,33 @@ async function requestJson(url, options = {}) {
   return data;
 }
 
+function getAnalyticsSessionId() {
+  const key = 'personaAnalyticsSessionId';
+  let sessionId = sessionStorage.getItem(key);
+  if (!sessionId) {
+    sessionId = typeof crypto?.randomUUID === 'function'
+      ? crypto.randomUUID()
+      : `session-${Date.now()}-${Math.random().toString(36).slice(2, 12)}`;
+    sessionStorage.setItem(key, sessionId);
+  }
+  return sessionId;
+}
+
+async function trackAnalyticsAppOpen() {
+  if (!PAYMENT_API_BASE || !tg?.initData) return;
+  const completedTests = Object.keys(getState().completed || {}).length;
+  await requestJson(`${PAYMENT_API_BASE}/api/analytics/app-open`, {
+    method:'POST',
+    body:JSON.stringify({
+      sessionId:getAnalyticsSessionId(),
+      completedTests,
+      profileCompletion:Math.round((completedTests / Object.keys(tests).length) * 100),
+      platform:tg.platform || navigator.platform || '',
+      appVersion:PERSONA_APP_VERSION
+    })
+  });
+}
+
 function isPersonaIdGranted(currentPersonaId, rawList = []) {
   const result = rawList.find(item => {
     const code = typeof item === 'string' ? item : (item.personaId || item.id || item.code);
@@ -4610,6 +5234,7 @@ function getAccessEntryExpiry(entry) {
 }
 
 async function syncFullAccessFromAccessList() {
+  if (LOCAL_ACCESS_MODE !== 'server') return getFullAccessState();
   const currentPersonaId = normalizePersonaCode(getPersonaUser().id);
   try {
     const localList = JSON.parse(localStorage.getItem('personaAdminAccessList') || '[]');
@@ -4650,6 +5275,7 @@ async function syncFullAccessFromAccessList() {
 }
 
 async function syncFullAccessFromServer() {
+  if (LOCAL_ACCESS_MODE !== 'server') return getFullAccessState();
   const staticAccess = await syncFullAccessFromAccessList();
   if (staticAccess.active) return staticAccess;
   if (!PAYMENT_API_BASE || !tg?.initData) return getFullAccessState();
@@ -5332,6 +5958,9 @@ function nextStepTemplate() {
   const sub = isComplete
     ? 'Выбери любой тест ниже, чтобы обновить слой профиля.'
     : next.short;
+  const reward = isComplete
+    ? ''
+    : getNextTestReward(next.id);
   return `
     <button class="next-step-card" onclick="openTest('${next.id}')">
       <div class="next-step-top">
@@ -5343,10 +5972,44 @@ function nextStepTemplate() {
         <div>
           <div class="next-step-title">${title}</div>
           <div class="next-step-sub">${sub}</div>
+          ${reward ? `<div class="next-step-reward">Откроет: ${reward}</div>` : ''}
         </div>
         <div class="next-step-go">→</div>
       </div>
     </button>
+  `;
+}
+
+function getNextTestReward(testId) {
+  const rewards = {
+    control:'способ влиять',
+    attachment:'сценарий близости',
+    boundaries:'карту личных границ',
+    conflict:'твой режим в ссоре',
+    anxiety:'главные триггеры',
+    stability:'способ восстановления',
+    empathy:'чтение чужих эмоций',
+    values:'ядро решений'
+  };
+  return rewards[testId] || 'новую грань';
+}
+
+function catalogMomentumTemplate() {
+  const completedCount = Object.keys(getState().completed || {}).length;
+  const totalCount = Object.values(tests).filter(test => test.status === 'ready').length;
+  const precision = getProfilePrecision(completedCount);
+  const left = Math.max(0, totalCount - completedCount);
+  return `
+    <div class="catalog-momentum">
+      <div class="catalog-momentum-main">
+        <b>Точность карты: <strong>${precision}%</strong></b>
+        <span>${left ? `Ещё ${left} ${left === 1 ? 'тест' : left < 5 ? 'теста' : 'тестов'}, чтобы Persona увидела пересечения.` : 'Карта собрана. Теперь результаты можно уточнять.'}</span>
+      </div>
+      <div class="catalog-momentum-side ${completedCount >= 2 ? 'discovery' : ''}" ${completedCount >= 2 ? 'onclick="showDuels()"' : ''}>
+        <b>${completedCount >= 2 ? '❤️ Совместимость' : 'Первый портрет'}</b>
+        <span>${completedCount >= 2 ? 'твоя сторона сравнения уже готова →' : 'откроется после 1 теста'}</span>
+      </div>
+    </div>
   `;
 }
 
@@ -5508,6 +6171,10 @@ function showResult() {
       </div>
     `;
   }).join('');
+  const state = getState();
+  const completedIds = new Set([...Object.keys(state.completed || {}), activeTest.id]);
+  const completedTestsCount = completedIds.size;
+  const nextAfterResult = Object.values(tests).find(test => test.status === 'ready' && !completedIds.has(test.id));
   document.getElementById('profile-add-card').innerHTML = `
     <div class="profile-add-head">
       <div class="profile-add-title">Добавлено в Persona-карту</div>
@@ -5517,9 +6184,14 @@ function showResult() {
       ${activeTest.facets.map(id => `<span class="profile-add-chip">✓ ${getFacetTitle(id)}</span>`).join('')}
     </div>
     <div class="profile-add-signal"><strong>${result.hook}</strong><br>Этот сигнал теперь будет влиять на профиль и будущие наблюдения.</div>
+    <div class="profile-growth-track"><div class="profile-growth-fill" style="width:${getProfilePrecision(completedTestsCount)}%"></div></div>
+    <div class="profile-growth-meta">
+      <span>Точность карты: <b>${getProfilePrecision(completedTestsCount)}%</b></span>
+      <span>${nextAfterResult ? `Дальше: ${nextAfterResult.title}` : 'Все основные слои собраны'}</span>
+    </div>
+    ${nextAfterResult ? `<div class="next-step-reward">Следующий тест откроет: ${getNextTestReward(nextAfterResult.id)}.</div>` : ''}
   `;
 
-  const state = getState();
   state.completed[activeTest.id] = {
     type: result.id,
     title: result.name,
@@ -5531,6 +6203,7 @@ function showResult() {
     completedAt: new Date().toISOString()
   };
   saveState(state);
+  trackAnalyticsAppOpen().catch(error => console.warn('Profile analytics sync failed', error));
   updateProgress();
   renderCatalog();
   renderProfile();
@@ -5574,7 +6247,51 @@ function getAverageScore(entry) {
   return Math.round(values.reduce((sum, value) => sum + value, 0) / values.length);
 }
 
+function getProfilePrecision(completedCount) {
+  if (!completedCount) return 0;
+  return Math.min(96, 18 + completedCount * 13);
+}
+
+function profileGrowthCard(completed) {
+  const readyTests = Object.values(tests).filter(test => test.status === 'ready');
+  const next = readyTests.find(test => !completed.some(entry => entry.id === test.id));
+  const count = completed.length;
+  const precision = getProfilePrecision(count);
+  return `
+    <div class="profile-growth-card">
+      <div class="profile-growth-top">
+        <div>
+          <div class="profile-growth-kicker">карта становится точнее</div>
+          <div class="profile-growth-title">${count >= readyTests.length ? 'Профиль собран' : `Открыто ${count} из ${readyTests.length} слоёв`}</div>
+        </div>
+        <div class="profile-growth-score">${precision}%<small>точность</small></div>
+      </div>
+      <div class="profile-growth-track"><div class="profile-growth-fill" style="width:${precision}%"></div></div>
+      <div class="profile-growth-meta">
+        <span><b>${Math.max(0, readyTests.length - count)}</b> слоёв осталось</span>
+        <span>${count < 3 ? 'виден контур' : count < readyTests.length ? 'видны связи' : 'карта собрана'}</span>
+      </div>
+      ${next ? `
+        <div class="unlock-step" onclick="openTest('${next.id}')">
+          <div class="unlock-step-top">
+            <div class="unlock-kicker">следующий слой</div>
+            <div class="unlock-step-action">пройти →</div>
+          </div>
+          <div class="unlock-step-title">${next.icon} ${next.title}</div>
+          <div class="unlock-step-copy">Откроет: ${getNextTestReward(next.id)}.</div>
+        </div>
+      ` : `
+        <div class="unlock-step">
+          <div class="unlock-kicker">карта собрана</div>
+          <div class="unlock-step-title">Все 8 слоёв участвуют в твоём профиле</div>
+        </div>
+      `}
+    </div>
+  `;
+}
+
 function fingerprintCard(completed) {
+  const unlocked = hasFullAccess();
   const items = [
     { id:'attachment', name:'Близость', icon:'❤️', entry:getCompletedEntry(completed, 'attachment') },
     { id:'control', name:'Контроль', icon:'🧭', entry:getCompletedEntry(completed, 'control') },
@@ -5582,6 +6299,7 @@ function fingerprintCard(completed) {
     { id:'conflict', name:'Конфликт', icon:'⚡', entry:getCompletedEntry(completed, 'conflict') },
     { id:'stability', name:'Опора', icon:'🧱', entry:getCompletedEntry(completed, 'stability') }
   ].map(item => ({ ...item, value:getAverageScore(item.entry) }));
+  let visibleScores = 0;
 
   return `
     <div class="fingerprint-card">
@@ -5593,19 +6311,23 @@ function fingerprintCard(completed) {
         <div class="fingerprint-mark">🫆</div>
       </div>
       <div class="fingerprint-lines">
-        ${items.map(item => `
-          <div class="fingerprint-row ${item.value === null ? 'locked' : ''}">
+        ${items.map(item => {
+          const previewLocked = item.value !== null && !unlocked && visibleScores++ >= 3;
+          return `
+          <div class="fingerprint-row ${item.value === null ? 'locked' : ''} ${previewLocked ? 'preview-locked' : ''}">
             <div class="fingerprint-name">${item.icon} ${item.name}</div>
             <div class="fingerprint-track"><div class="fingerprint-fill" style="width:${item.value ?? 22}%"></div></div>
-            <div class="fingerprint-value">${item.value === null ? 'закр.' : item.value + '%'}</div>
+            <div class="fingerprint-value">${item.value === null ? 'нет данных' : previewLocked ? 'в полном' : item.value + '%'}</div>
           </div>
-        `).join('')}
+        `}).join('')}
       </div>
+      ${!unlocked && completed.length >= 4 ? '<div class="matches-note">Три сигнала видны бесплатно. Остальные значения уже рассчитаны и ждут в полном профиле.</div>' : ''}
     </div>
   `;
 }
 
 function knownPeopleWidget(completed, axisRows) {
+  const unlocked = hasFullAccess();
   const topAxis = axisRows[0];
   const catalog = [
     { key:'control', avatar:'jobs', name:'Стив Джобс', reason:'видение, давление на форму, желание довести идею до точности' },
@@ -5660,25 +6382,50 @@ function knownPeopleWidget(completed, axisRows) {
     }));
 
   return `
-    <div class="persona-matches">
+    <div class="persona-matches ${unlocked ? '' : 'preview'}">
       <div class="matches-head">
         <div>
           <div class="matches-title">Похожие известные личности</div>
         </div>
       </div>
       <div class="matches-list">
-        ${picked.map(person => `
-          <div class="match-person">
+        ${picked.map((person, index) => {
+          const locked = !unlocked && index > 0;
+          if (!unlocked && index === 2) return '';
+          return `
+          <div class="match-person ${locked ? 'locked' : ''}">
             <div class="match-avatar ${person.avatar}">${person.avatar === 'bowie' ? '<span></span>' : ''}</div>
             <div>
-              <div class="match-name">${person.name}</div>
-              <div class="match-reason">${person.reason}</div>
+              <div class="match-name">${locked ? 'Ещё 2 совпадения' : person.name}</div>
+              <div class="match-reason">${locked ? 'личности и причины скрыты' : person.reason}</div>
             </div>
-            <div class="match-score">${person.score}%</div>
+            ${locked ? '<div class="match-preview-label">Открыть личность</div>' : ''}
+            <div class="match-score">${locked ? '🔐' : person.score + '%'}</div>
           </div>
-        `).join('')}
+        `}).join('')}
       </div>
-      <div class="matches-note">Совпадения уточняются после каждого нового теста. Полный профиль сможет объяснить не только “на кого похоже”, но и почему.</div>
+      ${unlocked ? '<div class="matches-note">Совпадения уточняются после каждого нового теста.</div>' : ''}
+    </div>
+  `;
+}
+
+function profilePremiumTeaser(completed) {
+  const latest = completed[completed.length - 1];
+  if (hasFullAccess()) return '';
+  return `
+    <div class="profile-premium-teaser">
+      <div class="profile-premium-head">
+        <div>
+          <div class="story-kicker">полный профиль</div>
+          <div class="profile-premium-title">${latest ? 'Связи уже найдены' : 'Собери первый сигнал'}</div>
+        </div>
+        <div class="profile-premium-lock">🔐</div>
+      </div>
+      <div class="profile-premium-grid">
+        <button onclick="openFullProfilePaywall()"><b>⚖️ Цена твоей силы</b><span>где помогает и ломает</span></button>
+        <button onclick="showDuels()"><b>❤️ Карта пары</b><span>химия и напряжение</span></button>
+      </div>
+      <button class="paid-action" onclick="openFullProfilePaywall()">Посмотреть, что скрыто</button>
     </div>
   `;
 }
@@ -5870,18 +6617,17 @@ function setupDailyTimer() {
 
 function fullProfileOffer(completed, topAxis) {
   const readyText = completed.length
-    ? `Persona уже видит ${completed.length} слоёв твоего профиля. Полный доступ соберёт их в один разбор: отношения, триггеры, противоречия и инструкцию к тебе.`
-    : 'Пройди хотя бы один тест, и полный профиль начнёт собираться вокруг твоих реальных ответов.';
+    ? 'Persona свяжет твои ответы и покажет, почему разные реакции включаются вместе.'
+    : 'Пройди первый тест, чтобы полный профиль начал собираться вокруг твоих ответов.';
   return `
     <div class="full-profile-hero">
-      <div class="full-profile-eyebrow">подписка · beta</div>
-      <div class="full-profile-title">Полный профиль Persona</div>
+      <div class="full-profile-eyebrow">полный профиль</div>
+      <div class="full-profile-title">Увидеть свою систему.</div>
       <div class="full-profile-text">${readyText}</div>
       <div class="full-profile-list">
-        <div class="full-profile-item"><b>❤️ Отношения</b><span>кого выбираешь и как проверяешь близость</span></div>
-        <div class="full-profile-item"><b>🚩 Триггеры</b><span>что включает тревогу, холод или защиту</span></div>
-        <div class="full-profile-item"><b>🧩 Противоречия</b><span>где желания спорят с защитами</span></div>
-        <div class="full-profile-item"><b>🧭 Инструкция</b><span>как с тобой говорить, мириться и поддерживать</span></div>
+        <div class="full-profile-item"><b>🧬 Ядро</b><span>сила, цена и скрытый сценарий</span></div>
+        <div class="full-profile-item"><b>❤️ Твои люди</b><span>идеальный партнёр и карта пары</span></div>
+        <div class="full-profile-item"><b>⚔️ Конфликты</b><span>что внутри тянет тебя в разные стороны</span></div>
       </div>
       <div class="full-price-row">
         <div>
@@ -5889,6 +6635,7 @@ function fullProfileOffer(completed, topAxis) {
           <div class="full-price-note">ежемесячно</div>
         </div>
       </div>
+      <button class="paid-action" onclick="openFullProfilePaywall()">Оформить подписку — ${FULL_ACCESS_PRODUCT.price} ₽/мес</button>
     </div>
   `;
 }
@@ -5955,25 +6702,15 @@ function buildProfileStory(completed, axisRows) {
   const fullSections = buildFullProfileSections({ latest, attachment, topAxis });
 
   const portrait = completed.length ? [
+    profileGrowthCard(completed),
     fingerprintCard(completed),
     knownPeopleWidget(completed, axisRows),
-    storyCard({
-      kicker:'Главный портрет',
-      icon:'🧬',
-      accent:true,
-      title:`Persona видит: ${latest.data.title}`,
-      text:`${latest.data.hook} Это не финальный ярлык, а самый свежий слой твоей карточки. Чем больше тестов ты проходишь, тем точнее становится общий портрет.`
-    })
+    profilePremiumTeaser(completed)
   ] : [
+    profileGrowthCard(completed),
     fingerprintCard(completed),
     knownPeopleWidget(completed, axisRows),
-    storyCard({
-      kicker:'Пустая карточка',
-      icon:'🧬',
-      accent:true,
-      title:'Persona пока не знает твой сценарий',
-      text:'Первый тест откроет стартовый портрет: как ты реагируешь, где защищаешься и какой паттерн люди могут замечать быстрее тебя.'
-    })
+    profilePremiumTeaser(completed)
   ];
 
   const strengths = completed.length ? [
@@ -5982,7 +6719,10 @@ function buildProfileStory(completed, axisRows) {
       icon:'💎',
       title:'То, что уже работает на тебя',
       text:'Persona собирает сильные стороны не как комплименты, а как рабочие механики поведения.',
-      points: completed.slice(-3).reverse().map(({ data, test }) => ({ icon:'✓', text:`${test.title}: ${data.hook}` }))
+      points: completed.slice(-2).reverse().map(({ data, test }, index) => ({
+        icon:index === 0 ? '✓' : '🔐',
+        text:index === 0 ? `${test.title}: ${data.hook}` : `${test.title}: связь с другими паттернами уже найдена`
+      }))
     }),
     storyCard({
       kicker:'🚩 Слабое место',
@@ -6000,38 +6740,33 @@ function buildProfileStory(completed, axisRows) {
     })
   ];
 
+  const unlocked = hasFullAccess();
+  const lockedTail = '<div class="story-lock">🔐 причина, повторение и сценарий доступны в полном профиле</div>';
   const spheres = [
     storyCard({
       kicker:'В отношениях',
       icon:'❤️',
       title: attachment ? attachment.data.title : 'Близость ещё не вскрыта',
-      text: attachment ? `${attachment.data.hook} ${boundaries ? 'Границы уже добавляют второй слой: ' + boundaries.data.title + '.' : 'Следующий слой — границы: там станет видно, где ты сохраняешь себя.'}` : 'Пройди “Стиль привязанности”, чтобы увидеть, как ты любишь, проверяешь, сближаешься или уходишь.'
+      text: attachment
+        ? `${attachment.data.hook}${unlocked ? ` ${boundaries ? 'Границы добавляют второй слой: ' + boundaries.data.title + '.' : 'Следующий слой — границы.'}` : lockedTail}`
+        : 'Пройди “Любовные качели”, чтобы открыть свой способ входить в близость.'
     }),
     storyCard({
       kicker:'В конфликте',
       icon:'⚡',
       title: conflict ? conflict.data.title : 'Конфликтный режим закрыт',
-      text: conflict ? `${conflict.data.hook} Этот блок показывает, что происходит, когда контакт становится напряжённым.` : 'После теста конфликта Persona покажет, давишь ли ты, молчишь, уходишь или пытаешься чинить контакт.'
+      text: conflict ? `${conflict.data.hook}${unlocked ? ' Persona связывает это с тревогой и границами.' : lockedTail}` : 'После теста конфликта Persona покажет, давишь ли ты, молчишь, уходишь или чинишь контакт.'
     }),
     storyCard({
       kicker:'Внутри себя',
       icon:'🌫️',
       title: anxiety ? anxiety.data.title : 'Тревожный фон ещё не измерен',
-      text: anxiety ? `${anxiety.data.hook} ${stability ? 'Опора показывает, на чём ты держишься: ' + stability.data.title + '.' : 'После теста опоры станет видно, что помогает тебе не разваливаться.'}` : 'Здесь появится твоя реакция на неопределённость, контроль, перегруз и способы возвращать себе ясность.'
+      text: anxiety ? `${anxiety.data.hook}${unlocked ? ` ${stability ? 'Твоя опора: ' + stability.data.title + '.' : 'Следующий слой покажет способ восстановления.'}` : lockedTail}` : 'Здесь появится твоя реакция на неопределённость и перегруз.'
     })
   ];
 
   const deep = [
-    fullProfileOffer(completed, topAxis),
-    `
-      <div class="story-card accent">
-        <div class="story-kicker">Содержание полного профиля</div>
-        <div class="story-title">🔐 Что именно откроется после покупки</div>
-        <div class="story-text">Ниже — не заглушки, а структура будущего платного разбора. Открытый фрагмент уже персонализируется по твоим результатам.</div>
-        <div class="full-section-list">${fullSections}</div>
-        <button class="paid-action" onclick="openFullProfilePaywall()">Оформить подписку — ${FULL_ACCESS_PRODUCT.price} ₽/мес</button>
-      </div>
-    `
+    fullProfileOffer(completed, topAxis)
   ];
 
   return { portrait, strengths, spheres, deep };
@@ -6679,7 +7414,7 @@ function renderFullProfilePreview() {
   const fullAccess = getFullAccessState();
   const signalTitle = topAxis ? `${topAxis.axis.icon} ${topAxis.axis.label}: ${topAxis.value}%` : '🧬 Карта ещё собирается';
   const signalText = topAxis
-    ? `Persona уже видит главный сигнал из теста “${topAxis.testTitle}”. Полный профиль покажет, где он помогает тебе, а где начинает мешать отношениям, решениям и спокойствию.`
+    ? `Главный сигнал уже найден в тесте “${topAxis.testTitle}”. Но важнее другое: Persona рассчитала, с каким паттерном он конфликтует и в какой сфере проявляется первым.`
     : 'Пройди первый тест, и здесь появится персональный фрагмент полного профиля вместо общего описания.';
 
   document.getElementById('full-preview-signal').innerHTML = `
@@ -6698,19 +7433,18 @@ function renderFullProfilePreview() {
         <div class="checkout-row"><span>Продукт</span><b>${FULL_ACCESS_PRODUCT.title}</b></div>
         <div class="checkout-row"><span>Доступ</span><b>подписка на месяц</b></div>
         <div class="checkout-row"><span>К оплате</span><b>${FULL_ACCESS_PRODUCT.price} ₽/мес</b></div>
-        <div class="checkout-note">После оплаты пришли Persona-код в бот. Админ проверит оплату, добавит код в список доступа со сроком окончания, и полный профиль откроется после обновления приложения.</div>
+        <div class="checkout-note">После подтверждения платежа Robokassa полный профиль активируется автоматически. Обычно это занимает меньше минуты.</div>
       </div>
     `}
   `;
 
   const modules = [
-    { icon:'🧬', title:'Глубокий портрет', text:'Не разрозненные результаты, а цельная карта: как ты защищаешься, сближаешься, тревожишься и держишь контроль.' },
-    { icon:'❤️', title:'Отношения', text:'Кого тебя тянет выбирать, как ты проверяешь близость и где сам можешь ломать контакт.' },
-    { icon:'🤝', title:'Дружба и окружение', text:'С кем ты раскрываешься, кто тебя истощает и почему рядом с одними ты мягче, а рядом с другими закрываешься.' },
-    { icon:'💼', title:'Работа, амбиции, деньги', text:'Как ты действуешь под давлением, где выгораешь и как твой главный паттерн влияет на решения.' },
-    { icon:'⚔️', title:'Внутренние конфликты', text:'Где внутри тебя спорят близость и свобода, контроль и доверие, эмоции и опора.' },
-    { icon:'✨', title:'Недельная динамика инсайтов', text:'Persona покажет, какие состояния повторяются: перегрев, закрытость, тревожный фон или жажда контакта.' },
-    { icon:'❤️', title:'Совместимость', text:'Платная парная диагностика: где вы совпадаете, где триггерите друг друга и почему один разговор видите по-разному.' }
+    { icon:'🧬', title:'Persona-паспорт', text:'Твоя сила, её скрытая цена, главный триггер и способ возвращаться в себя.' },
+    { icon:'❤️', title:'Идеальный человек рядом', text:'Не знак зодиака, а конкретный ритм близости, стиль разговора и красная зона выбора.' },
+    { icon:'⚔️', title:'Карта внутренних конфликтов', text:'Три визуальные оси покажут, какие потребности спорят внутри и кто обычно побеждает.' },
+    { icon:'🎬', title:'Сценарии отношений', text:'Три вероятных пути: что происходит при сближении, напряжении и попытке помириться.' },
+    { icon:'✨', title:'Твой ритм недели', text:'Повторяющееся состояние, день перегрева и то, что действительно возвращает тебя в норму.' },
+    { icon:'❤️', title:'Карточка пары', text:'Где вы усиливаете друг друга, где задеваете старый сценарий и как говорить без привычной войны.' }
   ];
 
   document.getElementById('full-preview-grid').innerHTML = modules.map(module => `
@@ -7019,6 +7753,49 @@ function fullMoodChart(history) {
   `;
 }
 
+function getRhythmSummary(history) {
+  const rows = history || [];
+  if (!rows.length) {
+    return {
+      repeat:'Данных пока мало',
+      peak:'После 3 ежедневных срезов',
+      recovery:'Persona найдёт твоё рабочее действие',
+      copy:'Проходи инсайт дня несколько дней подряд. Здесь появится не случайный график, а твой повторяющийся эмоциональный ритм.'
+    };
+  }
+  const counts = rows.reduce((acc, item) => {
+    const key = item.moodTitle || 'Смешанное состояние';
+    acc[key] = (acc[key] || 0) + 1;
+    return acc;
+  }, {});
+  const repeat = Object.entries(counts).sort((a, b) => b[1] - a[1])[0]?.[0] || 'Смешанное состояние';
+  const strongest = rows.reduce((best, item) => {
+    const values = Object.values(item.scores || {}).map(Number);
+    const average = values.length ? values.reduce((sum, value) => sum + value, 0) / values.length : 0;
+    return average > best.value ? { value:average, item } : best;
+  }, { value:-1, item:rows[0] }).item;
+  const recovery = rows.find(item => item.guidance)?.guidance || 'Сделать паузу до следующего решения';
+  return {
+    repeat,
+    peak:strongest?.date || 'последний срез',
+    recovery,
+    copy:`Чаще всего возвращается состояние «${repeat}». Persona сопоставляет его с твоими тестами, чтобы отличить случайный плохой день от устойчивого сценария.`
+  };
+}
+
+function fullRhythmCard(history) {
+  const summary = getRhythmSummary(history);
+  return `
+    ${fullProfileInsightsCard(history)}
+    ${fullMoodChart(history)}
+    <div class="persona-cost-card">
+      <div><span>повтор недели</span><b>${escapeHtml(summary.repeat)}</b></div>
+      <div><span>пик напряжения</span><b>${escapeHtml(summary.peak)}</b></div>
+      <div class="wide"><span>что возвращает в опору</span><b>${escapeHtml(summary.recovery)}</b></div>
+    </div>
+  `;
+}
+
 function getBestFriendProfile(boundaries) {
   const type = boundaries?.data?.type;
   const profiles = {
@@ -7158,6 +7935,117 @@ function getRecommendationFocus({ anxiety, conflict, stability, attachment }) {
   };
 }
 
+let fullProfilePerspectiveData = {
+  partner:'Рядом с тобой чувствуют глубину, но не всегда понимают, когда тебе нужен контакт, а когда пространство.',
+  friend:'Друзья видят человека, который умеет держаться. Иногда они слишком поздно замечают, что тебе самому нужна поддержка.',
+  work:'В работе ты выглядишь собраннее, чем ощущаешь себя внутри. Это вызывает доверие, но повышает ожидания.'
+};
+
+function getCoreProfileModel(completed, axisRows) {
+  const latest = completed[completed.length - 1];
+  const top = axisRows[0];
+  const second = axisRows[1];
+  const main = latest?.data?.title || top?.axis?.label || 'Неизученное ядро';
+  const strength = latest?.data?.hook || 'Ты быстро адаптируешься к ситуации и замечаешь больше, чем показываешь.';
+  const cost = latest?.data?.red || 'Сильная сторона может включаться слишком рано и превращаться в защиту.';
+  const partner = latest?.data?.mirror || 'В близости люди чувствуют твою интенсивность раньше, чем слышат объяснение.';
+  const friend = completed.length >= 3
+    ? `В дружбе ты чаще показываешь “${main}” через поступки. Люди могут считать тебя устойчивым и не замечать момент, когда ресурс уже заканчивается.`
+    : 'Друзья пока видят только внешний контур. Ещё несколько тестов покажут, где ты становишься удобным, закрытым или особенно лояльным.';
+  const work = top
+    ? `В работе сильнее всего считывается “${top.axis.label}”. Это помогает держать темп, но может создавать впечатление, что тебе не нужна обратная связь.`
+    : 'Рабочая перспектива уточнится после первых тестов.';
+  return {
+    main,
+    headline: second ? `${top.axis.label} ведёт. ${second.axis.label} спорит с ним.` : `${main} сейчас ведёт твою карту.`,
+    copy: latest?.data?.desc || 'Persona собирает не тип личности, а систему реакций: что включает тебя, что защищает и что повторяется.',
+    strength,
+    cost,
+    trigger: latest?.data?.hook || 'Неясность, давление или риск потерять важный контакт.',
+    repair:'Сначала назвать факт, затем своё состояние и только потом выбирать действие.',
+    dna:[
+      { label:top?.axis?.label || 'Ядро', value:top ? `${top.value}%` : 'собирается' },
+      { label:second?.axis?.label || 'Защита', value:second ? `${second.value}%` : 'собирается' },
+      { label:'Точность', value:`${getProfilePrecision(completed.length)}%` }
+    ],
+    perspectives:{ partner, friend, work }
+  };
+}
+
+function personaPassportCard(model) {
+  return `
+    <div class="persona-passport">
+      <div class="persona-passport-head">
+        <div class="passport-kicker">живой психологический паспорт</div>
+        <div class="passport-mark">🧬</div>
+      </div>
+      <div class="passport-title">${escapeHtml(model.headline)}</div>
+      <div class="passport-copy">${escapeHtml(model.copy)}</div>
+      <div class="persona-dna">
+        ${model.dna.map(item => `<div><b>${escapeHtml(item.value)}</b><span>${escapeHtml(item.label)}</span></div>`).join('')}
+      </div>
+    </div>
+    <div class="persona-cost-card">
+      <div class="scenario-kicker">обратная сторона силы</div>
+      <div class="persona-cost-row"><b>Твоя сила</b><span>${escapeHtml(model.strength)}</span></div>
+      <div class="persona-cost-row"><b>Её цена</b><span>${escapeHtml(model.cost)}</span></div>
+      <div class="persona-cost-row"><b>Что включает</b><span>${escapeHtml(model.trigger)}</span></div>
+      <div class="persona-cost-row"><b>Как вернуть руль</b><span>${escapeHtml(model.repair)}</span></div>
+    </div>
+    <div class="perspective-card">
+      <div class="scenario-kicker">как тебя переживают другие</div>
+      <div class="perspective-tabs">
+        <button class="perspective-tab active" onclick="switchFullProfilePerspective('partner', this)">Партнёр</button>
+        <button class="perspective-tab" onclick="switchFullProfilePerspective('friend', this)">Друг</button>
+        <button class="perspective-tab" onclick="switchFullProfilePerspective('work', this)">Работа</button>
+      </div>
+      <div class="perspective-text" id="full-profile-perspective">${escapeHtml(model.perspectives.partner)}</div>
+    </div>
+  `;
+}
+
+function switchFullProfilePerspective(key, el) {
+  document.querySelectorAll('.perspective-tab').forEach(tab => tab.classList.remove('active'));
+  el?.classList.add('active');
+  const root = document.getElementById('full-profile-perspective');
+  if (root) root.textContent = fullProfilePerspectiveData[key] || fullProfilePerspectiveData.partner;
+  safeSelectionHaptic();
+}
+
+function getRelationshipScenarios({ attachment, boundaries, conflict }) {
+  const pattern = attachment?.data?.title || 'твой способ входить в близость';
+  const boundary = boundaries?.data?.title || 'неясные границы';
+  const argument = conflict?.data?.title || 'привычная защита';
+  return [
+    {
+      title:'Если действовать привычно',
+      text:`${pattern} задаёт старт. Затем ${boundary.toLowerCase()} добавляют напряжение, а ${argument.toLowerCase()} решает, вернётесь ли вы к разговору.`
+    },
+    {
+      title:'Где начинается повтор',
+      text:attachment?.data?.red || 'В момент неясности вместо прямой просьбы может включиться проверка, дистанция или попытка вернуть контроль.'
+    },
+    {
+      title:'Что меняет сценарий',
+      text:'Не идеальное поведение, а один новый шаг: назвать потребность до того, как защита успеет превратить её в претензию или исчезновение.'
+    }
+  ];
+}
+
+function relationshipScenariosCard(scenarios) {
+  return `
+    <div class="relationship-scenarios">
+      <div class="scenario-kicker">вероятный сценарий отношений</div>
+      ${scenarios.map((scenario, index) => `
+        <div class="scenario-path">
+          <div class="scenario-index">${index + 1}</div>
+          <div><b>${escapeHtml(scenario.title)}</b><span>${escapeHtml(scenario.text)}</span></div>
+        </div>
+      `).join('')}
+    </div>
+  `;
+}
+
 let fullProfileModules = {};
 
 function renderFullProfile() {
@@ -7177,8 +8065,24 @@ function renderFullProfile() {
   const bestFriend = getBestFriendProfile(boundaries);
   const idealWork = getIdealWorkProfile(control, topAxis);
   const internalConflicts = getInternalConflictMap({ attachment, control, anxiety, conflict, stability, boundaries });
+  const coreModel = getCoreProfileModel(completed, axisRows);
+  const relationshipScenarios = getRelationshipScenarios({ attachment, boundaries, conflict });
+  fullProfilePerspectiveData = coreModel.perspectives;
 
   fullProfileModules = {
+    core: {
+      icon:'🧬',
+      title:'Ядро',
+      sub:'как всё связано',
+      html:fullProfileSection({
+        kicker:'твой главный рисунок',
+        icon:'🧬',
+        title:'Persona-паспорт',
+        text:'Здесь отдельные результаты перестают быть списком. Persona связывает силу, защиту, триггер и то, как этот рисунок ощущают люди рядом.',
+        accent:true,
+        extra:personaPassportCard(coreModel)
+      })
+    },
     relations: {
       icon:'❤️',
       title:'Отношения',
@@ -7203,6 +8107,7 @@ function renderFullProfile() {
           <div class="ideal-partner-text">${escapeHtml(idealPartner.text)}</div>
           ${idealPartnerDetailsCard(idealPartnerDetails)}
         </div>
+        ${relationshipScenariosCard(relationshipScenarios)}
       `,
       points:[
         { icon:'🫀', title:'Твой безопасный ритм', text:idealPartner.rhythm },
@@ -7280,6 +8185,23 @@ function renderFullProfile() {
         { icon:'⚡', title:'Эмоции против опоры', text:'показывает, где реакция приходит быстрее, чем спокойное решение.' }
       ]
       })
+    },
+    rhythm: {
+      icon:'✨',
+      title:'Ритм',
+      sub:'что повторяется за неделю',
+      html:fullProfileSection({
+        kicker:'живая динамика',
+        icon:'✨',
+        title:'Твой эмоциональный ритм',
+        text:getRhythmSummary(dailyHistory).copy,
+        extra:fullRhythmCard(dailyHistory),
+        points:[
+          { icon:'↻', title:'Повтор', text:'Persona отличает устойчивое состояние от одного тяжёлого дня.' },
+          { icon:'⚡', title:'Перегрев', text:'График показывает, после каких состояний реакция становится резче обычного.' },
+          { icon:'🧭', title:'Возврат', text:'Совет строится по твоей карте и истории, а не выбирается из общего списка.' }
+        ]
+      })
     }
   };
 
@@ -7292,11 +8214,11 @@ function renderFullProfile() {
       </span>
     </button>
   `).join('');
-  switchFullProfileTab('relations');
+  switchFullProfileTab('core');
 }
 
 function switchFullProfileTab(id, el) {
-  const module = fullProfileModules[id] || fullProfileModules.relations;
+  const module = fullProfileModules[id] || fullProfileModules.core;
   document.querySelectorAll('.full-profile-tab').forEach(tab => tab.classList.remove('active'));
   if (el) el.classList.add('active');
   else document.querySelector(`.full-profile-tab[onclick*="${id}"]`)?.classList.add('active');
@@ -7412,6 +8334,8 @@ updateFullAccessUi();
 syncFullAccessFromServer()
   .then(() => updateFullAccessUi())
   .catch(error => console.warn('Initial full access sync failed', error));
+trackAnalyticsAppOpen()
+  .catch(error => console.warn('Initial analytics sync failed', error));
 document.addEventListener('visibilitychange', () => {
   if (!document.hidden) {
     syncFullAccessFromServer()
