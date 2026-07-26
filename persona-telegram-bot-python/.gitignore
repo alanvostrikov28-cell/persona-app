@@ -1,0 +1,11 @@
+.env
+__pycache__/
+*.pyc
+*.sqlite3
+.venv/
+node_modules/
+.analytics-secret
+bot.log
+bot-error.log
+ngrok.log
+ngrok-error.log
